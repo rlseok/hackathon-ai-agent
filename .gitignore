@@ -1,0 +1,26 @@
+# 가상환경 (다른 PC 에서는 requirements.txt 로 다시 설치)
+.venv/
+venv/
+
+# 파이썬 캐시
+__pycache__/
+*.pyc
+
+# 실행하면 생기는 결과물 (검사 대장·보고서·작업 파일)
+**/outputs/
+**/check_output/
+**/_preview.docx
+
+# 대기함에 넣은 사진 (폴더만 유지)
+**/inbox/**/*.jpg
+**/inbox/**/*.jpeg
+**/inbox/**/*.png
+**/inbox/**/*.bmp
+
+# 로컬 도구 설정
+.claude/
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+~$*

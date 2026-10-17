@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 8
+names: ['falsecopper', 'missinghole', 'mousebite', 'opencircuit', 'pinhole', 'scratch', 'shortcircuit', 'spur']
+
+roboflow:
+  workspace: bare-pcb-defects
+  project: obj-detection-pcb-defects-yolov8
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/bare-pcb-defects/obj-detection-pcb-defects-yolov8/dataset/3

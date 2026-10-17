@@ -1,0 +1,9 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<circle cx='50' cy='50' r='45' fill='none' stroke='rgba(128,128,128,0.25)' stroke-width='5'/>
+<circle cx='50' cy='50' r='45' fill='none' stroke='#FF4B4B' stroke-width='5' stroke-linecap='round' stroke-dasharray='70 213'>
+<animateTransform attributeName='transform' type='rotate' from='0 50 50' to='360 50 50' dur='1s' repeatCount='indefinite'/></circle>
+<path fill='#FF4B4B' fill-rule='evenodd' d='M57.66 51.50 L63.65 52.92 L63.65 61.08 L57.66 62.50 L57.52 62.94 L61.53 67.60 L56.73 74.20 L51.06 71.83 L50.69 72.10 L51.19 78.23 L43.43 80.75 L40.23 75.50 L39.77 75.50 L36.57 80.75 L28.81 78.23 L29.31 72.10 L28.94 71.83 L23.27 74.20 L18.47 67.60 L22.48 62.94 L22.34 62.50 L16.35 61.08 L16.35 52.92 L22.34 51.50 L22.48 51.06 L18.47 46.40 L23.27 39.80 L28.94 42.17 L29.31 41.90 L28.81 35.77 L36.57 33.25 L39.77 38.50 L40.23 38.50 L43.43 33.25 L51.19 35.77 L50.69 41.90 L51.06 42.17 L56.73 39.80 L61.53 46.40 L57.52 51.06 Z M46.50 57.00 A6.5 6.5 0 1 0 33.50 57.00 A6.5 6.5 0 1 0 46.50 57.00 Z'>
+<animateTransform attributeName='transform' type='rotate' from='12.5 40 57' to='372.5 40 57' dur='3.0s' repeatCount='indefinite'/></path>
+<path fill='#9AA0A6' fill-rule='evenodd' d='M73.85 29.98 L79.01 30.73 L79.01 38.87 L73.85 39.62 L73.64 39.98 L75.58 44.81 L68.52 48.89 L65.30 44.80 L64.88 44.80 L61.66 48.89 L54.60 44.81 L56.54 39.98 L56.33 39.62 L51.17 38.87 L51.17 30.73 L56.33 29.98 L56.54 29.62 L54.60 24.79 L61.66 20.71 L64.88 24.80 L65.30 24.80 L68.52 20.71 L75.58 24.79 L73.64 29.62 Z M69.09 34.80 A4 4 0 1 0 61.09 34.80 A4 4 0 1 0 69.09 34.80 Z'>
+<animateTransform attributeName='transform' type='rotate' from='18.5 65.09 34.8' to='-341.5 65.09 34.8' dur='1.8s' repeatCount='indefinite'/></path>
+</svg>

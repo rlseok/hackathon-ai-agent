@@ -1,0 +1,8 @@
+# 노트북 실행용 패키지 (GPU 사용 시 torch 를 먼저 설치 — docs/04 참고)
+ultralytics>=8.4.0      # YOLO 추론 (모델은 8.4.177 로 학습됨)
+pyyaml                  # 클래스·지식베이스 YAML 읽기
+ollama                  # Ollama(Qwen) 파이썬 클라이언트
+streamlit               # 작업자 확인 화면 (에이전트 UI)
+python-docx             # 보고서 Word 출력
+openpyxl              # 검사 대장 엑셀 (outputs/검사대장.xlsx)
+mammoth               # 보고서 미리보기 (docx → HTML)

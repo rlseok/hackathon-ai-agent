@@ -1,0 +1,7 @@
+path: C:/Users/연구실/Desktop/defect_agent_project/msdd_agent/data/msdd_v1
+train: images/train
+val: images/val
+test: images/test
+
+nc: 6
+names: ['Dark Spot', 'Fold', 'Oxidation', 'Porosity', 'Scratch', 'Stain']

@@ -1,0 +1,149 @@
+# 금속 부품 표면 결함 유형별 대처 지식 (에이전트 STEP 2~4: 유형 → 원인 후보 → 조치)
+# - 대상: 원형 금속 부품의 가공면 (MSDD 데이터, 부품 1개를 CAP2/CAP3/CAP4 상하좌우 5방향 촬영)
+# - 키는 YOLO 클래스명(models/msdd_v1_data.yaml names)과 동일해야 한다
+# - 내용은 일반적인 금속 가공·열처리·표면처리 지식 기반 초안이다. 실제 판정 기준은 고객사 외관 기준서로 확인 후 수정할 것
+# - severity: critical(기능 불량, 출하 불가) / major(신뢰성 위험, 측정 후 판정) / minor(외관, 조건부 허용)
+
+version: 0.1
+
+judgment:            # 판정 3단계: 정상 / 의심(2차 검수) / 이상  (test 150장 기준 0.25 에서 사진 판정 92.7%)
+  conf_reject: 0.50
+  conf_review: 0.25
+  surface_ratio: 0.40  # 결함 마스크가 이미지 면적의 이 비율 이상이면 '전면 분포' (라벨도 전면 폴리곤으로 그려져 있음)
+  rules:             # 유형별 예외. 근거: 심각도 + 유형별 모델 성능(mask mAP50) + 크기·분포
+    # 면적 기준(min_area)은 추정값 → msdd_v1 라벨과 검사자 OK/NG(meta.csv)로 재조정할 것
+    Fold:      {reject_conf: 0.25}                       # 치명, 모델 약함(0.36) → 낮은 신뢰도도 이상
+    Porosity:  {require_surface: true, note: 기공 크기·위치(기능면 여부) 확인, note_vi: Kiểm tra kích thước và vị trí rỗ khí (có ở bề mặt chức năng không), note_en: Check pore size and location (on a functional surface or not)}   # 전면이면 소재 로트 문제
+    Dark Spot: {min_area: 0.005, note: 세척으로 제거되는 부착물인지 확인, note_vi: Kiểm tra có phải chất bám bẩn rửa sạch được không, note_en: Check whether it is residue that washes off}   # 0.5% 미만 흑점은 2차 검수
+    Oxidation: {reject_conf: 0.60, note: 표면 산화인지 부식 손상인지 확인, note_vi: Kiểm tra là oxy hóa bề mặt hay hư hỏng do ăn mòn, note_en: Check whether it is surface oxidation or corrosion damage}   # 모델 약함(0.42) → 기준을 올림
+    Scratch:   {require_surface: true, note: 긁힘 깊이·길이를 외관 기준과 비교, note_vi: So sánh độ sâu và chiều dài vết xước với tiêu chuẩn ngoại quan, note_en: Compare scratch depth and length with the appearance standard}   # 국부 스크래치는 허용 여부 판단 필요
+    Stain:     {max_level: review, note: 재세척 후 재검, note_vi: Rửa lại rồi kiểm tra lại, note_en: Re-clean and inspect again}   # 재세척으로 대부분 해결
+
+situations:
+  normal:
+    label: 정상
+    action: 통과 처리. 검사 이력만 기록한다.
+  review:
+    label: 의심
+    output: 재검사 의뢰서 (Hold)
+    action: 부품을 보류(Hold)하고 의심 영역을 표시해 재검사를 의뢰한다. 불합격이면 부적합 보고서(NCR)를 발행하고, 합격(오탐)이면 Hold 를 해제한다.
+    note: 기각된 이미지는 정상 샘플로, 확정된 이미지는 결함 샘플로 모아 재학습에 사용한다.
+  reject:
+    label: 이상
+    output: 부적합 보고서 (NCR)
+    action: 유형별 원인 후보와 조치를 붙여 부적합 보고서(NCR)를 만들고, 작업자 확인 후 품질 담당자에게 전송한다. 치명·복합 결함이면 8D 발행을 권고한다.
+  multi_type:
+    label: 복합 결함
+    action: severity 가 가장 높은 유형을 대표 판정으로 하고, 나머지 유형도 보고서에 모두 기재한다.
+  part:
+    label: 부품 단위 판정
+    action: 한 부품의 여러 방향 사진 중 하나라도 이상이면 부품을 이상으로, 이상은 없고 의심이 있으면 의심(2차 검수)으로 판정한다.
+  surface_wide:
+    label: 전면 분포
+    action: 결함이 가공면 전체에 퍼져 있으면 개별 취급 결함이 아니라 가공·소재 조건 이상으로 보고, 같은 로트의 다른 부품도 확인하도록 권고한다.
+
+defects:
+  Fold:
+    name_ko: 접힘
+    name_vi: Gấp nếp
+    name_en: Fold
+    group: 소재·성형 결함
+    severity: critical
+    description: 단조·압연·성형 중 재료가 겹쳐 눌린 선형 결함 (내부로 이어진 틈일 수 있음)
+    causes:
+      - 단조·성형 시 재료 흐름 불량 (금형 형상, 소재 배치 위치)
+      - 소재 표면의 기존 결함(랩, 심)이 가공 후 노출
+      - 성형 온도·압력 조건 부적절
+    actions:
+      immediate: 해당 부품 격리. 균열과 구분하기 위해 침투탐상 등 비파괴 검사로 깊이를 확인한다.
+      check: 소재 로트·성형 조건 기록, 금형 마모 상태 확인
+      prevent: 금형 형상·소재 배치 개선, 소재 입고 검사 강화, 성형 조건 관리
+    measure: 길이, 깊이
+
+  Porosity:
+    name_ko: 기공
+    name_vi: Rỗ khí
+    name_en: Porosity
+    group: 소재 결함
+    severity: major
+    description: 가공면에 드러난 작은 구멍들 (소재 내부 기공이 절삭으로 노출)
+    causes:
+      - 주조·소결 시 가스 혼입 또는 탈가스 부족
+      - 원소재 내부 결함
+      - 용탕 또는 분말의 수분·오염
+    actions:
+      immediate: 구멍 크기·개수를 기준과 비교. 실링면·나사부 등 기능면에 있으면 불량.
+      check: 원소재 로트 이력, 주조·소결 조건 기록 확인
+      prevent: 탈가스·건조 조건 관리, 원소재 입고 검사(단면·밀도) 강화
+    measure: 직경, 개수, 위치(기능면 여부)
+    surface_note: 가공면 전체에 기공이 분포하면 개별 부품이 아니라 원소재 로트 문제일 가능성이 크다.
+
+  Scratch:
+    name_ko: 스크래치
+    name_vi: Vết xước
+    name_en: Scratch
+    group: 취급·가공 손상
+    severity: minor
+    description: 표면의 선형 긁힘
+    causes:
+      - 취급·적재 중 부품 간 접촉
+      - 이송 지그·컨베이어 마찰
+      - 가공 중 칩이 공구와 가공면 사이에 끼임
+      - 공구 마모 또는 인선 손상
+    actions:
+      immediate: 깊이·길이를 외관 기준과 비교. 기능면이 아니고 기준 이내면 조건부 허용.
+      check: 긁힘 방향으로 발생 공정 추적 (가공 방향과 같으면 가공 중, 무작위면 취급 중)
+      prevent: 부품 간 간지·트레이 사용, 칩 배출·절삭유 관리, 공구 교체 주기 관리
+    measure: 길이, 깊이
+    surface_note: 가공면 전체에 긁힘이 있으면 공구 마모나 절삭 조건 이상일 가능성이 크다.
+
+  Oxidation:
+    name_ko: 산화
+    name_vi: Oxy hóa
+    name_en: Oxidation
+    group: 표면 변질
+    severity: major
+    description: 표면이 산화·부식되어 변색되거나 녹이 생긴 상태
+    causes:
+      - 세척 후 건조 불량
+      - 방청 처리 누락 또는 방청유 부족
+      - 보관 환경의 습도·온도 관리 미흡
+      - 열처리 후 냉각·분위기 관리 부적절
+    actions:
+      immediate: 녹 제거로 복구 가능한 표면 산화인지, 부식으로 치수·기능이 손상됐는지 확인 후 판정.
+      check: 세척·건조·방청 공정 기록, 보관 장소 습도 확인
+      prevent: 건조·방청 공정 표준화, 보관 습도 관리, 선입선출로 장기 보관 방지
+
+  Dark Spot:
+    name_ko: 흑점
+    name_vi: Đốm đen
+    name_en: Dark spot
+    group: 표면 변질
+    severity: major
+    description: 표면의 국부적인 어두운 반점
+    causes:
+      - 이물·절삭유 탄화물 부착
+      - 국부 부식 또는 산화
+      - 열처리 스케일 잔류
+      - 소재 내 개재물 노출
+    actions:
+      immediate: 세척으로 제거되는 부착물인지 확인. 제거되지 않으면 부식·개재물로 보고 크기를 기준과 비교.
+      check: 세척 공정, 절삭유 오염도, 열처리 후처리 기록 확인
+      prevent: 세척 조건 관리, 절삭유 교체 주기 관리, 열처리 후 스케일 제거 공정 점검
+    measure: 직경, 개수
+
+  Stain:
+    name_ko: 얼룩
+    name_vi: Vết ố
+    name_en: Stain
+    group: 표면 오염
+    severity: minor
+    description: 세척액·절삭유 등이 말라 남은 얼룩
+    causes:
+      - 세척액·절삭유 잔류 후 자연 건조
+      - 헹굼 또는 건조 공정 불충분
+      - 맨손 취급(지문)
+    actions:
+      immediate: 재세척으로 제거되는지 확인. 제거되면 재세척 후 합격 처리.
+      check: 세척액 농도·교체 주기, 건조 온도·시간 확인
+      prevent: 헹굼·에어 블로우·건조 조건 관리, 장갑 착용 취급

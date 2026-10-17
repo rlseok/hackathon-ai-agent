@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>불량 분석 에이전트</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: 한 화면에 한 장씩 넘기는 발표 자료. 위 막대(언어), 가운데 슬라이드, 아래 막대(이전·쪽수·다음). 인터넷이 없으면 시스템 글꼴로 대체된다. */
+:root {
+  --bg: #F2F4F6;
+  --surface: #FFFFFF;
+  --ink: #17212B;
+  --muted: #5A6774;
+  --line: #D8DEE4;
+  --accent: #D2423A;          /* 검출 박스의 빨간 표시 */
+  --accent-soft: #FBE9E7;
+  --ok: #2E7D32;  --ok-soft: #E3F1E4;
+  --warn: #B86E00; --warn-soft: #FCEFD9;
+  --bad: #C62828; --bad-soft: #FBE3E3;
+  --font-ko: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --font-latin: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, "SFMono-Regular", monospace;
+  --font-body: var(--font-ko);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1419; --surface: #171E25; --ink: #E5EAEF; --muted: #95A3B0; --line: #2A343E;
+    --accent: #FF6A5E; --accent-soft: #3A1F1E;
+    --ok: #63C66F; --ok-soft: #1B2E1E; --warn: #F0A43A; --warn-soft: #33281A; --bad: #FF7070; --bad-soft: #3A1E20;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1419; --surface: #171E25; --ink: #E5EAEF; --muted: #95A3B0; --line: #2A343E;
+  --accent: #FF6A5E; --accent-soft: #3A1F1E;
+  --ok: #63C66F; --ok-soft: #1B2E1E; --warn: #F0A43A; --warn-soft: #33281A; --bad: #FF7070; --bad-soft: #3A1E20;
+  color-scheme: dark;
+}
+html:not([lang="ko"]) { --font-body: var(--font-latin); }
+html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
+html:not([lang="ko"]) [data-l="ko"],
+html:not([lang="vi"]) [data-l="vi"],
+html:not([lang="en"]) [data-l="en"] { display: none !important; }
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 clamp(15px, 0.55vw + 11px, 20px)/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden;
+}
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.3; }
+p { margin: 0; }
+.gut {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ── 위 막대: 언어 ── */
+.bar { border-bottom: 1px solid var(--line); }
+.bar .in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.tag { font: 600 12px/1 var(--font-mono); letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.lang button {
+  font: 500 13px/1 var(--font-latin); color: var(--muted); background: none; border: 0;
+  padding: 8px 12px; cursor: pointer; white-space: nowrap;
+}
+.lang button + button { border-left: 1px solid var(--line); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) { .tag { display: none; } .bar .in { justify-content: flex-end; } .lang button { padding: 8px 10px; } }
+
+/* ── 슬라이드 ── */
+.deck { position: relative; overflow: hidden; }
+.slide {
+  position: absolute; inset: 0; overflow-y: auto;
+  display: grid; align-items: center;
+  opacity: 0; visibility: hidden; transform: translateX(24px);
+  transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+}
+.slide.on { opacity: 1; visibility: visible; transform: none; transition: opacity .35s ease, transform .35s ease; }
+.slide.before { transform: translateX(-24px); }
+@media (prefers-reduced-motion: reduce) { .slide, .slide.on { transition: none; transform: none; } }
+.slide > .in { width: 100%; max-width: 1180px; margin: 0 auto; padding-block: clamp(16px, 3.5vh, 48px); display: grid; gap: clamp(12px, 2vh, 24px); }
+
+.kicker { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font: 600 13px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.kicker .sub { color: var(--muted); }
+h2 { font-size: clamp(26px, 2.6vw + 10px, 44px); font-weight: 700; letter-spacing: -.01em; }
+html[lang="ko"] h2 { letter-spacing: -.025em; }
+h3 { font-size: 1.1em; font-weight: 700; }
+.label { font: 600 12.5px/1.3 var(--font-mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+.say { font-size: 1.12em; color: var(--muted); max-width: 52ch; }
+
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .grid2, .grid3 { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: clamp(14px, 1.6vw, 22px); display: grid; gap: 6px; align-content: start; min-width: 0; }
+
+/* 표지 */
+.cover .in { gap: clamp(18px, 3vh, 30px); }
+.eyebrow { font: 600 14px/1.4 var(--font-mono); letter-spacing: .06em; color: var(--accent); text-transform: uppercase; }
+.boxed { position: relative; display: inline-block; padding: 14px 18px; margin-top: 16px; justify-self: start; }
+.boxed::before {   /* 검출 박스처럼 네 모서리만 그린다 */
+  content: ""; position: absolute; inset: 0; pointer-events: none; --c: var(--accent);
+  background:
+    linear-gradient(var(--c), var(--c)) top left / 26px 2px, linear-gradient(var(--c), var(--c)) top left / 2px 26px,
+    linear-gradient(var(--c), var(--c)) top right / 26px 2px, linear-gradient(var(--c), var(--c)) top right / 2px 26px,
+    linear-gradient(var(--c), var(--c)) bottom left / 26px 2px, linear-gradient(var(--c), var(--c)) bottom left / 2px 26px,
+    linear-gradient(var(--c), var(--c)) bottom right / 26px 2px, linear-gradient(var(--c), var(--c)) bottom right / 2px 26px;
+  background-repeat: no-repeat;
+}
+.det { position: absolute; left: 0; top: 0; transform: translateY(-100%); font: 600 12px/1 var(--font-mono); background: var(--accent); color: #fff; padding: 5px 7px; border-radius: 3px 3px 3px 0; }
+h1 { font-size: clamp(32px, 4.4vw + 8px, 68px); font-weight: 700; letter-spacing: -.01em; }
+html[lang="ko"] h1 { letter-spacing: -.03em; }
+.lead { font-size: 1.2em; color: var(--muted); max-width: 46ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 32px; margin: 0; }
+.facts div { display: grid; gap: 2px; }
+.facts dt { font: 600 11.5px/1.3 var(--font-mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 500; }
+
+/* 주최 측 5단계 */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; counter-reset: s; }
+.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; font-weight: 600; line-height: 1.4; display: grid; gap: 8px; align-content: start; }
+.steps li::before { content: "STEP " counter(s); font: 600 11.5px/1 var(--font-mono); color: var(--accent); letter-spacing: .05em; }
+.steps li small { font-weight: 400; color: var(--muted); font-size: .85em; }
+@media (max-width: 760px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* 역할 분담 */
+.motto { font-size: clamp(20px, 1.6vw + 10px, 32px); font-weight: 700; padding: 16px 22px; border-left: 4px solid var(--accent); background: var(--surface); border-radius: 0 12px 12px 0; }
+.who { font: 600 13px/1 var(--font-mono); color: var(--accent); letter-spacing: .05em; }
+
+/* 판정 */
+.verdicts { display: grid; gap: 10px; }
+.v { display: grid; grid-template-columns: 10em minmax(0, 1fr); gap: 16px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+.pill { justify-self: start; font-weight: 700; font-size: .9em; padding: 4px 14px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { color: var(--ok); background: var(--ok-soft); }
+.pill.warn { color: var(--warn); background: var(--warn-soft); }
+.pill.bad { color: var(--bad); background: var(--bad-soft); }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: .92em; }
+@media (max-width: 560px) { .v { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+
+/* 진행 과정 단계 표시 */
+.track { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.track li { border-top: 3px solid var(--line); padding-top: 8px; font-size: .78em; color: var(--muted); line-height: 1.35; }
+.track li b { display: block; font: 600 12px/1 var(--font-mono); margin-bottom: 4px; }
+.track li.done { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.track li.now { border-color: var(--accent); color: var(--ink); font-weight: 600; }
+.track li.now b { color: var(--accent); }
+@media (max-width: 560px) { .track li span { display: none; } }
+
+ul.points { margin: 0; padding-left: 1.1em; display: grid; gap: 12px; }
+ul.points li::marker { color: var(--accent); }
+.big { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1.9em; font-weight: 600; line-height: 1.1; color: var(--ink); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 600px; }
+th, td { text-align: left; padding: 12px 16px; vertical-align: top; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font: 600 12px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: color-mix(in srgb, var(--line) 35%, var(--surface)); }
+td .arch { display: block; font: 400 12.5px/1.4 var(--font-mono); color: var(--muted); margin-top: 2px; }
+td.metric { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: .88em; white-space: nowrap; }
+td.metric b { font-size: 1.35em; color: var(--ink); }
+.note { background: var(--accent-soft); border-radius: 12px; padding: 14px 18px; display: grid; gap: 4px; }
+.note .label { color: var(--accent); }
+
+/* 파이프라인 흐름 */
+.flow { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.flow li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-weight: 600; line-height: 1.3; }
+.flow li small { display: block; font: 400 11.5px/1.3 var(--font-mono); color: var(--muted); margin-top: 2px; }
+.flow li.human { border-color: var(--accent); border-style: dashed; }
+.flow .arr { background: none; border: 0; padding: 0 2px; color: var(--muted); font-family: var(--font-mono); font-weight: 400; }
+.routes { display: grid; gap: 10px; }
+.route { display: grid; grid-template-columns: 10em minmax(0, 1fr); gap: 16px; align-items: center; }
+.route .k { font-weight: 700; }
+@media (max-width: 560px) { .route { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+
+/* 화면 두 방향: 간단한 화면 스케치 */
+.sketch { height: clamp(100px, 17vh, 200px); border: 1px solid var(--line); border-radius: 8px; padding: 8px; display: grid; gap: 6px; background: var(--bg); margin-bottom: 8px; }
+.sketch i { display: block; border-radius: 4px; background: color-mix(in srgb, var(--line) 70%, var(--surface)); }
+.sketch i.hl { background: color-mix(in srgb, var(--accent) 22%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+.sk-dash { grid-template-columns: 20% 1fr 30%; grid-template-rows: 18px 1fr 1fr; }
+.sk-dash .side { grid-row: 1 / 4; }
+.sk-dash .top { grid-column: 2 / 4; }
+.sk-chat { grid-template-columns: 14% 1fr 32%; grid-template-rows: 1fr 1fr 18px; }
+.sk-chat .side { grid-row: 1 / 4; }
+.sk-chat .panel { grid-column: 3; grid-row: 1 / 4; }
+.sk-chat .in2 { grid-column: 2; }
+.dir .tagline { font: 600 13px/1 var(--font-mono); color: var(--accent); letter-spacing: .05em; }
+.same { text-align: center; font-weight: 700; padding: 14px; border: 1px dashed var(--line); border-radius: 12px; }
+
+/* 상태 */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { background: var(--ok-soft); color: var(--ok); font-weight: 600; font-size: .9em; padding: 6px 14px; border-radius: 999px; }
+.chips span::before { content: "✓ "; }
+ol.todo { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+ol.todo li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; display: grid; gap: 2px; }
+
+/* ── 아래 막대: 넘기기 ── */
+.nav { border-top: 1px solid var(--line); position: relative; }
+.nav .in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.progress { position: absolute; left: 0; top: -1px; height: 3px; background: var(--accent); transition: width .35s ease; }
+.nav button {
+  font: 600 14px/1 var(--font-body); color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px 16px; cursor: pointer; white-space: nowrap;
+}
+.nav button.next { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.nav button:disabled { opacity: .35; cursor: default; }
+.mid { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.count { font: 600 13px/1 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--muted); }
+.dots { display: flex; gap: 6px; }
+.dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 0; background: var(--line); }
+.dots button[aria-current="true"] { background: var(--accent); }
+.hint { font: 400 12px/1 var(--font-mono); color: var(--muted); }
+@media (max-width: 760px) { .dots, .hint { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="bar gut">
+  <div class="in">
+    <span class="tag">TOPIC 01 · Defect Agent</span>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-ko" data-set="ko" aria-pressed="true">한국어</button>
+      <button type="button" id="lang-vi" data-set="vi" aria-pressed="false">Tiếng Việt</button>
+      <button type="button" id="lang-en" data-set="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+</div>
+
+<main class="deck" id="deck">
+
+<!-- 1. 표지 -->
+<section class="slide cover gut" aria-label="1">
+  <div class="in">
+    <p class="eyebrow">
+      <span data-l="ko">국립창원대 AI Agent 해커톤 · TOPIC 01</span>
+      <span data-l="vi">Hackathon AI Agent – ĐH Quốc gia Changwon · TOPIC 01</span>
+      <span data-l="en">Changwon National University AI Agent Hackathon · TOPIC 01</span>
+    </p>
+    <div class="boxed">
+      <span class="det">defect 0.91</span>
+      <h1>
+        <span data-l="ko">부품 불량 사진 분석 AI 에이전트</span>
+        <span data-l="vi">AI Agent phân tích ảnh lỗi linh kiện</span>
+        <span data-l="en">AI Agent for Part Defect Photo Analysis</span>
+      </h1>
+    </div>
+    <p class="lead">
+      <span data-l="ko">우리 팀이 진행할 프로젝트의 주제와 지금까지의 진행 과정</span>
+      <span data-l="vi">Chủ đề dự án của nhóm và quá trình thực hiện đến nay</span>
+      <span data-l="en">Our project topic and the progress so far</span>
+    </p>
+    <dl class="facts">
+      <div>
+        <dt><span data-l="ko">대회</span><span data-l="vi">Cuộc thi</span><span data-l="en">Event</span></dt>
+        <dd><span data-l="ko">하노이 · 10월 21–23일</span><span data-l="vi">Hà Nội · 21–23/10</span><span data-l="en">Hanoi · Oct 21–23</span></dd>
+      </div>
+      <div>
+        <dt><span data-l="ko">실행 환경</span><span data-l="vi">Môi trường chạy</span><span data-l="en">Runs on</span></dt>
+        <dd><span data-l="ko">노트북 1대 · 인터넷 없이</span><span data-l="vi">1 laptop · không cần internet</span><span data-l="en">One laptop · offline</span></dd>
+      </div>
+      <div>
+        <dt><span data-l="ko">모델</span><span data-l="vi">Mô hình</span><span data-l="en">Models</span></dt>
+        <dd>YOLO11 + Qwen3 8B (Ollama)</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- 2. 주제 -->
+<section class="slide gut" aria-label="2">
+  <div class="in">
+    <p class="kicker">01 · <span data-l="ko">주제</span><span data-l="vi">Chủ đề</span><span data-l="en">Topic</span></p>
+    <h2><span data-l="ko">우리가 맡은 주제</span><span data-l="vi">Chủ đề của nhóm</span><span data-l="en">Our topic</span></h2>
+    <div class="grid2">
+      <div class="card">
+        <span class="label"><span data-l="ko">현장의 문제</span><span data-l="vi">Vấn đề tại hiện trường</span><span data-l="en">The problem</span></span>
+        <p>
+          <span data-l="ko">작업자가 긁힘·찍힘·버(Burr) 같은 외관 불량을 눈으로 확인하고, 원인과 조치까지 보고서로 정리하는 데 시간이 많이 든다.</span>
+          <span data-l="vi">Công nhân phải tự kiểm tra bằng mắt các lỗi ngoại quan như trầy xước, móp, ba via (burr), rồi viết báo cáo về nguyên nhân và biện pháp xử lý. Việc này tốn rất nhiều thời gian.</span>
+          <span data-l="en">Workers check visual defects such as scratches, dents and burrs by eye, then write up causes and actions in a report. This takes a lot of time.</span>
+        </p>
+      </div>
+      <div class="card">
+        <span class="label"><span data-l="ko">목표</span><span data-l="vi">Mục tiêu</span><span data-l="en">Goal</span></span>
+        <p>
+          <span data-l="ko">불량 사진 한 장으로 유형 판정부터 보고서 초안까지 만든다.</span>
+          <span data-l="vi">Chỉ từ một ảnh lỗi, xác định loại lỗi và tạo bản nháp báo cáo.</span>
+          <span data-l="en">From a single defect photo, identify the defect type and produce a draft report.</span>
+        </p>
+      </div>
+      <div class="card">
+        <span class="label"><span data-l="ko">원칙</span><span data-l="vi">Nguyên tắc</span><span data-l="en">Principle</span></span>
+        <p>
+          <span data-l="ko">완전 자동화가 아니라 작업자가 믿고 쓰는 보조 에이전트. 최종 판단은 사람이 한다.</span>
+          <span data-l="vi">Không phải tự động hóa hoàn toàn mà là một trợ lý công nhân có thể tin dùng. Quyết định cuối cùng do con người đưa ra.</span>
+          <span data-l="en">Not full automation, but an assistant workers can trust. People make the final call.</span>
+        </p>
+      </div>
+      <div class="card">
+        <span class="label"><span data-l="ko">조건</span><span data-l="vi">Điều kiện</span><span data-l="en">Constraint</span></span>
+        <p>
+          <span data-l="ko">노트북 한 대에서 인터넷 없이 동작해야 한다 (Ollama + Qwen).</span>
+          <span data-l="vi">Phải chạy trên một máy laptop mà không cần internet (Ollama + Qwen).</span>
+          <span data-l="en">It must run on one laptop without internet (Ollama + Qwen).</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 주최 측 5단계 -->
+<section class="slide gut" aria-label="3">
+  <div class="in">
+    <p class="kicker">01 · <span data-l="ko">주제</span><span data-l="vi">Chủ đề</span><span data-l="en">Topic</span></p>
+    <h2><span data-l="ko">주최 측이 정한 5단계</span><span data-l="vi">5 bước do ban tổ chức đặt ra</span><span data-l="en">The organizer's five steps</span></h2>
+    <p class="say">
+      <span data-l="ko">에이전트는 이 다섯 단계를 순서대로 해내야 한다.</span>
+      <span data-l="vi">Agent phải thực hiện lần lượt năm bước này.</span>
+      <span data-l="en">The agent has to carry out these five steps in order.</span>
+    </p>
+    <ol class="steps">
+      <li><span data-l="ko">사진 분석</span><span data-l="vi">Phân tích ảnh</span><span data-l="en">Analyze the photo</span>
+        <small><span data-l="ko">불량 위치 찾기</span><span data-l="vi">Tìm vị trí lỗi</span><span data-l="en">Find where the defect is</span></small></li>
+      <li><span data-l="ko">불량 유형 선택</span><span data-l="vi">Chọn loại lỗi</span><span data-l="en">Pick the defect type</span>
+        <small><span data-l="ko">제안 → 작업자가 확인</span><span data-l="vi">Đề xuất → công nhân xác nhận</span><span data-l="en">Suggest → worker confirms</span></small></li>
+      <li><span data-l="ko">원인 후보</span><span data-l="vi">Nguyên nhân khả dĩ</span><span data-l="en">Likely causes</span>
+        <small><span data-l="ko">유형·공정으로 추정</span><span data-l="vi">Suy ra từ loại lỗi, công đoạn</span><span data-l="en">From type and process</span></small></li>
+      <li><span data-l="ko">조치 방법</span><span data-l="vi">Biện pháp xử lý</span><span data-l="en">Actions</span>
+        <small><span data-l="ko">즉시 조치·재발 방지</span><span data-l="vi">Xử lý ngay, phòng tái phát</span><span data-l="en">Immediate fix, prevention</span></small></li>
+      <li><span data-l="ko">보고서</span><span data-l="vi">Báo cáo</span><span data-l="en">Report</span>
+        <small><span data-l="ko">사진·유형·원인·조치</span><span data-l="vi">Ảnh, loại, nguyên nhân, biện pháp</span><span data-l="en">Photo, type, cause, action</span></small></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4. 접근: 역할 분담 -->
+<section class="slide gut" aria-label="4">
+  <div class="in">
+    <p class="kicker">02 · <span data-l="ko">접근 방법</span><span data-l="vi">Cách tiếp cận</span><span data-l="en">Approach</span></p>
+    <h2><span data-l="ko">역할을 셋으로 나눴다</span><span data-l="vi">Chia vai trò làm ba</span><span data-l="en">Three roles</span></h2>
+    <p class="motto">
+      <span data-l="ko">보는 것은 YOLO, 쓰는 것은 LLM, 절차는 코드</span>
+      <span data-l="vi">YOLO để nhìn, LLM để viết, code giữ quy trình</span>
+      <span data-l="en">YOLO sees, the LLM writes, code runs the procedure</span>
+    </p>
+    <div class="grid3">
+      <div class="card">
+        <span class="who">YOLO</span>
+        <h3><span data-l="ko">보는 일</span><span data-l="vi">Nhìn</span><span data-l="en">Seeing</span></h3>
+        <p class="muted">
+          <span data-l="ko">결함이 매우 작다. PCB 결함은 이미지 면적의 약 0.06%다. 범용 LLM은 이런 결함을 찾지 못하므로 위치와 유형은 전용 검출 모델이 맡는다.</span>
+          <span data-l="vi">Lỗi rất nhỏ: lỗi PCB chỉ chiếm khoảng 0,06% diện tích ảnh. LLM thông thường không tìm được, nên vị trí và loại lỗi do mô hình phát hiện chuyên dụng đảm nhận.</span>
+          <span data-l="en">Defects are tiny: a PCB defect covers about 0.06% of the image. A general LLM can't find them, so a dedicated detection model handles location and type.</span>
+        </p>
+      </div>
+      <div class="card">
+        <span class="who">CODE</span>
+        <h3><span data-l="ko">판정</span><span data-l="vi">Phán định</span><span data-l="en">Judging</span></h3>
+        <p class="muted">
+          <span data-l="ko">노트북에서 도는 작은 LLM은 절차를 빼먹거나 사실을 지어내기 쉽다. 그래서 판정 규칙과 순서는 코드로 고정한다.</span>
+          <span data-l="vi">LLM cỡ nhỏ chạy trên laptop dễ bỏ sót bước hoặc bịa thông tin. Vì vậy quy tắc phán định và thứ tự xử lý được cố định bằng code.</span>
+          <span data-l="en">A small LLM on a laptop tends to skip steps or make things up. So judgment rules and order are fixed in code.</span>
+        </p>
+      </div>
+      <div class="card">
+        <span class="who">QWEN</span>
+        <h3><span data-l="ko">쓰는 일</span><span data-l="vi">Viết</span><span data-l="en">Writing</span></h3>
+        <p class="muted">
+          <span data-l="ko">근거가 주어진 상태에서 설명과 보고서 문장만 쓴다. 한국어·베트남어·영어로 쓸 수 있다.</span>
+          <span data-l="vi">Chỉ viết phần giải thích và câu chữ báo cáo dựa trên căn cứ đã có. Viết được bằng tiếng Hàn, tiếng Việt và tiếng Anh.</span>
+          <span data-l="en">Writes only the explanations and report text, from the evidence it is given. It can write in Korean, Vietnamese and English.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 접근: 판정과 지식 -->
+<section class="slide gut" aria-label="5">
+  <div class="in">
+    <p class="kicker">02 · <span data-l="ko">접근 방법</span><span data-l="vi">Cách tiếp cận</span><span data-l="en">Approach</span></p>
+    <h2><span data-l="ko">판정은 3단계로</span><span data-l="vi">Phán định theo 3 mức</span><span data-l="en">A three-level verdict</span></h2>
+    <div class="verdicts">
+      <div class="v">
+        <span class="pill ok"><span data-l="ko">정상</span><span data-l="vi">Bình thường</span><span data-l="en">Normal</span></span>
+        <p>
+          <span data-l="ko">신뢰도 <span class="num">0.25</span> 이상 검출이 없음 → 통과, 기록만 남김</span>
+          <span data-l="vi">Không có phát hiện nào có độ tin cậy từ <span class="num">0.25</span> trở lên → đạt, chỉ ghi nhận</span>
+          <span data-l="en">No detection at confidence <span class="num">0.25</span> or above → pass, record only</span>
+        </p>
+      </div>
+      <div class="v">
+        <span class="pill warn"><span data-l="ko">의심</span><span data-l="vi">Nghi ngờ</span><span data-l="en">Suspect</span></span>
+        <p>
+          <span data-l="ko">신뢰도 <span class="num">0.25–0.5</span> 검출만 있음 → 부품 보류(Hold), 재검사</span>
+          <span data-l="vi">Chỉ có phát hiện với độ tin cậy <span class="num">0.25–0.5</span> → giữ linh kiện (Hold), tái kiểm</span>
+          <span data-l="en">Only detections at confidence <span class="num">0.25–0.5</span> → hold the part, re-inspect</span>
+        </p>
+      </div>
+      <div class="v">
+        <span class="pill bad"><span data-l="ko">이상</span><span data-l="vi">Bất thường</span><span data-l="en">Abnormal</span></span>
+        <p>
+          <span data-l="ko">신뢰도 <span class="num">0.5</span> 이상 검출이 있음 → 원인·조치를 붙여 부적합 보고서(NCR) 작성</span>
+          <span data-l="vi">Có phát hiện với độ tin cậy từ <span class="num">0.5</span> trở lên → lập báo cáo không phù hợp (NCR) kèm nguyên nhân và biện pháp</span>
+          <span data-l="en">Detection at confidence <span class="num">0.5</span> or above → nonconformance report (NCR) with causes and actions</span>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <h3><span data-l="ko">결함 지식은 모델과 분리</span><span data-l="vi">Tách tri thức về lỗi khỏi mô hình</span><span data-l="en">Defect knowledge kept apart from the model</span></h3>
+      <p class="muted">
+        <span data-l="ko">결함 이름, 심각도, 원인 후보, 조치, 판정 기준값은 별도 지식 파일(YAML)로 관리한다. 모델을 다시 학습하지 않고 내용을 바꿀 수 있고, 주최 측 「불량 유형 정의서」를 받으면 이 파일만 바꾸면 된다.</span>
+        <span data-l="vi">Tên lỗi, mức độ nghiêm trọng, nguyên nhân khả dĩ, biện pháp và ngưỡng phán định được quản lý trong một tệp tri thức riêng (YAML). Có thể sửa nội dung mà không cần huấn luyện lại mô hình; khi nhận được «Bảng định nghĩa loại lỗi» của ban tổ chức, chỉ cần thay tệp này.</span>
+        <span data-l="en">Defect names, severity, likely causes, actions and verdict thresholds live in a separate knowledge file (YAML). We can change them without retraining, and when the organizer's defect type definitions arrive, we only replace this file.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 진행 ① 데이터 -->
+<section class="slide gut" aria-label="6">
+  <div class="in">
+    <p class="kicker">03 · <span data-l="ko">진행 과정</span><span data-l="vi">Quá trình thực hiện</span><span data-l="en">Progress</span> <span class="sub">1 / 4</span></p>
+    <ol class="track" data-now="1"></ol>
+    <h2><span data-l="ko">데이터 준비와 문제 발견</span><span data-l="vi">Chuẩn bị dữ liệu và phát hiện vấn đề</span><span data-l="en">Preparing data and finding problems</span></h2>
+    <div class="grid2">
+      <div class="card">
+        <span class="label"><span data-l="ko">PCB 결함 데이터 · 8종</span><span data-l="vi">Dữ liệu lỗi PCB · 8 loại</span><span data-l="en">PCB defect data · 8 types</span></span>
+        <span class="big">9,666</span>
+        <p class="muted">
+          <span data-l="ko">같은 원본 사진의 조각이 학습용과 평가용에 섞여 있었다(데이터 누수). 원본 사진 단위로 다시 나눠, 평가 점수가 실제 성능에 가깝게 나오도록 했다.</span>
+          <span data-l="vi">Các mảnh cắt từ cùng một ảnh gốc bị trộn lẫn giữa tập huấn luyện và tập đánh giá (rò rỉ dữ liệu). Chúng tôi chia lại theo ảnh gốc để điểm đánh giá sát với hiệu năng thực tế.</span>
+          <span data-l="en">Tiles cut from the same source photo were mixed across the training and test sets (data leakage). We re-split by source photo so test scores reflect real performance.</span>
+        </p>
+      </div>
+      <div class="card">
+        <span class="label"><span data-l="ko">금속 표면 데이터 · 6종</span><span data-l="vi">Dữ liệu bề mặt kim loại · 6 loại</span><span data-l="en">Metal surface data · 6 types</span></span>
+        <span class="big">1,495</span>
+        <p class="muted">
+          <span data-l="ko">같은 부품을 여러 방향에서 찍은 사진을 부품 단위로 묶어 다시 나눴다. 부품 윤곽 전체를 '정상'으로 칠한 라벨을 정리해 정상 이미지 244장을 확보했고, 덕분에 오탐을 잴 수 있게 됐다.</span>
+          <span data-l="vi">Ảnh chụp cùng một linh kiện từ nhiều hướng được gom theo linh kiện rồi chia lại. Sau khi xử lý nhãn «Normal» bao quanh toàn bộ linh kiện, chúng tôi có 244 ảnh bình thường và đo được tỷ lệ báo nhầm.</span>
+          <span data-l="en">Photos of the same part from several angles were grouped by part and re-split. Cleaning up a "Normal" label that outlined the whole part gave us 244 normal images, so we can now measure false alarms.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 진행 ② 모델 -->
+<section class="slide gut" aria-label="7">
+  <div class="in">
+    <p class="kicker">03 · <span data-l="ko">진행 과정</span><span data-l="vi">Quá trình thực hiện</span><span data-l="en">Progress</span> <span class="sub">2 / 4</span></p>
+    <ol class="track" data-now="2"></ol>
+    <h2><span data-l="ko">모델 두 개 학습</span><span data-l="vi">Huấn luyện hai mô hình</span><span data-l="en">Training two models</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span data-l="ko">모델</span><span data-l="vi">Mô hình</span><span data-l="en">Model</span></th>
+            <th><span data-l="ko">왜 만들었나</span><span data-l="vi">Mục đích</span><span data-l="en">Why</span></th>
+            <th><span data-l="ko">결과 (test)</span><span data-l="vi">Kết quả (test)</span><span data-l="en">Result (test)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <b><span data-l="ko">PCB 결함 검출</span><span data-l="vi">Phát hiện lỗi PCB</span><span data-l="en">PCB defect detection</span></b>
+              <span class="arch">YOLO11s · 8 classes</span>
+            </td>
+            <td>
+              <span data-l="ko">처음 확보한 데이터로 파이프라인 전체를 먼저 검증하는 프로토타입</span>
+              <span data-l="vi">Mẫu thử dùng dữ liệu có sẵn để kiểm chứng toàn bộ quy trình trước</span>
+              <span data-l="en">A prototype to validate the whole pipeline first with the data we had</span>
+            </td>
+            <td class="metric">mAP50 <b>0.886</b><br>P 0.911 · R 0.868</td>
+          </tr>
+          <tr>
+            <td>
+              <b><span data-l="ko">금속 표면 결함 분할</span><span data-l="vi">Phân vùng lỗi bề mặt kim loại</span><span data-l="en">Metal surface segmentation</span></b>
+              <span class="arch">YOLO11s-seg · 6 classes</span>
+            </td>
+            <td>
+              <span data-l="ko">대회 예시(부품 외관 불량)에 더 가까운 분야. 결함을 모양대로 표시하고 면적도 잴 수 있다.</span>
+              <span data-l="vi">Gần hơn với ví dụ của cuộc thi (lỗi ngoại quan linh kiện). Khoanh lỗi theo đúng hình dạng và đo được diện tích.</span>
+              <span data-l="en">Closer to the contest examples (visual defects on parts). Outlines each defect's shape and measures its area.</span>
+            </td>
+            <td class="metric">
+              <span data-l="ko">사진 판정 정확도</span><span data-l="vi">Độ chính xác theo ảnh</span><span data-l="en">Per-photo accuracy</span> <b>92.7%</b><br>mask mAP50 0.564
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">
+      <span data-l="ko">큰 사진은 여러 조각으로 잘라 검사(타일링)해서 작은 결함도 놓치지 않게 했다.</span>
+      <span data-l="vi">Ảnh lớn được cắt thành nhiều mảnh để kiểm tra (tiling), nhờ đó không bỏ sót lỗi nhỏ.</span>
+      <span data-l="en">Large photos are cut into tiles for inspection, so small defects aren't missed.</span>
+    </p>
+    <div class="note">
+      <span class="label"><span data-l="ko">시도했지만 쓰지 않은 것</span><span data-l="vi">Đã thử nhưng không dùng</span><span data-l="en">Tried, not adopted</span></span>
+      <p>
+        <span data-l="ko">추가 데이터로 다시 학습했더니 PCB 모델의 test mAP50이 <span class="num">0.886 → 0.875</span>로 오히려 떨어졌다. 추가 데이터가 같은 원본 사진을 돌리고 뒤집은 것이라 새 정보가 적었다. 성능을 올리려면 실제 사진을 라벨링해서 넣어야 한다는 교훈을 얻었다.</span>
+        <span data-l="vi">Huấn luyện lại với dữ liệu bổ sung làm test mAP50 của mô hình PCB giảm từ <span class="num">0.886 → 0.875</span>. Dữ liệu bổ sung chỉ là ảnh gốc cũ được xoay, lật nên ít thông tin mới. Bài học: muốn cải thiện thì phải gán nhãn thêm ảnh thực tế.</span>
+        <span data-l="en">Retraining with extra data lowered the PCB model's test mAP50 from <span class="num">0.886 → 0.875</span>. The extra data was the same source photos rotated and flipped, so it added little. Lesson: to improve, we need real photos with labels.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 진행 ③ 파이프라인 -->
+<section class="slide gut" aria-label="8">
+  <div class="in">
+    <p class="kicker">03 · <span data-l="ko">진행 과정</span><span data-l="vi">Quá trình thực hiện</span><span data-l="en">Progress</span> <span class="sub">3 / 4</span></p>
+    <ol class="track" data-now="3"></ol>
+    <h2><span data-l="ko">에이전트 파이프라인</span><span data-l="vi">Quy trình của agent</span><span data-l="en">The agent pipeline</span></h2>
+    <ol class="flow">
+      <li><span data-l="ko">사진</span><span data-l="vi">Ảnh</span><span data-l="en">Photo</span></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li><span data-l="ko">검출</span><span data-l="vi">Phát hiện</span><span data-l="en">Detect</span><small>YOLO</small></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li><span data-l="ko">판정</span><span data-l="vi">Phán định</span><span data-l="en">Judge</span><small>CODE</small></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li><span data-l="ko">지식 조회</span><span data-l="vi">Tra cứu tri thức</span><span data-l="en">Look up</span><small>YAML</small></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li><span data-l="ko">문장 작성</span><span data-l="vi">Viết nội dung</span><span data-l="en">Write</span><small>QWEN</small></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li class="human"><span data-l="ko">작업자 확인</span><span data-l="vi">Công nhân xác nhận</span><span data-l="en">Worker review</span><small>HUMAN</small></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li><span data-l="ko">저장</span><span data-l="vi">Lưu</span><span data-l="en">Save</span></li>
+    </ol>
+    <div class="routes">
+      <div class="route">
+        <span class="pill bad"><span data-l="ko">이상</span><span data-l="vi">Bất thường</span><span data-l="en">Abnormal</span></span>
+        <span><span data-l="ko">부적합 보고서 NCR (Word) · 치명·복합 결함은 8D 발행 권고</span><span data-l="vi">Báo cáo không phù hợp NCR (Word) · lỗi nghiêm trọng hoặc nhiều loại thì khuyến nghị 8D</span><span data-l="en">Nonconformance report, NCR (Word) · 8D recommended for critical or multi-type defects</span></span>
+      </div>
+      <div class="route">
+        <span class="pill warn"><span data-l="ko">의심</span><span data-l="vi">Nghi ngờ</span><span data-l="en">Suspect</span></span>
+        <span><span data-l="ko">재검사 의뢰서 (Hold) · 부품 보류 후 합격이면 해제, 불합격이면 NCR</span><span data-l="vi">Phiếu yêu cầu tái kiểm (Hold) · giữ linh kiện, đạt thì giải phóng, không đạt thì NCR</span><span data-l="en">Re-inspection request (Hold) · part held; pass releases it, fail issues an NCR</span></span>
+      </div>
+      <div class="route">
+        <span class="k"><span data-l="ko">오탐</span><span data-l="vi">Báo nhầm</span><span data-l="en">False alarm</span></span>
+        <span><span data-l="ko">작업자가 기각 → 재학습용 데이터로 분류</span><span data-l="vi">Công nhân bác bỏ → xếp vào dữ liệu huấn luyện lại</span><span data-l="en">Worker rejects it → filed as retraining data</span></span>
+      </div>
+      <div class="route">
+        <span class="k"><span data-l="ko">모든 결과</span><span data-l="vi">Mọi kết quả</span><span data-l="en">Every result</span></span>
+        <span><span data-l="ko">엑셀 검사 대장(영어) + 날짜별 요약 기록</span><span data-l="vi">Sổ kiểm tra Excel (tiếng Anh) + bản tóm tắt theo ngày</span><span data-l="en">Excel inspection ledger (English) + daily summary notes</span></span>
+      </div>
+    </div>
+    <ul class="points">
+      <li>
+        <span data-l="ko">대기함 폴더에 사진을 넣어 두면 한꺼번에 검사한다.</span>
+        <span data-l="vi">Đặt ảnh vào thư mục chờ thì hệ thống kiểm tra hàng loạt.</span>
+        <span data-l="en">Photos dropped into an inbox folder are inspected in one batch.</span>
+      </li>
+      <li>
+        <span data-l="ko">화면과 보고서는 한국어·베트남어·영어를 지원한다. 현지 작업자도 쓸 수 있게 하기 위해서다.</span>
+        <span data-l="vi">Màn hình và báo cáo hỗ trợ tiếng Hàn, tiếng Việt và tiếng Anh để công nhân địa phương cũng dùng được.</span>
+        <span data-l="en">Screens and reports support Korean, Vietnamese and English, so local workers can use them too.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 9. 진행 ④ 화면 -->
+<section class="slide gut" aria-label="9">
+  <div class="in">
+    <p class="kicker">03 · <span data-l="ko">진행 과정</span><span data-l="vi">Quá trình thực hiện</span><span data-l="en">Progress</span> <span class="sub">4 / 4</span></p>
+    <ol class="track" data-now="4"></ol>
+    <h2><span data-l="ko">작업자 화면: 두 가지 방향으로 시도</span><span data-l="vi">Màn hình cho công nhân: thử hai hướng</span><span data-l="en">Worker screen: two directions</span></h2>
+    <div class="grid2">
+      <div class="card dir">
+        <div class="sketch sk-dash" aria-hidden="true">
+          <i class="side"></i><i class="top"></i><i class="hl"></i><i></i><i class="hl"></i><i></i>
+        </div>
+        <span class="tagline">A</span>
+        <h3><span data-l="ko">대시보드형</span><span data-l="vi">Kiểu bảng điều khiển</span><span data-l="en">Dashboard</span></h3>
+        <p class="muted">
+          <span data-l="ko">결과 사진·결함 표·보고서를 한 화면에 모아 보는 방식. 여러 건을 빠르게 훑고 확정하기 좋다.</span>
+          <span data-l="vi">Xem ảnh kết quả, bảng lỗi và báo cáo trên cùng một màn hình. Phù hợp để duyệt nhanh nhiều trường hợp và xác nhận.</span>
+          <span data-l="en">Result photos, defect table and report on one screen. Good for scanning and confirming many cases quickly.</span>
+        </p>
+      </div>
+      <div class="card dir">
+        <div class="sketch sk-chat" aria-hidden="true">
+          <i class="side"></i><i class="hl"></i><i class="panel"></i><i class="hl"></i><i class="in2"></i>
+        </div>
+        <span class="tagline">B</span>
+        <h3><span data-l="ko">채팅형</span><span data-l="vi">Kiểu trò chuyện</span><span data-l="en">Chat</span></h3>
+        <p class="muted">
+          <span data-l="ko">에이전트와 대화하며 검사하고 질문하는 방식. 결과를 묻고, 보고서 문장도 대화로 고칠 수 있다.</span>
+          <span data-l="vi">Kiểm tra và đặt câu hỏi bằng cách trò chuyện với agent. Có thể hỏi về kết quả và sửa câu chữ báo cáo qua hội thoại.</span>
+          <span data-l="en">Inspect and ask questions by talking with the agent. Ask about results and fix report wording in conversation.</span>
+        </p>
+      </div>
+    </div>
+    <p class="same">
+      <span data-l="ko">두 방식 모두 흐름은 같다: 에이전트가 제안 → 작업자가 확인·수정 → 확정</span>
+      <span data-l="vi">Cả hai cùng một luồng: agent đề xuất → công nhân kiểm tra, chỉnh sửa → xác nhận</span>
+      <span data-l="en">Both follow the same flow: the agent proposes → the worker checks and edits → the worker confirms</span>
+    </p>
+  </div>
+</section>
+
+<!-- 10. 현재 상태 -->
+<section class="slide gut" aria-label="10">
+  <div class="in">
+    <p class="kicker">04 · <span data-l="ko">현재 상태</span><span data-l="vi">Hiện trạng</span><span data-l="en">Status</span></p>
+    <h2><span data-l="ko">현재 상태와 남은 과제</span><span data-l="vi">Hiện trạng và việc còn lại</span><span data-l="en">Where we are and what's next</span></h2>
+    <span class="label"><span data-l="ko">완료</span><span data-l="vi">Đã xong</span><span data-l="en">Done</span></span>
+    <div class="chips">
+      <span><span data-l="ko">모델 2개</span><span data-l="vi">Hai mô hình</span><span data-l="en">Two models</span></span>
+      <span><span data-l="ko">판정·보고서 파이프라인</span><span data-l="vi">Quy trình phán định và báo cáo</span><span data-l="en">Verdict and report pipeline</span></span>
+      <span><span data-l="ko">작업자 화면 2종</span><span data-l="vi">Hai kiểu màn hình</span><span data-l="en">Two screen styles</span></span>
+      <span><span data-l="ko">3개 언어</span><span data-l="vi">3 ngôn ngữ</span><span data-l="en">Three languages</span></span>
+      <span><span data-l="ko">시연용 실행 환경</span><span data-l="vi">Môi trường chạy demo</span><span data-l="en">Demo launcher</span></span>
+    </div>
+    <span class="label"><span data-l="ko">남은 과제</span><span data-l="vi">Việc còn lại</span><span data-l="en">Next</span></span>
+    <ol class="todo">
+      <li>
+        <b><span data-l="ko">추가 모델 1개 제작 및 적용</span><span data-l="vi">Xây dựng và áp dụng thêm 1 mô hình</span><span data-l="en">Build and add one more model</span></b>
+        <span class="muted"><span data-l="ko">모델을 하나 더 학습해 지금의 판정·보고서·화면 흐름에 그대로 연결한다.</span><span data-l="vi">Huấn luyện thêm một mô hình và kết nối thẳng vào luồng phán định, báo cáo và màn hình hiện có.</span><span data-l="en">Train one more model and plug it into the existing verdict, report and screen flow.</span></span>
+      </li>
+      <li>
+        <b><span data-l="ko">대화로 검사 이력 조회</span><span data-l="vi">Tra cứu lịch sử kiểm tra qua hội thoại</span><span data-l="en">Ask about inspection history in chat</span></b>
+        <span class="muted"><span data-l="ko">예: "오늘 의심 판정 몇 건이야?"에 에이전트가 검사 대장을 찾아 답한다.</span><span data-l="vi">Ví dụ: hỏi "Hôm nay có bao nhiêu ca nghi ngờ?" thì agent tra sổ kiểm tra và trả lời.</span><span data-l="en">For example, "How many suspects today?" and the agent looks it up in the ledger.</span></span>
+      </li>
+      <li>
+        <b><span data-l="ko">판정 기준값 근거 보강</span><span data-l="vi">Củng cố căn cứ cho ngưỡng phán định</span><span data-l="en">Back the thresholds with evidence</span></b>
+        <span class="muted"><span data-l="ko">검사자의 OK/NG 판정 데이터로 결함 면적 기준을 다시 맞춘다.</span><span data-l="vi">Điều chỉnh lại ngưỡng diện tích lỗi theo dữ liệu OK/NG của kiểm tra viên.</span><span data-l="en">Re-tune the defect area limits using inspectors' OK/NG data.</span></span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<nav class="nav gut" aria-label="Slides">
+  <div class="progress" id="progress"></div>
+  <div class="in">
+    <button type="button" id="prev"><span data-l="ko">← 이전</span><span data-l="vi">← Trước</span><span data-l="en">← Back</span></button>
+    <div class="mid">
+      <span class="count" id="count">1 / 10</span>
+      <div class="dots" id="dots"></div>
+      <span class="hint">← → Space</span>
+    </div>
+    <button type="button" id="next" class="next"><span data-l="ko">다음 →</span><span data-l="vi">Tiếp →</span><span data-l="en">Next →</span></button>
+  </div>
+</nav>
+
+<script>
+(function () {
+  var TITLES = { ko: '불량 분석 에이전트', vi: 'Agent phân tích lỗi', en: 'Defect Analysis Agent' };
+  var TRACK = [
+    { ko: '데이터', vi: 'Dữ liệu', en: 'Data' },
+    { ko: '모델', vi: 'Mô hình', en: 'Models' },
+    { ko: '파이프라인', vi: 'Quy trình', en: 'Pipeline' },
+    { ko: '화면', vi: 'Màn hình', en: 'Screens' }
+  ];
+
+  // 진행 과정 슬라이드 위의 1~4 단계 표시
+  document.querySelectorAll('.track').forEach(function (ol) {
+    var now = +ol.dataset.now;
+    ol.innerHTML = TRACK.map(function (t, i) {
+      var cls = i + 1 < now ? 'done' : i + 1 === now ? 'now' : '';
+      return '<li class="' + cls + '"><b>' + (i + 1) + '</b><span>' +
+        ['ko', 'vi', 'en'].map(function (l) { return '<span data-l="' + l + '">' + t[l] + '</span>'; }).join('') +
+        '</span></li>';
+    }).join('');
+  });
+
+  // 언어
+  function setLang(l) {
+    if (!TITLES[l]) l = 'ko';
+    document.documentElement.lang = l;
+    document.title = TITLES[l];
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.set === l ? 'true' : 'false');
+    });
+    try { localStorage.setItem('defect-overview-lang', l); } catch (e) {}
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.dataset.set); });
+  });
+  var start = location.hash.replace('#', '');
+  if (!TITLES[start]) { try { start = localStorage.getItem('defect-overview-lang'); } catch (e) { start = null; } }
+  setLang(start || 'ko');
+
+  // 슬라이드 넘기기
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('dots');
+  slides.forEach(function (_, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', String(i + 1));
+    b.addEventListener('click', function () { go(i); });
+    dots.appendChild(b);
+  });
+  var cur = 0;
+  function go(n) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    cur = n;
+    slides.forEach(function (s, i) {
+      s.classList.toggle('on', i === n);
+      s.classList.toggle('before', i < n);
+      s.setAttribute('aria-hidden', i === n ? 'false' : 'true');
+      if (i === n) s.scrollTop = 0;
+    });
+    [].forEach.call(dots.children, function (d, i) { d.setAttribute('aria-current', i === n ? 'true' : 'false'); });
+    document.getElementById('count').textContent = (n + 1) + ' / ' + slides.length;
+    document.getElementById('progress').style.width = ((n + 1) / slides.length * 100) + '%';
+    document.getElementById('prev').disabled = n === 0;
+    document.getElementById('next').disabled = n === slides.length - 1;
+    try { sessionStorage.setItem('defect-overview-slide', String(n)); } catch (e) {}
+  }
+  document.getElementById('prev').addEventListener('click', function () { go(cur - 1); });
+  document.getElementById('next').addEventListener('click', function () { go(cur + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.target.closest && e.target.closest('.lang')) return;
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].indexOf(e.key) >= 0) { e.preventDefault(); go(cur + 1); }
+    else if (['ArrowLeft', 'PageUp', 'Backspace'].indexOf(e.key) >= 0) { e.preventDefault(); go(cur - 1); }
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(slides.length - 1);
+  });
+  // 터치: 좌우로 밀어서 넘기기
+  var sx = null, sy = null;
+  document.getElementById('deck').addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  document.getElementById('deck').addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+  var saved = 0;
+  try { saved = +sessionStorage.getItem('defect-overview-slide') || 0; } catch (e) {}
+  go(saved);
+})();
+</script>
+</body>
+</html>

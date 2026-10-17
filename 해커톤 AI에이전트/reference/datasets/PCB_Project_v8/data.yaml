@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 8
+names: ['Pinhole', 'Scratch', 'missing_hole', 'mouse_bite', 'open_circuit', 'short', 'spur', 'spurious_copper']
+
+roboflow:
+  workspace: pcb-190b5
+  project: pcb_project-6oquz
+  version: 8
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/pcb-190b5/pcb_project-6oquz/dataset/8

@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 7
+names: ['Dark Spot', 'Fold', 'Normal', 'Oxidation', 'Porosity', 'Scratch', 'Stain']
+
+roboflow:
+  workspace: msdd
+  project: msdd-prompt-learning-qjz4o
+  version: 9
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/msdd/msdd-prompt-learning-qjz4o/dataset/9

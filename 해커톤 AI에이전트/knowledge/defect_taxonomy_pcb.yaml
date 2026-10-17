@@ -1,0 +1,172 @@
+# PCB 결함 유형별 대처 지식 (에이전트 STEP 2~4: 유형 → 원인 후보 → 조치)
+# - 키는 YOLO 클래스명(data.yaml names)과 동일해야 한다
+# - 내용은 일반적인 PCB 제조 지식 기반 초안이다. 실제 판정 기준은 고객사 기준서 / IPC-A-600 으로 확인 후 수정할 것
+# - severity: critical(기능 불량, 출하 불가) / major(신뢰성 위험, 측정 후 판정) / minor(외관, 조건부 허용)
+
+version: 0.1
+
+judgment:            # 판정 3단계: 정상 / 의심(2차 검수) / 이상
+  conf_reject: 0.50  # 기본 이상 기준: 이 이상이면 이상
+  conf_review: 0.25  # 기본 의심 기준: 이 이상 ~ 이상 기준 미만이면 의심, 이보다 낮으면 무시
+  rules:             # 유형별 예외 (없는 유형은 기본 기준)
+    # reject_conf: 이상 기준 신뢰도 / max_level: review 면 신뢰도와 관계없이 2차 검수
+    # require_surface: 전면 분포일 때만 이상 / min_area: 면적 비율이 이 값 이상일 때만 이상 / note: 2차 검수 안내
+    shortcircuit: {reject_conf: 0.35}   # 치명: 놓침 비용이 커서 기준을 낮춤
+    opencircuit:  {reject_conf: 0.35}
+    missinghole:  {reject_conf: 0.35}
+    scratch: {max_level: review, note: 동박 노출·배선 손상 여부 확인, note_vi: Kiểm tra lộ đồng và hư hỏng đường mạch, note_en: Check for exposed copper and trace damage}   # 경결함: 허용 여부를 사람이 판단
+    pinhole: {max_level: review, note: 크기·개수와 배선 폭 잠식 여부 확인, note_vi: Kiểm tra kích thước số lượng và việc làm hẹp đường mạch, note_en: Check size and count and whether trace width is reduced}
+
+situations:          # 판정 결과별 에이전트 동작
+  normal:
+    label: 정상
+    action: 통과 처리. 검사 이력만 기록한다.
+  review:
+    label: 의심
+    output: 재검사 의뢰서 (Hold)
+    action: 부품을 보류(Hold)하고 의심 영역을 표시해 재검사를 의뢰한다. 불합격이면 부적합 보고서(NCR)를 발행하고, 합격(오탐)이면 Hold 를 해제한다.
+    note: 기각된 이미지는 정상 샘플로, 확정된 이미지는 결함 샘플로 모아 재학습에 사용한다.
+  reject:
+    label: 이상
+    output: 부적합 보고서 (NCR)
+    action: 유형별 원인 후보와 조치를 붙여 부적합 보고서(NCR)를 만들고, 작업자 확인 후 품질 담당자에게 전송한다. 치명·복합 결함이면 8D 발행을 권고한다.
+  multi_type:
+    label: 복합 결함
+    action: severity 가 가장 높은 유형을 대표 판정으로 하고, 나머지 유형도 보고서에 모두 기재한다.
+  repeated_location:
+    label: 동일 위치 반복
+    action: 여러 보드의 같은 좌표에서 같은 결함이 반복되면 개별 불량이 아니라 공정 이상(노광 필름/마스크 결함, 드릴 프로그램 오류 등)으로 보고 공정 점검을 우선 권고한다.
+
+defects:
+  opencircuit:
+    name_ko: 단선
+    name_vi: Hở mạch
+    name_en: Open circuit
+    group: 회로 단절
+    severity: critical
+    description: 배선이 끊어져 전기적으로 연결되지 않는 상태
+    causes:
+      - 과식각 (식각액 농도·온도·속도 과다)
+      - 노광 불량 (노광 필름 스크래치·이물로 패턴 일부 미노광)
+      - 드라이필름 들뜸 또는 라미네이션 불량
+      - 취급 중 기계적 손상
+    actions:
+      immediate: 해당 보드 격리. 일반적으로 폐기하며, 고객이 허용하는 경우에만 점퍼 수리.
+      check: 식각 조건(농도, 온도, 컨베이어 속도) 기록 확인, 노광 필름 상태 점검
+      prevent: 노광 필름 정기 검사·교체, 라미네이션 압력·온도 관리, 식각 조건 SPC 관리
+
+  shortcircuit:
+    name_ko: 단락
+    name_vi: Ngắn mạch
+    name_en: Short circuit
+    group: 잔여 동박
+    severity: critical
+    description: 분리되어야 할 배선끼리 동박으로 연결된 상태
+    causes:
+      - 미식각 (식각 부족)
+      - 동 찌꺼기·이물 부착
+      - 드라이필름 결함 (레지스트가 배선 사이에 남음)
+      - 설계상 패턴 간격 부족
+    actions:
+      immediate: 해당 보드 격리. 단락 부위가 명확하면 나이프·레이저로 절단 수리 후 전기 검사로 재확인.
+      check: 식각 조건, 현상 상태, 작업장 이물 관리 상태 확인
+      prevent: 식각 조건 관리, 클린룸 이물 관리, 패턴 간격 설계 검토(DFM)
+
+  mousebite:
+    name_ko: 마우스바이트
+    name_vi: Khuyết mép đường mạch
+    name_en: Mouse bite
+    group: 회로 단절
+    severity: major
+    description: 배선 가장자리가 갉아먹힌 듯 움푹 파인 상태 (배선 폭 감소)
+    causes:
+      - 식각 불균일
+      - 드라이필름 가장자리 불량 (노광·현상 조건 부적절)
+      - 레지스트 위 이물
+    actions:
+      immediate: 배선 폭 감소율을 측정해 고객 기준과 비교 판정 (기준 초과 시 불량)
+      check: 노광 에너지, 현상 조건, 식각 균일도 확인
+      prevent: 노광·현상 조건 최적화, 식각 노즐 점검으로 균일도 확보
+    measure: 배선 폭 감소율(%)
+
+  spur:
+    name_ko: 스퍼
+    name_vi: Gai đồng
+    name_en: Spur
+    group: 잔여 동박
+    severity: major
+    description: 배선에서 가시처럼 돌출된 동박 (배선 간격 감소)
+    causes:
+      - 레지스트 잔사 (현상 부족)
+      - 노광 과다로 패턴 번짐
+      - 이물 부착
+    actions:
+      immediate: 배선 간격 감소율을 측정해 고객 기준과 비교 판정. 필요 시 돌출부 제거 수리.
+      check: 현상액 상태·현상 시간, 노광 에너지 확인
+      prevent: 현상 조건 관리, 노광 에너지 정기 측정
+
+  falsecopper:
+    name_ko: 잔여 동박
+    name_vi: Đồng thừa
+    name_en: Spurious copper
+    group: 잔여 동박
+    severity: major
+    description: 패턴이 없어야 할 위치에 남은 동박 조각
+    causes:
+      - 미식각
+      - 레지스트 잔사 또는 이물로 식각이 막힘
+      - 동박 원판 불량
+    actions:
+      immediate: 다른 배선과의 거리를 확인해 단락 위험이 있으면 불량, 없으면 제거 수리 또는 조건부 허용
+      check: 식각·현상 조건, 원판 입고 검사 기록 확인
+      prevent: 식각·현상 조건 관리, 원판 입고 검사 강화
+
+  missinghole:
+    name_ko: 홀 누락
+    name_vi: Thiếu lỗ
+    name_en: Missing hole
+    group: 홀 불량
+    severity: critical
+    description: 설계상 있어야 할 홀이 가공되지 않은 상태
+    causes:
+      - 드릴 프로그램(NC 데이터) 누락·오류
+      - 드릴 비트 파손 또는 공구 교환 누락
+      - 드릴 비트 수명 초과
+    actions:
+      immediate: 해당 로트 전수 홀 검사. 위치 정확도가 확보되면 재드릴, 아니면 폐기.
+      check: NC 데이터와 설계 데이터 대조, 드릴 비트 파손 이력 확인
+      prevent: 드릴 비트 수명 관리, 파손 감지 장치 점검, 드릴 후 홀 카운트 검사
+
+  pinhole:
+    name_ko: 핀홀
+    name_vi: Lỗ kim
+    name_en: Pinhole
+    group: 홀/도금
+    severity: minor
+    description: 동박 또는 도금층에 생긴 작은 구멍
+    causes:
+      - 도금 중 기포 부착
+      - 도금액 오염
+      - 레지스트 위 미세 먼지
+      - 동박 원판 결함
+    actions:
+      immediate: 크기·개수를 기준과 비교. 배선 폭을 잠식하면 심각도를 '중'으로 상향 판정.
+      check: 도금액 분석 기록, 여과 장치 상태 확인
+      prevent: 도금액 정기 분석·여과, 교반 조건 관리, 클린룸 먼지 관리
+    measure: 직경, 개수
+
+  scratch:
+    name_ko: 스크래치
+    name_vi: Vết xước
+    name_en: Scratch
+    group: 표면
+    severity: minor
+    description: 표면 긁힘
+    causes:
+      - 취급 부주의
+      - 이송 롤러·컨베이어 마찰
+      - 적재 시 보드 간 마찰
+    actions:
+      immediate: 동박 노출이나 배선 손상이 없으면 외관 기준 내 허용. 배선을 끊었으면 단선으로 재판정.
+      check: 발생 위치로 공정 추적 (이송 방향 긁힘이면 롤러 점검)
+      prevent: 보드 간 간지 사용, 이송 장비 정기 점검, 취급 교육
