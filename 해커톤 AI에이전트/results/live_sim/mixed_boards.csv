@@ -1,0 +1,91 @@
+﻿seq,time,video_board,gt_kind,gt_types,verdict,pred_types,board_ok,tp,fp,fn,capture,gt_domain,domain,route_rule
+1,01:15:44,0,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_011544_0001,msdd,msdd,dark
+2,01:15:45,1,defect,oil,reject,oil,1,1,0,0,live_20261022_011545_0002,mobile,mobile,wide
+3,01:15:45,2,defect,scratch,review,scratch,1,2,0,0,live_20261022_011545_0003,pcb,pcb,green
+4,01:15:46,3,defect,Fold Porosity,reject,Fold Porosity,1,2,0,0,live_20261022_011546_0004,msdd,msdd,dark
+5,01:15:47,4,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,6,0,0,live_20261022_011547_0005,msdd,msdd,dark
+6,01:15:48,5,defect,opencircuit scratch,reject,opencircuit scratch,1,7,0,0,live_20261022_011548_0006,pcb,pcb,green
+7,01:15:49,6,defect,scratch,review,scratch,1,2,0,0,live_20261022_011549_0007,mobile,mobile,wide
+8,01:15:49,7,defect,opencircuit,reject,opencircuit,1,5,0,0,live_20261022_011549_0008,pcb,pcb,green
+9,01:15:50,8,normal,,normal,,1,0,0,0,live_20261022_011550_0009,pcb,pcb,green
+10,01:15:51,9,defect,Dark Spot,review,Dark Spot,1,1,0,0,live_20261022_011551_0010,msdd,msdd,dark
+11,01:15:52,10,defect,mousebite,reject,mousebite,1,5,0,0,live_20261022_011552_0011,pcb,pcb,green
+12,01:15:53,11,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_011553_0012,msdd,msdd,dark
+13,01:15:53,12,defect,falsecopper pinhole scratch,reject,falsecopper pinhole scratch,1,11,0,0,live_20261022_011553_0013,pcb,pcb,green
+14,01:15:54,13,defect,mousebite scratch spur,reject,mousebite scratch spur,1,11,0,0,live_20261022_011554_0014,pcb,pcb,green
+15,01:15:55,14,defect,Fold,normal,,0,0,0,1,live_20261022_011555_0015,msdd,msdd,dark
+16,01:15:56,15,defect,scratch,review,scratch,1,2,0,0,live_20261022_011556_0016,pcb,pcb,green
+17,01:15:57,16,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,6,0,0,live_20261022_011557_0017,msdd,msdd,dark
+18,01:15:58,17,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_011558_0018,msdd,msdd,dark
+19,01:15:58,18,normal,,normal,,1,0,0,0,live_20261022_011558_0019,mobile,mobile,wide
+20,01:15:59,19,defect,stain,review,stain,1,2,0,0,live_20261022_011559_0020,mobile,mobile,wide
+21,01:15:59,20,defect,missinghole,reject,missinghole,1,5,0,0,live_20261022_011559_0021,pcb,pcb,green
+22,01:16:00,21,defect,Dark Spot,review,Dark Spot,1,1,0,0,live_20261022_011600_0022,msdd,msdd,dark
+23,01:16:01,22,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_011601_0023,msdd,msdd,dark
+24,01:16:02,23,normal,,normal,,1,0,0,0,live_20261022_011602_0024,mobile,mobile,wide
+25,01:16:02,24,defect,oil,reject,oil,1,1,0,0,live_20261022_011602_0025,mobile,mobile,wide
+26,01:16:03,25,defect,Dark Spot Scratch,review,Dark Spot Scratch,1,2,0,0,live_20261022_011603_0026,msdd,msdd,dark
+27,01:16:04,26,defect,stain,review,stain,1,3,0,0,live_20261022_011604_0027,mobile,mobile,wide
+28,01:16:05,27,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_011605_0028,msdd,msdd,dark
+29,01:16:06,28,defect,mousebite scratch spur,reject,mousebite scratch spur,1,11,0,0,live_20261022_011606_0029,pcb,pcb,green
+30,01:16:06,29,defect,oil,reject,oil,1,1,0,0,live_20261022_011606_0030,mobile,mobile,wide
+31,01:16:07,30,defect,stain,review,stain,1,4,0,0,live_20261022_011607_0031,mobile,mobile,wide
+32,01:16:07,31,defect,stain,review,stain,1,1,0,0,live_20261022_011607_0032,mobile,mobile,wide
+33,01:16:08,32,defect,Stain,review,Stain,1,2,0,0,live_20261022_011608_0033,msdd,msdd,dark
+34,01:16:09,33,defect,scratch,review,scratch,1,1,0,0,live_20261022_011609_0034,mobile,mobile,wide
+35,01:16:09,34,defect,scratch,review,scratch,1,4,0,0,live_20261022_011609_0035,mobile,mobile,wide
+36,01:16:10,35,normal,,normal,,1,0,0,0,live_20261022_011610_0036,mobile,mobile,wide
+37,01:16:10,36,defect,falsecopper pinhole scratch,reject,falsecopper pinhole scratch,1,11,0,0,live_20261022_011610_0037,pcb,pcb,green
+38,01:16:11,37,defect,scratch,review,scratch,1,2,0,0,live_20261022_011611_0038,pcb,pcb,green
+39,01:16:12,38,defect,scratch,review,scratch,1,2,0,0,live_20261022_011612_0039,pcb,pcb,green
+40,01:16:12,39,normal,,normal,,1,0,0,0,live_20261022_011612_0040,pcb,pcb,green
+41,01:16:13,40,defect,scratch,review,scratch,1,5,0,0,live_20261022_011613_0041,mobile,mobile,wide
+42,01:16:14,41,defect,oil,reject,oil,1,1,0,0,live_20261022_011614_0042,mobile,mobile,wide
+43,01:16:14,42,normal,,reject,falsecopper,0,0,1,0,live_20261022_011614_0043,pcb,pcb,green
+44,01:16:15,43,defect,Stain,review,Stain,1,1,0,0,live_20261022_011615_0044,msdd,msdd,dark
+45,01:16:16,44,defect,missinghole,reject,missinghole,1,5,0,0,live_20261022_011616_0045,pcb,pcb,green
+46,01:16:17,45,defect,Stain,review,Stain,1,2,0,0,live_20261022_011617_0046,msdd,msdd,dark
+47,01:16:18,46,defect,Dark Spot,review,Dark Spot,1,1,0,0,live_20261022_011618_0047,msdd,msdd,dark
+48,01:16:18,47,normal,,review,spur,0,0,1,0,live_20261022_011618_0048,pcb,pcb,green
+49,01:16:19,48,defect,mousebite scratch spur,reject,mousebite scratch spur,1,11,0,0,live_20261022_011619_0049,pcb,pcb,green
+50,01:16:20,49,normal,,normal,,1,0,0,0,live_20261022_011620_0050,mobile,mobile,wide
+51,01:16:20,50,defect,scratch,review,scratch,1,1,0,0,live_20261022_011620_0051,mobile,mobile,wide
+52,01:16:21,51,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_011621_0052,msdd,msdd,dark
+53,01:16:22,52,defect,pinhole scratch,review,pinhole scratch,1,4,0,0,live_20261022_011622_0053,pcb,pcb,green
+54,01:16:23,53,defect,mousebite scratch spur,reject,mousebite scratch spur,1,11,0,0,live_20261022_011623_0054,pcb,pcb,green
+55,01:16:24,54,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_011624_0055,msdd,msdd,dark
+56,01:16:24,55,normal,,normal,,1,0,0,0,live_20261022_011624_0056,mobile,mobile,wide
+57,01:16:25,56,defect,mousebite,reject,mousebite,1,3,0,0,live_20261022_011625_0057,pcb,pcb,green
+58,01:16:26,57,defect,oil,reject,oil,1,1,0,0,live_20261022_011626_0058,mobile,mobile,wide
+59,01:16:26,58,defect,scratch,review,scratch,1,2,0,0,live_20261022_011626_0059,pcb,pcb,green
+60,01:16:27,59,defect,falsecopper,reject,falsecopper,1,5,0,0,live_20261022_011627_0060,pcb,pcb,green
+61,01:16:28,60,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_011628_0061,msdd,msdd,dark
+62,01:16:28,61,defect,oil,reject,oil,1,1,0,0,live_20261022_011628_0062,mobile,mobile,wide
+63,01:16:29,62,normal,,normal,,1,0,0,0,live_20261022_011629_0063,mobile,mobile,wide
+64,01:16:30,63,defect,spur,reject,spur,1,5,0,0,live_20261022_011630_0064,pcb,pcb,green
+65,01:16:31,64,defect,Dark Spot,review,Dark Spot,1,1,0,0,live_20261022_011631_0065,msdd,msdd,dark
+66,01:16:31,65,normal,,normal,,1,0,0,0,live_20261022_011631_0066,msdd,msdd,dark
+67,01:16:32,66,defect,mousebite scratch spur,reject,mousebite scratch spur,1,12,0,0,live_20261022_011632_0067,pcb,pcb,green
+68,01:16:33,67,defect,stain,review,stain,1,4,0,0,live_20261022_011633_0068,mobile,mobile,wide
+69,01:16:34,68,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_011634_0069,msdd,msdd,dark
+70,01:16:35,69,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,6,0,0,live_20261022_011635_0070,msdd,msdd,dark
+71,01:16:35,70,normal,,normal,,1,0,0,0,live_20261022_011635_0071,msdd,msdd,dark
+72,01:16:36,71,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_011636_0072,msdd,msdd,dark
+73,01:16:37,72,defect,shortcircuit,reject,shortcircuit,1,5,0,0,live_20261022_011637_0073,pcb,pcb,green
+74,01:16:38,73,defect,oil,reject,oil,1,2,0,0,live_20261022_011638_0074,mobile,mobile,wide
+75,01:16:38,74,defect,stain,review,stain,1,2,0,0,live_20261022_011638_0075,mobile,mobile,wide
+76,01:16:39,75,defect,Fold,normal,,0,0,0,1,live_20261022_011639_0076,msdd,msdd,dark
+77,01:16:40,76,defect,shortcircuit,reject,shortcircuit,1,4,1,0,live_20261022_011640_0077,pcb,pcb,green
+78,01:16:40,77,defect,falsecopper pinhole scratch,reject,falsecopper pinhole scratch,1,12,0,0,live_20261022_011640_0078,pcb,pcb,green
+79,01:16:41,78,normal,,normal,,1,0,0,0,live_20261022_011641_0079,msdd,msdd,dark
+80,01:16:42,79,defect,stain,review,stain,1,3,0,0,live_20261022_011642_0080,mobile,mobile,wide
+81,01:16:42,80,defect,oil,reject,oil,1,2,0,0,live_20261022_011642_0081,mobile,mobile,wide
+82,01:16:43,81,defect,scratch,review,scratch,1,6,0,0,live_20261022_011643_0082,mobile,mobile,wide
+83,01:16:44,82,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_011644_0083,msdd,msdd,dark
+84,01:16:45,83,defect,Scratch,review,Scratch,1,1,0,0,live_20261022_011645_0084,msdd,msdd,dark
+85,01:16:46,84,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_011646_0085,msdd,msdd,dark
+86,01:16:46,85,defect,scratch,review,scratch,1,4,0,0,live_20261022_011646_0086,mobile,mobile,wide
+87,01:16:47,86,defect,oil,reject,oil,1,1,0,0,live_20261022_011647_0087,mobile,mobile,wide
+88,01:16:48,87,defect,mousebite scratch spur,reject,mousebite scratch spur,1,11,0,0,live_20261022_011648_0088,pcb,pcb,green
+89,01:16:48,88,normal,,normal,,1,0,0,0,live_20261022_011648_0089,mobile,mobile,wide
+90,01:16:49,89,defect,falsecopper pinhole scratch,reject,falsecopper pinhole scratch,1,12,0,0,live_20261022_011649_0090,pcb,pcb,green

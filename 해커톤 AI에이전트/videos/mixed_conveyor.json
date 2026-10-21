@@ -1,0 +1,3639 @@
+{
+ "video": "mixed_conveyor.mp4",
+ "domain": "mixed",
+ "fps": 30,
+ "size": [
+  1280,
+  720
+ ],
+ "board_px": 640,
+ "board_w": 640,
+ "board_h": 640,
+ "sizes": {
+  "pcb": [
+   640,
+   640
+  ],
+  "msdd": [
+   512,
+   512
+  ],
+  "mobile": [
+   960,
+   540
+  ]
+ },
+ "belt_bgr": [
+  92,
+  52,
+  18
+ ],
+ "speed_px_per_frame": 16,
+ "frames": 5184,
+ "seconds": 172.8,
+ "seed": 7,
+ "note": "x of an item at frame f = x0 - f*speed. Each item has its own domain and size (board_w/h); labels are normalized boxes on that item.",
+ "boards": [
+  {
+   "index": 0,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 44,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/09_00025_1045-_CAM1_CAP2_NG_png.rf.3fc93719671150137b7205d4c666a549.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 1760,
+   "y": 98,
+   "enter_frame": 30,
+   "center_frame": 86,
+   "exit_frame": 142,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.533203125,
+     "cy": 0.482421875,
+     "w": 0.9140625,
+     "h": 0.93359375
+    }
+   ]
+  },
+  {
+   "index": 1,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 66,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01133_Oil_0080.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 2472,
+   "y": 87,
+   "enter_frame": 74,
+   "center_frame": 144,
+   "exit_frame": 215,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.497396,
+     "cy": 0.6962965,
+     "w": 0.08750000000000002,
+     "h": 0.14259299999999997
+    }
+   ]
+  },
+  {
+   "index": 2,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 22,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/03_11_scratch_03_jpg.rf.c1f3d5980f58a9d1951fb6779b896589.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 3632,
+   "y": 35,
+   "enter_frame": 147,
+   "center_frame": 207,
+   "exit_frame": 267,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.288281,
+     "cy": 0.610938,
+     "w": 0.173437,
+     "h": 0.351562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.860938,
+     "cy": 0.404687,
+     "w": 0.079687,
+     "h": 0.257812
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 4,
+   "kind": "defect",
+   "case": "Fold",
+   "source": "results/msdd/showcase/01_Fold/originals/images/01_00428_55C-_CAM1_CAP4_UPPER_NG_png.rf.3488567b253896b055923cd9bf0eba8e.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 4472,
+   "y": 101,
+   "enter_frame": 199,
+   "center_frame": 256,
+   "exit_frame": 312,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.677734375,
+     "cy": 0.828125,
+     "w": 0.5703125,
+     "h": 0.33984375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4931640625,
+     "w": 0.98046875,
+     "h": 0.966796875
+    }
+   ]
+  },
+  {
+   "index": 4,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 42,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/04_01078_N31824-40-_CAM1_CAP4_RIGHT_NG_png.rf.fa388c98f88f7bfa28371b347c70812a.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 5184,
+   "y": 105,
+   "enter_frame": 244,
+   "center_frame": 300,
+   "exit_frame": 356,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.814453125,
+     "cy": 0.25390625,
+     "w": 0.046875,
+     "h": 0.03515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.046875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.5478515625,
+     "cy": 0.447265625,
+     "w": 0.337890625,
+     "h": 0.28515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.408203125,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.04296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.3681640625,
+     "w": 0.072265625,
+     "h": 0.033203125
+    },
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    }
+   ]
+  },
+  {
+   "index": 5,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 11,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/01_11_open-circuit_scratch_04_jpg.rf.7a45e86148637ec232f6ba5acceb71fd.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 5896,
+   "y": 36,
+   "enter_frame": 288,
+   "center_frame": 348,
+   "exit_frame": 409,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.433594,
+     "cy": 0.185156,
+     "w": 0.03125,
+     "h": 0.029687
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.514062,
+     "cy": 0.058594,
+     "w": 0.04375,
+     "h": 0.034375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.461719,
+     "cy": 0.384375,
+     "w": 0.03125,
+     "h": 0.023438
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.323437,
+     "cy": 0.492969,
+     "w": 0.029687,
+     "h": 0.020313
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.357031,
+     "cy": 0.40625,
+     "w": 0.029687,
+     "h": 0.025
+    },
+    {
+     "type": "scratch",
+     "cx": 0.611719,
+     "cy": 0.917188,
+     "w": 0.240625,
+     "h": 0.070312
+    },
+    {
+     "type": "scratch",
+     "cx": 0.28125,
+     "cy": 0.8375,
+     "w": 0.30625,
+     "h": 0.215625
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 17,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01120_Scr_0332.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 6736,
+   "y": 85,
+   "enter_frame": 341,
+   "center_frame": 411,
+   "exit_frame": 481,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.5885415,
+     "cy": 0.7810185000000001,
+     "w": 0.09895899999999991,
+     "h": 0.11203700000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.832031,
+     "cy": 0.12175949999999999,
+     "w": 0.109896,
+     "h": 0.012037000000000006
+    }
+   ]
+  },
+  {
+   "index": 7,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 12,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/08_10_open_circuit_04_jpg.rf.5c3f0c82c293556972ae0776ce54adae.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 7896,
+   "y": 39,
+   "enter_frame": 413,
+   "center_frame": 474,
+   "exit_frame": 534,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.701562,
+     "cy": 0.404687,
+     "w": 0.028125,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.685937,
+     "cy": 0.158594,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.467187,
+     "cy": 0.526563,
+     "w": 0.029687,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.560937,
+     "cy": 0.644531,
+     "w": 0.039062,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.511719,
+     "cy": 0.305469,
+     "w": 0.039062,
+     "h": 0.04375
+    }
+   ]
+  },
+  {
+   "index": 8,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 80,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/06_10_open_circuit_04_jpg.rf.385af0da8616f49bf407611d295ab43b.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 8736,
+   "y": 43,
+   "enter_frame": 466,
+   "center_frame": 526,
+   "exit_frame": 586,
+   "labels": []
+  },
+  {
+   "index": 9,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 84,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/04_01530_N32018-41-_CAM1_CAP4_LOWER_OK_png.rf.46d57d29da96c214aecbbf6589e31eb8.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 9576,
+   "y": 98,
+   "enter_frame": 518,
+   "center_frame": 574,
+   "exit_frame": 631,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.2080078125,
+     "cy": 0.8232421875,
+     "w": 0.033203125,
+     "h": 0.033203125
+    }
+   ]
+  },
+  {
+   "index": 10,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 38,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/08_11_mouse_bite_05_jpg.rf.f97b0d3c2815181626b5a82212269cc7.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 10288,
+   "y": 35,
+   "enter_frame": 563,
+   "center_frame": 623,
+   "exit_frame": 683,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.930469,
+     "cy": 0.611719,
+     "w": 0.029687,
+     "h": 0.04375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.716406,
+     "cy": 0.638281,
+     "w": 0.028125,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.495312,
+     "cy": 0.471094,
+     "w": 0.021875,
+     "h": 0.04375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.482812,
+     "cy": 0.746094,
+     "w": 0.03125,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.285938,
+     "cy": 0.653906,
+     "w": 0.03125,
+     "h": 0.04375
+    }
+   ]
+  },
+  {
+   "index": 11,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 62,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/03_00059_S56802-91-_CAM1_CAP4_LEFT_OK_png.rf.ef2a8a4dc2a5643c3e606198557d2aeb.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 11128,
+   "y": 98,
+   "enter_frame": 615,
+   "center_frame": 672,
+   "exit_frame": 728,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5029296875,
+     "cy": 0.49762890625,
+     "w": 0.986328125,
+     "h": 0.982421875
+    }
+   ]
+  },
+  {
+   "index": 12,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 84,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/10_10_spurious-copper_pinhole_scratch_06_jpg.rf.97ae9d5d7dd516d074810236c891a94d.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 11840,
+   "y": 43,
+   "enter_frame": 660,
+   "center_frame": 720,
+   "exit_frame": 780,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.704688,
+     "cy": 0.507031,
+     "w": 0.048438,
+     "h": 0.029687
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.800781,
+     "cy": 0.514062,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.890625,
+     "cy": 0.513281,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.489063,
+     "cy": 0.526563,
+     "w": 0.025,
+     "h": 0.045312
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.665625,
+     "cy": 0.642969,
+     "w": 0.020313,
+     "h": 0.053125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.491406,
+     "cy": 0.167969,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.444531,
+     "cy": 0.366406,
+     "w": 0.020313,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.895312,
+     "cy": 0.342187,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.86875,
+     "cy": 0.586719,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.257031,
+     "cy": 0.140625,
+     "w": 0.014063,
+     "h": 0.134375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.357031,
+     "cy": 0.227344,
+     "w": 0.139063,
+     "h": 0.110937
+    }
+   ]
+  },
+  {
+   "index": 13,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 82,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/04_10_mouse-bite_spur_scratch_03_jpg.rf.0bcd8f408a8fa265d05fbbd351a21c86.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 12680,
+   "y": 36,
+   "enter_frame": 712,
+   "center_frame": 772,
+   "exit_frame": 833,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.767188,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.4625,
+     "cy": 0.760938,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.685937,
+     "cy": 0.84375,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.165625,
+     "cy": 0.836719,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.385937,
+     "cy": 0.824219,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.582812,
+     "cy": 0.35,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.274219,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.183594,
+     "cy": 0.553125,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.564063,
+     "cy": 0.25625,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.227344,
+     "cy": 0.390625,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.128906,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ]
+  },
+  {
+   "index": 14,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 54,
+   "kind": "defect",
+   "case": "Fold",
+   "source": "results/msdd/showcase/01_Fold/originals/images/02_01414_S57846-31-_CAM1_CAP4_LOWER_NG_png.rf.2332b05b60c331bb45d405634cbf020c.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 13520,
+   "y": 106,
+   "enter_frame": 765,
+   "center_frame": 821,
+   "exit_frame": 877,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.67578125,
+     "cy": 0.87109375,
+     "w": 0.4921875,
+     "h": 0.25
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 3,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/06_11_scratch_03_jpg.rf.98f32a3b900ed34495ad026058ce8ea2.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 14232,
+   "y": 35,
+   "enter_frame": 809,
+   "center_frame": 870,
+   "exit_frame": 930,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.288281,
+     "cy": 0.610938,
+     "w": 0.173437,
+     "h": 0.35
+    },
+    {
+     "type": "scratch",
+     "cx": 0.860938,
+     "cy": 0.404687,
+     "w": 0.079687,
+     "h": 0.25625
+    }
+   ]
+  },
+  {
+   "index": 16,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 39,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/05_01078_N31824-40-_CAM1_CAP4_RIGHT_NG_png.rf.fa388c98f88f7bfa28371b347c70812a.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 15072,
+   "y": 103,
+   "enter_frame": 862,
+   "center_frame": 918,
+   "exit_frame": 974,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.814453125,
+     "cy": 0.25390625,
+     "w": 0.046875,
+     "h": 0.03515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.046875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.5478515625,
+     "cy": 0.447265625,
+     "w": 0.337890625,
+     "h": 0.28515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.408203125,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.04296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.3681640625,
+     "w": 0.072265625,
+     "h": 0.033203125
+    },
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    }
+   ]
+  },
+  {
+   "index": 17,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 31,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/06_01367_1045-_CAM1_CAP2_NG_png.rf.bf11673c97e72245fe37e8b2f11183f1.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 15784,
+   "y": 107,
+   "enter_frame": 906,
+   "center_frame": 962,
+   "exit_frame": 1019,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3388671875,
+     "cy": 0.4677734375,
+     "w": 0.287109375,
+     "h": 0.224609375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.986328125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.212890625,
+     "cy": 0.830078125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 18,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 28,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/train/00256_0013.png",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 16496,
+   "y": 84,
+   "enter_frame": 951,
+   "center_frame": 1021,
+   "exit_frame": 1091,
+   "labels": []
+  },
+  {
+   "index": 19,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 20,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01132_Sta_0365.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 17656,
+   "y": 85,
+   "enter_frame": 1023,
+   "center_frame": 1094,
+   "exit_frame": 1164,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.3817705,
+     "cy": 0.627778,
+     "w": 0.015625,
+     "h": 0.029629999999999934
+    },
+    {
+     "type": "stain",
+     "cx": 0.7463545,
+     "cy": 0.375926,
+     "w": 0.009375000000000022,
+     "h": 0.024073999999999984
+    }
+   ]
+  },
+  {
+   "index": 20,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 9,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/07_07_missing_hole_10_jpg.rf.ceffc685e37c668beddd3fdd325ccc48.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 18816,
+   "y": 37,
+   "enter_frame": 1096,
+   "center_frame": 1156,
+   "exit_frame": 1216,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.279687,
+     "cy": 0.173437,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.285156,
+     "cy": 0.396875,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.511719,
+     "cy": 0.289844,
+     "w": 0.028125,
+     "h": 0.0375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.728125,
+     "cy": 0.310156,
+     "w": 0.0375,
+     "h": 0.045312
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.839063,
+     "cy": 0.307812,
+     "w": 0.03125,
+     "h": 0.048438
+    }
+   ]
+  },
+  {
+   "index": 21,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 74,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/08_01530_N32018-41-_CAM1_CAP2_OK_png.rf.f7c3df5d984ea97fda6e9b4d9855bc58.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 19656,
+   "y": 107,
+   "enter_frame": 1148,
+   "center_frame": 1204,
+   "exit_frame": 1261,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.205078125,
+     "cy": 0.822265625,
+     "w": 0.0390625,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 22,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 7,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/05_00025_1045-_CAM1_CAP4_LOWER_NG_png.rf.d4b9e7948d30dac752c56001fd116fe9.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 20368,
+   "y": 104,
+   "enter_frame": 1193,
+   "center_frame": 1249,
+   "exit_frame": 1305,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4765625,
+     "w": 0.98828125,
+     "h": 0.92578125
+    }
+   ]
+  },
+  {
+   "index": 23,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 55,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/val/01054_0003.png",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 21080,
+   "y": 86,
+   "enter_frame": 1237,
+   "center_frame": 1308,
+   "exit_frame": 1378,
+   "labels": []
+  },
+  {
+   "index": 24,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 40,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01160_Oil_0224.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 22240,
+   "y": 94,
+   "enter_frame": 1310,
+   "center_frame": 1380,
+   "exit_frame": 1450,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.7,
+     "cy": 0.2949075,
+     "w": 0.13541599999999998,
+     "h": 0.11574099999999998
+    }
+   ]
+  },
+  {
+   "index": 25,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 50,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/05_01536_N32017-43-_CAM1_CAP4_RIGHT_OK_png.rf.4ab2c7b913daa42bf60a55d99405349e.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 23400,
+   "y": 102,
+   "enter_frame": 1382,
+   "center_frame": 1438,
+   "exit_frame": 1495,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.3759765625,
+     "cy": 0.412109375,
+     "w": 0.154296875,
+     "h": 0.13671875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.9248046875,
+     "cy": 0.41796875,
+     "w": 0.013671875,
+     "h": 0.015625
+    }
+   ]
+  },
+  {
+   "index": 26,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 78,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01138_Sta_0176.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 24112,
+   "y": 89,
+   "enter_frame": 1427,
+   "center_frame": 1497,
+   "exit_frame": 1567,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.4596355,
+     "cy": 0.6634260000000001,
+     "w": 0.011979000000000017,
+     "h": 0.025000000000000022
+    },
+    {
+     "type": "stain",
+     "cx": 0.559375,
+     "cy": 0.5717589999999999,
+     "w": 0.012500000000000067,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.348437,
+     "cy": 0.43287,
+     "w": 0.012499999999999956,
+     "h": 0.024999999999999967
+    }
+   ]
+  },
+  {
+   "index": 27,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 77,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/03_01367_1045-_CAM1_CAP4_LOWER_NG_png.rf.6caf9f544ddb4520d4df869afb923d73.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 25272,
+   "y": 107,
+   "enter_frame": 1499,
+   "center_frame": 1556,
+   "exit_frame": 1612,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3349609375,
+     "cy": 0.4951171875,
+     "w": 0.302734375,
+     "h": 0.283203125
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.998046875,
+     "h": 0.98828125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.21484375,
+     "cy": 0.828125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 28,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 51,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/01_10_mouse-bite_spur_scratch_03_jpg.rf.cd9907ba70fc1044ff13857395bb833d.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 25984,
+   "y": 39,
+   "enter_frame": 1544,
+   "center_frame": 1604,
+   "exit_frame": 1664,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.444531,
+     "cy": 0.232813,
+     "w": 0.03125,
+     "h": 0.045312
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.760938,
+     "cy": 0.5375,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.84375,
+     "cy": 0.314063,
+     "w": 0.034375,
+     "h": 0.032813
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.836719,
+     "cy": 0.834375,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.824219,
+     "cy": 0.614062,
+     "w": 0.034375,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.35,
+     "cy": 0.417187,
+     "w": 0.023438,
+     "h": 0.039062
+    },
+    {
+     "type": "spur",
+     "cx": 0.451562,
+     "cy": 0.725781,
+     "w": 0.025,
+     "h": 0.048438
+    },
+    {
+     "type": "spur",
+     "cx": 0.553125,
+     "cy": 0.816406,
+     "w": 0.028125,
+     "h": 0.029687
+    },
+    {
+     "type": "scratch",
+     "cx": 0.25625,
+     "cy": 0.435937,
+     "w": 0.178125,
+     "h": 0.332813
+    },
+    {
+     "type": "scratch",
+     "cx": 0.390625,
+     "cy": 0.772656,
+     "w": 0.254688,
+     "h": 0.215625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.664844,
+     "cy": 0.871094,
+     "w": 0.182812,
+     "h": 0.05625
+    }
+   ]
+  },
+  {
+   "index": 29,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 47,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01198_Oil_0203.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 26824,
+   "y": 91,
+   "enter_frame": 1596,
+   "center_frame": 1666,
+   "exit_frame": 1737,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.6721355,
+     "cy": 0.6486115,
+     "w": 0.08697899999999992,
+     "h": 0.16018500000000002
+    }
+   ]
+  },
+  {
+   "index": 30,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 5,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01211_Sta_0177.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 27984,
+   "y": 85,
+   "enter_frame": 1669,
+   "center_frame": 1739,
+   "exit_frame": 1809,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.4591145,
+     "cy": 0.663889,
+     "w": 0.011979000000000017,
+     "h": 0.025926000000000005
+    },
+    {
+     "type": "stain",
+     "cx": 0.559375,
+     "cy": 0.574074,
+     "w": 0.012500000000000067,
+     "h": 0.02407400000000004
+    },
+    {
+     "type": "stain",
+     "cx": 0.3486975,
+     "cy": 0.432407,
+     "w": 0.013021000000000005,
+     "h": 0.024073999999999984
+    },
+    {
+     "type": "stain",
+     "cx": 0.6734374999999999,
+     "cy": 0.23796299999999998,
+     "w": 0.011458999999999997,
+     "h": 0.022221999999999992
+    }
+   ]
+  },
+  {
+   "index": 31,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 64,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01127_Sta_0269.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 29144,
+   "y": 85,
+   "enter_frame": 1741,
+   "center_frame": 1812,
+   "exit_frame": 1882,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.3429685,
+     "cy": 0.44999999999999996,
+     "w": 0.011979000000000017,
+     "h": 0.02222200000000002
+    }
+   ]
+  },
+  {
+   "index": 32,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 18,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/06_00445_S57244-31-_CAM1_CAP4_LOWER_NG_png.rf.416ec671ef8bb99556a3e2ea8ac9304b.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 30304,
+   "y": 105,
+   "enter_frame": 1814,
+   "center_frame": 1870,
+   "exit_frame": 1926,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.4150390625,
+     "cy": 0.44140625,
+     "w": 0.240234375,
+     "h": 0.26953125
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6748046875,
+     "cy": 0.52734375,
+     "w": 0.228515625,
+     "h": 0.25390625
+    }
+   ]
+  },
+  {
+   "index": 33,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 8,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01202_Scr_0114.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 31016,
+   "y": 91,
+   "enter_frame": 1858,
+   "center_frame": 1928,
+   "exit_frame": 1999,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2820315,
+     "cy": 0.5046295000000001,
+     "w": 0.017187000000000008,
+     "h": 0.08148100000000003
+    }
+   ]
+  },
+  {
+   "index": 34,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 72,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01189_Scr_0019.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 32176,
+   "y": 91,
+   "enter_frame": 1931,
+   "center_frame": 2001,
+   "exit_frame": 2071,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.611198,
+     "cy": 0.614352,
+     "w": 0.047395999999999994,
+     "h": 0.09536999999999995
+    },
+    {
+     "type": "scratch",
+     "cx": 0.266146,
+     "cy": 0.6115740000000001,
+     "w": 0.11250000000000002,
+     "h": 0.16018600000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.44010400000000005,
+     "cy": 0.45972199999999996,
+     "w": 0.147916,
+     "h": 0.05092599999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7723960000000001,
+     "cy": 0.5203705,
+     "w": 0.11145799999999995,
+     "h": 0.24629699999999993
+    }
+   ]
+  },
+  {
+   "index": 35,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 57,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/train/00697_0017.png",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 33336,
+   "y": 91,
+   "enter_frame": 2003,
+   "center_frame": 2074,
+   "exit_frame": 2144,
+   "labels": []
+  },
+  {
+   "index": 36,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 65,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/10_10_spurious-copper_pinhole_scratch_06_jpg.rf.97ae9d5d7dd516d074810236c891a94d.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 34496,
+   "y": 38,
+   "enter_frame": 2076,
+   "center_frame": 2136,
+   "exit_frame": 2196,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.704688,
+     "cy": 0.507031,
+     "w": 0.048438,
+     "h": 0.029687
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.800781,
+     "cy": 0.514062,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.890625,
+     "cy": 0.513281,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.489063,
+     "cy": 0.526563,
+     "w": 0.025,
+     "h": 0.045312
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.665625,
+     "cy": 0.642969,
+     "w": 0.020313,
+     "h": 0.053125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.491406,
+     "cy": 0.167969,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.444531,
+     "cy": 0.366406,
+     "w": 0.020313,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.895312,
+     "cy": 0.342187,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.86875,
+     "cy": 0.586719,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.257031,
+     "cy": 0.140625,
+     "w": 0.014063,
+     "h": 0.134375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.357031,
+     "cy": 0.227344,
+     "w": 0.139063,
+     "h": 0.110937
+    }
+   ]
+  },
+  {
+   "index": 37,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 16,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/05_05_scratch_03_jpg.rf.afd618ac93de6b88d3c72dd20975664b.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 35336,
+   "y": 35,
+   "enter_frame": 2128,
+   "center_frame": 2188,
+   "exit_frame": 2249,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.625,
+     "cy": 0.269531,
+     "w": 0.132812,
+     "h": 0.092188
+    },
+    {
+     "type": "scratch",
+     "cx": 0.703125,
+     "cy": 0.253906,
+     "w": 0.190625,
+     "h": 0.289062
+    }
+   ]
+  },
+  {
+   "index": 38,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 44,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/10_05_scratch_03_jpg.rf.623360ce0cda9740e05b4910be4ded1e.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 36176,
+   "y": 36,
+   "enter_frame": 2181,
+   "center_frame": 2241,
+   "exit_frame": 2301,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.375,
+     "cy": 0.730469,
+     "w": 0.132812,
+     "h": 0.092188
+    },
+    {
+     "type": "scratch",
+     "cx": 0.296875,
+     "cy": 0.746094,
+     "w": 0.190625,
+     "h": 0.289062
+    }
+   ]
+  },
+  {
+   "index": 39,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 53,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/03_09_missing_hole_09_jpg.rf.6351f210e46230d557c20820d4c9efc4.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 37016,
+   "y": 35,
+   "enter_frame": 2233,
+   "center_frame": 2294,
+   "exit_frame": 2354,
+   "labels": []
+  },
+  {
+   "index": 40,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 12,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01176_Scr_0283.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 37856,
+   "y": 95,
+   "enter_frame": 2286,
+   "center_frame": 2356,
+   "exit_frame": 2426,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.37552050000000003,
+     "cy": 0.764815,
+     "w": 0.05937500000000001,
+     "h": 0.24629599999999996
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8364585,
+     "cy": 0.5814815,
+     "w": 0.029166999999999943,
+     "h": 0.22037100000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.316927,
+     "cy": 0.5208335000000001,
+     "w": 0.10781200000000002,
+     "h": 0.11018500000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.589844,
+     "cy": 0.272685,
+     "w": 0.12239600000000006,
+     "h": 0.07685200000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.274479,
+     "cy": 0.164815,
+     "w": 0.12916599999999998,
+     "h": 0.05740799999999999
+    }
+   ]
+  },
+  {
+   "index": 41,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 21,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01156_Oil_0256.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 39016,
+   "y": 89,
+   "enter_frame": 2358,
+   "center_frame": 2428,
+   "exit_frame": 2499,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.42526050000000004,
+     "cy": 0.711111,
+     "w": 0.10781299999999999,
+     "h": 0.12222199999999994
+    }
+   ]
+  },
+  {
+   "index": 42,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 49,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/07_09_spurious_copper_04_jpg.rf.ad6ec6199bf6915c7793c722631091df.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 40176,
+   "y": 45,
+   "enter_frame": 2431,
+   "center_frame": 2491,
+   "exit_frame": 2551,
+   "labels": []
+  },
+  {
+   "index": 43,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 34,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/02_00202_S57396-31-_CAM1_CAP4_LOWER_NG_png.rf.36eba2ac5aff10893183171c58e88026.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 41016,
+   "y": 102,
+   "enter_frame": 2483,
+   "center_frame": 2540,
+   "exit_frame": 2596,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3408203125,
+     "cy": 0.4765625,
+     "w": 0.333984375,
+     "h": 0.23828125
+    }
+   ]
+  },
+  {
+   "index": 44,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 5,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/03_09_missing_hole_09_jpg.rf.6351f210e46230d557c20820d4c9efc4.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 41728,
+   "y": 41,
+   "enter_frame": 2528,
+   "center_frame": 2588,
+   "exit_frame": 2648,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.957812,
+     "cy": 0.460156,
+     "w": 0.020313,
+     "h": 0.026562
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.9,
+     "cy": 0.732031,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.566406,
+     "cy": 0.638281,
+     "w": 0.026562,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.289844,
+     "cy": 0.502344,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.441406,
+     "cy": 0.310937,
+     "w": 0.021875,
+     "h": 0.026562
+    }
+   ]
+  },
+  {
+   "index": 45,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 81,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/04_00445_S57244-31-_CAM1_CAP4_LEFT_NG_png.rf.8acfb6f553a5831c154545dd307ac8e3.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 42568,
+   "y": 109,
+   "enter_frame": 2580,
+   "center_frame": 2636,
+   "exit_frame": 2693,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.412109375,
+     "cy": 0.4560546875,
+     "w": 0.234375,
+     "h": 0.201171875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6708984375,
+     "cy": 0.5556640625,
+     "w": 0.228515625,
+     "h": 0.224609375
+    }
+   ]
+  },
+  {
+   "index": 46,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 40,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/04_01530_N32018-41-_CAM1_CAP4_LOWER_OK_png.rf.46d57d29da96c214aecbbf6589e31eb8.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 43280,
+   "y": 100,
+   "enter_frame": 2625,
+   "center_frame": 2681,
+   "exit_frame": 2737,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.2080078125,
+     "cy": 0.8232421875,
+     "w": 0.033203125,
+     "h": 0.033203125
+    }
+   ]
+  },
+  {
+   "index": 47,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 14,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/07_10_open_circuit_04_jpg.rf.e20ecc676b2ff484f19ead0c0d95323a.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 43992,
+   "y": 42,
+   "enter_frame": 2669,
+   "center_frame": 2730,
+   "exit_frame": 2790,
+   "labels": []
+  },
+  {
+   "index": 48,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 33,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/05_10_mouse-bite_spur_scratch_03_jpg.rf.02ba6d9f34f45aa9908fbb675a3fe487.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 44832,
+   "y": 34,
+   "enter_frame": 2722,
+   "center_frame": 2782,
+   "exit_frame": 2842,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.555469,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.239063,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.15625,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.163281,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.175781,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.65,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.548438,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.446875,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.74375,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.609375,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.335156,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ]
+  },
+  {
+   "index": 49,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 29,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/test/01147_0020.png",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 45672,
+   "y": 87,
+   "enter_frame": 2774,
+   "center_frame": 2844,
+   "exit_frame": 2915,
+   "labels": []
+  },
+  {
+   "index": 50,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 49,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01174_Scr_0267.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 46832,
+   "y": 92,
+   "enter_frame": 2847,
+   "center_frame": 2917,
+   "exit_frame": 2987,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.35026,
+     "cy": 0.6925924999999999,
+     "w": 0.04010399999999997,
+     "h": 0.022222999999999993
+    }
+   ]
+  },
+  {
+   "index": 51,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 3,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/04_00054_S56802-91-_CAM1_CAP2_OK_png.rf.baeba5901dc798a9cf68db835591964e.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 47992,
+   "y": 103,
+   "enter_frame": 2919,
+   "center_frame": 2976,
+   "exit_frame": 3032,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.40876171874999995,
+     "w": 0.994140625,
+     "h": 0.80915234375
+    }
+   ]
+  },
+  {
+   "index": 52,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 50,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/08_12_pinhole_scratch_05_jpg.rf.7e1848978a5bbce785e17e6772e5f4c3.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 48704,
+   "y": 36,
+   "enter_frame": 2964,
+   "center_frame": 3024,
+   "exit_frame": 3084,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.839063,
+     "cy": 0.421875,
+     "w": 0.014063,
+     "h": 0.017188
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.449219,
+     "cy": 0.930469,
+     "w": 0.020313,
+     "h": 0.025
+    },
+    {
+     "type": "scratch",
+     "cx": 0.632031,
+     "cy": 0.324219,
+     "w": 0.210938,
+     "h": 0.15
+    },
+    {
+     "type": "scratch",
+     "cx": 0.464062,
+     "cy": 0.40625,
+     "w": 0.10625,
+     "h": 0.173437
+    }
+   ]
+  },
+  {
+   "index": 53,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 8,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/03_10_mouse-bite_spur_scratch_03_jpg.rf.29b93af4e9143d48bb815bdbdac1a946.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 49544,
+   "y": 45,
+   "enter_frame": 3016,
+   "center_frame": 3076,
+   "exit_frame": 3137,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.760938,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.84375,
+     "w": 0.032813,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.836719,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.824219,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.35,
+     "w": 0.039062,
+     "h": 0.023438
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.553125,
+     "w": 0.029687,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.25625,
+     "w": 0.332813,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.390625,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ]
+  },
+  {
+   "index": 54,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 87,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/05_01367_1045-_CAM1_CAP4_LEFT_NG_png.rf.7177a587f7f6c6ec7de9413af2ab8f07.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 50384,
+   "y": 106,
+   "enter_frame": 3069,
+   "center_frame": 3125,
+   "exit_frame": 3181,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.982421875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.2197265625,
+     "cy": 0.8291015625,
+     "w": 0.029296875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.3515625,
+     "cy": 0.4677734375,
+     "w": 0.234375,
+     "h": 0.220703125
+    }
+   ]
+  },
+  {
+   "index": 55,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 36,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/train/00568_0008.png",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 51096,
+   "y": 84,
+   "enter_frame": 3113,
+   "center_frame": 3184,
+   "exit_frame": 3254,
+   "labels": []
+  },
+  {
+   "index": 56,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 43,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/09_04_mouse_bite_12_jpg.rf.a2e2fb325c19c56d0415ee9c83038b08.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 52256,
+   "y": 46,
+   "enter_frame": 3186,
+   "center_frame": 3246,
+   "exit_frame": 3306,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.767969,
+     "cy": 0.192188,
+     "w": 0.03125,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.170313,
+     "cy": 0.217188,
+     "w": 0.032813,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.182812,
+     "cy": 0.423438,
+     "w": 0.03125,
+     "h": 0.025
+    }
+   ]
+  },
+  {
+   "index": 57,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 59,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01180_Oil_0192.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 53096,
+   "y": 92,
+   "enter_frame": 3238,
+   "center_frame": 3308,
+   "exit_frame": 3379,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.1869795,
+     "cy": 0.3106485,
+     "w": 0.029167,
+     "h": 0.06018499999999999
+    }
+   ]
+  },
+  {
+   "index": 58,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 67,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/08_11_scratch_03_jpg.rf.ba4a719eacbbc189a6730c8b110832c2.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 54256,
+   "y": 38,
+   "enter_frame": 3311,
+   "center_frame": 3371,
+   "exit_frame": 3431,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.288281,
+     "cy": 0.610938,
+     "w": 0.173437,
+     "h": 0.35
+    },
+    {
+     "type": "scratch",
+     "cx": 0.860938,
+     "cy": 0.404687,
+     "w": 0.079687,
+     "h": 0.25625
+    }
+   ]
+  },
+  {
+   "index": 59,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 6,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/07_09_spurious_copper_04_jpg.rf.ad6ec6199bf6915c7793c722631091df.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 55096,
+   "y": 44,
+   "enter_frame": 3363,
+   "center_frame": 3424,
+   "exit_frame": 3484,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.376563,
+     "cy": 0.2125,
+     "w": 0.020313,
+     "h": 0.045312
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.93125,
+     "cy": 0.442188,
+     "w": 0.03125,
+     "h": 0.035937
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.524219,
+     "cy": 0.464062,
+     "w": 0.053125,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.839844,
+     "cy": 0.207031,
+     "w": 0.035937,
+     "h": 0.021875
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.211719,
+     "cy": 0.373437,
+     "w": 0.021875,
+     "h": 0.0625
+    }
+   ]
+  },
+  {
+   "index": 60,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 59,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/02_01367_1045-_CAM1_CAP4_LEFT_NG_png.rf.7177a587f7f6c6ec7de9413af2ab8f07.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 55936,
+   "y": 99,
+   "enter_frame": 3416,
+   "center_frame": 3472,
+   "exit_frame": 3528,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.982421875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.2197265625,
+     "cy": 0.8291015625,
+     "w": 0.029296875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.3515625,
+     "cy": 0.4677734375,
+     "w": 0.234375,
+     "h": 0.220703125
+    }
+   ]
+  },
+  {
+   "index": 61,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 46,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01178_Oil_0003.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 56648,
+   "y": 95,
+   "enter_frame": 3460,
+   "center_frame": 3530,
+   "exit_frame": 3601,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.746875,
+     "cy": 0.623148,
+     "w": 0.21875,
+     "h": 0.34444400000000003
+    }
+   ]
+  },
+  {
+   "index": 62,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 26,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/train/00387_0010.png",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 57808,
+   "y": 88,
+   "enter_frame": 3533,
+   "center_frame": 3603,
+   "exit_frame": 3673,
+   "labels": []
+  },
+  {
+   "index": 63,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 64,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/10_08_spur_07_jpg.rf.7ede39fd928abbc213f8ce56125ca326.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 58968,
+   "y": 42,
+   "enter_frame": 3605,
+   "center_frame": 3666,
+   "exit_frame": 3726,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.264062,
+     "cy": 0.361719,
+     "w": 0.021875,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.386719,
+     "cy": 0.439063,
+     "w": 0.020313,
+     "h": 0.039062
+    },
+    {
+     "type": "spur",
+     "cx": 0.664844,
+     "cy": 0.442188,
+     "w": 0.023438,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.539844,
+     "cy": 0.628906,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.3375,
+     "cy": 0.607031,
+     "w": 0.040625,
+     "h": 0.028125
+    }
+   ]
+  },
+  {
+   "index": 64,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 27,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/08_01530_N32018-41-_CAM1_CAP2_OK_png.rf.f7c3df5d984ea97fda6e9b4d9855bc58.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 59808,
+   "y": 103,
+   "enter_frame": 3658,
+   "center_frame": 3714,
+   "exit_frame": 3770,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.205078125,
+     "cy": 0.822265625,
+     "w": 0.0390625,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 65,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 45,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/05_00238_A630-_CAM1_CAP4_UPPER_NG_png.rf.89a60320299fdbd94ad779294142263c.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 60520,
+   "y": 100,
+   "enter_frame": 3702,
+   "center_frame": 3758,
+   "exit_frame": 3815,
+   "labels": []
+  },
+  {
+   "index": 66,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 61,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/10_10_mouse-bite_spur_scratch_02_jpg.rf.6b0207734a507a338471c8d8874f9f8f.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 61232,
+   "y": 39,
+   "enter_frame": 3747,
+   "center_frame": 3807,
+   "exit_frame": 3867,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.592187,
+     "cy": 0.296875,
+     "w": 0.034375,
+     "h": 0.040625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.432812,
+     "cy": 0.417187,
+     "w": 0.039062,
+     "h": 0.040625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.698438,
+     "cy": 0.490625,
+     "w": 0.040625,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.866406,
+     "cy": 0.513281,
+     "w": 0.029687,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.220312,
+     "w": 0.034375,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.435937,
+     "cy": 0.725,
+     "w": 0.035937,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.457813,
+     "cy": 0.229687,
+     "w": 0.021875,
+     "h": 0.045312
+    },
+    {
+     "type": "spur",
+     "cx": 0.538281,
+     "cy": 0.396875,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.789844,
+     "cy": 0.3125,
+     "w": 0.029687,
+     "h": 0.039062
+    },
+    {
+     "type": "scratch",
+     "cx": 0.278906,
+     "cy": 0.759375,
+     "w": 0.235937,
+     "h": 0.21875
+    },
+    {
+     "type": "scratch",
+     "cx": 0.486719,
+     "cy": 0.611719,
+     "w": 0.21875,
+     "h": 0.10625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.397656,
+     "cy": 0.926562,
+     "w": 0.040625,
+     "h": 0.04375
+    }
+   ]
+  },
+  {
+   "index": 67,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 42,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01098_Sta_0398.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 62072,
+   "y": 96,
+   "enter_frame": 3799,
+   "center_frame": 3870,
+   "exit_frame": 3940,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.148698,
+     "cy": 0.699537,
+     "w": 0.014062000000000019,
+     "h": 0.02129599999999998
+    },
+    {
+     "type": "stain",
+     "cx": 0.36328150000000003,
+     "cy": 0.684259,
+     "w": 0.013021000000000005,
+     "h": 0.02037
+    },
+    {
+     "type": "stain",
+     "cx": 0.8947915,
+     "cy": 0.625926,
+     "w": 0.01041700000000001,
+     "h": 0.02037
+    },
+    {
+     "type": "stain",
+     "cx": 0.7976565,
+     "cy": 0.372222,
+     "w": 0.010936999999999975,
+     "h": 0.025926000000000005
+    }
+   ]
+  },
+  {
+   "index": 68,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 52,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/01_00428_55C-_CAM1_CAP4_LOWER_NG_png.rf.8996030a9e25d2023377af13681bb099.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 63232,
+   "y": 101,
+   "enter_frame": 3872,
+   "center_frame": 3928,
+   "exit_frame": 3984,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.98828125
+    }
+   ]
+  },
+  {
+   "index": 69,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 20,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/06_01078_N31824-40-_CAM1_CAP4_LOWER_NG_png.rf.4a5fa5942fc1b13ab73b7ab8a3552593.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 63944,
+   "y": 106,
+   "enter_frame": 3916,
+   "center_frame": 3972,
+   "exit_frame": 4029,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.5009765625,
+     "w": 0.998046875,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8994140625,
+     "cy": 0.3134765625,
+     "w": 0.052734375,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.546875,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.41015625,
+     "cy": 0.3955078125,
+     "w": 0.04296875,
+     "h": 0.037109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.369140625,
+     "w": 0.087890625,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.2451171875,
+     "w": 0.068359375,
+     "h": 0.052734375
+    }
+   ]
+  },
+  {
+   "index": 70,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 57,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/09_00262_A630-_CAM1_CAP4_RIGHT_NG_png.rf.6451d307613df0a8d365af9c9f64ad23.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 64656,
+   "y": 106,
+   "enter_frame": 3961,
+   "center_frame": 4017,
+   "exit_frame": 4073,
+   "labels": []
+  },
+  {
+   "index": 71,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 21,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/05_01367_1045-_CAM1_CAP4_LEFT_NG_png.rf.7177a587f7f6c6ec7de9413af2ab8f07.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 65368,
+   "y": 110,
+   "enter_frame": 4005,
+   "center_frame": 4062,
+   "exit_frame": 4118,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.982421875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.2197265625,
+     "cy": 0.8291015625,
+     "w": 0.029296875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.3515625,
+     "cy": 0.4677734375,
+     "w": 0.234375,
+     "h": 0.220703125
+    }
+   ]
+  },
+  {
+   "index": 72,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 57,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/10_07_short_03_jpg.rf.23b14c57a51d1d1839a0173bc2564dd0.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 66080,
+   "y": 42,
+   "enter_frame": 4050,
+   "center_frame": 4110,
+   "exit_frame": 4170,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.514062,
+     "cy": 0.326562,
+     "w": 0.03125,
+     "h": 0.048438
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.632031,
+     "cy": 0.355469,
+     "w": 0.028125,
+     "h": 0.048438
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.74375,
+     "cy": 0.457813,
+     "w": 0.03125,
+     "h": 0.057813
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.501563,
+     "cy": 0.430469,
+     "w": 0.039062,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.4125,
+     "cy": 0.475781,
+     "w": 0.025,
+     "h": 0.035937
+    }
+   ]
+  },
+  {
+   "index": 73,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 35,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01119_Oil_0169.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 66920,
+   "y": 89,
+   "enter_frame": 4102,
+   "center_frame": 4172,
+   "exit_frame": 4243,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.26875,
+     "cy": 0.7259255,
+     "w": 0.05520800000000001,
+     "h": 0.161111
+    },
+    {
+     "type": "oil",
+     "cx": 0.539583,
+     "cy": 0.4458335,
+     "w": 0.18645800000000007,
+     "h": 0.28796299999999997
+    }
+   ]
+  },
+  {
+   "index": 74,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 37,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01161_Sta_0203.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 68080,
+   "y": 94,
+   "enter_frame": 4175,
+   "center_frame": 4245,
+   "exit_frame": 4315,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.209896,
+     "cy": 0.6212965,
+     "w": 0.013541999999999998,
+     "h": 0.018518999999999952
+    },
+    {
+     "type": "stain",
+     "cx": 0.808073,
+     "cy": 0.3819445,
+     "w": 0.014062000000000019,
+     "h": 0.02129700000000001
+    }
+   ]
+  },
+  {
+   "index": 75,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 6,
+   "kind": "defect",
+   "case": "Fold",
+   "source": "results/msdd/showcase/01_Fold/originals/images/02_01414_S57846-31-_CAM1_CAP4_LOWER_NG_png.rf.2332b05b60c331bb45d405634cbf020c.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 69240,
+   "y": 101,
+   "enter_frame": 4247,
+   "center_frame": 4304,
+   "exit_frame": 4360,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.67578125,
+     "cy": 0.87109375,
+     "w": 0.4921875,
+     "h": 0.25
+    }
+   ]
+  },
+  {
+   "index": 76,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 4,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/07_05_short_07_jpg.rf.516a562631de1663b1faa0fec6feb25b.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 69952,
+   "y": 43,
+   "enter_frame": 4292,
+   "center_frame": 4352,
+   "exit_frame": 4412,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.7875,
+     "cy": 0.635938,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.907813,
+     "cy": 0.84375,
+     "w": 0.04375,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.178125,
+     "cy": 0.157812,
+     "w": 0.04375,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.417969,
+     "cy": 0.714844,
+     "w": 0.034375,
+     "h": 0.04375
+    }
+   ]
+  },
+  {
+   "index": 77,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 7,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/03_10_spurious-copper_pinhole_scratch_04_jpg.rf.9d97a2d96d286517f2595ce870c756d0.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 70792,
+   "y": 46,
+   "enter_frame": 4344,
+   "center_frame": 4404,
+   "exit_frame": 4465,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.576562,
+     "cy": 0.296875,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.580469,
+     "cy": 0.126562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.739062,
+     "cy": 0.542188,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.845313,
+     "cy": 0.511719,
+     "w": 0.025,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.892188,
+     "cy": 0.721094,
+     "w": 0.017188,
+     "h": 0.039062
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.752344,
+     "cy": 0.15,
+     "w": 0.025,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.758594,
+     "cy": 0.392969,
+     "w": 0.023438,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.826562,
+     "cy": 0.640625,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.86875,
+     "cy": 0.788281,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.296875,
+     "cy": 0.535156,
+     "w": 0.195312,
+     "h": 0.298438
+    },
+    {
+     "type": "scratch",
+     "cx": 0.421875,
+     "cy": 0.709375,
+     "w": 0.276562,
+     "h": 0.110937
+    },
+    {
+     "type": "scratch",
+     "cx": 0.517969,
+     "cy": 0.892969,
+     "w": 0.132812,
+     "h": 0.0625
+    }
+   ]
+  },
+  {
+   "index": 78,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 48,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/02_00238_A630-_CAM1_CAP2_NG_png.rf.254d1f9c0df2732dfb2bfa1e60f3531c.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 71632,
+   "y": 110,
+   "enter_frame": 4397,
+   "center_frame": 4453,
+   "exit_frame": 4509,
+   "labels": []
+  },
+  {
+   "index": 79,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 43,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01214_Sta_0196.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 72344,
+   "y": 96,
+   "enter_frame": 4441,
+   "center_frame": 4512,
+   "exit_frame": 4582,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.7372395,
+     "cy": 0.639352,
+     "w": 0.011979000000000073,
+     "h": 0.03240799999999999
+    },
+    {
+     "type": "stain",
+     "cx": 0.2341145,
+     "cy": 0.6185185,
+     "w": 0.013021000000000005,
+     "h": 0.033332999999999946
+    },
+    {
+     "type": "stain",
+     "cx": 0.536719,
+     "cy": 0.472685,
+     "w": 0.015103999999999895,
+     "h": 0.030555999999999972
+    }
+   ]
+  },
+  {
+   "index": 80,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 30,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01134_Oil_0307.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 73504,
+   "y": 87,
+   "enter_frame": 4514,
+   "center_frame": 4584,
+   "exit_frame": 4654,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.5625,
+     "cy": 0.7884260000000001,
+     "w": 0.04479199999999994,
+     "h": 0.14722200000000008
+    },
+    {
+     "type": "oil",
+     "cx": 0.470573,
+     "cy": 0.6009260000000001,
+     "w": 0.04010399999999997,
+     "h": 0.2925920000000001
+    }
+   ]
+  },
+  {
+   "index": 81,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 24,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01146_Scr_0250.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 74664,
+   "y": 96,
+   "enter_frame": 4586,
+   "center_frame": 4656,
+   "exit_frame": 4727,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.468229,
+     "cy": 0.611574,
+     "w": 0.125,
+     "h": 0.28055599999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.708073,
+     "cy": 0.4662035,
+     "w": 0.19531200000000004,
+     "h": 0.01388900000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8736980000000001,
+     "cy": 0.42407399999999995,
+     "w": 0.008854000000000029,
+     "h": 0.122222
+    },
+    {
+     "type": "scratch",
+     "cx": 0.1609375,
+     "cy": 0.385185,
+     "w": 0.120833,
+     "h": 0.17037000000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.620052,
+     "cy": 0.299074,
+     "w": 0.18281200000000009,
+     "h": 0.07777800000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.13880199999999998,
+     "cy": 0.186111,
+     "w": 0.102604,
+     "h": 0.07777800000000001
+    }
+   ]
+  },
+  {
+   "index": 82,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 16,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/08_00059_S56802-91-_CAM1_CAP4_LOWER_OK_png.rf.a4c98851906dfc440042b7676425a71f.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 75824,
+   "y": 101,
+   "enter_frame": 4659,
+   "center_frame": 4715,
+   "exit_frame": 4771,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.4249443359375,
+     "w": 0.998046875,
+     "h": 0.835380859375
+    }
+   ]
+  },
+  {
+   "index": 83,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 26,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/07_00335_S57264-61-_CAM1_CAP4_RIGHT_OK_png.rf.0d8c7419a370d2befaf6e39751a64e00.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 76536,
+   "y": 104,
+   "enter_frame": 4703,
+   "center_frame": 4760,
+   "exit_frame": 4816,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.17578125,
+     "cy": 0.4580078125,
+     "w": 0.046875,
+     "h": 0.041015625
+    }
+   ]
+  },
+  {
+   "index": 84,
+   "domain": "msdd",
+   "line": "metal",
+   "line_index": 79,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/09_00025_1045-_CAM1_CAP2_NG_png.rf.3fc93719671150137b7205d4c666a549.jpg",
+   "board_w": 512,
+   "board_h": 512,
+   "x0": 77248,
+   "y": 109,
+   "enter_frame": 4748,
+   "center_frame": 4804,
+   "exit_frame": 4860,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.533203125,
+     "cy": 0.482421875,
+     "w": 0.9140625,
+     "h": 0.93359375
+    }
+   ]
+  },
+  {
+   "index": 85,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 73,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01123_Scr_0164.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 77960,
+   "y": 96,
+   "enter_frame": 4792,
+   "center_frame": 4862,
+   "exit_frame": 4933,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2190105,
+     "cy": 0.7430555,
+     "w": 0.13906300000000002,
+     "h": 0.05833299999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.47239549999999997,
+     "cy": 0.6115740000000001,
+     "w": 0.11041699999999999,
+     "h": 0.26574
+    },
+    {
+     "type": "scratch",
+     "cx": 0.174479,
+     "cy": 0.3958335,
+     "w": 0.03125,
+     "h": 0.26944500000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7020835000000001,
+     "cy": 0.2050925,
+     "w": 0.197917,
+     "h": 0.08055500000000002
+    }
+   ]
+  },
+  {
+   "index": 86,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 6,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01143_Oil_0377.jpg",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 79120,
+   "y": 87,
+   "enter_frame": 4865,
+   "center_frame": 4935,
+   "exit_frame": 5005,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.538802,
+     "cy": 0.6208335,
+     "w": 0.32343799999999995,
+     "h": 0.16018500000000002
+    }
+   ]
+  },
+  {
+   "index": 87,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 76,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/05_10_mouse-bite_spur_scratch_03_jpg.rf.02ba6d9f34f45aa9908fbb675a3fe487.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 80280,
+   "y": 37,
+   "enter_frame": 4937,
+   "center_frame": 4998,
+   "exit_frame": 5058,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.555469,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.239063,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.15625,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.163281,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.175781,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.65,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.548438,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.446875,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.74375,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.609375,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.335156,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ]
+  },
+  {
+   "index": 88,
+   "domain": "mobile",
+   "line": "phone",
+   "line_index": 48,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/train/00906_0015.png",
+   "board_w": 960,
+   "board_h": 540,
+   "x0": 81120,
+   "y": 92,
+   "enter_frame": 4990,
+   "center_frame": 5060,
+   "exit_frame": 5130,
+   "labels": []
+  },
+  {
+   "index": 89,
+   "domain": "pcb",
+   "line": "pcb",
+   "line_index": 81,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/01_11_spurious-copper_pinhole_scratch_05_jpg.rf.5eb88646177318a1b1a6eb9210bd7bc8.jpg",
+   "board_w": 640,
+   "board_h": 640,
+   "x0": 82280,
+   "y": 41,
+   "enter_frame": 5062,
+   "center_frame": 5122,
+   "exit_frame": 5183,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.378906,
+     "cy": 0.080469,
+     "w": 0.045312,
+     "h": 0.026562
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.625,
+     "cy": 0.171875,
+     "w": 0.035937,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.370312,
+     "cy": 0.475,
+     "w": 0.04375,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.529687,
+     "cy": 0.492969,
+     "w": 0.048438,
+     "h": 0.020313
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.616406,
+     "cy": 0.550781,
+     "w": 0.034375,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.414844,
+     "cy": 0.278906,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.258594,
+     "cy": 0.34375,
+     "w": 0.021875,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.282813,
+     "cy": 0.652344,
+     "w": 0.020313,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.915625,
+     "cy": 0.810156,
+     "w": 0.029687,
+     "h": 0.034375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.264062,
+     "cy": 0.477344,
+     "w": 0.148438,
+     "h": 0.15
+    },
+    {
+     "type": "scratch",
+     "cx": 0.795312,
+     "cy": 0.75625,
+     "w": 0.176563,
+     "h": 0.226562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.805469,
+     "cy": 0.935156,
+     "w": 0.254688,
+     "h": 0.092188
+    }
+   ]
+  }
+ ]
+}

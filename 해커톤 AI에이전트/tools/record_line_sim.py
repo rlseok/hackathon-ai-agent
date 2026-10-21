@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT))
 from live import server  # noqa: E402
 
 OUT_DIR = ROOT / 'results/live_sim'
-LINE_NAME = {'pcb': 'PCB', 'phone': 'LCD (phone surface)', 'metal': 'Metal surface'}
+LINE_NAME = {'pcb': 'PCB', 'phone': 'LCD (phone surface)', 'metal': 'Metal surface', 'mixed': 'Mixed'}
 
 
 class SimLine(server.Line):
@@ -82,6 +82,15 @@ def run(line):
         t['items'] += 1
         t['correct'] += int(r['board_ok'])
         t['verdicts'][r['verdict']] += 1
+    by_domain = {}
+    for r in rows:                                   # 혼합 라인: 제품 종류별 분배·판정
+        if 'gt_domain' not in r:
+            break
+        t = by_domain.setdefault(r['gt_domain'], {'items': 0, 'routed_ok': 0, 'correct': 0, 'rules': Counter()})
+        t['items'] += 1
+        t['routed_ok'] += int(r['domain'] == r['gt_domain'])
+        t['correct'] += int(r['board_ok'])
+        t['rules'][r['route_rule']] += 1
     proc_ms.sort()
     return {
         'line': line, 'name': LINE_NAME[line], 'domain': sim.domain, 'video': mp4.name,
@@ -96,12 +105,14 @@ def run(line):
         'proc_fps': round(1000 / (sum(proc_ms) / len(proc_ms)), 1),
         'wall_seconds': round(time.time() - t_start, 1),
         'by_type': {k: {**v, 'verdicts': dict(v['verdicts'])} for k, v in sorted(by_type.items())},
+        'route_acc': e['route_acc'], 'routed_ok': e['routed_ok'],
+        'by_domain': {k: {**v, 'rules': dict(v['rules'])} for k, v in sorted(by_domain.items())},
     }
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--line', nargs='+', choices=['pcb', 'phone', 'metal'], default=['pcb', 'phone', 'metal'])
+    ap.add_argument('--line', nargs='+', choices=['pcb', 'phone', 'metal', 'mixed'], default=['pcb', 'phone', 'metal'])
     a = ap.parse_args()
     summary_path = OUT_DIR / 'summary.json'
     summary = json.loads(summary_path.read_text(encoding='utf-8')) if summary_path.exists() else {}

@@ -37,14 +37,15 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from agent.detect import _model, detect, thresholds  # noqa: E402
-from agent import records  # noqa: E402
+from agent.detect import MODELS, _model, detect, thresholds  # noqa: E402
+from agent import line_router, records  # noqa: E402
 from agent.pipeline import OUT, analyze_detected, load_result, needs_text, refresh, register_pending  # noqa: E402
 
 LIVE = OUT / 'live'
 CAPTURES = LIVE / 'captures'
 COLOR = {'reject': (40, 40, 225), 'review': (0, 150, 255), 'normal': (70, 175, 70)}    # BGR
 STAMP = {'reject': 'NG', 'review': 'HOLD', 'normal': 'OK'}
+SHORT = {'pcb': 'PCB', 'msdd': 'METAL', 'mobile': 'LCD'}               # 혼합 라인 도장에 붙이는 제품 종류
 ZONE_GRAY = (175, 175, 175)
 
 
@@ -72,10 +73,19 @@ class Line:
         self.bw = g.get('board_w', g.get('board_px', a.board))     # 제품(센싱 구역) 크기 — PCB 640×640, 액정 960×540
         self.bh = g.get('board_h', g.get('board_px', a.board))
         self.belt = np.array(g['belt_bgr'], np.int16) if g.get('belt_bgr') else None   # 있으면 '벨트 색과 다른 곳' = 제품
-        self.preview_imgsz = a.preview_imgsz or {'pcb': 1280, 'msdd': 1280}.get(self.domain, 640)   # 화면 속 제품이 학습 축척이 되도록
-        self.conf = thresholds(self.domain)['conf_review']
-        self.model = _model(self.domain)
-        self.names = self.model.names
+        # 혼합 라인: 제품마다 종류·크기가 다르다 → 센싱 때 분배 에이전트(agent/line_router.py)가 정한다
+        self.mixed = self.domain == 'mixed'
+        self.sizes = ({d: tuple(s) for d, s in g['sizes'].items()} if self.mixed else {self.domain: (self.bw, self.bh)})
+        ws = [w for w, _ in self.sizes.values()]
+        self.zone_w = max(ws)
+        self.min_w, self.join_gap, self.join_max = 0.8 * min(ws), 0.25 * min(ws), 1.15 * max(ws)
+        if self.mixed:
+            self.models = {d: _model(d) for d in self.sizes}    # 세 모델을 미리 올려 둔다 (첫 제품에서 멈추지 않게)
+        else:
+            self.preview_imgsz = a.preview_imgsz or {'pcb': 1280, 'msdd': 1280}.get(self.domain, 640)   # 화면 속 제품이 학습 축척이 되도록
+            self.conf = thresholds(self.domain)['conf_review']
+            self.model = _model(self.domain)
+            self.names = self.model.names
         self.reports = queue.Queue()
         self.xlsx_dirty = False
         self.preview, self.preview_age = [], 0  # 미리보기 박스 (preview_every 프레임마다 갱신)
@@ -100,7 +110,7 @@ class Line:
             self.infer_ms = 0.0
             self.preview_every = 1
             self.eval = {'boards': 0, 'correct': 0, 'defect_boards': 0, 'defect_caught': 0, 'normal_boards': 0,
-                         'normal_passed': 0, 'tp': 0, 'fp': 0, 'fn': 0, 'unmatched': 0}
+                         'normal_passed': 0, 'tp': 0, 'fp': 0, 'fn': 0, 'unmatched': 0, 'routed_ok': 0}
             self.eval_log = None                # 이번 재생의 대조 기록 파일 (처음 판정할 때 만든다)
 
     # ── 제품 찾기: PCB 는 벨트(회색) 위의 초록 영역, 그 밖에는 벨트 색과 다른 영역 ─────────
@@ -113,18 +123,19 @@ class Line:
         else:
             b, g, r = (small[..., i].astype(np.int16) for i in range(3))
             mask = (g - np.maximum(r, b)) > 25
-        segs = self._join(self._runs(mask), self.bw / step)
+        segs = self._join(self._runs(mask), self.join_gap / step, self.join_max / step)
         return [{**s, 'x0': s['x0'] * step, 'x1': min(s['x1'] * step, frame.shape[1]), 'y0': s['y0'] * step,
                  'y1': min(s['y1'] * step, frame.shape[0]), 'cx': s['cx'] * step} for s in segs]
 
     @staticmethod
-    def _join(segs, bw):
+    def _join(segs, gap, max_w):
         """제품 색이 벨트와 비슷한 부분(예: 회색 금속면)에서 한 제품이 둘로 갈라진 경우를 다시 잇는다.
-        틈이 제품 폭의 25% 이하이고 이은 폭이 제품 하나(115%)를 넘지 않을 때만 — 이웃 제품끼리는 붙지 않는다."""
+        틈이 제품 폭의 25% 이하이고 이은 폭이 제품 하나(115%)를 넘지 않을 때만 — 이웃 제품끼리는 붙지 않는다.
+        혼합 라인은 틈은 가장 작은 제품, 폭은 가장 큰 제품 기준."""
         out = []
         for s in segs:
             p = out[-1] if out else None
-            if p and s['x0'] - p['x1'] <= 0.25 * bw and s['x1'] - p['x0'] <= 1.15 * bw:
+            if p and s['x0'] - p['x1'] <= gap and s['x1'] - p['x0'] <= max_w:
                 out[-1] = {'x0': p['x0'], 'x1': s['x1'], 'y0': min(p['y0'], s['y0']), 'y1': max(p['y1'], s['y1']),
                            'cx': (p['x0'] + s['x1']) / 2, 'touch': p['touch'] or s['touch']}
             else:
@@ -162,7 +173,8 @@ class Line:
         if abs(b['center_frame'] - fidx) > 20:
             self.eval['unmatched'] += 1
             return None
-        sw, sh, speed = self.bw, self.bh, self.gt['speed_px_per_frame']
+        sw, sh = b.get('board_w', self.bw), b.get('board_h', self.bh)     # 혼합 라인은 제품마다 크기가 다르다
+        speed = self.gt['speed_px_per_frame']
         bx = round(b['x0'] - fidx * speed)                  # 이 프레임에서 제품 왼쪽 x
         gt = [(l['type'], [(l['cx'] - l['w'] / 2) * sw + bx - x0, (l['cy'] - l['h'] / 2) * sh + b['y'] - y0,
                            (l['cx'] + l['w'] / 2) * sw + bx - x0, (l['cy'] + l['h'] / 2) * sh + b['y'] - y0])
@@ -191,8 +203,12 @@ class Line:
         e['tp'] += tp
         e['fp'] += fp
         e['fn'] += fn
-        return {'board': b['index'], 'kind': b['kind'], 'gt_types': sorted({t for t, _ in gt}), 'ok': bool(ok),
-                'tp': tp, 'fp': fp, 'fn': fn}
+        out = {'board': b['index'], 'kind': b['kind'], 'gt_types': sorted({t for t, _ in gt}), 'ok': bool(ok),
+               'tp': tp, 'fp': fp, 'fn': fn}
+        if self.mixed:                                       # 분배 에이전트가 제품 종류를 맞혔는지
+            out['domain'] = b['domain']
+            e['routed_ok'] += det['domain'] == b['domain']
+        return out
 
     def _log_eval(self, ev):
         """정답 대조 기록 (outputs/live/eval_<시작 시각>.csv) — 재생이 끝난 뒤 한 장씩 다시 볼 수 있게."""
@@ -202,14 +218,25 @@ class Line:
             self.eval_log = LIVE / f'eval_{datetime.now():%Y%m%d_%H%M%S}.csv'
             with open(self.eval_log, 'w', newline='', encoding='utf-8-sig') as f:
                 csv.writer(f).writerow(['seq', 'time', 'video_board', 'gt_kind', 'gt_types', 'verdict', 'pred_types',
-                                        'board_ok', 'tp', 'fp', 'fn', 'capture'])
+                                        'board_ok', 'tp', 'fp', 'fn', 'capture']
+                                       + (['gt_domain', 'domain', 'route_rule'] if self.mixed else []))
         g = ev['gt']
         with open(self.eval_log, 'a', newline='', encoding='utf-8-sig') as f:
             csv.writer(f).writerow([ev['seq'], ev['time'], g['board'], g['kind'], ' '.join(g['gt_types']), ev['verdict'],
-                                    ' '.join(ev['types']), int(g['ok']), g['tp'], g['fp'], g['fn'], ev['name']])
+                                    ' '.join(ev['types']), int(g['ok']), g['tp'], g['fp'], g['fn'], ev['name']]
+                                   + ([g['domain'], ev['domain'], ev['route']] if self.mixed else []))
+
+    def route(self, frame, seg, step=2):
+        """분배 에이전트: 제품 상자 안 화면(1/step 로 줄여서) → line_router.route."""
+        region = frame[seg['y0']:seg['y1']:step, int(seg['x0']):int(seg['x1']):step]
+        return line_router.route(region, seg['x1'] - seg['x0'], seg['y1'] - seg['y0'])
 
     def inspect(self, frame, seg, fidx=None):
-        sw, sh = self.bw, self.bh
+        domain, route = self.domain, None
+        if self.mixed:
+            route = self.route(frame, seg)
+            domain = route['domain']
+        sw, sh = self.sizes[domain]
         cx, cy = int(round(seg['cx'])), (seg['y0'] + seg['y1']) // 2
         h, w = frame.shape[:2]
         x0 = min(max(cx - sw // 2, 0), w - sw)
@@ -223,13 +250,14 @@ class Line:
         CAPTURES.mkdir(parents=True, exist_ok=True)
         path = CAPTURES / f'{name}.jpg'
         cv2.imwrite(str(path), crop, [cv2.IMWRITE_JPEG_QUALITY, 95])
-        det = detect(path, self.domain, save_dir=OUT / 'work' / name, tile=False)
+        det = detect(path, domain, save_dir=OUT / 'work' / name, tile=False)
         verdict = det['verdict']
         self.last_inspect = time.time()
         types = sorted({d['type'] for d in det['defects']})
         ev = {'seq': seq, 'name': name, 'time': stamp.strftime('%H:%M:%S'), 'verdict': verdict, 'types': types,
               'n': len(det['defects']), 'max_conf': max((d['conf'] for d in det['defects']), default=0.0),
-              'capture': f'/capture/{name}.jpg', 'report': 'none' if verdict == 'normal' else 'queued'}
+              'capture': f'/capture/{name}.jpg', 'report': 'none' if verdict == 'normal' else 'queued',
+              'domain': domain, 'route': route['rule'] if route else None}
         with self.lock:
             ev['gt'] = self.compare(fidx, x0, y0, det)
             if ev['gt']:
@@ -238,6 +266,7 @@ class Line:
             self.events.appendleft(ev)
             self.flash, self.flash_color = 10, COLOR[verdict]
             self.boards.append({'seq': seq, 'verdict': verdict, 'cx': seg['cx'], 'off': x0 - seg['cx'], 'y0': y0,
+                                'w': sw, 'domain': domain,
                                 'defects': [(d['box_px'], d['type'], d['conf'], d['level']) for d in det['defects']]})
             self.monitor(verdict, det['defects'], seq)
         if verdict != 'normal':
@@ -383,11 +412,11 @@ class Line:
     # ── 그리기 ───────────────────────────────────────────────────────
     def draw(self, frame, segs, preview):
         h, w = frame.shape[:2]
-        zx0, zx1 = (w - self.bw) // 2, (w + self.bw) // 2
+        zx0, zx1 = (w - self.zone_w) // 2, (w + self.zone_w) // 2
         overlay = frame.copy()
         # 미리보기 박스: 아직 검사 전인 기판만 얇게 (화면 가장자리에 걸친 기판은 흐리게)
-        inspected = [(b['cx'] + b['off'], b['cx'] + b['off'] + self.bw) for b in self.boards]
-        for (x0, y0, x1, y1), c, conf in preview:
+        inspected = [(b['cx'] + b['off'], b['cx'] + b['off'] + b['w']) for b in self.boards]
+        for (x0, y0, x1, y1), name, conf in preview:
             mx = (x0 + x1) / 2
             if any(a <= mx <= b for a, b in inspected):
                 continue
@@ -395,7 +424,7 @@ class Line:
             faint = seg is None or seg['touch']              # 화면 가장자리에 걸친 기판은 흐리게
             col = (190, 190, 190) if faint else (255, 255, 0)  # 미리보기 = 하늘색 (판정 전)
             cv2.rectangle(overlay, (int(x0), int(y0)), (int(x1), int(y1)), col, 2, cv2.LINE_AA)
-            label = f'{self.names[c]} {conf:.2f}'
+            label = f'{name} {conf:.2f}'
             (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.45, 1)
             ty = max(int(y0) - 4, th + 4)
             cv2.rectangle(overlay, (int(x0), ty - th - 4), (int(x0) + tw + 4, ty + 2), (30, 30, 30), -1)
@@ -416,7 +445,7 @@ class Line:
                 cv2.rectangle(frame, p0, p1, COLOR[level], 2, cv2.LINE_AA)
                 cv2.putText(frame, f'{t} {conf:.2f}', (p0[0], p0[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.45,
                             COLOR[level], 1, cv2.LINE_AA)
-            label = f'#{b["seq"]} {STAMP[b["verdict"]]}'
+            label = f'#{b["seq"]} {STAMP[b["verdict"]]}' + (f' {SHORT[b["domain"]]}' if self.mixed else '')
             (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_DUPLEX, 1.0, 2)
             sx, sy = bx + 14, b['y0'] + 14
             cv2.rectangle(frame, (sx, sy), (sx + tw + 18, sy + th + 18), COLOR[b['verdict']], -1)
@@ -492,25 +521,31 @@ class Line:
         with self.lock:
             kept = []
             for b in self.boards:
-                m = [s for s in segs if -40 <= b['cx'] - s['cx'] <= 120]
+                # 혼합 라인: 왼쪽 끝에 걸쳐 잘린 제품은 보이는 부분의 가운데가 아니라 오른쪽 끝에서 위치를 잡는다 (박스가 밀리지 않게)
+                est = [(s['x1'] - b['w'] - b['off'] if self.mixed and s['x0'] <= 0 else s['cx']) for s in segs]
+                m = [c for c in est if -40 <= b['cx'] - c <= 120]
                 if m:
-                    b['cx'] = min(m, key=lambda s: b['cx'] - s['cx'])['cx']
+                    b['cx'] = min(m, key=lambda c: b['cx'] - c)
                     kept.append(b)
             self.boards = kept
         # 센싱: 기판 중심이 화면 가운데를 지나는 순간 한 번
         for s in segs:
-            if s['touch'] or s['x1'] - s['x0'] < 0.8 * self.bw:
+            if s['touch'] or s['x1'] - s['x0'] < self.min_w:
                 continue
             prev = [p for p in self.prev_centers if 0 <= p - s['cx'] <= 120]
             if prev and min(prev) > zc >= s['cx']:
                 self.inspect(frame, s, idx - 1 if self.a.camera is None else None)
         self.prev_centers = [s['cx'] for s in segs]
-        # 미리보기 (화면 전체, 원래 크기로)
+        # 미리보기 (화면 전체, 원래 크기로 · 혼합 라인은 다음에 센싱할 제품 하나만)
         self.preview_age += 1
         if self.preview_age >= self.preview_every:
             self.preview_age = 0
-            r = self.model.predict(frame, imgsz=self.preview_imgsz, conf=self.conf, verbose=False)[0]
-            self.preview = [(b.tolist(), int(c), float(p)) for b, c, p in zip(r.boxes.xyxy, r.boxes.cls, r.boxes.conf)]
+            if self.mixed:
+                self.preview = self.preview_next(frame, segs)
+            else:
+                r = self.model.predict(frame, imgsz=self.preview_imgsz, conf=self.conf, verbose=False)[0]
+                self.preview = [(b.tolist(), self.names[int(c)], float(p))
+                                for b, c, p in zip(r.boxes.xyxy, r.boxes.cls, r.boxes.conf)]
         self.infer_ms = 0.8 * self.infer_ms + 0.2 * (time.time() - ts) * 1000
         if self.flash > 0:
             self.flash -= 1
@@ -518,6 +553,24 @@ class Line:
         if len(self.tick) > 1:
             self.fps = (len(self.tick) - 1) / (self.tick[-1] - self.tick[0])
         return self.draw(frame, segs, self.preview)
+
+    def preview_next(self, frame, segs):
+        """혼합 라인 미리보기: 화면 전체에 세 모델을 돌리면 GPU 가 밀리므로, 아직 판정 전이고 화면 안에 다 들어온 제품 중
+        센싱 구역에 가장 가까운 하나만 분배 에이전트로 종류를 정해 그 모델 하나로 본다."""
+        zc = frame.shape[1] / 2
+        done = [(b['cx'] + b['off'], b['cx'] + b['off'] + b['w']) for b in self.boards]
+        cand = [s for s in segs if not s['touch'] and s['x1'] - s['x0'] >= self.min_w and s['cx'] >= zc - 40
+                and not any(a <= s['cx'] <= b for a, b in done)]
+        if not cand:
+            return []
+        s = min(cand, key=lambda s: s['cx'])
+        dom = self.route(frame, s, step=4)['domain']
+        x0, x1, y0, y1 = int(s['x0']), int(s['x1']), int(s['y0']), int(s['y1'])
+        model = self.models[dom]
+        r = model.predict(frame[y0:y1, x0:x1], imgsz=MODELS[dom][1], conf=thresholds(dom)['conf_review'],
+                          verbose=False)[0]
+        return [([bx0 + x0, by0 + y0, bx1 + x0, by1 + y0], model.names[int(c)], float(p))
+                for (bx0, by0, bx1, by1), c, p in zip(r.boxes.xyxy.tolist(), r.boxes.cls, r.boxes.conf)]
 
     def publish(self, img):
         ok, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 80])
@@ -534,6 +587,7 @@ class Line:
         r = e['tp'] / (e['tp'] + e['fn']) if e['tp'] + e['fn'] else 0.0
         return {**e, 'board_acc': round(e['correct'] / e['boards'], 4) if e['boards'] else None,
                 'precision': round(p, 4), 'recall': round(r, 4), 'f1': round(2 * p * r / (p + r), 4) if p + r else 0.0,
+                'route_acc': round(e['routed_ok'] / e['boards'], 4) if self.mixed and e['boards'] else None,
                 'total_boards': len(self.gt['boards']), 'log': self.eval_log.name if self.eval_log else None}
 
     def state(self):
@@ -614,7 +668,7 @@ def main():
     ap.add_argument('--source', default=str(ROOT / 'videos/pcb_conveyor.mp4'))
     ap.add_argument('--camera', type=int, default=None, help='웹캠 번호 (주면 영상 파일 대신 웹캠)')
     ap.add_argument('--port', type=int, default=8506)
-    ap.add_argument('--line', choices=['pcb', 'phone', 'metal'], default=None,
+    ap.add_argument('--line', choices=['pcb', 'phone', 'metal', 'mixed'], default=None,
                     help='라인 이름 → videos/<line>_conveyor.mp4 를 입력으로 (--source 대신)')
     ap.add_argument('--domain', choices=['pcb', 'msdd', 'mobile'], default=None,
                     help='검사 모델 (기본: 영상 json 의 domain, 없으면 pcb)')

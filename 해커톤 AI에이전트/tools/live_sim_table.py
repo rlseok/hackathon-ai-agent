@@ -18,8 +18,10 @@ from agent.i18n import type_name  # noqa: E402
 from agent.knowledge import lookup  # noqa: E402
 
 DIR = ROOT / 'results/live_sim'
-ORDER = ['pcb', 'phone', 'metal']
-LINE_KO = {'pcb': 'PCB', 'phone': '액정(휴대폰 표면)', 'metal': '금속 표면'}
+ORDER = ['pcb', 'phone', 'metal', 'mixed']
+LINE_KO = {'pcb': 'PCB', 'phone': '액정(휴대폰 표면)', 'metal': '금속 표면', 'mixed': '혼합'}
+DOM_KO = {'pcb': 'PCB', 'mobile': '액정', 'msdd': '금속'}
+DOM_EN = {'pcb': 'PCB', 'mobile': 'LCD', 'msdd': 'Metal'}
 HEAD = PatternFill('solid', fgColor='1F4E79')
 ZEBRA = PatternFill('solid', fgColor='EEF3F8')
 THIN = Side(style='thin', color='B4C6E7')
@@ -38,6 +40,8 @@ def tname(t, domain, lang):
 
 
 def by_type(x):
+    if x['line'] == 'mixed':                 # 혼합 라인은 종류별 표(Routing)로 따로 본다
+        return []
     return sorted(x['by_type'].items(), key=lambda kv: (kv[0] == 'normal', kv[0]))   # 정상은 맨 뒤
 
 
@@ -66,13 +70,14 @@ def main():
     ws.title = 'Summary'
     sheet(ws, ['Line', 'Video length', 'Items in video', 'Inspected in sensing zone', 'Product verdict accuracy',
                'Defective items flagged', 'Normal items passed', 'Abnormal / Suspect / Normal verdicts',
-               'Defect TP / FP / FN', 'Precision', 'Recall', 'F1', 'Processing ms/frame (mean / p95)', 'Processing capacity'],
+               'Defect TP / FP / FN', 'Precision', 'Recall', 'F1', 'Processing ms/frame (mean / p95)', 'Processing capacity',
+               'Routing accuracy'],
           [[x['name'], f'{x["video_seconds"]} s', x['items_in_video'], x['inspected'], pct(x['board_acc']),
             f'{x["defect_caught"]}/{x["defect_boards"]}', f'{x["normal_passed"]}/{x["normal_boards"]}',
             f'{x["verdicts"]["reject"]} / {x["verdicts"]["review"]} / {x["verdicts"]["normal"]}',
             f'{x["tp"]} / {x["fp"]} / {x["fn"]}', round(x['precision'], 3), round(x['recall'], 3), round(x['f1'], 3),
-            f'{x["proc_ms_mean"]} / {x["proc_ms_p95"]}', f'{x["proc_fps"]} fps'] for x in lines],
-          [18, 12, 12, 14, 14, 14, 13, 20, 16, 10, 10, 8, 18, 13])
+            f'{x["proc_ms_mean"]} / {x["proc_ms_p95"]}', f'{x["proc_fps"]} fps', pct(x.get('route_acc'))] for x in lines],
+          [18, 12, 12, 14, 14, 14, 13, 20, 16, 10, 10, 8, 18, 13, 12])
     ws2 = wb.create_sheet('By defect type')
     rows = []
     for x in lines:
@@ -81,6 +86,13 @@ def main():
                          v['verdicts'].get('reject', 0), v['verdicts'].get('review', 0), v['verdicts'].get('normal', 0)])
     sheet(ws2, ['Line', 'Ground-truth type', 'Items', 'Verdict correct', 'Accuracy', 'Abnormal', 'Suspect', 'Normal'],
           rows, [18, 30, 8, 14, 10, 10, 10, 10])
+    mixed = s.get('mixed')
+    if mixed:
+        ws4 = wb.create_sheet('Routing (mixed line)')
+        sheet(ws4, ['Product (ground truth)', 'Items', 'Routed correctly', 'Routing accuracy', 'Verdict correct', 'Rules used'],
+              [[DOM_EN[d], v['items'], v['routed_ok'], pct(v['routed_ok'] / v['items']), pct(v['correct'] / v['items']),
+                ', '.join(f'{k} {n}' for k, n in v['rules'].items())] for d, v in mixed['by_domain'].items()],
+              [22, 8, 16, 16, 14, 24])
     ws3 = wb.create_sheet('Definitions')
     sheet(ws3, ['Term', 'Meaning'], [
         ['Simulation', 'Each virtual conveyor video is processed frame by frame with the same code as the live video server '
@@ -92,6 +104,8 @@ def main():
         ['Precision / Recall / F1', 'TP/(TP+FP), TP/(TP+FN), and their harmonic mean.'],
         ['Suspect by rule', 'Some types are at most Suspect by the verdict rules (PCB scratch and pinhole, phone scratch and '
                             'stain, local metal porosity and scratch, …), so Suspect is the expected verdict for them.'],
+        ['Routing accuracy', 'Mixed line only: the dispatcher (agent/line_router.py) picks the product type from the item '
+                             'box (aspect ratio, green ratio, dark ratio) before cropping and inspecting with the model for that type.'],
         ['Processing ms/frame', 'Time for one frame: product finding, sensing-zone inspection when an item passes, '
                                 'full-frame preview detection and drawing (RTX 5060 Laptop GPU). Video encoding excluded.'],
     ], [26, 110])
@@ -100,22 +114,31 @@ def main():
     md = ['# 라인 센싱 시뮬레이션 결과', '',
           '가상 컨베이어 영상을 영상 서버와 같은 처리로 한 프레임도 건너뛰지 않고 돌려, 모든 제품이 센싱 구역을 한 번씩 지나게 한 결과다.',
           '영상: `videos/<line>_sensing_sim.mp4` (git 제외) · 제품별 대조: `<line>_boards.csv` · 만든 도구: `tools/record_line_sim.py`, `tools/live_sim_table.py`', '',
-          '| 라인 | 영상 길이 | 제품 수 | 판정한 제품 | 제품 판정 정확도 | 결함 제품 잡음 | 정상 통과 | 이상/의심/정상 | 결함 단위 P / R / F1 | 처리 (ms/프레임) |',
-          '|---|---|---|---|---|---|---|---|---|---|']
+          '| 라인 | 영상 길이 | 제품 수 | 판정한 제품 | 제품 판정 정확도 | 결함 제품 잡음 | 정상 통과 | 이상/의심/정상 | 결함 단위 P / R / F1 | 처리 (ms/프레임) | 분배 정확도 |',
+          '|---|---|---|---|---|---|---|---|---|---|---|']
     for x in lines:
         md.append(f'| {LINE_KO[x["line"]]} | {x["video_seconds"]}초 | {x["items_in_video"]} | {x["inspected"]} | {pct(x["board_acc"])} | '
                   f'{x["defect_caught"]}/{x["defect_boards"]} | {x["normal_passed"]}/{x["normal_boards"]} | '
                   f'{x["verdicts"]["reject"]}/{x["verdicts"]["review"]}/{x["verdicts"]["normal"]} | '
-                  f'{x["precision"]:.3f} / {x["recall"]:.3f} / {x["f1"]:.3f} | {x["proc_ms_mean"]} (p95 {x["proc_ms_p95"]}) |')
+                  f'{x["precision"]:.3f} / {x["recall"]:.3f} / {x["f1"]:.3f} | {x["proc_ms_mean"]} (p95 {x["proc_ms_p95"]}) | '
+                  f'{pct(x.get("route_acc"))} |')
     md += ['', '## 정답 유형별', '', '| 라인 | 정답 유형 | 제품 수 | 판정 맞음 | 정확도 | 이상 | 의심 | 정상 |', '|---|---|---|---|---|---|---|---|']
     for x in lines:
         for t, v in by_type(x):
             md.append(f'| {LINE_KO[x["line"]]} | {tname(t, x["domain"], "ko")} | {v["items"]} | {v["correct"]} | '
                       f'{pct(v["correct"] / v["items"])} | {v["verdicts"].get("reject", 0)} | {v["verdicts"].get("review", 0)} | '
                       f'{v["verdicts"].get("normal", 0)} |')
+    if mixed:
+        md += ['', '## 혼합 라인 — 제품 종류별 (분배 에이전트)', '', '| 제품(정답) | 제품 수 | 분배 맞음 | 분배 정확도 | 판정 정확도 | 쓰인 규칙 |',
+               '|---|---|---|---|---|---|']
+        for d, v in mixed['by_domain'].items():
+            md.append(f'| {DOM_KO[d]} | {v["items"]} | {v["routed_ok"]} | {pct(v["routed_ok"] / v["items"])} | '
+                      f'{pct(v["correct"] / v["items"])} | {", ".join(f"{k} {n}" for k, n in v["rules"].items())} |')
     md += ['', '- 제품 판정 정확도: 결함 제품은 이상·의심으로, 정상 제품은 정상으로 판정하면 맞음.',
            '- 결함 단위: 같은 유형 + IoU 0.5 이상이면 TP. 일부 유형은 규칙상 최대 의심이라 의심이 정상 결과다.',
-           '- 처리 시간: 제품 찾기 + 센싱 구역 검사 + 화면 전체 미리보기 검출 + 그리기 (RTX 5060 노트북, 녹화 시간 제외).']
+           '- 처리 시간: 제품 찾기 + 센싱 구역 검사 + 화면 전체 미리보기 검출 + 그리기 (RTX 5060 노트북, 녹화 시간 제외).',
+           '- 혼합 라인: 분배 에이전트(agent/line_router.py)가 제품 상자의 가로세로비·초록 비율·어두운 비율로 종류를 정한 뒤 그 크기로 잘라 그 종류의 모델로 검사.'
+           ' 미리보기는 다음에 센싱할 제품 하나만 그 종류의 모델로 본다. 규칙 wide=가로로 긴 액정, green=PCB, dark=금속, size=크기로 정함.']
     (DIR / 'README.md').write_text('\n'.join(md) + '\n', encoding='utf-8')
     print('\n'.join(md))
 

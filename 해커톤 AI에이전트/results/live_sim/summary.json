@@ -294,5 +294,225 @@
     }
    }
   }
+ },
+ "mixed": {
+  "line": "mixed",
+  "name": "Mixed",
+  "domain": "mixed",
+  "video": "mixed_sensing_sim.mp4",
+  "frames": 5184,
+  "video_seconds": 172.8,
+  "items_in_video": 90,
+  "inspected": 90,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 14,
+   "review": 30,
+   "reject": 46
+  },
+  "board_acc": 0.9556,
+  "correct": 86,
+  "boards": 90,
+  "defect_caught": 74,
+  "defect_boards": 76,
+  "normal_passed": 12,
+  "normal_boards": 14,
+  "tp": 283,
+  "fp": 3,
+  "fn": 2,
+  "precision": 0.9895,
+  "recall": 0.993,
+  "f1": 0.9912,
+  "proc_ms_mean": 11.5,
+  "proc_ms_p95": 31.5,
+  "proc_fps": 87.1,
+  "wall_seconds": 67.1,
+  "by_type": {
+   "Dark Spot": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "review": 4
+    }
+   },
+   "Dark Spot Porosity Stain": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 5
+    }
+   },
+   "Dark Spot Scratch": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 3,
+     "review": 1
+    }
+   },
+   "Fold": {
+    "items": 2,
+    "correct": 0,
+    "verdicts": {
+     "normal": 2
+    }
+   },
+   "Fold Porosity": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "Porosity": {
+    "items": 7,
+    "correct": 7,
+    "verdicts": {
+     "reject": 7
+    }
+   },
+   "Scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "review": 1
+    }
+   },
+   "Stain": {
+    "items": 3,
+    "correct": 3,
+    "verdicts": {
+     "review": 3
+    }
+   },
+   "falsecopper": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "falsecopper pinhole scratch": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "missinghole": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2
+    }
+   },
+   "mousebite": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2
+    }
+   },
+   "mousebite scratch spur": {
+    "items": 6,
+    "correct": 6,
+    "verdicts": {
+     "reject": 6
+    }
+   },
+   "normal": {
+    "items": 14,
+    "correct": 12,
+    "verdicts": {
+     "normal": 12,
+     "reject": 1,
+     "review": 1
+    }
+   },
+   "oil": {
+    "items": 9,
+    "correct": 9,
+    "verdicts": {
+     "reject": 9
+    }
+   },
+   "opencircuit": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "opencircuit scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "pinhole scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "review": 1
+    }
+   },
+   "scratch": {
+    "items": 12,
+    "correct": 12,
+    "verdicts": {
+     "review": 12
+    }
+   },
+   "shortcircuit": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2
+    }
+   },
+   "spur": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "stain": {
+    "items": 7,
+    "correct": 7,
+    "verdicts": {
+     "review": 7
+    }
+   }
+  },
+  "route_acc": 1.0,
+  "routed_ok": 90,
+  "by_domain": {
+   "mobile": {
+    "items": 30,
+    "routed_ok": 30,
+    "correct": 30,
+    "rules": {
+     "wide": 30
+    }
+   },
+   "msdd": {
+    "items": 30,
+    "routed_ok": 30,
+    "correct": 28,
+    "rules": {
+     "dark": 30
+    }
+   },
+   "pcb": {
+    "items": 30,
+    "routed_ok": 30,
+    "correct": 28,
+    "rules": {
+     "green": 30
+    }
+   }
+  }
  }
 }

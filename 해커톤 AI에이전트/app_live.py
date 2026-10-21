@@ -76,6 +76,8 @@ def L(key):
 
 def tname(t):
     dom = ss.get('live_domain', 'pcb')
+    if dom == 'mixed':                      # 혼합 라인: 유형 이름으로 어느 종류의 지식인지 찾는다
+        return type_name(t, next((x['defects'][t] for x in TAXONOMIES.values() if t in x['defects']), None), ss.lang)
     return type_name(t, TAXONOMIES.get(dom, TAXONOMIES['pcb'])['defects'].get(t), ss.lang)
 
 
@@ -160,7 +162,8 @@ def panel():
         e1.metric(L('gt_board'), f'{100 * g["board_acc"]:.1f}%', f'{g["correct"]}/{g["boards"]}', delta_color='off')
         e2.metric(L('gt_defect'), f'{g["f1"]:.3f}', f'P {g["precision"]:.3f} · R {g["recall"]:.3f}', delta_color='off')
         st.caption(L('gt_detail').format(dc=g['defect_caught'], db=g['defect_boards'], np=g['normal_passed'],
-                                         nb=g['normal_boards'], tp=g['tp'], fp=g['fp'], fn=g['fn']))
+                                         nb=g['normal_boards'], tp=g['tp'], fp=g['fp'], fn=g['fn'])
+                   + (f' · {T("domain_mixed", ss.lang)} {100 * g["route_acc"]:.1f}%' if g.get('route_acc') is not None else ''))
     st.markdown(f'**{L("alerts")}**')
     if s['alerts']:
         for a in s['alerts'][:3]:
@@ -178,7 +181,8 @@ def panel():
         gt = e.get('gt') if SHOW_EVAL else None   # 정답 대조 (?eval=1): ✅ 모두 맞음 / ⚠️ 판정은 맞고 결함 일부 다름 / ❌ 판정 틀림
         mark = '' if not gt else (' ✅' if gt['ok'] and not gt['fp'] and not gt['fn'] else ' ⚠️' if gt['ok'] else ' ❌')
         truth = '' if not gt else (f' · {L("gt_was")}: ' + (', '.join(tname(t) for t in gt['gt_types']) or L('ok')))
-        b.markdown(f'{DOT[e["verdict"]]} **#{e["seq"]} {vn[e["verdict"]]}**{mark} · {e["time"]}  \n'
+        kind = f' · {T("domain_" + e["domain"], ss.lang)}' if s.get('domain') == 'mixed' and e.get('domain') else ''   # 혼합 라인: 분배된 제품 종류
+        b.markdown(f'{DOT[e["verdict"]]} **#{e["seq"]} {vn[e["verdict"]]}**{mark}{kind} · {e["time"]}  \n'
                    f'<span style="font-size:0.85em;color:#888">{", ".join(tname(t) for t in e["types"]) or "-"}'
                    f'{truth}{" · " + rep if rep else ""}</span>'
                    + ('' if e['verdict'] == 'normal' else

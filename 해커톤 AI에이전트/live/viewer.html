@@ -103,9 +103,11 @@ async function poll() {
     $('perf').textContent = `${s.fps} fps · ${s.infer_ms} ms`;
     $('src').textContent = s.source;
     const DOM = {ko:{pcb:'PCB',mobile:'휴대폰 표면',msdd:'금속 부품'}, vi:{pcb:'PCB',mobile:'bề mặt điện thoại',msdd:'linh kiện kim loại'}, en:{pcb:'PCB',mobile:'Phone Surface',msdd:'Metal Part'}};
+    Object.assign(DOM.ko, {mixed:'혼합 라인'}); Object.assign(DOM.vi, {mixed:'dây chuyền hỗn hợp'}); Object.assign(DOM.en, {mixed:'Mixed Line'});
     $('title').textContent = T[lang].title.replace('PCB', DOM[lang][s.domain] || 'PCB');
     const g = SHOW_EVAL ? s.eval : null;   // 정답 대조는 ?eval=1 일 때만 (확인용)
-    $('gt').innerHTML = g && g.boards ? `<b style="color:var(--ink)">${{ko:'정답 대조',vi:'Đối chiếu đáp án',en:'Ground truth'}[lang]}</b> · ${{ko:'기판',vi:'Tấm',en:'Boards'}[lang]} ${(100*g.board_acc).toFixed(1)}% (${g.correct}/${g.boards}) · F1 ${g.f1.toFixed(3)} (P ${g.precision.toFixed(3)} R ${g.recall.toFixed(3)})` : '';
+    $('gt').innerHTML = g && g.boards ? `<b style="color:var(--ink)">${{ko:'정답 대조',vi:'Đối chiếu đáp án',en:'Ground truth'}[lang]}</b> · ${{ko:'기판',vi:'Tấm',en:'Boards'}[lang]} ${(100*g.board_acc).toFixed(1)}% (${g.correct}/${g.boards}) · F1 ${g.f1.toFixed(3)} (P ${g.precision.toFixed(3)} R ${g.recall.toFixed(3)})`
+      + (g.route_acc != null ? ` · ${{ko:'분배',vi:'Phân loại',en:'Routing'}[lang]} ${(100*g.route_acc).toFixed(1)}%` : '') : '';
     $('alerts').innerHTML = s.alerts.length ? s.alerts.slice(0, 4).map(a =>
       `<div class="alert">${a.time} · ${t[a.kind]({...a, position: a.position ? pos(a.position, lang) : ''})}</div>`).join('')
       : `<div class="small">${t.none}</div>`;

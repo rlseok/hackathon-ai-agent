@@ -18,7 +18,7 @@ TEXT = {
     'ko': {
         'title': '부품 불량 사진 분석 에이전트',
         'input': '검사 입력',
-        'domain': '검사 대상', 'domain_pcb': 'PCB', 'domain_msdd': '금속 부품', 'domain_mobile': '휴대폰 표면',
+        'domain': '검사 대상', 'domain_pcb': 'PCB', 'domain_msdd': '금속 부품', 'domain_mobile': '휴대폰 표면', 'domain_mixed': '혼합 라인',
         'source': '사진', 'source_example': '예시 사진', 'source_upload': '업로드', 'source_inbox': '대기함',
         'part_info': '부품 정보 (품번 · 공정 · 로트)',
         'm_part_no': '품번', 'm_process': '공정', 'm_lot': '로트',
@@ -119,7 +119,7 @@ TEXT = {
     'vi': {
         'title': 'Tác tử AI phân tích ảnh lỗi linh kiện',
         'input': 'Thông tin kiểm tra',
-        'domain': 'Đối tượng kiểm tra', 'domain_pcb': 'PCB', 'domain_msdd': 'Linh kiện kim loại', 'domain_mobile': 'Bề mặt điện thoại',
+        'domain': 'Đối tượng kiểm tra', 'domain_pcb': 'PCB', 'domain_msdd': 'Linh kiện kim loại', 'domain_mobile': 'Bề mặt điện thoại', 'domain_mixed': 'dây chuyền hỗn hợp',
         'source': 'Ảnh', 'source_example': 'Ảnh mẫu', 'source_upload': 'Tải lên', 'source_inbox': 'Hộp chờ',
         'part_info': 'Thông tin linh kiện (mã · công đoạn · lô)',
         'm_part_no': 'Mã sản phẩm', 'm_process': 'Công đoạn', 'm_lot': 'Lô',
@@ -222,7 +222,7 @@ TEXT = {
     'en': {
         'title': 'Part Defect Photo Analysis Agent',
         'input': 'Inspection input',
-        'domain': 'Inspection target', 'domain_pcb': 'PCB', 'domain_msdd': 'Metal part', 'domain_mobile': 'Phone surface',
+        'domain': 'Inspection target', 'domain_pcb': 'PCB', 'domain_msdd': 'Metal part', 'domain_mobile': 'Phone surface', 'domain_mixed': 'Mixed Line',
         'source': 'Photo', 'source_example': 'Examples', 'source_upload': 'Upload', 'source_inbox': 'Inbox',
         'part_info': 'Part info (part no. · process · lot)',
         'm_part_no': 'Part no.', 'm_process': 'Process', 'm_lot': 'Lot',
