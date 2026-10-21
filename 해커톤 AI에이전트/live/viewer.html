@@ -100,6 +100,8 @@ async function poll() {
     $('inspected').textContent = t.inspected(s.inspected) + (s.queue ? ' · ' + t.queue(s.queue) : '');
     $('perf').textContent = `${s.fps} fps · ${s.infer_ms} ms`;
     $('src').textContent = s.source;
+    const DOM = {ko:{pcb:'PCB',mobile:'휴대폰 표면',msdd:'금속 부품'}, vi:{pcb:'PCB',mobile:'bề mặt điện thoại',msdd:'linh kiện kim loại'}, en:{pcb:'PCB',mobile:'Phone Surface',msdd:'Metal Part'}};
+    $('title').textContent = T[lang].title.replace('PCB', DOM[lang][s.domain] || 'PCB');
     const g = SHOW_EVAL ? s.eval : null;   // 정답 대조는 ?eval=1 일 때만 (확인용)
     $('gt').innerHTML = g && g.boards ? `<b style="color:var(--ink)">${{ko:'정답 대조',vi:'Đối chiếu đáp án',en:'Ground truth'}[lang]}</b> · ${{ko:'기판',vi:'Tấm',en:'Boards'}[lang]} ${(100*g.board_acc).toFixed(1)}% (${g.correct}/${g.boards}) · F1 ${g.f1.toFixed(3)} (P ${g.precision.toFixed(3)} R ${g.recall.toFixed(3)})` : '';
     $('alerts').innerHTML = s.alerts.length ? s.alerts.slice(0, 4).map(a =>

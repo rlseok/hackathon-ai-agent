@@ -59,18 +59,24 @@ class Line:
         self.paused = False
         self.restart = False
         self.lang = a.lang
-        self.domain = 'pcb'
-        self.conf = thresholds(self.domain)['conf_review']
-        self.model = _model(self.domain)
-        self.names = self.model.names
-        self.reports = queue.Queue()
-        self.xlsx_dirty = False
         # 정답 대조: 영상과 같은 이름의 json(가상 컨베이어 영상의 정답)이 있으면 판정마다 정답과 비교한다
         self.gt = None
         if a.camera is None:
             mf = Path(a.source).with_suffix('.json')
             if mf.exists():
                 self.gt = json.loads(mf.read_text(encoding='utf-8'))
+        g = self.gt or {}
+        # 라인 종류(모델·지식 파일): --domain > 영상 json 의 domain > pcb
+        self.domain = a.domain or g.get('domain', 'pcb')
+        self.bw = g.get('board_w', g.get('board_px', a.board))     # 제품(센싱 구역) 크기 — PCB 640×640, 액정 960×540
+        self.bh = g.get('board_h', g.get('board_px', a.board))
+        self.belt = np.array(g['belt_bgr'], np.int16) if g.get('belt_bgr') else None   # 있으면 '벨트 색과 다른 곳' = 제품
+        self.preview_imgsz = a.preview_imgsz or {'pcb': 1280}.get(self.domain, 640)   # 화면 속 제품이 학습 축척이 되도록
+        self.conf = thresholds(self.domain)['conf_review']
+        self.model = _model(self.domain)
+        self.names = self.model.names
+        self.reports = queue.Queue()
+        self.xlsx_dirty = False
         self.reset()
 
     def reset(self):
@@ -92,10 +98,21 @@ class Line:
                          'normal_passed': 0, 'tp': 0, 'fp': 0, 'fn': 0, 'unmatched': 0}
             self.eval_log = None                # 이번 재생의 대조 기록 파일 (처음 판정할 때 만든다)
 
-    # ── 기판 찾기: 벨트(회색) 위의 초록 영역 ─────────────────────────
-    def segments(self, frame):
-        b, g, r = (frame[..., i].astype(np.int16) for i in range(3))
-        mask = (g - np.maximum(r, b)) > 25
+    # ── 제품 찾기: PCB 는 벨트(회색) 위의 초록 영역, 그 밖에는 벨트 색과 다른 영역 ─────────
+    def segments(self, frame, step=4):
+        """제품 위치 → [{'x0','x1','y0','y1','cx','touch'}]. 빠르게 하려고 1/step 로 줄인 화면에서 찾고 좌표만 되돌린다 (±step px)."""
+        small = frame[::step, ::step]
+        if self.belt is not None:
+            mask = np.abs(small.astype(np.int16) - self.belt).max(axis=2) > 45
+            mask[:30 // step], mask[-30 // step:] = False, False     # 위아래 레일 제외
+        else:
+            b, g, r = (small[..., i].astype(np.int16) for i in range(3))
+            mask = (g - np.maximum(r, b)) > 25
+        return [{**s, 'x0': s['x0'] * step, 'x1': min(s['x1'] * step, frame.shape[1]), 'y0': s['y0'] * step,
+                 'y1': min(s['y1'] * step, frame.shape[0]), 'cx': s['cx'] * step} for s in self._runs(mask)]
+
+    @staticmethod
+    def _runs(mask):
         occ = mask.mean(axis=0) > 0.25                       # 열마다 초록 비율
         segs, x = [], 0
         w = len(occ)
@@ -125,10 +142,10 @@ class Line:
         if abs(b['center_frame'] - fidx) > 20:
             self.eval['unmatched'] += 1
             return None
-        size, speed = self.gt['board_px'], self.gt['speed_px_per_frame']
-        bx = round(b['x0'] - fidx * speed)                  # 이 프레임에서 기판 왼쪽 x
-        gt = [(l['type'], [(l['cx'] - l['w'] / 2) * size + bx - x0, (l['cy'] - l['h'] / 2) * size + b['y'] - y0,
-                           (l['cx'] + l['w'] / 2) * size + bx - x0, (l['cy'] + l['h'] / 2) * size + b['y'] - y0])
+        sw, sh, speed = self.bw, self.bh, self.gt['speed_px_per_frame']
+        bx = round(b['x0'] - fidx * speed)                  # 이 프레임에서 제품 왼쪽 x
+        gt = [(l['type'], [(l['cx'] - l['w'] / 2) * sw + bx - x0, (l['cy'] - l['h'] / 2) * sh + b['y'] - y0,
+                           (l['cx'] + l['w'] / 2) * sw + bx - x0, (l['cy'] + l['h'] / 2) * sh + b['y'] - y0])
               for l in b['labels']]
 
         def iou(p, q):
@@ -172,12 +189,12 @@ class Line:
                                     ' '.join(ev['types']), int(g['ok']), g['tp'], g['fp'], g['fn'], ev['name']])
 
     def inspect(self, frame, seg, fidx=None):
-        size = self.a.board
+        sw, sh = self.bw, self.bh
         cx, cy = int(round(seg['cx'])), (seg['y0'] + seg['y1']) // 2
         h, w = frame.shape[:2]
-        x0 = min(max(cx - size // 2, 0), w - size)
-        y0 = min(max(cy - size // 2, 0), h - size)
-        crop = frame[y0:y0 + size, x0:x0 + size].copy()
+        x0 = min(max(cx - sw // 2, 0), w - sw)
+        y0 = min(max(cy - sh // 2, 0), h - sh)
+        crop = frame[y0:y0 + sh, x0:x0 + sw].copy()
         with self.lock:
             self.seq += 1
             seq = self.seq
@@ -299,10 +316,10 @@ class Line:
     # ── 그리기 ───────────────────────────────────────────────────────
     def draw(self, frame, segs, preview):
         h, w = frame.shape[:2]
-        zx0, zx1 = (w - self.a.board) // 2, (w + self.a.board) // 2
+        zx0, zx1 = (w - self.bw) // 2, (w + self.bw) // 2
         overlay = frame.copy()
         # 미리보기 박스: 아직 검사 전인 기판만 얇게 (화면 가장자리에 걸친 기판은 흐리게)
-        inspected = [(b['cx'] + b['off'], b['cx'] + b['off'] + self.a.board) for b in self.boards]
+        inspected = [(b['cx'] + b['off'], b['cx'] + b['off'] + self.bw) for b in self.boards]
         for (x0, y0, x1, y1), c, conf in preview:
             mx = (x0 + x1) / 2
             if any(a <= mx <= b for a, b in inspected):
@@ -409,7 +426,7 @@ class Line:
                 self.boards = kept
             # 센싱: 기판 중심이 화면 가운데를 지나는 순간 한 번
             for s in segs:
-                if s['touch'] or s['x1'] - s['x0'] < 0.8 * self.a.board:
+                if s['touch'] or s['x1'] - s['x0'] < 0.8 * self.bw:
                     continue
                 prev = [p for p in self.prev_centers if 0 <= p - s['cx'] <= 120]
                 if prev and min(prev) > zc >= s['cx']:
@@ -419,7 +436,7 @@ class Line:
             preview_age += 1
             if preview_age >= self.preview_every:
                 preview_age = 0
-                r = self.model.predict(frame, imgsz=self.a.preview_imgsz, conf=self.conf, verbose=False)[0]
+                r = self.model.predict(frame, imgsz=self.preview_imgsz, conf=self.conf, verbose=False)[0]
                 preview = [(b.tolist(), int(c), float(p)) for b, c, p in zip(r.boxes.xyxy, r.boxes.cls, r.boxes.conf)]
             self.infer_ms = 0.8 * self.infer_ms + 0.2 * (time.time() - ts) * 1000
             if self.flash > 0:
@@ -453,7 +470,8 @@ class Line:
                     'infer_ms': round(self.infer_ms, 1), 'inspected': self.seq, 'counts': dict(self.counts),
                     'queue': self.reports.qsize(), 'events': list(self.events), 'alerts': list(self.alerts),
                     'eval': self._eval_summary(),
-                    'source': 'camera' if self.a.camera is not None else Path(self.a.source).name}
+                    'source': 'camera' if self.a.camera is not None else Path(self.a.source).name,
+                    'domain': self.domain}
 
 
 LINE = None
@@ -524,12 +542,19 @@ def main():
     ap.add_argument('--source', default=str(ROOT / 'videos/pcb_conveyor.mp4'))
     ap.add_argument('--camera', type=int, default=None, help='웹캠 번호 (주면 영상 파일 대신 웹캠)')
     ap.add_argument('--port', type=int, default=8506)
-    ap.add_argument('--board', type=int, default=640, help='기판(센싱 구역) 크기 px')
-    ap.add_argument('--preview-imgsz', type=int, default=1280, help='미리보기 추론 크기 (화면 원래 크기 유지)')
+    ap.add_argument('--line', choices=['pcb', 'phone'], default=None,
+                    help='라인 이름 → videos/<line>_conveyor.mp4 를 입력으로 (--source 대신)')
+    ap.add_argument('--domain', choices=['pcb', 'msdd', 'mobile'], default=None,
+                    help='검사 모델 (기본: 영상 json 의 domain, 없으면 pcb)')
+    ap.add_argument('--board', type=int, default=640, help='제품(센싱 구역) 크기 px — 영상 json 에 있으면 그 값을 쓴다')
+    ap.add_argument('--preview-imgsz', type=int, default=None,
+                    help='미리보기 추론 크기 (기본: PCB 1280 = 화면 원래 크기, 그 밖 640 = 제품이 학습 축척)')
     ap.add_argument('--lang', default='ko', choices=['ko', 'vi', 'en'])
     ap.add_argument('--max-backlog', type=int, default=2, help='보고서 대기가 이보다 많으면 AI 문장 없이 바로 기록')
     ap.add_argument('--no-loop', dest='loop', action='store_false')
     a = ap.parse_args()
+    if a.line:
+        a.source = str(ROOT / f'videos/{a.line}_conveyor.mp4')
     LINE = Line(a)
     threading.Thread(target=LINE.report_worker, daemon=True).start()
     threading.Thread(target=LINE.xlsx_worker, daemon=True).start()

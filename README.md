@@ -12,13 +12,14 @@
 | [docs/04_노트북_세팅_가이드.md](해커톤%20AI에이전트/docs/04_노트북_세팅_가이드.md) | 새 노트북 설치 방법 (Python, 가상환경, 패키지, Ollama) |
 | [docs/06_에이전트_구현_기록.md](해커톤%20AI에이전트/docs/06_에이전트_구현_기록.md) | 실행 방법과 구현 기록 |
 | [docs/07_프로젝트_소개.html](해커톤%20AI에이전트/docs/07_프로젝트_소개.html) | 소개 슬라이드 (한국어 / Tiếng Việt / English) |
+| [docs/08_작업_정리와_완성품_트리.md](해커톤%20AI에이전트/docs/08_작업_정리와_완성품_트리.md) | **작업 정리(덩어리별)와 완성품 트리 · 진행 상태** |
 
 ## 실시간 검사 (PCB 가상 컨베이어)
 컨베이어 영상을 영상 서버가 읽어 YOLO 로 실시간 검출하고, 센싱 구역에서 판정해 보고서 에이전트로 넘깁니다 (docs/06 19~20번).
 
 | 파일 | 내용 |
 |---|---|
-| [live/server.py](해커톤%20AI에이전트/live/server.py) | 영상 서버 (포트 8506): 영상 읽기 → 미리보기 검출 → 센싱 구역 판정 → 보고 에이전트·라인 감시 에이전트, 전용 뷰어 |
+| [live/server.py](해커톤%20AI에이전트/live/server.py) | 영상 서버 (포트 8506, `--line pcb|phone`): 영상 읽기 → 미리보기 검출 → 센싱 구역 판정 → 보고 에이전트·라인 감시 에이전트, 전용 뷰어 |
 | [app_live.py](해커톤%20AI에이전트/app_live.py) | 실시간 검사 화면 (포트 8505) |
 | [tools/make_conveyor_video.py](해커톤%20AI에이전트/tools/make_conveyor_video.py) | PCB 우수 사례 사진으로 컨베이어 영상 만들기 |
 | [videos/pcb_conveyor.json](해커톤%20AI에이전트/videos/pcb_conveyor.json) | 영상 속 기판 순서·위치·정답 라벨 |

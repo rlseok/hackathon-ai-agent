@@ -1,11 +1,11 @@
 # Demo launcher for the defect agent screens (used by the desktop shortcuts).
 #   powershell -ExecutionPolicy Bypass -File launch_demo.ps1 -App dash   -> dashboard (http://localhost:8501/?demo=1)
 #   powershell -ExecutionPolicy Bypass -File launch_demo.ps1 -App chat   -> chat      (http://localhost:8503/?demo=1)
-#   powershell -ExecutionPolicy Bypass -File launch_demo.ps1 -App live   -> live inspection (http://localhost:8505)
+#   powershell -ExecutionPolicy Bypass -File launch_demo.ps1 -App live [-Line pcb|phone] -> live inspection (http://localhost:8505)
 #                                                                            + video server (http://localhost:8506)
 # 1) starts Ollama if it is not running  2) starts the Streamlit server if it is not running
 # 3) opens the browser in demo mode (?demo=1): the language picker + screen guide appear every time the page opens.
-param([ValidateSet('dash', 'chat', 'live')][string]$App = 'dash', [switch]$NoBrowser)
+param([ValidateSet('dash', 'chat', 'live')][string]$App = 'dash', [ValidateSet('pcb', 'phone')][string]$Line = 'pcb', [switch]$NoBrowser)
 
 $Root = $PSScriptRoot
 $cfg = @{
@@ -37,7 +37,7 @@ if ($App -eq 'live') {
     } else {
         Write-Host 'Starting video server on port 8506 ...'
         New-Item -ItemType Directory -Force (Join-Path $Root 'outputs\live') | Out-Null
-        Start-Process $py -WorkingDirectory $Root -WindowStyle Minimized -ArgumentList @('-m', 'live.server', '--port', '8506')
+        Start-Process $py -WorkingDirectory $Root -WindowStyle Minimized -ArgumentList @('-m', 'live.server', '--port', '8506', '--line', $Line)
         for ($i = 0; $i -lt 60 -and -not (Test-Up 'http://127.0.0.1:8506/state'); $i++) { Start-Sleep -Seconds 1 }
         if (Test-Up 'http://127.0.0.1:8506/state') { Write-Host '[OK] Video server ready' } else { Write-Host '[!] Video server did not start' -ForegroundColor Yellow }
     }

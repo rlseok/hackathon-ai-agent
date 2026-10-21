@@ -15,14 +15,14 @@ import urllib.request
 import streamlit as st
 
 from agent.detect import TAXONOMIES
-from agent.i18n import LANGS, type_name
+from agent.i18n import LANGS, T, type_name
 from ui import ICONS, OUT, ROOT, app_chrome, init_state, ss
 
 SERVER = 'http://localhost:8506'
 DASHBOARD = 'http://localhost:8501'
 
 TXT = {
-    'ko': {'title': '실시간 PCB 검사', 'sub': '컨베이어 영상 → 센싱 구역 판정 → AI 보고서 → 대시보드 확인',
+    'ko': {'title': '실시간 {line} 검사', 'sub': '컨베이어 영상 → 센싱 구역 판정 → AI 보고서 → 대시보드 확인',
            'ng': '이상', 'hold': '의심', 'ok': '정상', 'inspected': '검사', 'alerts': '라인 감시 경고', 'no_alert': '경고 없음',
            'recent': '최근 판정', 'pause': '⏸ 일시정지', 'resume': '▶ 재생', 'restart': '⏮ 처음부터', 'reset': '↺ 집계 초기화',
            'viewer': '🖥 전용 뷰어 (프로젝터)', 'dash': '📋 대시보드에서 확인', 'queue': '보고서 대기',
@@ -35,7 +35,7 @@ TXT = {
            'location_repeat': '같은 위치 반복: {type} · {position} (최근 {of}장 중 {n}장) — 마스크·드릴 등 공정 점검 권고',
            'ng_rate': '최근 불량률 {pct}% ({n}장)',
            'gt_title': '정답 대조 (영상 정답 json)', 'gt_board': '기판 판정 정확도', 'gt_defect': '결함 검출 F1', 'gt_detail': '결함 기판 {dc}/{db} 잡음 · 정상 기판 {np}/{nb} 통과 · 결함 맞힘 {tp} · 오탐 {fp} · 놓침 {fn}', 'gt_was': '정답'},
-    'vi': {'title': 'Kiểm tra PCB thời gian thực', 'sub': 'Video băng chuyền → phán định tại vùng cảm biến → báo cáo AI → xác nhận',
+    'vi': {'title': 'Kiểm tra {line} thời gian thực', 'sub': 'Video băng chuyền → phán định tại vùng cảm biến → báo cáo AI → xác nhận',
            'ng': 'Bất thường', 'hold': 'Nghi ngờ', 'ok': 'Bình thường', 'inspected': 'Đã kiểm', 'alerts': 'Cảnh báo dây chuyền',
            'no_alert': 'Không có cảnh báo', 'recent': 'Kết quả gần đây', 'pause': '⏸ Tạm dừng', 'resume': '▶ Tiếp tục',
            'restart': '⏮ Từ đầu', 'reset': '↺ Đặt lại số liệu', 'viewer': '🖥 Màn hình riêng (máy chiếu)',
@@ -49,7 +49,7 @@ TXT = {
            'location_repeat': 'Lặp lại cùng vị trí: {type} · {position} ({n}/{of}) — khuyến nghị kiểm tra công đoạn',
            'ng_rate': 'Tỷ lệ lỗi gần đây {pct}% ({n} tấm)',
            'gt_title': 'Đối chiếu đáp án (json của video)', 'gt_board': 'Độ chính xác theo tấm', 'gt_defect': 'F1 phát hiện lỗi', 'gt_detail': 'Tấm lỗi bắt được {dc}/{db} · tấm tốt cho qua {np}/{nb} · lỗi đúng {tp} · báo nhầm {fp} · bỏ sót {fn}', 'gt_was': 'Đáp án'},
-    'en': {'title': 'Live PCB Inspection', 'sub': 'Conveyor video → sensing-zone verdict → AI report → confirm on the dashboard',
+    'en': {'title': 'Live {line} Inspection', 'sub': 'Conveyor video → sensing-zone verdict → AI report → confirm on the dashboard',
            'ng': 'Abnormal', 'hold': 'Suspect', 'ok': 'Normal', 'inspected': 'Inspected', 'alerts': 'Line alerts',
            'no_alert': 'No alerts', 'recent': 'Recent results', 'pause': '⏸ Pause', 'resume': '▶ Resume', 'restart': '⏮ Restart',
            'reset': '↺ Reset counts', 'viewer': '🖥 Dedicated viewer (projector)', 'dash': '📋 Confirm on the dashboard',
@@ -74,7 +74,8 @@ def L(key):
 
 
 def tname(t):
-    return type_name(t, TAXONOMIES['pcb']['defects'].get(t), ss.lang)
+    dom = ss.get('live_domain', 'pcb')
+    return type_name(t, TAXONOMIES.get(dom, TAXONOMIES['pcb'])['defects'].get(t), ss.lang)
 
 
 def call(path, timeout=1.5):
@@ -97,7 +98,8 @@ app_chrome('dash')
 init_state()
 
 top_l, top_r = st.columns([6, 1], vertical_alignment='center')
-top_l.title(L('title'))
+_dom = ss['live_domain'] = (call('/state') or {}).get('domain', 'pcb')     # 라인 종류 (영상 서버가 정함)
+top_l.title(L('title').format(line=T(f'domain_{_dom}', ss.lang)))
 top_l.caption(L('sub'))
 with top_r.popover(f'🌐 {LANGS[ss.lang]}', width='content'):
     choice = st.radio('Language', list(LANGS), format_func=LANGS.get, index=list(LANGS).index(ss.lang),
