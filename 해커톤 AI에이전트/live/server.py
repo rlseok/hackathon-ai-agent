@@ -71,7 +71,7 @@ class Line:
         self.bw = g.get('board_w', g.get('board_px', a.board))     # 제품(센싱 구역) 크기 — PCB 640×640, 액정 960×540
         self.bh = g.get('board_h', g.get('board_px', a.board))
         self.belt = np.array(g['belt_bgr'], np.int16) if g.get('belt_bgr') else None   # 있으면 '벨트 색과 다른 곳' = 제품
-        self.preview_imgsz = a.preview_imgsz or {'pcb': 1280}.get(self.domain, 640)   # 화면 속 제품이 학습 축척이 되도록
+        self.preview_imgsz = a.preview_imgsz or {'pcb': 1280, 'msdd': 1280}.get(self.domain, 640)   # 화면 속 제품이 학습 축척이 되도록
         self.conf = thresholds(self.domain)['conf_review']
         self.model = _model(self.domain)
         self.names = self.model.names
@@ -261,30 +261,32 @@ class Line:
             self.cooldown[kind] = seq
             self.alerts.appendleft({'seq': seq, 'time': datetime.now().strftime('%H:%M:%S'), 'kind': kind, **args})
 
-    # ── 보고 에이전트 (뒤에서 한 건씩): 지식 조회 + Qwen 초안 → 대장 '확인 대기' ──
+    # ── 기록 에이전트 (뒤에서 한 건씩): 판정·결함·지식 → 대장 '확인 대기' ──
+    # 기본은 Qwen 을 부르지 않고 기록만 한다 (한 건에 0.1초 남짓 → 기판이 2초마다 와도 밀리지 않음).
+    # 보고서 문장은 작업자가 대장에서 그 기록을 열 때 작성한다 (ui.open_record). --write-now 면 예전처럼 바로 작성.
     def report_worker(self):
         while True:
             det, name, seq = self.reports.get()
-            self._report_status(seq, 'writing')
-            self.preview_every = 2              # Qwen 이 GPU 를 쓰는 동안 미리보기를 줄여 영상이 끊기지 않게
             meta = {'part_no': f'LINE1-{seq:04d}', 'lot': f'L{datetime.now():%Y%m%d}-LIVE'}
-            # Qwen 은 한 건에 10초 남짓, 기판은 2초마다 온다 → 밀리면 AI 문장 없이 대장에만 바로 기록
-            # (대시보드에서 [문장 다시 생성]으로 나중에 쓸 수 있다). 이상(reject)을 의심보다 먼저 쓴다.
             backlog = self.reports.qsize()
-            use_llm = backlog <= self.a.max_backlog or (det['verdict'] == 'reject' and backlog <= 2 * self.a.max_backlog)
+            use_llm = self.a.write_now and (backlog <= self.a.max_backlog
+                                            or (det['verdict'] == 'reject' and backlog <= 2 * self.a.max_backlog))
+            if use_llm:
+                self._report_status(seq, 'writing')
+                self.preview_every = 2          # Qwen 이 GPU 를 쓰는 동안 미리보기를 줄여 영상이 끊기지 않게
             try:
                 try:
                     if not use_llm:
-                        raise RuntimeError('backlog')
+                        raise RuntimeError('log_only')
                     result = analyze_detected(det, name, lang=self.lang, meta=meta, source='live')
                     status = 'ready'
-                except Exception as e:  # noqa: BLE001 — 밀렸거나 Ollama 가 꺼져 있으면 문장 없이 기록만
-                    result = {'name': name, 'work': str(OUT / 'work' / name), 'part_info': '', 'meta': meta,
-                              'lang': self.lang, 'detection': det, 'source': 'live',
-                              'text': {'summary': '', 'defects': [], 'causes': []}}
-                    from agent.pipeline import refresh
+                except Exception as e:  # noqa: BLE001 — 기록만 (Ollama 가 꺼져 있어도 같은 길)
+                    from agent.pipeline import format_meta, refresh
+                    result = {'name': name, 'work': str(OUT / 'work' / name), 'part_info': format_meta(meta, self.lang),
+                              'meta': meta, 'lang': self.lang, 'detection': det, 'source': 'live',
+                              'text': {'summary': '', 'defects': [], 'causes': [], 'pending_ai': True}}
                     refresh(result, write=False)
-                    status = 'logged' if str(e) == 'backlog' else 'no_llm'
+                    status = 'logged' if str(e) == 'log_only' else 'no_llm'
                 register_pending(result, xlsx=False)    # 엑셀 대장은 xlsx_worker 가 20초마다 모아서
                 self.xlsx_dirty = True
                 self._report_status(seq, status)
@@ -542,15 +544,16 @@ def main():
     ap.add_argument('--source', default=str(ROOT / 'videos/pcb_conveyor.mp4'))
     ap.add_argument('--camera', type=int, default=None, help='웹캠 번호 (주면 영상 파일 대신 웹캠)')
     ap.add_argument('--port', type=int, default=8506)
-    ap.add_argument('--line', choices=['pcb', 'phone'], default=None,
+    ap.add_argument('--line', choices=['pcb', 'phone', 'metal'], default=None,
                     help='라인 이름 → videos/<line>_conveyor.mp4 를 입력으로 (--source 대신)')
     ap.add_argument('--domain', choices=['pcb', 'msdd', 'mobile'], default=None,
                     help='검사 모델 (기본: 영상 json 의 domain, 없으면 pcb)')
     ap.add_argument('--board', type=int, default=640, help='제품(센싱 구역) 크기 px — 영상 json 에 있으면 그 값을 쓴다')
     ap.add_argument('--preview-imgsz', type=int, default=None,
-                    help='미리보기 추론 크기 (기본: PCB 1280 = 화면 원래 크기, 그 밖 640 = 제품이 학습 축척)')
+                    help='미리보기 추론 크기 (기본: PCB·금속 1280 = 화면 원래 크기, 액정 640 = 제품이 학습 축척)')
     ap.add_argument('--lang', default='ko', choices=['ko', 'vi', 'en'])
-    ap.add_argument('--max-backlog', type=int, default=2, help='보고서 대기가 이보다 많으면 AI 문장 없이 바로 기록')
+    ap.add_argument('--write-now', action='store_true', help='기록할 때 바로 Qwen 보고서 문장까지 작성 (기본: 열 때 작성)')
+    ap.add_argument('--max-backlog', type=int, default=2, help='--write-now 일 때, 대기가 이보다 많으면 문장 없이 기록')
     ap.add_argument('--no-loop', dest='loop', action='store_false')
     a = ap.parse_args()
     if a.line:

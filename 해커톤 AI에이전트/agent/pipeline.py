@@ -18,7 +18,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from agent import records
-from agent.detect import ROOT, detect, detect_part, judge, parse_view
+from agent.detect import ROOT, detect, detect_part, judge, parse_view, short_stem
 from agent.i18n import format_meta
 from agent.knowledge import lookup, situation
 from agent.report import SITUATION_KO, build_report
@@ -46,10 +46,10 @@ def load_result(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
 
 
-def register_pending(result, out_root=OUT, xlsx=True):
+def register_pending(result, out_root=OUT, xlsx=True, when=None):
     """분석 직후: 결과 저장 + 검사 대장에 '작업자 확인 대기'로 기록. xlsx=False 면 엑셀 대장은 나중에 모아서."""
     save_result(result)
-    result['record_warning'] = records.upsert(result, out_root, 'pending', xlsx=xlsx)
+    result['record_warning'] = records.upsert(result, out_root, 'pending', xlsx=xlsx, when=when)
     return result
 
 
@@ -62,11 +62,11 @@ def analyze(image_paths, domain='pcb', part_info='', lang='ko', out_root=OUT, na
     part_info = part_info or format_meta(meta, lang)
     paths = [image_paths] if isinstance(image_paths, (str, Path)) else list(image_paths)
     if len(paths) > 1:
-        name = name or f'part_{parse_view(paths[0])[0] or Path(paths[0]).stem}'
+        name = name or f'part_{parse_view(paths[0])[0] or short_stem(paths[0])}'
         work = Path(out_root) / 'work' / name
         det = detect_part(paths, domain, work)
     else:
-        name = name or Path(paths[0]).stem
+        name = name or short_stem(paths[0])
         work = Path(out_root) / 'work' / name
         det = detect(paths[0], domain, work, tile=tile)
     result = {'name': name, 'work': str(work), 'part_info': part_info, 'meta': meta or {}, 'lang': lang,

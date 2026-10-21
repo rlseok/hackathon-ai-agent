@@ -6,7 +6,8 @@ import json
 
 import ollama
 
-from agent.i18n import situation_text, type_name
+from agent.detect import thresholds
+from agent.i18n import reason_text, situation_text, type_name, verdict_name
 from agent.writer import LANGS, MODEL, _kb_facts, summarize_detection
 
 SYSTEM = """너는 제조 현장 작업자를 돕는 품질 검사 에이전트다. 아래 [검사 결과]와 [지식]만 근거로 답한다.
@@ -18,16 +19,46 @@ SYSTEM = """너는 제조 현장 작업자를 돕는 품질 검사 에이전트�
 3. 격리·수리·폐기 같은 물리적 조치는 작업자 확인 후 실시하도록 안내한다.
 4. 원인은 '후보'로 말하고 단정하지 않는다.
 5. 3~6문장 이내로 짧고 명확하게, 질문한 언어로 답한다 (기본 언어: {lang}).
-6. 결함 유형은 영문 코드 대신 name 으로 부른다."""
+6. 결함 유형은 영문 코드 대신 name 으로 부른다.
+7. 판정(정상/의심/이상)의 이유는 verdict_reason 의 basis(판정을 정한 결함의 신뢰도와 기준값)를 그대로 인용해 설명한다.
+   judgment_rule 은 일반 규칙이고, 유형별 예외가 있으면 basis 가 우선한다 (예: 치명 유형은 이상 기준을 낮춤, 일부 유형은 신뢰도가 높아도 최대 의심).
+   예: "잔여 동박의 신뢰도가 0.92로 이상 기준 0.50 이상이어서 이상입니다." / "단락은 신뢰도 0.83으로, 치명 유형이라 낮춘 이상 기준 0.25 이상이어서 이상입니다."
+   심각도(치명/중/경)만으로 판정이 정해지지는 않는다 — 판정은 언제나 신뢰도와 기준값 비교로 설명하고, 심각도는 기준값이 낮아진 이유로만 언급한다."""
+
+# 판정 규칙 설명 (상담 에이전트가 판정 이유를 신뢰도 기준으로 말하도록 근거로 넣는다)
+RULE_TEXT = {
+    'ko': '신뢰도 {review} 미만 검출은 무시, {review} 이상 {reject} 미만은 의심, {reject} 이상은 이상. 결함 하나라도 이상이면 사진 전체가 이상, '
+          '이상 없이 의심만 있으면 의심, 검출이 없으면 정상. 유형별 예외(기준값을 낮춤, 최대 의심 등)는 각 결함의 근거에 적혀 있다.',
+    'vi': 'Phát hiện có độ tin cậy dưới {review} bị bỏ qua, từ {review} đến dưới {reject} là Nghi ngờ, từ {reject} trở lên là Bất thường. '
+          'Chỉ cần một lỗi Bất thường thì cả ảnh là Bất thường; chỉ có Nghi ngờ thì là Nghi ngờ; không có phát hiện thì Bình thường. '
+          'Ngoại lệ theo loại lỗi (hạ ngưỡng, tối đa Nghi ngờ…) ghi trong căn cứ của từng lỗi.',
+    'en': 'Detections below confidence {review} are ignored, {review} to below {reject} are Suspect, {reject} or above are Abnormal. '
+          'One Abnormal defect makes the whole photo Abnormal; only Suspect defects make it Suspect; no detection means Normal. '
+          'Per-type exceptions (a lower cutoff, at most Suspect, etc.) are written in each defect\'s basis.',
+}
+
+
+def _verdict_reason(det, kb, lang):
+    """판정을 정한 결함들 (판정과 같은 등급, 신뢰도 높은 순 최대 3개) → [{'name', 'confidence', 'level', 'basis'}]."""
+    level = det['verdict']
+    if level == 'normal':
+        return []
+    kb_map = {k['type']: k for k in kb}
+    top = sorted((d for d in det['defects'] if d['level'] == level), key=lambda d: -d['conf'])[:3]
+    return [{'name': type_name(d['type'], kb_map.get(d['type']), lang), 'confidence': round(d['conf'], 2),
+             'level': verdict_name(d['level'], lang), 'basis': reason_text(d, lang)} for d in top]
 
 
 def build_context(result, lang='ko'):
     det, kb, sit = result['detection'], result['knowledge'], result['situation']
+    th = thresholds(det['domain'])
     top = situation_text(sit, det['verdict'], lang)
     extra = {k: situation_text(sit[k], k, lang)['action'] for k in ('part', 'surface_wide', 'multi_type') if k in sit}
     rep = sit.get('representative')
     ctx = {
         'verdict': top['label'],
+        'judgment_rule': RULE_TEXT.get(lang, RULE_TEXT['ko']).format(review=th['conf_review'], reject=th['conf_reject']),
+        'verdict_reason': _verdict_reason(det, kb, lang),
         'next_step': top.get('action'),
         'representative': type_name(rep, next((k for k in kb if k['type'] == rep), None), lang) if rep else None,
         'situations': extra,

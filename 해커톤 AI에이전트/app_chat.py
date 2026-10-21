@@ -126,7 +126,27 @@ def on_ledger_open(e):
     say('assistant', t('opened_from_ledger'), card=card_of(ss.result))
 
 
-tour.autostart('chat')                   # 처음 열면 화면 안내 시작
+def open_from_link():
+    """실시간 화면의 [채팅에서 열기] 링크(?open=<기록 id>&lang=..) → 그 기록을 오른쪽 작업 패널에 연다 (보고서 문장은 열 때 작성)."""
+    rid = st.query_params.get('open')
+    if not rid:
+        return False
+    if st.query_params.get('lang') in ('ko', 'vi', 'en'):
+        ss.lang = st.query_params['lang']
+    for k in ('open', 'lang'):              # 새로고침해도 다시 열지 않게
+        st.query_params.pop(k, None)
+    entry = next((e for e in records.load(OUT) if e['id'] == rid), None)
+    if entry is None:                        # 아직 대장에 기록되기 전 (판정 직후 아주 잠깐)
+        say('assistant', t('live_not_found', id=rid))
+        return True
+    open_record(entry)
+    ss.panel_open = True
+    say('assistant', t('opened_from_live'), card=card_of(ss.result))
+    return True
+
+
+if not open_from_link():                 # 링크로 온 경우에는 화면 안내를 띄우지 않는다
+    tour.autostart('chat')               # 처음 열면 화면 안내 시작
 tour.prepare('chat')
 right_panel_css(ss.panel_open, ss.panel_width)
 header(tour_app='chat')
@@ -139,9 +159,14 @@ with tb1.popover(f'⚙ {t("domain_" + ss.get("sel_domain", "pcb"))}' + ('' if na
                  width='stretch', help=t('part_short')):
     domain = domain_input()
     meta = meta_inputs()
-with tb2.popover('📷' if narrow else f'📷 {t("source_example")}', width='stretch', help=t('source_example')):
+def close_example():                     # [검사 시작]을 누르면 예제 창을 닫는다 (콜백이라 위젯 상태를 바꿀 수 있다)
+    ss.ex_pop = False
+
+
+with tb2.popover('📷' if narrow else f'📷 {t("source_example")}', width='stretch', help=t('source_example'),
+                 key='ex_pop', on_change=lambda: None):
     ex_paths = example_picker(domain)
-    if st.button(t('run'), type='primary', key='ex_run'):
+    if st.button(t('run'), type='primary', key='ex_run', on_click=close_example):
         inspect(ex_paths, domain, meta, t('chat_example_msg', name=ex_paths[0].name[:40], n=len(ex_paths)))
         st.rerun()
 n_inbox = sum(len(v) for v in scan_inbox().values())

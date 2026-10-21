@@ -46,6 +46,7 @@ def main():
     rows = list(csv.DictReader(open(csv_path, encoding='utf-8-sig')))
     m = json.loads(Path(a.video).with_suffix('.json').read_text(encoding='utf-8'))
     cases = {b['index']: b['case'] for b in m['boards']}
+    sources = {b['index']: b['source'] for b in m['boards']}     # 같은 사진이 영상에 여러 번 나와도 샘플은 한 번
     out = Path(a.out)
     if out.exists():
         shutil.rmtree(out)
@@ -55,14 +56,14 @@ def main():
     seen, by_case = set(), {}
     for r in good:                                   # 영상이 반복돼도 같은 제품은 한 번만
         bi = int(r['video_board'])
-        if bi in seen:
+        if sources[bi] in seen:
             continue
-        seen.add(bi)
+        seen.add(sources[bi])
         by_case.setdefault(cases[bi], []).append(r)
 
     lines = [f'# 실시간 검사 샘플 — {m["video"]}', '',
              f'- 대조 기록: `{csv_path.name}` ({len(rows)}건 판정)',
-             f'- 잘 된 결과 (판정 일치 + 결함 오탐·놓침 0): {len(good)}건 / 제품 {len(seen)}개', '',
+             f'- 잘 된 결과 (판정 일치 + 결함 오탐·놓침 0): {len(good)}건 / 서로 다른 사진 {len(seen)}장', '',
              '| 케이스 | 샘플 | 순서 | 판정 | 검출 유형 | AI 요약 |', '|---|---|---|---|---|---|']
     for case in sorted(by_case):
         picks = by_case[case][:a.per]

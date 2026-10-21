@@ -28,7 +28,7 @@ def _rel(path, start):
     return Path(os.path.relpath(path, start)).as_posix() if path else ''
 
 
-def make_entry(result, status, out_root):
+def make_entry(result, status, out_root, when=None):
     det, sit = result['detection'], result['situation']
     kb_map = {k['type']: k for k in result['knowledge']}
     meta = result.get('meta') or {}
@@ -39,7 +39,7 @@ def make_entry(result, status, out_root):
         'id': result['name'],
         # 언어와 무관한 값 (엑셀 대장은 이 값으로 영어를 만든다)
         'domain': det['domain'], 'rep': rep or '', 'process': meta.get('process', ''),
-        '일시': time.strftime('%Y-%m-%d %H:%M:%S'),
+        '일시': when or time.strftime('%Y-%m-%d %H:%M:%S'),
         '도메인': {'pcb': 'PCB', 'msdd': '금속', 'mobile': '휴대폰'}.get(det['domain'], det['domain']),
         '대상': det.get('part') or Path(det['image']).name,
         '사진 수': len(det.get('views') or [1]),
@@ -153,13 +153,14 @@ class _Lock:
         self.path.unlink(missing_ok=True)
 
 
-def upsert(result, out_root, status, xlsx=True):
+def upsert(result, out_root, status, xlsx=True, when=None):
     """기록 추가/갱신 → md 작성 → 엑셀 다시 만들기. 엑셀이 열려 있어 저장 못 하면 경고 문자열을 돌려준다.
 
     xlsx=False: 기록(jsonl·md)만 바로 쓰고 엑셀은 나중에 (실시간 검사처럼 자주 쓸 때, rebuild_xlsx 로 모아서)
+    when: 기록 일시를 그대로 둘 때 (열 때 보고서 문장만 쓴 경우 — 검사 시각이 바뀌지 않게)
     """
     out_root = Path(out_root)
-    e = make_entry(result, status, out_root)
+    e = make_entry(result, status, out_root, when)
     e['md'] = _rel(write_md(result, e, out_root), out_root)
     with _Lock(out_root):
         with open(out_root / JSONL, 'a', encoding='utf-8') as f:

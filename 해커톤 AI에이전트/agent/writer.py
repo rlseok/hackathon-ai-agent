@@ -7,7 +7,7 @@ from collections import defaultdict
 
 import ollama
 
-from agent.i18n import pos_text, reason_text, type_name
+from agent.i18n import SEVERITY, pos_text, reason_text, type_name
 
 MODEL = 'qwen3:8b'
 LANGS = {'ko': '한국어', 'vi': '베트남어(Tiếng Việt)', 'en': '영어(English)'}
@@ -61,7 +61,9 @@ def summarize_detection(detection, knowledge, lang='ko'):
 
 def _kb_facts(knowledge, lang='ko'):
     keys = ('description', 'causes', 'actions', 'measure', 'surface_note')
-    return [{'type': k['type'], 'name': type_name(k['type'], k, lang), 'severity': k.get('severity'),
+    # 심각도는 영문 코드(major) 대신 해당 언어 이름(중 / Nặng / Major)으로 — 코드가 답변·보고서 문장에 섞여 나오지 않게
+    return [{'type': k['type'], 'name': type_name(k['type'], k, lang),
+             'severity': SEVERITY.get(lang, SEVERITY['ko']).get(k.get('severity'), k.get('severity')),
              **{x: k[x] for x in keys if x in k}} for k in knowledge]
 
 

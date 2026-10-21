@@ -3,6 +3,7 @@
 판정 규칙은 코드로 고정하고, 기준값과 유형별 예외는 knowledge/defect_taxonomy_<domain>.yaml 의 judgment 에 둔다.
 큰 사진은 학습 크기(640) 조각으로 잘라 추론한 뒤 합친다 (타일링).
 """
+import hashlib
 import re
 from pathlib import Path
 
@@ -29,6 +30,18 @@ TILE_TRIGGER = 1.5                   # 긴 변이 imgsz 의 이 배수를 넘으
 TILE_OVERLAP = 0.2
 CROP_PAD = 24                        # 결함 확대 이미지 여백(px)
 _cache = {}
+
+
+MAX_STEM = 40                        # 작업 폴더·파일 이름 길이 상한 (Windows 경로 260자 제한 대비)
+
+
+def short_stem(path):
+    """사진 이름(확장자 제외)이 길면 앞 32자 + 짧은 해시로 줄인다. 같은 사진은 늘 같은 이름이 된다.
+
+    Roboflow 데이터 파일명은 80자 가까이 되고, 작업 폴더·결과 파일에 이 이름이 두 번 들어가 경로가 260자를 넘을 수 있다.
+    """
+    s = Path(path).stem
+    return s if len(s) <= MAX_STEM else f'{s[:32]}_{hashlib.sha1(s.encode("utf-8")).hexdigest()[:6]}'
 
 
 def thresholds(domain):
@@ -172,7 +185,7 @@ def detect(image_path, domain='pcb', save_dir=None, tile=None):
     if save_dir:
         save_dir = Path(save_dir)
         save_dir.mkdir(parents=True, exist_ok=True)
-        stem = Path(image_path).stem
+        stem = short_stem(image_path)
         if r is not None:
             marked_img = r.plot()
         else:

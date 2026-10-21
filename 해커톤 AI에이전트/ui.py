@@ -164,8 +164,26 @@ def open_record(entry):
     r = load_result(OUT / entry['result_json'])
     if entry['status'] != 'pending':
         r['status'] = entry['status']
+    elif needs_text(r):                  # 실시간 라인은 기록만 해 둔다 → 열 때 보고서 문장 작성
+        write_on_open(r, entry['일시'])
     _adopt(r)
     ss.chat = []
+
+
+def needs_text(r):
+    """이상·의심인데 보고서 문장이 아직 없는 기록 (실시간 라인 기록, Ollama 가 꺼져 있을 때 기록된 건)."""
+    return r['detection']['verdict'] != 'normal' and (r['text'].get('pending_ai') or not r['text'].get('summary'))
+
+
+def write_on_open(r, when=None):
+    """Qwen 으로 문장 작성 → 결과·대장 갱신. 실패하면(Ollama 꺼짐 등) 기록 그대로 열고 [문장 다시 생성]으로 다시 시도."""
+    try:
+        with st.spinner(t('writing_on_open')):
+            r['lang'] = ss.lang
+            refresh(r, write=True)
+        register_pending(r, xlsx=False, when=when)  # 대장 md 에도 요약을 남긴다 (검사 시각은 그대로, 엑셀은 다음에 다시 만들 때)
+    except Exception as e:  # noqa: BLE001
+        st.toast(f'{t("write_failed")}: {e}', icon='⚠️')
 
 
 def run_inbox(meta, progress_box=None):
@@ -291,7 +309,7 @@ def _verdict_header(r, compact):
         st.caption(t('lang_mismatch', name=LANGS[r['lang']]))
 
 
-def result_body(r):
+def result_body(r, panel=False):
     """사진 · 결함 표(수정) · 보고서 문장(편집) · 처리 버튼. 판정을 바꾸는 곳은 여기뿐이다.
 
     영역마다 key 를 붙여 두어 화면 안내(tour.py)가 강조할 수 있다.
@@ -304,7 +322,7 @@ def result_body(r):
         _text_block(r)
     autosave(r)
     with st.container(key='tour_decision'):
-        decision(r)
+        decision(r, panel=panel)
 
 
 def _photos_block(r):
@@ -440,18 +458,38 @@ def preview_dialog(r, status, html):
     _dlg()
 
 
-def decision(r):
+SAVE_STATUS = {'reject': 'sent_wait', 'review': 'review_wait', 'normal': 'normal'}
+
+
+def _tab_labels():
+    return f'🛠 {t("tab_edit")}', f'📄 {t("tab_report")}'
+
+
+def _goto_report():
+    ss.wp_tab = _tab_labels()[1]
+
+
+def decision(r, panel=False):
+    """panel=True (대화 화면 작업 패널): 확정 버튼은 [보고서] 탭으로 넘어가고, 저장은 그 탭의 미리보기 아래에서 한다."""
     det = r['detection']
     st.subheader(t('decision'))
     st.caption(t(f'next_{det["verdict"]}'))
     d1, d2 = st.columns(2)
-    if d1.button(t(f'confirm_{det["verdict"]}'), type='primary', width='stretch', disabled=bool(ss.done)):
+    if panel:
+        d1.button(t(f'confirm_{det["verdict"]}'), type='primary', width='stretch', disabled=bool(ss.done),
+                  on_click=_goto_report)
+    elif d1.button(t(f'confirm_{det["verdict"]}'), type='primary', width='stretch', disabled=bool(ss.done)):
         with st.spinner(t('preview_making')):
             html = report_preview_html(r)
-        preview_dialog(r, {'reject': 'sent_wait', 'review': 'review_wait', 'normal': 'normal'}[det['verdict']], html)
+        preview_dialog(r, SAVE_STATUS[det['verdict']], html)
     if d2.button(t('false_positive'), width='stretch', disabled=bool(ss.done) or not det['defects']):
         _adopt(reject_false_positive(r))
         st.rerun()
+    if not panel:
+        done_block(r)
+
+
+def done_block(r):
     if ss.done:
         st.success(f'{t("processed")}: {STATUS[ss.lang][ss.done["status"]]}')
         if ss.done.get('record_warning'):
@@ -504,7 +542,12 @@ def work_panel(r, on_close=None):
             st.info(t('work_panel_empty'))
             return
         verdict_header(r, compact=True)
-        tab_doc, tab_edit = st.tabs([f'📄 {t("tab_report")}', f'🛠 {t("tab_edit")}'])
+        labels = _tab_labels()
+        if ss.get('wp_tab_for') != r['name'] or ss.get('wp_tab') not in labels:   # 새 결과·언어 변경 → 편집 탭부터
+            ss.wp_tab, ss.wp_tab_for = labels[0], r['name']
+        tab_edit, tab_doc = st.tabs(list(labels), key='wp_tab', on_change='rerun')
+        with tab_edit:
+            result_body(r, panel=True)
         with tab_doc:
             html = report_preview_html(r, cached=True)
             if html:
@@ -512,8 +555,12 @@ def work_panel(r, on_close=None):
                 st.html(html)
             else:
                 st.info(t('preview_normal'))
-        with tab_edit:
-            result_body(r)
+            st.divider()                    # 저장은 미리보기를 본 그 자리에서
+            if st.button(f'💾 {t("preview_save")}', type='primary', width='stretch', key='wp_save',
+                         disabled=bool(ss.done)):
+                _adopt(finalize(r, status=SAVE_STATUS[r['detection']['verdict']]))
+                st.rerun()
+            done_block(r)
 
 
 def stream_answer(messages, r):

@@ -20,16 +20,17 @@ from ui import ICONS, OUT, ROOT, app_chrome, init_state, ss
 
 SERVER = 'http://localhost:8506'
 DASHBOARD = 'http://localhost:8501'
+CHAT = 'http://localhost:8503'      # 오류 기록을 누르면 채팅 화면의 작업 패널로 연다
 
 TXT = {
     'ko': {'title': '실시간 {line} 검사', 'sub': '컨베이어 영상 → 센싱 구역 판정 → AI 보고서 → 대시보드 확인',
            'ng': '이상', 'hold': '의심', 'ok': '정상', 'inspected': '검사', 'alerts': '라인 감시 경고', 'no_alert': '경고 없음',
-           'recent': '최근 판정', 'pause': '⏸ 일시정지', 'resume': '▶ 재생', 'restart': '⏮ 처음부터', 'reset': '↺ 집계 초기화',
+           'recent': '최근 판정', 'open_chat': '💬 채팅에서 열기', 'pause': '⏸ 일시정지', 'resume': '▶ 재생', 'restart': '⏮ 처음부터', 'reset': '↺ 집계 초기화',
            'viewer': '🖥 전용 뷰어 (프로젝터)', 'dash': '📋 대시보드에서 확인', 'queue': '보고서 대기',
            'off': '영상 서버(포트 8506)가 꺼져 있습니다.', 'start': '영상 서버 시작', 'starting': '영상 서버를 켜는 중… (10~20초)',
            'legend': '얇은 박스 = 실시간 미리보기 · 센싱 구역을 지나면 굵은 박스와 판정 도장(OK / HOLD / NG)',
            'report': {'none': '', 'queued': '보고서 대기', 'writing': 'AI 보고서 작성 중', 'ready': '보고서 초안 → 대시보드 확인 대기',
-                      'logged': '대장에 기록 (AI 문장은 대시보드에서)', 'no_llm': '기록됨 (AI 문장 없음)', 'error': '기록 실패'},
+                      'logged': '대장에 기록 (보고서는 열 때 작성)', 'no_llm': '기록됨 (AI 문장 없음)', 'error': '기록 실패'},
            'streak': '연속 불량 {n}장 — 공정 상태를 점검하세요',
            'type_repeat': '같은 유형 반복: {type} (최근 {of}장 중 {n}장)',
            'location_repeat': '같은 위치 반복: {type} · {position} (최근 {of}장 중 {n}장) — 마스크·드릴 등 공정 점검 권고',
@@ -37,13 +38,13 @@ TXT = {
            'gt_title': '정답 대조 (영상 정답 json)', 'gt_board': '기판 판정 정확도', 'gt_defect': '결함 검출 F1', 'gt_detail': '결함 기판 {dc}/{db} 잡음 · 정상 기판 {np}/{nb} 통과 · 결함 맞힘 {tp} · 오탐 {fp} · 놓침 {fn}', 'gt_was': '정답'},
     'vi': {'title': 'Kiểm tra {line} thời gian thực', 'sub': 'Video băng chuyền → phán định tại vùng cảm biến → báo cáo AI → xác nhận',
            'ng': 'Bất thường', 'hold': 'Nghi ngờ', 'ok': 'Bình thường', 'inspected': 'Đã kiểm', 'alerts': 'Cảnh báo dây chuyền',
-           'no_alert': 'Không có cảnh báo', 'recent': 'Kết quả gần đây', 'pause': '⏸ Tạm dừng', 'resume': '▶ Tiếp tục',
+           'no_alert': 'Không có cảnh báo', 'recent': 'Kết quả gần đây', 'open_chat': '💬 Mở trong hội thoại', 'pause': '⏸ Tạm dừng', 'resume': '▶ Tiếp tục',
            'restart': '⏮ Từ đầu', 'reset': '↺ Đặt lại số liệu', 'viewer': '🖥 Màn hình riêng (máy chiếu)',
            'dash': '📋 Xác nhận trên bảng điều khiển', 'queue': 'Chờ báo cáo',
            'off': 'Máy chủ video (cổng 8506) đang tắt.', 'start': 'Khởi động máy chủ video', 'starting': 'Đang khởi động… (10–20 giây)',
            'legend': 'Khung mảnh = xem trước thời gian thực · qua vùng cảm biến thì có khung đậm và dấu kết quả (OK / HOLD / NG)',
            'report': {'none': '', 'queued': 'Chờ báo cáo', 'writing': 'AI đang viết báo cáo', 'ready': 'Bản nháp → chờ xác nhận',
-                      'logged': 'Đã ghi sổ (câu AI tạo trên bảng điều khiển)', 'no_llm': 'Đã ghi (không có câu AI)', 'error': 'Ghi thất bại'},
+                      'logged': 'Đã ghi sổ (báo cáo viết khi mở)', 'no_llm': 'Đã ghi (không có câu AI)', 'error': 'Ghi thất bại'},
            'streak': '{n} tấm lỗi liên tiếp — hãy kiểm tra công đoạn',
            'type_repeat': 'Lặp lại cùng loại: {type} ({n}/{of} tấm gần nhất)',
            'location_repeat': 'Lặp lại cùng vị trí: {type} · {position} ({n}/{of}) — khuyến nghị kiểm tra công đoạn',
@@ -51,13 +52,13 @@ TXT = {
            'gt_title': 'Đối chiếu đáp án (json của video)', 'gt_board': 'Độ chính xác theo tấm', 'gt_defect': 'F1 phát hiện lỗi', 'gt_detail': 'Tấm lỗi bắt được {dc}/{db} · tấm tốt cho qua {np}/{nb} · lỗi đúng {tp} · báo nhầm {fp} · bỏ sót {fn}', 'gt_was': 'Đáp án'},
     'en': {'title': 'Live {line} Inspection', 'sub': 'Conveyor video → sensing-zone verdict → AI report → confirm on the dashboard',
            'ng': 'Abnormal', 'hold': 'Suspect', 'ok': 'Normal', 'inspected': 'Inspected', 'alerts': 'Line alerts',
-           'no_alert': 'No alerts', 'recent': 'Recent results', 'pause': '⏸ Pause', 'resume': '▶ Resume', 'restart': '⏮ Restart',
+           'no_alert': 'No alerts', 'recent': 'Recent results', 'open_chat': '💬 Open in chat', 'pause': '⏸ Pause', 'resume': '▶ Resume', 'restart': '⏮ Restart',
            'reset': '↺ Reset counts', 'viewer': '🖥 Dedicated viewer (projector)', 'dash': '📋 Confirm on the dashboard',
            'queue': 'Reports queued', 'off': 'The video server (port 8506) is not running.', 'start': 'Start video server',
            'starting': 'Starting the video server… (10–20 s)',
            'legend': 'Thin boxes = live preview · after the sensing zone: bold boxes and a verdict stamp (OK / HOLD / NG)',
            'report': {'none': '', 'queued': 'Report queued', 'writing': 'AI writing report', 'ready': 'Draft ready → confirm on dashboard',
-                      'logged': 'Logged (AI text on the dashboard)', 'no_llm': 'Logged (no AI text)', 'error': 'Logging failed'},
+                      'logged': 'Logged (report written when opened)', 'no_llm': 'Logged (no AI text)', 'error': 'Logging failed'},
            'streak': '{n} NG boards in a row — check the process',
            'type_repeat': 'Same type repeating: {type} ({n} of last {of})',
            'location_repeat': 'Same location repeating: {type} · {position} ({n} of last {of}) — check the process',
@@ -179,7 +180,10 @@ def panel():
         truth = '' if not gt else (f' · {L("gt_was")}: ' + (', '.join(tname(t) for t in gt['gt_types']) or L('ok')))
         b.markdown(f'{DOT[e["verdict"]]} **#{e["seq"]} {vn[e["verdict"]]}**{mark} · {e["time"]}  \n'
                    f'<span style="font-size:0.85em;color:#888">{", ".join(tname(t) for t in e["types"]) or "-"}'
-                   f'{truth}{" · " + rep if rep else ""}</span>', unsafe_allow_html=True)
+                   f'{truth}{" · " + rep if rep else ""}</span>'
+                   + ('' if e['verdict'] == 'normal' else
+                      f'  \n<a href="{CHAT}/?open={e["name"]}&lang={ss.lang}" target="_blank">{L("open_chat")}</a>'),
+                   unsafe_allow_html=True)
 
 
 with right:

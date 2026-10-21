@@ -1,0 +1,2590 @@
+{
+ "video": "metal_conveyor.mp4",
+ "domain": "msdd",
+ "fps": 30,
+ "size": [
+  1280,
+  720
+ ],
+ "board_px": 512,
+ "board_w": 512,
+ "board_h": 512,
+ "belt_bgr": [
+  128,
+  134,
+  140
+ ],
+ "speed_px_per_frame": 14,
+ "frames": 4442,
+ "seconds": 148.1,
+ "seed": 7,
+ "sensing_zone": [
+  384,
+  104,
+  896,
+  616
+ ],
+ "note": "x of an item at frame f = x0 - f*speed. Labels are normalized boxes (from the seg polygons).",
+ "boards": [
+  {
+   "index": 0,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/10_00430_S57007-92-_CAM1_CAP4_LEFT_OK_png.rf.ba4ff47a63fb4a6e283887ac3820902b.jpg",
+   "x0": 1840,
+   "y": 107,
+   "enter_frame": 40,
+   "center_frame": 104,
+   "exit_frame": 168,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.509765625,
+     "cy": 0.5029296875,
+     "w": 0.94140625,
+     "h": 0.970703125
+    }
+   ]
+  },
+  {
+   "index": 1,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/01_00202_S57396-31-_CAM1_CAP4_UPPER_NG_png.rf.5a5ba7bfd2c1b192d0e4eb49cbe5992e.jpg",
+   "x0": 2512,
+   "y": 105,
+   "enter_frame": 88,
+   "center_frame": 152,
+   "exit_frame": 216,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.351283203125,
+     "cy": 0.482421875,
+     "w": 0.33537890625,
+     "h": 0.25
+    }
+   ]
+  },
+  {
+   "index": 2,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/03_00059_S56802-91-_CAM1_CAP4_LEFT_OK_png.rf.ef2a8a4dc2a5643c3e606198557d2aeb.jpg",
+   "x0": 3184,
+   "y": 107,
+   "enter_frame": 136,
+   "center_frame": 200,
+   "exit_frame": 264,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5029296875,
+     "cy": 0.49762890625,
+     "w": 0.986328125,
+     "h": 0.982421875
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/04_00054_S56802-91-_CAM1_CAP2_OK_png.rf.baeba5901dc798a9cf68db835591964e.jpg",
+   "x0": 3856,
+   "y": 110,
+   "enter_frame": 184,
+   "center_frame": 248,
+   "exit_frame": 312,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.40876171874999995,
+     "w": 0.994140625,
+     "h": 0.80915234375
+    }
+   ]
+  },
+  {
+   "index": 4,
+   "kind": "defect",
+   "case": "Fold",
+   "source": "results/msdd/showcase/01_Fold/originals/images/01_00428_55C-_CAM1_CAP4_UPPER_NG_png.rf.3488567b253896b055923cd9bf0eba8e.jpg",
+   "x0": 4528,
+   "y": 105,
+   "enter_frame": 232,
+   "center_frame": 296,
+   "exit_frame": 360,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.677734375,
+     "cy": 0.828125,
+     "w": 0.5703125,
+     "h": 0.33984375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4931640625,
+     "w": 0.98046875,
+     "h": 0.966796875
+    }
+   ]
+  },
+  {
+   "index": 5,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/09_00262_A630-_CAM1_CAP4_RIGHT_NG_png.rf.6451d307613df0a8d365af9c9f64ad23.jpg",
+   "x0": 5200,
+   "y": 99,
+   "enter_frame": 280,
+   "center_frame": 344,
+   "exit_frame": 408,
+   "labels": []
+  },
+  {
+   "index": 6,
+   "kind": "defect",
+   "case": "Fold",
+   "source": "results/msdd/showcase/01_Fold/originals/images/02_01414_S57846-31-_CAM1_CAP4_LOWER_NG_png.rf.2332b05b60c331bb45d405634cbf020c.jpg",
+   "x0": 5872,
+   "y": 99,
+   "enter_frame": 328,
+   "center_frame": 392,
+   "exit_frame": 456,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.67578125,
+     "cy": 0.87109375,
+     "w": 0.4921875,
+     "h": 0.25
+    }
+   ]
+  },
+  {
+   "index": 7,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/05_00025_1045-_CAM1_CAP4_LOWER_NG_png.rf.d4b9e7948d30dac752c56001fd116fe9.jpg",
+   "x0": 6544,
+   "y": 102,
+   "enter_frame": 376,
+   "center_frame": 440,
+   "exit_frame": 504,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4765625,
+     "w": 0.98828125,
+     "h": 0.92578125
+    }
+   ]
+  },
+  {
+   "index": 8,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/03_01536_N32017-43-_CAM1_CAP4_UPPER_OK_png.rf.20626d66750df93555ceac45d90d2ef3.jpg",
+   "x0": 7216,
+   "y": 105,
+   "enter_frame": 424,
+   "center_frame": 488,
+   "exit_frame": 552,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.4052734375,
+     "cy": 0.435546875,
+     "w": 0.126953125,
+     "h": 0.1171875
+    }
+   ]
+  },
+  {
+   "index": 9,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/08_00262_A630-_CAM1_CAP4_LOWER_NG_png.rf.a1241c529e25c2c2e4ba5b6ac4397327.jpg",
+   "x0": 7888,
+   "y": 109,
+   "enter_frame": 472,
+   "center_frame": 536,
+   "exit_frame": 600,
+   "labels": []
+  },
+  {
+   "index": 10,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/07_00445_S57244-31-_CAM1_CAP4_UPPER_NG_png.rf.b45ac6bbd978eb595269065353c79cad.jpg",
+   "x0": 8560,
+   "y": 108,
+   "enter_frame": 520,
+   "center_frame": 584,
+   "exit_frame": 648,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.66796875,
+     "cy": 0.548828125,
+     "w": 0.2421875,
+     "h": 0.21484375
+    },
+    {
+     "type": "Stain",
+     "cx": 0.4052734375,
+     "cy": 0.46875,
+     "w": 0.255859375,
+     "h": 0.21484375
+    }
+   ]
+  },
+  {
+   "index": 11,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/09_00445_S57244-31-_CAM1_CAP4_RIGHT_NG_png.rf.25d43f454d3b9676bbc94f36101f551c.jpg",
+   "x0": 9232,
+   "y": 99,
+   "enter_frame": 568,
+   "center_frame": 632,
+   "exit_frame": 696,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3935546875,
+     "cy": 0.4501953125,
+     "w": 0.267578125,
+     "h": 0.248046875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6630859375,
+     "cy": 0.5703125,
+     "w": 0.236328125,
+     "h": 0.2265625
+    }
+   ]
+  },
+  {
+   "index": 12,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/05_01536_N32017-43-_CAM1_CAP4_RIGHT_OK_png.rf.4ab2c7b913daa42bf60a55d99405349e.jpg",
+   "x0": 9904,
+   "y": 98,
+   "enter_frame": 616,
+   "center_frame": 680,
+   "exit_frame": 744,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.3759765625,
+     "cy": 0.412109375,
+     "w": 0.154296875,
+     "h": 0.13671875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.9248046875,
+     "cy": 0.41796875,
+     "w": 0.013671875,
+     "h": 0.015625
+    }
+   ]
+  },
+  {
+   "index": 13,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/09_01078_N31824-40-_CAM1_CAP4_LOWER_NG_png.rf.4a5fa5942fc1b13ab73b7ab8a3552593.jpg",
+   "x0": 10576,
+   "y": 109,
+   "enter_frame": 664,
+   "center_frame": 728,
+   "exit_frame": 792,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.5009765625,
+     "w": 0.998046875,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8994140625,
+     "cy": 0.3134765625,
+     "w": 0.052734375,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.546875,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.41015625,
+     "cy": 0.3955078125,
+     "w": 0.04296875,
+     "h": 0.037109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.369140625,
+     "w": 0.087890625,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.2451171875,
+     "w": 0.068359375,
+     "h": 0.052734375
+    }
+   ]
+  },
+  {
+   "index": 14,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/01_01367_1045-_CAM1_CAP4_LOWER_NG_png.rf.6caf9f544ddb4520d4df869afb923d73.jpg",
+   "x0": 11248,
+   "y": 109,
+   "enter_frame": 712,
+   "center_frame": 776,
+   "exit_frame": 840,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3349609375,
+     "cy": 0.4951171875,
+     "w": 0.302734375,
+     "h": 0.283203125
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.998046875,
+     "h": 0.98828125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.21484375,
+     "cy": 0.828125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/10_00262_A630-_CAM1_CAP4_UPPER_NG_png.rf.aedeb51bd91b750d16a4347d11c8321b.jpg",
+   "x0": 11920,
+   "y": 102,
+   "enter_frame": 760,
+   "center_frame": 824,
+   "exit_frame": 888,
+   "labels": []
+  },
+  {
+   "index": 16,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/08_00059_S56802-91-_CAM1_CAP4_LOWER_OK_png.rf.a4c98851906dfc440042b7676425a71f.jpg",
+   "x0": 12592,
+   "y": 108,
+   "enter_frame": 808,
+   "center_frame": 872,
+   "exit_frame": 936,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.4249443359375,
+     "w": 0.998046875,
+     "h": 0.835380859375
+    }
+   ]
+  },
+  {
+   "index": 17,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/01_00428_55C-_CAM1_CAP4_LOWER_NG_png.rf.8996030a9e25d2023377af13681bb099.jpg",
+   "x0": 13264,
+   "y": 107,
+   "enter_frame": 856,
+   "center_frame": 920,
+   "exit_frame": 984,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.98828125
+    }
+   ]
+  },
+  {
+   "index": 18,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/06_00445_S57244-31-_CAM1_CAP4_LOWER_NG_png.rf.416ec671ef8bb99556a3e2ea8ac9304b.jpg",
+   "x0": 13936,
+   "y": 108,
+   "enter_frame": 904,
+   "center_frame": 968,
+   "exit_frame": 1032,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.4150390625,
+     "cy": 0.44140625,
+     "w": 0.240234375,
+     "h": 0.26953125
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6748046875,
+     "cy": 0.52734375,
+     "w": 0.228515625,
+     "h": 0.25390625
+    }
+   ]
+  },
+  {
+   "index": 19,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/01_01536_N32017-43-_CAM1_CAP4_LOWER_OK_png.rf.a5996e5b6465b88c803fe008cf3da7ae.jpg",
+   "x0": 14608,
+   "y": 105,
+   "enter_frame": 952,
+   "center_frame": 1016,
+   "exit_frame": 1080,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.390625,
+     "cy": 0.42578125,
+     "w": 0.140625,
+     "h": 0.125
+    }
+   ]
+  },
+  {
+   "index": 20,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/06_01078_N31824-40-_CAM1_CAP4_LOWER_NG_png.rf.4a5fa5942fc1b13ab73b7ab8a3552593.jpg",
+   "x0": 15280,
+   "y": 102,
+   "enter_frame": 1000,
+   "center_frame": 1064,
+   "exit_frame": 1128,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.5009765625,
+     "w": 0.998046875,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8994140625,
+     "cy": 0.3134765625,
+     "w": 0.052734375,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.546875,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.41015625,
+     "cy": 0.3955078125,
+     "w": 0.04296875,
+     "h": 0.037109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.369140625,
+     "w": 0.087890625,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.2451171875,
+     "w": 0.068359375,
+     "h": 0.052734375
+    }
+   ]
+  },
+  {
+   "index": 21,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/05_01367_1045-_CAM1_CAP4_LEFT_NG_png.rf.7177a587f7f6c6ec7de9413af2ab8f07.jpg",
+   "x0": 15952,
+   "y": 109,
+   "enter_frame": 1048,
+   "center_frame": 1112,
+   "exit_frame": 1176,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.982421875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.2197265625,
+     "cy": 0.8291015625,
+     "w": 0.029296875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.3515625,
+     "cy": 0.4677734375,
+     "w": 0.234375,
+     "h": 0.220703125
+    }
+   ]
+  },
+  {
+   "index": 22,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/07_00428_55C-_CAM1_CAP4_UPPER_NG_png.rf.3488567b253896b055923cd9bf0eba8e.jpg",
+   "x0": 16624,
+   "y": 104,
+   "enter_frame": 1096,
+   "center_frame": 1160,
+   "exit_frame": 1224,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.677734375,
+     "cy": 0.828125,
+     "w": 0.5703125,
+     "h": 0.33984375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4931640625,
+     "w": 0.98046875,
+     "h": 0.966796875
+    }
+   ]
+  },
+  {
+   "index": 23,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/02_01367_1045-_CAM1_CAP4_LEFT_NG_png.rf.7177a587f7f6c6ec7de9413af2ab8f07.jpg",
+   "x0": 17296,
+   "y": 108,
+   "enter_frame": 1144,
+   "center_frame": 1208,
+   "exit_frame": 1272,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.982421875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.2197265625,
+     "cy": 0.8291015625,
+     "w": 0.029296875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.3515625,
+     "cy": 0.4677734375,
+     "w": 0.234375,
+     "h": 0.220703125
+    }
+   ]
+  },
+  {
+   "index": 24,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/08_01078_N31824-40-_CAM1_CAP4_UPPER_NG_png.rf.00ce34765ffac1802bf73d53b7e160f4.jpg",
+   "x0": 17968,
+   "y": 103,
+   "enter_frame": 1192,
+   "center_frame": 1256,
+   "exit_frame": 1320,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.5009765625,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.810546875,
+     "cy": 0.2529296875,
+     "w": 0.04296875,
+     "h": 0.041015625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.89453125,
+     "cy": 0.314453125,
+     "w": 0.05859375,
+     "h": 0.03125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.548828125,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.4091796875,
+     "cy": 0.396484375,
+     "w": 0.044921875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.890625,
+     "cy": 0.3671875,
+     "w": 0.0859375,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 25,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/06_00054_S56802-91-_CAM1_CAP4_RIGHT_OK_png.rf.c4e931241b3e046293e7831a083b6a10.jpg",
+   "x0": 18640,
+   "y": 98,
+   "enter_frame": 1240,
+   "center_frame": 1304,
+   "exit_frame": 1368,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.435546875,
+     "cy": 0.5,
+     "w": 0.8671875,
+     "h": 0.98828125
+    }
+   ]
+  },
+  {
+   "index": 26,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/07_00335_S57264-61-_CAM1_CAP4_RIGHT_OK_png.rf.0d8c7419a370d2befaf6e39751a64e00.jpg",
+   "x0": 19312,
+   "y": 105,
+   "enter_frame": 1288,
+   "center_frame": 1352,
+   "exit_frame": 1416,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.17578125,
+     "cy": 0.4580078125,
+     "w": 0.046875,
+     "h": 0.041015625
+    }
+   ]
+  },
+  {
+   "index": 27,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/08_01530_N32018-41-_CAM1_CAP2_OK_png.rf.f7c3df5d984ea97fda6e9b4d9855bc58.jpg",
+   "x0": 19984,
+   "y": 103,
+   "enter_frame": 1336,
+   "center_frame": 1400,
+   "exit_frame": 1464,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.205078125,
+     "cy": 0.822265625,
+     "w": 0.0390625,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 28,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/08_01367_1045-_CAM1_CAP2_NG_png.rf.bf11673c97e72245fe37e8b2f11183f1.jpg",
+   "x0": 20656,
+   "y": 100,
+   "enter_frame": 1384,
+   "center_frame": 1448,
+   "exit_frame": 1512,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3388671875,
+     "cy": 0.4677734375,
+     "w": 0.287109375,
+     "h": 0.224609375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.986328125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.212890625,
+     "cy": 0.830078125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 29,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/09_00335_S57264-61-_CAM1_CAP4_UPPER_OK_png.rf.7a099d0f9bcc12d97b833ae7c7763818.jpg",
+   "x0": 21328,
+   "y": 107,
+   "enter_frame": 1432,
+   "center_frame": 1496,
+   "exit_frame": 1560,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.705078125,
+     "cy": 0.7509765625,
+     "w": 0.07421875,
+     "h": 0.287109375
+    }
+   ]
+  },
+  {
+   "index": 30,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/03_01367_1045-_CAM1_CAP4_LOWER_NG_png.rf.6caf9f544ddb4520d4df869afb923d73.jpg",
+   "x0": 22000,
+   "y": 99,
+   "enter_frame": 1480,
+   "center_frame": 1544,
+   "exit_frame": 1608,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3349609375,
+     "cy": 0.4951171875,
+     "w": 0.302734375,
+     "h": 0.283203125
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.998046875,
+     "h": 0.98828125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.21484375,
+     "cy": 0.828125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 31,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/06_01367_1045-_CAM1_CAP2_NG_png.rf.bf11673c97e72245fe37e8b2f11183f1.jpg",
+   "x0": 22672,
+   "y": 105,
+   "enter_frame": 1528,
+   "center_frame": 1592,
+   "exit_frame": 1656,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3388671875,
+     "cy": 0.4677734375,
+     "w": 0.287109375,
+     "h": 0.224609375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.986328125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.212890625,
+     "cy": 0.830078125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 32,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/03_01078_N31824-40-_CAM1_CAP2_NG_png.rf.d6ec49248d680afbe75fb154d75239d3.jpg",
+   "x0": 23344,
+   "y": 98,
+   "enter_frame": 1576,
+   "center_frame": 1640,
+   "exit_frame": 1704,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.498046875,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.05078125,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.25390625,
+     "w": 0.048828125,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.55078125,
+     "cy": 0.4482421875,
+     "w": 0.3359375,
+     "h": 0.287109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.412109375,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8935546875,
+     "cy": 0.3681640625,
+     "w": 0.076171875,
+     "h": 0.033203125
+    }
+   ]
+  },
+  {
+   "index": 33,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/02_00059_S56802-91-_CAM1_CAP2_OK_png.rf.e72bca09a2d67587c4ae27a1e1be796e.jpg",
+   "x0": 24016,
+   "y": 101,
+   "enter_frame": 1624,
+   "center_frame": 1688,
+   "exit_frame": 1752,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.4990234375,
+     "w": 0.994140625,
+     "h": 0.982421875
+    }
+   ]
+  },
+  {
+   "index": 34,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/02_00202_S57396-31-_CAM1_CAP4_LOWER_NG_png.rf.36eba2ac5aff10893183171c58e88026.jpg",
+   "x0": 24688,
+   "y": 110,
+   "enter_frame": 1672,
+   "center_frame": 1736,
+   "exit_frame": 1800,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3408203125,
+     "cy": 0.4765625,
+     "w": 0.333984375,
+     "h": 0.23828125
+    }
+   ]
+  },
+  {
+   "index": 35,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/02_00238_A630-_CAM1_CAP2_NG_png.rf.254d1f9c0df2732dfb2bfa1e60f3531c.jpg",
+   "x0": 25360,
+   "y": 102,
+   "enter_frame": 1720,
+   "center_frame": 1784,
+   "exit_frame": 1848,
+   "labels": []
+  },
+  {
+   "index": 36,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/02_01078_N31824-40-_CAM1_CAP2_NG_png.rf.d6ec49248d680afbe75fb154d75239d3.jpg",
+   "x0": 26032,
+   "y": 100,
+   "enter_frame": 1768,
+   "center_frame": 1832,
+   "exit_frame": 1896,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.498046875,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.05078125,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.25390625,
+     "w": 0.048828125,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.55078125,
+     "cy": 0.4482421875,
+     "w": 0.3359375,
+     "h": 0.287109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.412109375,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8935546875,
+     "cy": 0.3681640625,
+     "w": 0.076171875,
+     "h": 0.033203125
+    }
+   ]
+  },
+  {
+   "index": 37,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/07_01536_N32017-43-_CAM1_CAP4_RIGHT_OK_png.rf.4ab2c7b913daa42bf60a55d99405349e.jpg",
+   "x0": 26704,
+   "y": 109,
+   "enter_frame": 1816,
+   "center_frame": 1880,
+   "exit_frame": 1944,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.3759765625,
+     "cy": 0.412109375,
+     "w": 0.154296875,
+     "h": 0.13671875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.9248046875,
+     "cy": 0.41796875,
+     "w": 0.013671875,
+     "h": 0.015625
+    }
+   ]
+  },
+  {
+   "index": 38,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/04_00445_S57244-31-_CAM1_CAP4_LEFT_NG_png.rf.8acfb6f553a5831c154545dd307ac8e3.jpg",
+   "x0": 27376,
+   "y": 101,
+   "enter_frame": 1864,
+   "center_frame": 1928,
+   "exit_frame": 1992,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.412109375,
+     "cy": 0.4560546875,
+     "w": 0.234375,
+     "h": 0.201171875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6708984375,
+     "cy": 0.5556640625,
+     "w": 0.228515625,
+     "h": 0.224609375
+    }
+   ]
+  },
+  {
+   "index": 39,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/05_01078_N31824-40-_CAM1_CAP4_RIGHT_NG_png.rf.fa388c98f88f7bfa28371b347c70812a.jpg",
+   "x0": 28048,
+   "y": 104,
+   "enter_frame": 1912,
+   "center_frame": 1976,
+   "exit_frame": 2040,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.814453125,
+     "cy": 0.25390625,
+     "w": 0.046875,
+     "h": 0.03515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.046875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.5478515625,
+     "cy": 0.447265625,
+     "w": 0.337890625,
+     "h": 0.28515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.408203125,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.04296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.3681640625,
+     "w": 0.072265625,
+     "h": 0.033203125
+    },
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    }
+   ]
+  },
+  {
+   "index": 40,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/04_01530_N32018-41-_CAM1_CAP4_LOWER_OK_png.rf.46d57d29da96c214aecbbf6589e31eb8.jpg",
+   "x0": 28720,
+   "y": 104,
+   "enter_frame": 1960,
+   "center_frame": 2024,
+   "exit_frame": 2088,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.2080078125,
+     "cy": 0.8232421875,
+     "w": 0.033203125,
+     "h": 0.033203125
+    }
+   ]
+  },
+  {
+   "index": 41,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/05_00238_A630-_CAM1_CAP4_UPPER_NG_png.rf.89a60320299fdbd94ad779294142263c.jpg",
+   "x0": 29392,
+   "y": 105,
+   "enter_frame": 2008,
+   "center_frame": 2072,
+   "exit_frame": 2136,
+   "labels": []
+  },
+  {
+   "index": 42,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/04_01078_N31824-40-_CAM1_CAP4_RIGHT_NG_png.rf.fa388c98f88f7bfa28371b347c70812a.jpg",
+   "x0": 30064,
+   "y": 99,
+   "enter_frame": 2056,
+   "center_frame": 2120,
+   "exit_frame": 2184,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.814453125,
+     "cy": 0.25390625,
+     "w": 0.046875,
+     "h": 0.03515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.046875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.5478515625,
+     "cy": 0.447265625,
+     "w": 0.337890625,
+     "h": 0.28515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.408203125,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.04296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.3681640625,
+     "w": 0.072265625,
+     "h": 0.033203125
+    },
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    }
+   ]
+  },
+  {
+   "index": 43,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/10_01078_N31824-40-_CAM1_CAP4_UPPER_NG_png.rf.00ce34765ffac1802bf73d53b7e160f4.jpg",
+   "x0": 30736,
+   "y": 100,
+   "enter_frame": 2104,
+   "center_frame": 2168,
+   "exit_frame": 2232,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.5009765625,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.810546875,
+     "cy": 0.2529296875,
+     "w": 0.04296875,
+     "h": 0.041015625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.89453125,
+     "cy": 0.314453125,
+     "w": 0.05859375,
+     "h": 0.03125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.548828125,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.4091796875,
+     "cy": 0.396484375,
+     "w": 0.044921875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.890625,
+     "cy": 0.3671875,
+     "w": 0.0859375,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 44,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/09_00025_1045-_CAM1_CAP2_NG_png.rf.3fc93719671150137b7205d4c666a549.jpg",
+   "x0": 31408,
+   "y": 105,
+   "enter_frame": 2152,
+   "center_frame": 2216,
+   "exit_frame": 2280,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.533203125,
+     "cy": 0.482421875,
+     "w": 0.9140625,
+     "h": 0.93359375
+    }
+   ]
+  },
+  {
+   "index": 45,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/05_00238_A630-_CAM1_CAP4_UPPER_NG_png.rf.89a60320299fdbd94ad779294142263c.jpg",
+   "x0": 32080,
+   "y": 104,
+   "enter_frame": 2200,
+   "center_frame": 2264,
+   "exit_frame": 2328,
+   "labels": []
+  },
+  {
+   "index": 46,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/09_00445_S57244-31-_CAM1_CAP4_RIGHT_NG_png.rf.25d43f454d3b9676bbc94f36101f551c.jpg",
+   "x0": 32752,
+   "y": 106,
+   "enter_frame": 2248,
+   "center_frame": 2312,
+   "exit_frame": 2376,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3935546875,
+     "cy": 0.4501953125,
+     "w": 0.267578125,
+     "h": 0.248046875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6630859375,
+     "cy": 0.5703125,
+     "w": 0.236328125,
+     "h": 0.2265625
+    }
+   ]
+  },
+  {
+   "index": 47,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/06_00054_S56802-91-_CAM1_CAP4_RIGHT_OK_png.rf.c4e931241b3e046293e7831a083b6a10.jpg",
+   "x0": 33424,
+   "y": 102,
+   "enter_frame": 2296,
+   "center_frame": 2360,
+   "exit_frame": 2424,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.435546875,
+     "cy": 0.5,
+     "w": 0.8671875,
+     "h": 0.98828125
+    }
+   ]
+  },
+  {
+   "index": 48,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/02_00238_A630-_CAM1_CAP2_NG_png.rf.254d1f9c0df2732dfb2bfa1e60f3531c.jpg",
+   "x0": 34096,
+   "y": 100,
+   "enter_frame": 2344,
+   "center_frame": 2408,
+   "exit_frame": 2472,
+   "labels": []
+  },
+  {
+   "index": 49,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/08_01367_1045-_CAM1_CAP2_NG_png.rf.bf11673c97e72245fe37e8b2f11183f1.jpg",
+   "x0": 34768,
+   "y": 104,
+   "enter_frame": 2392,
+   "center_frame": 2456,
+   "exit_frame": 2520,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3388671875,
+     "cy": 0.4677734375,
+     "w": 0.287109375,
+     "h": 0.224609375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.986328125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.212890625,
+     "cy": 0.830078125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 50,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/05_01536_N32017-43-_CAM1_CAP4_RIGHT_OK_png.rf.4ab2c7b913daa42bf60a55d99405349e.jpg",
+   "x0": 35440,
+   "y": 106,
+   "enter_frame": 2440,
+   "center_frame": 2504,
+   "exit_frame": 2568,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.3759765625,
+     "cy": 0.412109375,
+     "w": 0.154296875,
+     "h": 0.13671875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.9248046875,
+     "cy": 0.41796875,
+     "w": 0.013671875,
+     "h": 0.015625
+    }
+   ]
+  },
+  {
+   "index": 51,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/01_01367_1045-_CAM1_CAP4_LOWER_NG_png.rf.6caf9f544ddb4520d4df869afb923d73.jpg",
+   "x0": 36112,
+   "y": 102,
+   "enter_frame": 2488,
+   "center_frame": 2552,
+   "exit_frame": 2616,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3349609375,
+     "cy": 0.4951171875,
+     "w": 0.302734375,
+     "h": 0.283203125
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.998046875,
+     "h": 0.98828125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.21484375,
+     "cy": 0.828125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 52,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/01_00428_55C-_CAM1_CAP4_LOWER_NG_png.rf.8996030a9e25d2023377af13681bb099.jpg",
+   "x0": 36784,
+   "y": 109,
+   "enter_frame": 2536,
+   "center_frame": 2600,
+   "exit_frame": 2664,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.98828125
+    }
+   ]
+  },
+  {
+   "index": 53,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/07_00335_S57264-61-_CAM1_CAP4_RIGHT_OK_png.rf.0d8c7419a370d2befaf6e39751a64e00.jpg",
+   "x0": 37456,
+   "y": 104,
+   "enter_frame": 2584,
+   "center_frame": 2648,
+   "exit_frame": 2712,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.17578125,
+     "cy": 0.4580078125,
+     "w": 0.046875,
+     "h": 0.041015625
+    }
+   ]
+  },
+  {
+   "index": 54,
+   "kind": "defect",
+   "case": "Fold",
+   "source": "results/msdd/showcase/01_Fold/originals/images/02_01414_S57846-31-_CAM1_CAP4_LOWER_NG_png.rf.2332b05b60c331bb45d405634cbf020c.jpg",
+   "x0": 38128,
+   "y": 103,
+   "enter_frame": 2632,
+   "center_frame": 2696,
+   "exit_frame": 2760,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.67578125,
+     "cy": 0.87109375,
+     "w": 0.4921875,
+     "h": 0.25
+    }
+   ]
+  },
+  {
+   "index": 55,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/08_00262_A630-_CAM1_CAP4_LOWER_NG_png.rf.a1241c529e25c2c2e4ba5b6ac4397327.jpg",
+   "x0": 38800,
+   "y": 108,
+   "enter_frame": 2680,
+   "center_frame": 2744,
+   "exit_frame": 2808,
+   "labels": []
+  },
+  {
+   "index": 56,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/08_00059_S56802-91-_CAM1_CAP4_LOWER_OK_png.rf.a4c98851906dfc440042b7676425a71f.jpg",
+   "x0": 39472,
+   "y": 104,
+   "enter_frame": 2728,
+   "center_frame": 2792,
+   "exit_frame": 2856,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.4249443359375,
+     "w": 0.998046875,
+     "h": 0.835380859375
+    }
+   ]
+  },
+  {
+   "index": 57,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/09_00262_A630-_CAM1_CAP4_RIGHT_NG_png.rf.6451d307613df0a8d365af9c9f64ad23.jpg",
+   "x0": 40144,
+   "y": 101,
+   "enter_frame": 2776,
+   "center_frame": 2840,
+   "exit_frame": 2904,
+   "labels": []
+  },
+  {
+   "index": 58,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/09_01078_N31824-40-_CAM1_CAP4_LOWER_NG_png.rf.4a5fa5942fc1b13ab73b7ab8a3552593.jpg",
+   "x0": 40816,
+   "y": 100,
+   "enter_frame": 2824,
+   "center_frame": 2888,
+   "exit_frame": 2952,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.5009765625,
+     "w": 0.998046875,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8994140625,
+     "cy": 0.3134765625,
+     "w": 0.052734375,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.546875,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.41015625,
+     "cy": 0.3955078125,
+     "w": 0.04296875,
+     "h": 0.037109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.369140625,
+     "w": 0.087890625,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.2451171875,
+     "w": 0.068359375,
+     "h": 0.052734375
+    }
+   ]
+  },
+  {
+   "index": 59,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/02_01367_1045-_CAM1_CAP4_LEFT_NG_png.rf.7177a587f7f6c6ec7de9413af2ab8f07.jpg",
+   "x0": 41488,
+   "y": 99,
+   "enter_frame": 2872,
+   "center_frame": 2936,
+   "exit_frame": 3000,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.982421875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.2197265625,
+     "cy": 0.8291015625,
+     "w": 0.029296875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.3515625,
+     "cy": 0.4677734375,
+     "w": 0.234375,
+     "h": 0.220703125
+    }
+   ]
+  },
+  {
+   "index": 60,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/07_00445_S57244-31-_CAM1_CAP4_UPPER_NG_png.rf.b45ac6bbd978eb595269065353c79cad.jpg",
+   "x0": 42160,
+   "y": 100,
+   "enter_frame": 2920,
+   "center_frame": 2984,
+   "exit_frame": 3048,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.66796875,
+     "cy": 0.548828125,
+     "w": 0.2421875,
+     "h": 0.21484375
+    },
+    {
+     "type": "Stain",
+     "cx": 0.4052734375,
+     "cy": 0.46875,
+     "w": 0.255859375,
+     "h": 0.21484375
+    }
+   ]
+  },
+  {
+   "index": 61,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/10_00430_S57007-92-_CAM1_CAP4_LEFT_OK_png.rf.ba4ff47a63fb4a6e283887ac3820902b.jpg",
+   "x0": 42832,
+   "y": 100,
+   "enter_frame": 2968,
+   "center_frame": 3032,
+   "exit_frame": 3096,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.509765625,
+     "cy": 0.5029296875,
+     "w": 0.94140625,
+     "h": 0.970703125
+    }
+   ]
+  },
+  {
+   "index": 62,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/03_00059_S56802-91-_CAM1_CAP4_LEFT_OK_png.rf.ef2a8a4dc2a5643c3e606198557d2aeb.jpg",
+   "x0": 43504,
+   "y": 101,
+   "enter_frame": 3016,
+   "center_frame": 3080,
+   "exit_frame": 3144,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5029296875,
+     "cy": 0.49762890625,
+     "w": 0.986328125,
+     "h": 0.982421875
+    }
+   ]
+  },
+  {
+   "index": 63,
+   "kind": "defect",
+   "case": "Fold",
+   "source": "results/msdd/showcase/01_Fold/originals/images/01_00428_55C-_CAM1_CAP4_UPPER_NG_png.rf.3488567b253896b055923cd9bf0eba8e.jpg",
+   "x0": 44176,
+   "y": 108,
+   "enter_frame": 3064,
+   "center_frame": 3128,
+   "exit_frame": 3192,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.677734375,
+     "cy": 0.828125,
+     "w": 0.5703125,
+     "h": 0.33984375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4931640625,
+     "w": 0.98046875,
+     "h": 0.966796875
+    }
+   ]
+  },
+  {
+   "index": 64,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/04_00054_S56802-91-_CAM1_CAP2_OK_png.rf.baeba5901dc798a9cf68db835591964e.jpg",
+   "x0": 44848,
+   "y": 101,
+   "enter_frame": 3112,
+   "center_frame": 3176,
+   "exit_frame": 3240,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.40876171874999995,
+     "w": 0.994140625,
+     "h": 0.80915234375
+    }
+   ]
+  },
+  {
+   "index": 65,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/05_00025_1045-_CAM1_CAP4_LOWER_NG_png.rf.d4b9e7948d30dac752c56001fd116fe9.jpg",
+   "x0": 45520,
+   "y": 98,
+   "enter_frame": 3160,
+   "center_frame": 3224,
+   "exit_frame": 3288,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4765625,
+     "w": 0.98828125,
+     "h": 0.92578125
+    }
+   ]
+  },
+  {
+   "index": 66,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/09_00335_S57264-61-_CAM1_CAP4_UPPER_OK_png.rf.7a099d0f9bcc12d97b833ae7c7763818.jpg",
+   "x0": 46192,
+   "y": 105,
+   "enter_frame": 3208,
+   "center_frame": 3272,
+   "exit_frame": 3336,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.705078125,
+     "cy": 0.7509765625,
+     "w": 0.07421875,
+     "h": 0.287109375
+    }
+   ]
+  },
+  {
+   "index": 67,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/07_00428_55C-_CAM1_CAP4_UPPER_NG_png.rf.3488567b253896b055923cd9bf0eba8e.jpg",
+   "x0": 46864,
+   "y": 107,
+   "enter_frame": 3256,
+   "center_frame": 3320,
+   "exit_frame": 3384,
+   "labels": [
+    {
+     "type": "Fold",
+     "cx": 0.677734375,
+     "cy": 0.828125,
+     "w": 0.5703125,
+     "h": 0.33984375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.498046875,
+     "cy": 0.4931640625,
+     "w": 0.98046875,
+     "h": 0.966796875
+    }
+   ]
+  },
+  {
+   "index": 68,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/03_01078_N31824-40-_CAM1_CAP2_NG_png.rf.d6ec49248d680afbe75fb154d75239d3.jpg",
+   "x0": 47536,
+   "y": 100,
+   "enter_frame": 3304,
+   "center_frame": 3368,
+   "exit_frame": 3432,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.498046875,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.05078125,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.25390625,
+     "w": 0.048828125,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.55078125,
+     "cy": 0.4482421875,
+     "w": 0.3359375,
+     "h": 0.287109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.412109375,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8935546875,
+     "cy": 0.3681640625,
+     "w": 0.076171875,
+     "h": 0.033203125
+    }
+   ]
+  },
+  {
+   "index": 69,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/02_00202_S57396-31-_CAM1_CAP4_LOWER_NG_png.rf.36eba2ac5aff10893183171c58e88026.jpg",
+   "x0": 48208,
+   "y": 102,
+   "enter_frame": 3352,
+   "center_frame": 3416,
+   "exit_frame": 3480,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3408203125,
+     "cy": 0.4765625,
+     "w": 0.333984375,
+     "h": 0.23828125
+    }
+   ]
+  },
+  {
+   "index": 70,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/03_01536_N32017-43-_CAM1_CAP4_UPPER_OK_png.rf.20626d66750df93555ceac45d90d2ef3.jpg",
+   "x0": 48880,
+   "y": 102,
+   "enter_frame": 3400,
+   "center_frame": 3464,
+   "exit_frame": 3528,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.4052734375,
+     "cy": 0.435546875,
+     "w": 0.126953125,
+     "h": 0.1171875
+    }
+   ]
+  },
+  {
+   "index": 71,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/01_01536_N32017-43-_CAM1_CAP4_LOWER_OK_png.rf.a5996e5b6465b88c803fe008cf3da7ae.jpg",
+   "x0": 49552,
+   "y": 98,
+   "enter_frame": 3448,
+   "center_frame": 3512,
+   "exit_frame": 3576,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.390625,
+     "cy": 0.42578125,
+     "w": 0.140625,
+     "h": 0.125
+    }
+   ]
+  },
+  {
+   "index": 72,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/06_01367_1045-_CAM1_CAP2_NG_png.rf.bf11673c97e72245fe37e8b2f11183f1.jpg",
+   "x0": 50224,
+   "y": 100,
+   "enter_frame": 3496,
+   "center_frame": 3560,
+   "exit_frame": 3624,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3388671875,
+     "cy": 0.4677734375,
+     "w": 0.287109375,
+     "h": 0.224609375
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.986328125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.212890625,
+     "cy": 0.830078125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 73,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/04_01078_N31824-40-_CAM1_CAP4_RIGHT_NG_png.rf.fa388c98f88f7bfa28371b347c70812a.jpg",
+   "x0": 50896,
+   "y": 104,
+   "enter_frame": 3544,
+   "center_frame": 3608,
+   "exit_frame": 3672,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.814453125,
+     "cy": 0.25390625,
+     "w": 0.046875,
+     "h": 0.03515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.046875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.5478515625,
+     "cy": 0.447265625,
+     "w": 0.337890625,
+     "h": 0.28515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.408203125,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.04296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.3681640625,
+     "w": 0.072265625,
+     "h": 0.033203125
+    },
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    }
+   ]
+  },
+  {
+   "index": 74,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/08_01530_N32018-41-_CAM1_CAP2_OK_png.rf.f7c3df5d984ea97fda6e9b4d9855bc58.jpg",
+   "x0": 51568,
+   "y": 106,
+   "enter_frame": 3592,
+   "center_frame": 3656,
+   "exit_frame": 3720,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.205078125,
+     "cy": 0.822265625,
+     "w": 0.0390625,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 75,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/10_01078_N31824-40-_CAM1_CAP4_UPPER_NG_png.rf.00ce34765ffac1802bf73d53b7e160f4.jpg",
+   "x0": 52240,
+   "y": 103,
+   "enter_frame": 3640,
+   "center_frame": 3704,
+   "exit_frame": 3768,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.5009765625,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.810546875,
+     "cy": 0.2529296875,
+     "w": 0.04296875,
+     "h": 0.041015625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.89453125,
+     "cy": 0.314453125,
+     "w": 0.05859375,
+     "h": 0.03125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.548828125,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.4091796875,
+     "cy": 0.396484375,
+     "w": 0.044921875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.890625,
+     "cy": 0.3671875,
+     "w": 0.0859375,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 76,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/msdd/showcase/06_Normal/originals/images/10_00262_A630-_CAM1_CAP4_UPPER_NG_png.rf.aedeb51bd91b750d16a4347d11c8321b.jpg",
+   "x0": 52912,
+   "y": 107,
+   "enter_frame": 3688,
+   "center_frame": 3752,
+   "exit_frame": 3816,
+   "labels": []
+  },
+  {
+   "index": 77,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/03_01367_1045-_CAM1_CAP4_LOWER_NG_png.rf.6caf9f544ddb4520d4df869afb923d73.jpg",
+   "x0": 53584,
+   "y": 107,
+   "enter_frame": 3736,
+   "center_frame": 3800,
+   "exit_frame": 3864,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.3349609375,
+     "cy": 0.4951171875,
+     "w": 0.302734375,
+     "h": 0.283203125
+    },
+    {
+     "type": "Porosity",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.998046875,
+     "h": 0.98828125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.21484375,
+     "cy": 0.828125,
+     "w": 0.0234375,
+     "h": 0.0234375
+    }
+   ]
+  },
+  {
+   "index": 78,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/08_01078_N31824-40-_CAM1_CAP4_UPPER_NG_png.rf.00ce34765ffac1802bf73d53b7e160f4.jpg",
+   "x0": 54256,
+   "y": 103,
+   "enter_frame": 3784,
+   "center_frame": 3848,
+   "exit_frame": 3912,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.5009765625,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.810546875,
+     "cy": 0.2529296875,
+     "w": 0.04296875,
+     "h": 0.041015625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.89453125,
+     "cy": 0.314453125,
+     "w": 0.05859375,
+     "h": 0.03125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.548828125,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.4091796875,
+     "cy": 0.396484375,
+     "w": 0.044921875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.890625,
+     "cy": 0.3671875,
+     "w": 0.0859375,
+     "h": 0.0390625
+    }
+   ]
+  },
+  {
+   "index": 79,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/09_00025_1045-_CAM1_CAP2_NG_png.rf.3fc93719671150137b7205d4c666a549.jpg",
+   "x0": 54928,
+   "y": 100,
+   "enter_frame": 3832,
+   "center_frame": 3896,
+   "exit_frame": 3960,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.533203125,
+     "cy": 0.482421875,
+     "w": 0.9140625,
+     "h": 0.93359375
+    }
+   ]
+  },
+  {
+   "index": 80,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/06_01078_N31824-40-_CAM1_CAP4_LOWER_NG_png.rf.4a5fa5942fc1b13ab73b7ab8a3552593.jpg",
+   "x0": 55600,
+   "y": 109,
+   "enter_frame": 3880,
+   "center_frame": 3944,
+   "exit_frame": 4008,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.5009765625,
+     "w": 0.998046875,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8994140625,
+     "cy": 0.3134765625,
+     "w": 0.052734375,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.546875,
+     "cy": 0.447265625,
+     "w": 0.33203125,
+     "h": 0.28125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.41015625,
+     "cy": 0.3955078125,
+     "w": 0.04296875,
+     "h": 0.037109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.369140625,
+     "w": 0.087890625,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.2451171875,
+     "w": 0.068359375,
+     "h": 0.052734375
+    }
+   ]
+  },
+  {
+   "index": 81,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/04_00445_S57244-31-_CAM1_CAP4_LEFT_NG_png.rf.8acfb6f553a5831c154545dd307ac8e3.jpg",
+   "x0": 56272,
+   "y": 106,
+   "enter_frame": 3928,
+   "center_frame": 3992,
+   "exit_frame": 4056,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.412109375,
+     "cy": 0.4560546875,
+     "w": 0.234375,
+     "h": 0.201171875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6708984375,
+     "cy": 0.5556640625,
+     "w": 0.228515625,
+     "h": 0.224609375
+    }
+   ]
+  },
+  {
+   "index": 82,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/01_00202_S57396-31-_CAM1_CAP4_UPPER_NG_png.rf.5a5ba7bfd2c1b192d0e4eb49cbe5992e.jpg",
+   "x0": 56944,
+   "y": 107,
+   "enter_frame": 3976,
+   "center_frame": 4040,
+   "exit_frame": 4104,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.351283203125,
+     "cy": 0.482421875,
+     "w": 0.33537890625,
+     "h": 0.25
+    }
+   ]
+  },
+  {
+   "index": 83,
+   "kind": "defect",
+   "case": "Porosity",
+   "source": "results/msdd/showcase/03_Porosity/originals/images/02_00059_S56802-91-_CAM1_CAP2_OK_png.rf.e72bca09a2d67587c4ae27a1e1be796e.jpg",
+   "x0": 57616,
+   "y": 108,
+   "enter_frame": 4024,
+   "center_frame": 4088,
+   "exit_frame": 4152,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5009765625,
+     "cy": 0.4990234375,
+     "w": 0.994140625,
+     "h": 0.982421875
+    }
+   ]
+  },
+  {
+   "index": 84,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/04_01530_N32018-41-_CAM1_CAP4_LOWER_OK_png.rf.46d57d29da96c214aecbbf6589e31eb8.jpg",
+   "x0": 58288,
+   "y": 108,
+   "enter_frame": 4072,
+   "center_frame": 4136,
+   "exit_frame": 4200,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.2080078125,
+     "cy": 0.8232421875,
+     "w": 0.033203125,
+     "h": 0.033203125
+    }
+   ]
+  },
+  {
+   "index": 85,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/06_00445_S57244-31-_CAM1_CAP4_LOWER_NG_png.rf.416ec671ef8bb99556a3e2ea8ac9304b.jpg",
+   "x0": 58960,
+   "y": 109,
+   "enter_frame": 4120,
+   "center_frame": 4184,
+   "exit_frame": 4248,
+   "labels": [
+    {
+     "type": "Stain",
+     "cx": 0.4150390625,
+     "cy": 0.44140625,
+     "w": 0.240234375,
+     "h": 0.26953125
+    },
+    {
+     "type": "Stain",
+     "cx": 0.6748046875,
+     "cy": 0.52734375,
+     "w": 0.228515625,
+     "h": 0.25390625
+    }
+   ]
+  },
+  {
+   "index": 86,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/05_01078_N31824-40-_CAM1_CAP4_RIGHT_NG_png.rf.fa388c98f88f7bfa28371b347c70812a.jpg",
+   "x0": 59632,
+   "y": 98,
+   "enter_frame": 4168,
+   "center_frame": 4232,
+   "exit_frame": 4296,
+   "labels": [
+    {
+     "type": "Dark Spot",
+     "cx": 0.814453125,
+     "cy": 0.25390625,
+     "w": 0.046875,
+     "h": 0.03515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.046875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.5478515625,
+     "cy": 0.447265625,
+     "w": 0.337890625,
+     "h": 0.28515625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.408203125,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.04296875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8916015625,
+     "cy": 0.3681640625,
+     "w": 0.072265625,
+     "h": 0.033203125
+    },
+    {
+     "type": "Scratch",
+     "cx": 0.4990234375,
+     "cy": 0.498046875,
+     "w": 0.994140625,
+     "h": 0.9921875
+    }
+   ]
+  },
+  {
+   "index": 87,
+   "kind": "defect",
+   "case": "Stain",
+   "source": "results/msdd/showcase/05_Stain/originals/images/05_01367_1045-_CAM1_CAP4_LEFT_NG_png.rf.7177a587f7f6c6ec7de9413af2ab8f07.jpg",
+   "x0": 60304,
+   "y": 105,
+   "enter_frame": 4216,
+   "center_frame": 4280,
+   "exit_frame": 4344,
+   "labels": [
+    {
+     "type": "Porosity",
+     "cx": 0.5,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.982421875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.2197265625,
+     "cy": 0.8291015625,
+     "w": 0.029296875,
+     "h": 0.029296875
+    },
+    {
+     "type": "Stain",
+     "cx": 0.3515625,
+     "cy": 0.4677734375,
+     "w": 0.234375,
+     "h": 0.220703125
+    }
+   ]
+  },
+  {
+   "index": 88,
+   "kind": "defect",
+   "case": "DarkSpot",
+   "source": "results/msdd/showcase/00_DarkSpot/originals/images/07_01536_N32017-43-_CAM1_CAP4_RIGHT_OK_png.rf.4ab2c7b913daa42bf60a55d99405349e.jpg",
+   "x0": 60976,
+   "y": 110,
+   "enter_frame": 4264,
+   "center_frame": 4328,
+   "exit_frame": 4392,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.3759765625,
+     "cy": 0.412109375,
+     "w": 0.154296875,
+     "h": 0.13671875
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.9248046875,
+     "cy": 0.41796875,
+     "w": 0.013671875,
+     "h": 0.015625
+    }
+   ]
+  },
+  {
+   "index": 89,
+   "kind": "defect",
+   "case": "Scratch",
+   "source": "results/msdd/showcase/04_Scratch/originals/images/02_01078_N31824-40-_CAM1_CAP2_NG_png.rf.d6ec49248d680afbe75fb154d75239d3.jpg",
+   "x0": 61648,
+   "y": 108,
+   "enter_frame": 4312,
+   "center_frame": 4376,
+   "exit_frame": 4440,
+   "labels": [
+    {
+     "type": "Scratch",
+     "cx": 0.498046875,
+     "cy": 0.4990234375,
+     "w": 0.99609375,
+     "h": 0.994140625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.896484375,
+     "cy": 0.3134765625,
+     "w": 0.05078125,
+     "h": 0.033203125
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8134765625,
+     "cy": 0.25390625,
+     "w": 0.048828125,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.55078125,
+     "cy": 0.4482421875,
+     "w": 0.3359375,
+     "h": 0.287109375
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.412109375,
+     "cy": 0.39453125,
+     "w": 0.04296875,
+     "h": 0.0390625
+    },
+    {
+     "type": "Dark Spot",
+     "cx": 0.8935546875,
+     "cy": 0.3681640625,
+     "w": 0.076171875,
+     "h": 0.033203125
+    }
+   ]
+  }
+ ]
+}

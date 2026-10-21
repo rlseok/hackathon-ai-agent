@@ -47,10 +47,15 @@ def check_models():
         return
     OUT.mkdir(exist_ok=True)
     tests = [
-        ('pcb_v2_yolo11s.pt', 640, ROOT / 'results/pcb/showcase'),
-        ('msdd_v1_yolo11s_seg.pt', 512, ROOT / 'results/msdd/showcase'),
+        ('pcb_v2_yolo11s.pt', 640, ROOT / 'results/pcb/showcase', False),
+        ('msdd_v1_yolo11s_seg.pt', 512, ROOT / 'results/msdd/showcase', False),
+        # 휴대폰 표면 (Izumi 학습) — 데이터 라이선스 확인 전이라 공개 저장소에는 없을 수 있다 → 없으면 건너뜀
+        ('mobile_surface_yolo11s_seg.pt', 512, ROOT / 'results/mobile/showcase', True),
     ]
-    for name, imgsz, showcase in tests:
+    for name, imgsz, showcase, optional in tests:
+        if optional and not (ROOT / 'models' / name).exists():
+            print(f'  [INFO] {name} 없음 — 휴대폰 표면 검사는 건너뜀 (모델 파일을 models/ 에 넣으면 사용 가능)')
+            continue
         try:
             model = YOLO(str(ROOT / 'models' / name))
             report(True, f'{name} 로드 (클래스 {len(model.names)}개: {", ".join(model.names.values())})')
@@ -59,7 +64,10 @@ def check_models():
             continue
         imgs = sorted(showcase.glob('*/originals/images/01_*'))
         if not imgs:
-            report(False, f'{showcase} 에 시험 이미지가 없음')
+            if optional:
+                print(f'  [INFO] {showcase.relative_to(ROOT)} 에 시험 이미지가 없어 추론 시험은 건너뜀')
+            else:
+                report(False, f'{showcase} 에 시험 이미지가 없음')
             continue
         for img in imgs:
             r = model.predict(str(img), imgsz=imgsz, conf=0.25, verbose=False)[0]
