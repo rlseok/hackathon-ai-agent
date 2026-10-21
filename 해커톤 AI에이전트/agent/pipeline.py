@@ -46,6 +46,11 @@ def load_result(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
 
 
+def needs_text(result):
+    """이상·의심인데 보고서 문장이 아직 없는 기록 (실시간 라인 기록, Ollama 가 꺼져 있을 때 기록된 건)."""
+    return result['detection']['verdict'] != 'normal' and (result['text'].get('pending_ai') or not result['text'].get('summary'))
+
+
 def register_pending(result, out_root=OUT, xlsx=True, when=None):
     """분석 직후: 결과 저장 + 검사 대장에 '작업자 확인 대기'로 기록. xlsx=False 면 엑셀 대장은 나중에 모아서."""
     save_result(result)

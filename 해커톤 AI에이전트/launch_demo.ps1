@@ -5,7 +5,9 @@
 #                                                                            + video server (http://localhost:8506)
 # 1) starts Ollama if it is not running  2) starts the Streamlit server if it is not running
 # 3) opens the browser in demo mode (?demo=1): the language picker + screen guide appear every time the page opens.
-param([ValidateSet('dash', 'chat', 'live')][string]$App = 'dash', [ValidateSet('pcb', 'phone', 'metal')][string]$Line = 'pcb', [switch]$NoBrowser)
+#   -Llm qwen3-defect  -> report / chat model (sets DEFECT_LLM for servers started now; a server already running keeps its model)
+param([ValidateSet('dash', 'chat', 'live')][string]$App = 'dash', [ValidateSet('pcb', 'phone', 'metal')][string]$Line = 'pcb', [switch]$NoBrowser,
+      [string]$Llm = '')
 
 $Root = $PSScriptRoot
 $cfg = @{
@@ -14,6 +16,7 @@ $cfg = @{
     live = @{ script = 'app_live.py'; port = 8505; name = 'Live inspection' }
 }[$App]
 $py = Join-Path $Root '.venv\Scripts\python.exe'
+if ($Llm) { $env:DEFECT_LLM = $Llm }        # child processes (Streamlit, video server) inherit it
 $Host.UI.RawUI.WindowTitle = "Defect Agent - $($cfg.name) demo"
 
 function Test-Up([string]$url) {

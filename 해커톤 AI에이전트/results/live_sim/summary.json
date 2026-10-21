@@ -1,0 +1,298 @@
+{
+ "pcb": {
+  "line": "pcb",
+  "name": "PCB",
+  "domain": "pcb",
+  "video": "pcb_sensing_sim.mp4",
+  "frames": 5493,
+  "video_seconds": 183.1,
+  "items_in_video": 94,
+  "inspected": 94,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 13,
+   "review": 16,
+   "reject": 65
+  },
+  "board_acc": 0.9894,
+  "correct": 93,
+  "boards": 94,
+  "defect_caught": 80,
+  "defect_boards": 80,
+  "normal_passed": 13,
+  "normal_boards": 14,
+  "tp": 495,
+  "fp": 4,
+  "fn": 0,
+  "precision": 0.992,
+  "recall": 1.0,
+  "f1": 0.996,
+  "proc_ms_mean": 16.3,
+  "proc_ms_p95": 19.0,
+  "proc_fps": 61.4,
+  "wall_seconds": 103.0,
+  "by_type": {
+   "falsecopper": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 5
+    }
+   },
+   "falsecopper pinhole": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "falsecopper pinhole scratch": {
+    "items": 6,
+    "correct": 6,
+    "verdicts": {
+     "reject": 6
+    }
+   },
+   "missinghole": {
+    "items": 9,
+    "correct": 9,
+    "verdicts": {
+     "reject": 9
+    }
+   },
+   "missinghole shortcircuit": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "mousebite": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "mousebite scratch spur": {
+    "items": 13,
+    "correct": 13,
+    "verdicts": {
+     "reject": 13
+    }
+   },
+   "normal": {
+    "items": 14,
+    "correct": 13,
+    "verdicts": {
+     "review": 1,
+     "normal": 13
+    }
+   },
+   "opencircuit": {
+    "items": 7,
+    "correct": 7,
+    "verdicts": {
+     "reject": 7
+    }
+   },
+   "opencircuit scratch": {
+    "items": 3,
+    "correct": 3,
+    "verdicts": {
+     "reject": 3
+    }
+   },
+   "pinhole scratch": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "review": 5
+    }
+   },
+   "scratch": {
+    "items": 10,
+    "correct": 10,
+    "verdicts": {
+     "review": 10
+    }
+   },
+   "shortcircuit": {
+    "items": 10,
+    "correct": 10,
+    "verdicts": {
+     "reject": 10
+    }
+   },
+   "spur": {
+    "items": 3,
+    "correct": 3,
+    "verdicts": {
+     "reject": 3
+    }
+   }
+  }
+ },
+ "phone": {
+  "line": "phone",
+  "name": "LCD (phone surface)",
+  "domain": "mobile",
+  "video": "phone_sensing_sim.mp4",
+  "frames": 4667,
+  "video_seconds": 155.6,
+  "items_in_video": 79,
+  "inspected": 79,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 19,
+   "review": 40,
+   "reject": 20
+  },
+  "board_acc": 1.0,
+  "correct": 79,
+  "boards": 79,
+  "defect_caught": 60,
+  "defect_boards": 60,
+  "normal_passed": 19,
+  "normal_boards": 19,
+  "tp": 159,
+  "fp": 6,
+  "fn": 1,
+  "precision": 0.9636,
+  "recall": 0.9938,
+  "f1": 0.9785,
+  "proc_ms_mean": 15.6,
+  "proc_ms_p95": 17.4,
+  "proc_fps": 64.0,
+  "wall_seconds": 84.1,
+  "by_type": {
+   "normal": {
+    "items": 19,
+    "correct": 19,
+    "verdicts": {
+     "normal": 19
+    }
+   },
+   "oil": {
+    "items": 20,
+    "correct": 20,
+    "verdicts": {
+     "reject": 20
+    }
+   },
+   "scratch": {
+    "items": 20,
+    "correct": 20,
+    "verdicts": {
+     "review": 20
+    }
+   },
+   "stain": {
+    "items": 20,
+    "correct": 20,
+    "verdicts": {
+     "review": 20
+    }
+   }
+  }
+ },
+ "metal": {
+  "line": "metal",
+  "name": "Metal surface",
+  "domain": "msdd",
+  "video": "metal_sensing_sim.mp4",
+  "frames": 4442,
+  "video_seconds": 148.1,
+  "items_in_video": 90,
+  "inspected": 90,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 12,
+   "review": 28,
+   "reject": 50
+  },
+  "board_acc": 0.9778,
+  "correct": 88,
+  "boards": 90,
+  "defect_caught": 78,
+  "defect_boards": 80,
+  "normal_passed": 10,
+  "normal_boards": 10,
+  "tp": 189,
+  "fp": 11,
+  "fn": 11,
+  "precision": 0.945,
+  "recall": 0.945,
+  "f1": 0.945,
+  "proc_ms_mean": 20.7,
+  "proc_ms_p95": 22.6,
+  "proc_fps": 48.3,
+  "wall_seconds": 103.6,
+  "by_type": {
+   "Dark Spot": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "review": 4
+    }
+   },
+   "Dark Spot Porosity Stain": {
+    "items": 12,
+    "correct": 12,
+    "verdicts": {
+     "reject": 12
+    }
+   },
+   "Dark Spot Scratch": {
+    "items": 20,
+    "correct": 20,
+    "verdicts": {
+     "review": 4,
+     "reject": 16
+    }
+   },
+   "Fold": {
+    "items": 2,
+    "correct": 0,
+    "verdicts": {
+     "normal": 2
+    }
+   },
+   "Fold Porosity": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "Porosity": {
+    "items": 18,
+    "correct": 18,
+    "verdicts": {
+     "reject": 18
+    }
+   },
+   "Scratch": {
+    "items": 8,
+    "correct": 8,
+    "verdicts": {
+     "review": 8
+    }
+   },
+   "Stain": {
+    "items": 12,
+    "correct": 12,
+    "verdicts": {
+     "review": 12
+    }
+   },
+   "normal": {
+    "items": 10,
+    "correct": 10,
+    "verdicts": {
+     "normal": 10
+    }
+   }
+  }
+ }
+}

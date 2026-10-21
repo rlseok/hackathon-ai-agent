@@ -3,13 +3,15 @@
 원인 후보·조치 '목록' 은 지식베이스에서 코드가 그대로 가져가고, Qwen 은 주어진 사실로 문장만 쓴다.
 """
 import json
+import os
 from collections import defaultdict
 
 import ollama
 
 from agent.i18n import SEVERITY, pos_text, reason_text, type_name
 
-MODEL = 'qwen3:8b'
+# 보고서·상담에 쓰는 Ollama 모델. 환경 변수 DEFECT_LLM 으로 바꾼다 (예: Izumi LoRA 를 합친 qwen3-defect)
+MODEL = os.environ.get('DEFECT_LLM', 'qwen3:8b')
 LANGS = {'ko': '한국어', 'vi': '베트남어(Tiếng Việt)', 'en': '영어(English)'}
 
 SYSTEM = """너는 제조 품질 불량 보고서를 작성하는 보조자다.

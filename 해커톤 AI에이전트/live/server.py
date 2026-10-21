@@ -38,7 +38,8 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from agent.detect import _model, detect, thresholds  # noqa: E402
-from agent.pipeline import OUT, analyze_detected, register_pending  # noqa: E402
+from agent import records  # noqa: E402
+from agent.pipeline import OUT, analyze_detected, load_result, needs_text, refresh, register_pending  # noqa: E402
 
 LIVE = OUT / 'live'
 CAPTURES = LIVE / 'captures'
@@ -77,6 +78,10 @@ class Line:
         self.names = self.model.names
         self.reports = queue.Queue()
         self.xlsx_dirty = False
+        self.preview, self.preview_age = [], 0  # 미리보기 박스 (preview_every 프레임마다 갱신)
+        self.tick = deque(maxlen=30)
+        self.last_inspect = 0.0                 # 마지막으로 제품을 판정한 시각 (미리 쓰기는 라인이 쉴 때만)
+        self.prefetched = set()                 # 미리 쓰기를 시도한 기록 (실패해도 다시 붙잡지 않게)
         self.reset()
 
     def reset(self):
@@ -108,8 +113,23 @@ class Line:
         else:
             b, g, r = (small[..., i].astype(np.int16) for i in range(3))
             mask = (g - np.maximum(r, b)) > 25
+        segs = self._join(self._runs(mask), self.bw / step)
         return [{**s, 'x0': s['x0'] * step, 'x1': min(s['x1'] * step, frame.shape[1]), 'y0': s['y0'] * step,
-                 'y1': min(s['y1'] * step, frame.shape[0]), 'cx': s['cx'] * step} for s in self._runs(mask)]
+                 'y1': min(s['y1'] * step, frame.shape[0]), 'cx': s['cx'] * step} for s in segs]
+
+    @staticmethod
+    def _join(segs, bw):
+        """제품 색이 벨트와 비슷한 부분(예: 회색 금속면)에서 한 제품이 둘로 갈라진 경우를 다시 잇는다.
+        틈이 제품 폭의 25% 이하이고 이은 폭이 제품 하나(115%)를 넘지 않을 때만 — 이웃 제품끼리는 붙지 않는다."""
+        out = []
+        for s in segs:
+            p = out[-1] if out else None
+            if p and s['x0'] - p['x1'] <= 0.25 * bw and s['x1'] - p['x0'] <= 1.15 * bw:
+                out[-1] = {'x0': p['x0'], 'x1': s['x1'], 'y0': min(p['y0'], s['y0']), 'y1': max(p['y1'], s['y1']),
+                           'cx': (p['x0'] + s['x1']) / 2, 'touch': p['touch'] or s['touch']}
+            else:
+                out.append(s)
+        return out
 
     @staticmethod
     def _runs(mask):
@@ -205,6 +225,7 @@ class Line:
         cv2.imwrite(str(path), crop, [cv2.IMWRITE_JPEG_QUALITY, 95])
         det = detect(path, self.domain, save_dir=OUT / 'work' / name, tile=False)
         verdict = det['verdict']
+        self.last_inspect = time.time()
         types = sorted({d['type'] for d in det['defects']})
         ev = {'seq': seq, 'name': name, 'time': stamp.strftime('%H:%M:%S'), 'verdict': verdict, 'types': types,
               'n': len(det['defects']), 'max_conf': max((d['conf'] for d in det['defects']), default=0.0),
@@ -297,6 +318,50 @@ class Line:
                 if self.reports.empty():
                     self.preview_every = 1
 
+    # ── 미리 쓰기 (단계 1-4): 라인이 쉬는 동안(일시정지, 또는 몇 초간 새 제품 없음) 최근 기록의 보고서 문장을 미리 쓴다 ──
+    # 작업자가 열 때 Qwen 을 기다리지 않게. 라인이 다시 돌면 다음 건부터 멈춘다 (쓰고 있던 한 건은 마저 쓴다).
+    def idle(self, quiet=8):
+        return self.reports.empty() and (self.paused or time.time() - self.last_inspect > quiet)
+
+    def prefetch_worker(self, recent=6):
+        while True:
+            time.sleep(2)
+            if not self.a.prefetch or not self.idle():
+                continue
+            todo = []
+            for e in reversed(records.load(OUT)):     # 최신 기록부터
+                if len(todo) >= recent:
+                    break
+                if not e['id'].startswith('live_') or e['status'] != 'pending' or e['id'] in self.prefetched:
+                    continue
+                try:
+                    r = load_result(OUT / e['result_json'])
+                except (OSError, ValueError, KeyError):
+                    continue
+                if needs_text(r):
+                    todo.append((e, r))
+            todo.sort(key=lambda x: x[1]['detection']['verdict'] != 'reject')   # 이상 먼저
+            for e, r in todo:
+                if not self.idle():
+                    break
+                self.prefetched.add(e['id'])
+                self._report_status_by_name(e['id'], 'writing')
+                try:
+                    r['lang'] = self.lang
+                    refresh(r, write=True)
+                    register_pending(r, xlsx=False, when=e['일시'])   # 검사 시각은 그대로
+                    self.xlsx_dirty = True
+                    self._report_status_by_name(e['id'], 'ready')
+                except Exception as ex:  # noqa: BLE001 — Ollama 가 꺼져 있으면 열 때 다시 시도
+                    self._report_status_by_name(e['id'], 'logged')
+                    print('prefetch error:', ex)
+
+    def _report_status_by_name(self, name, status):
+        with self.lock:
+            for ev in self.events:
+                if ev['name'] == name:
+                    ev['report'] = status
+
     def xlsx_worker(self, every=20):
         """엑셀 대장(썸네일 포함)은 다시 만드는 데 몇 초 걸려서, 실시간 기록은 모아서 주기적으로 다시 만든다."""
         from agent.records import rebuild_xlsx
@@ -381,8 +446,6 @@ class Line:
             sys.exit(f'cannot open source: {self.a.camera if self.a.camera is not None else self.a.source}')
         t0, idx = time.time(), 0
         last = None
-        preview, preview_age = [], 0
-        tick = deque(maxlen=30)
         while True:
             if self.restart:
                 cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
@@ -390,7 +453,7 @@ class Line:
                 with self.lock:
                     self.boards, self.prev_centers = [], []
             if self.paused and last is not None:
-                self.publish(self.draw(last.copy(), self.segments(last), preview))
+                self.publish(self.draw(last.copy(), self.segments(last), self.preview))
                 time.sleep(0.1)
                 t0 = time.time() - idx / src_fps if src_fps else t0
                 continue
@@ -414,40 +477,47 @@ class Line:
                 continue
             idx += 1
             last = frame
-            ts = time.time()
-            segs = self.segments(frame)
-            # 기판 이동 → 판정 붙은 기판 위치 갱신
-            zc = frame.shape[1] / 2
-            with self.lock:
-                kept = []
-                for b in self.boards:
-                    m = [s for s in segs if -40 <= b['cx'] - s['cx'] <= 120]
-                    if m:
-                        b['cx'] = min(m, key=lambda s: b['cx'] - s['cx'])['cx']
-                        kept.append(b)
-                self.boards = kept
-            # 센싱: 기판 중심이 화면 가운데를 지나는 순간 한 번
-            for s in segs:
-                if s['touch'] or s['x1'] - s['x0'] < 0.8 * self.bw:
-                    continue
-                prev = [p for p in self.prev_centers if 0 <= p - s['cx'] <= 120]
-                if prev and min(prev) > zc >= s['cx']:
-                    self.inspect(frame, s, idx - 1 if self.a.camera is None else None)
-            self.prev_centers = [s['cx'] for s in segs]
-            # 미리보기 (화면 전체, 원래 크기로)
-            preview_age += 1
-            if preview_age >= self.preview_every:
-                preview_age = 0
-                r = self.model.predict(frame, imgsz=self.preview_imgsz, conf=self.conf, verbose=False)[0]
-                preview = [(b.tolist(), int(c), float(p)) for b, c, p in zip(r.boxes.xyxy, r.boxes.cls, r.boxes.conf)]
-            self.infer_ms = 0.8 * self.infer_ms + 0.2 * (time.time() - ts) * 1000
-            if self.flash > 0:
-                self.flash -= 1
-            tick.append(time.time())
-            if len(tick) > 1:
-                self.fps = (len(tick) - 1) / (tick[-1] - tick[0])
-            self.publish(self.draw(frame, segs, preview))
+            self.publish(self.process(frame, idx))
             self.frame_no += 1
+
+    def process(self, frame, idx):
+        """프레임 하나: 제품 찾기 → 센싱 구역 판정 → 미리보기 → 그린 화면. idx = 영상의 몇 번째 프레임인지 (1부터).
+
+        실시간 루프(run)와 오프라인 시뮬레이션 녹화(tools/record_line_sim.py)가 같이 쓴다.
+        """
+        ts = time.time()
+        segs = self.segments(frame)
+        # 기판 이동 → 판정 붙은 기판 위치 갱신
+        zc = frame.shape[1] / 2
+        with self.lock:
+            kept = []
+            for b in self.boards:
+                m = [s for s in segs if -40 <= b['cx'] - s['cx'] <= 120]
+                if m:
+                    b['cx'] = min(m, key=lambda s: b['cx'] - s['cx'])['cx']
+                    kept.append(b)
+            self.boards = kept
+        # 센싱: 기판 중심이 화면 가운데를 지나는 순간 한 번
+        for s in segs:
+            if s['touch'] or s['x1'] - s['x0'] < 0.8 * self.bw:
+                continue
+            prev = [p for p in self.prev_centers if 0 <= p - s['cx'] <= 120]
+            if prev and min(prev) > zc >= s['cx']:
+                self.inspect(frame, s, idx - 1 if self.a.camera is None else None)
+        self.prev_centers = [s['cx'] for s in segs]
+        # 미리보기 (화면 전체, 원래 크기로)
+        self.preview_age += 1
+        if self.preview_age >= self.preview_every:
+            self.preview_age = 0
+            r = self.model.predict(frame, imgsz=self.preview_imgsz, conf=self.conf, verbose=False)[0]
+            self.preview = [(b.tolist(), int(c), float(p)) for b, c, p in zip(r.boxes.xyxy, r.boxes.cls, r.boxes.conf)]
+        self.infer_ms = 0.8 * self.infer_ms + 0.2 * (time.time() - ts) * 1000
+        if self.flash > 0:
+            self.flash -= 1
+        self.tick.append(time.time())
+        if len(self.tick) > 1:
+            self.fps = (len(self.tick) - 1) / (self.tick[-1] - self.tick[0])
+        return self.draw(frame, segs, self.preview)
 
     def publish(self, img):
         ok, buf = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 80])
@@ -552,6 +622,8 @@ def main():
     ap.add_argument('--preview-imgsz', type=int, default=None,
                     help='미리보기 추론 크기 (기본: PCB·금속 1280 = 화면 원래 크기, 액정 640 = 제품이 학습 축척)')
     ap.add_argument('--lang', default='ko', choices=['ko', 'vi', 'en'])
+    ap.add_argument('--no-prefetch', dest='prefetch', action='store_false',
+                    help='라인이 쉬는 동안 최근 기록의 보고서 문장을 미리 쓰지 않는다')
     ap.add_argument('--write-now', action='store_true', help='기록할 때 바로 Qwen 보고서 문장까지 작성 (기본: 열 때 작성)')
     ap.add_argument('--max-backlog', type=int, default=2, help='--write-now 일 때, 대기가 이보다 많으면 문장 없이 기록')
     ap.add_argument('--no-loop', dest='loop', action='store_false')
@@ -561,6 +633,7 @@ def main():
     LINE = Line(a)
     threading.Thread(target=LINE.report_worker, daemon=True).start()
     threading.Thread(target=LINE.xlsx_worker, daemon=True).start()
+    threading.Thread(target=LINE.prefetch_worker, daemon=True).start()
     threading.Thread(target=LINE.run, daemon=True).start()
     srv = ThreadingHTTPServer(('0.0.0.0', a.port), Handler)
     srv.daemon_threads = True

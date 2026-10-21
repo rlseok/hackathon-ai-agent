@@ -14,7 +14,7 @@ from agent.chat import chat_stream
 from agent.detect import ROOT, _model, parse_view
 from agent.i18n import (LANGS, PROCESS, STATUS, T, level_name, pos_text, process_name, reason_text, type_name,
                         verdict_name)
-from agent.pipeline import (INBOX, OUT, analyze, finalize, load_result, process_inbox, refresh, register_pending,
+from agent.pipeline import (INBOX, OUT, analyze, finalize, load_result, needs_text, process_inbox, refresh, register_pending,
                             reject_false_positive, save_result, scan_inbox)
 from agent.report import build_report
 from loading_icon import loading_data_uri
@@ -168,11 +168,6 @@ def open_record(entry):
         write_on_open(r, entry['일시'])
     _adopt(r)
     ss.chat = []
-
-
-def needs_text(r):
-    """이상·의심인데 보고서 문장이 아직 없는 기록 (실시간 라인 기록, Ollama 가 꺼져 있을 때 기록된 건)."""
-    return r['detection']['verdict'] != 'normal' and (r['text'].get('pending_ai') or not r['text'].get('summary'))
 
 
 def write_on_open(r, when=None):
