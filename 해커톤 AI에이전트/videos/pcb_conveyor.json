@@ -1,0 +1,5376 @@
+{
+ "video": "pcb_conveyor.mp4",
+ "fps": 30,
+ "size": [
+  1280,
+  720
+ ],
+ "board_px": 640,
+ "speed_px_per_frame": 14,
+ "frames": 5493,
+ "seconds": 183.1,
+ "seed": 7,
+ "sensing_zone": [
+  320,
+  0,
+  960,
+  720
+ ],
+ "note": "x of a board at frame f = x0 - f*speed. center_frame = board centered (inside the sensing zone).",
+ "boards": [
+  {
+   "index": 0,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/05_07_short_03_jpg.rf.f9afd904687cc900a13bc20c7b3e17ad.jpg",
+   "x0": 1840,
+   "y": 40,
+   "enter_frame": 40,
+   "center_frame": 109,
+   "exit_frame": 178,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.485938,
+     "cy": 0.326562,
+     "w": 0.03125,
+     "h": 0.048438
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.367969,
+     "cy": 0.355469,
+     "w": 0.029687,
+     "h": 0.048438
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.25625,
+     "cy": 0.457813,
+     "w": 0.03125,
+     "h": 0.057813
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.498437,
+     "cy": 0.430469,
+     "w": 0.039062,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.5875,
+     "cy": 0.475781,
+     "w": 0.025,
+     "h": 0.035937
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.832,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 1,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/04_10_mouse-bite_spur_scratch_03_jpg.rf.0bcd8f408a8fa265d05fbbd351a21c86.jpg",
+   "x0": 2640,
+   "y": 35,
+   "enter_frame": 97,
+   "center_frame": 166,
+   "exit_frame": 235,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.767188,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.4625,
+     "cy": 0.760938,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.685937,
+     "cy": 0.84375,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.165625,
+     "cy": 0.836719,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.385937,
+     "cy": 0.824219,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.582812,
+     "cy": 0.35,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.274219,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.183594,
+     "cy": 0.553125,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.564063,
+     "cy": 0.25625,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.227344,
+     "cy": 0.390625,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.128906,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.931,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 2,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/02_10_spurious-copper_pinhole_scratch_04_jpg.rf.9d97a2d96d286517f2595ce870c756d0.jpg",
+   "x0": 3440,
+   "y": 41,
+   "enter_frame": 154,
+   "center_frame": 223,
+   "exit_frame": 292,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.576562,
+     "cy": 0.296875,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.580469,
+     "cy": 0.126562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.739062,
+     "cy": 0.542188,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.845313,
+     "cy": 0.511719,
+     "w": 0.025,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.892188,
+     "cy": 0.721094,
+     "w": 0.017188,
+     "h": 0.039062
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.752344,
+     "cy": 0.15,
+     "w": 0.025,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.758594,
+     "cy": 0.392969,
+     "w": 0.023438,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.826562,
+     "cy": 0.640625,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.86875,
+     "cy": 0.788281,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.296875,
+     "cy": 0.535156,
+     "w": 0.195312,
+     "h": 0.298438
+    },
+    {
+     "type": "scratch",
+     "cx": 0.421875,
+     "cy": 0.709375,
+     "w": 0.276562,
+     "h": 0.110937
+    },
+    {
+     "type": "scratch",
+     "cx": 0.517969,
+     "cy": 0.892969,
+     "w": 0.132812,
+     "h": 0.0625
+    }
+   ],
+   "model_check": {
+    "n_det": 12,
+    "max_conf": 0.937,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 3,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/06_11_scratch_03_jpg.rf.98f32a3b900ed34495ad026058ce8ea2.jpg",
+   "x0": 4240,
+   "y": 44,
+   "enter_frame": 211,
+   "center_frame": 280,
+   "exit_frame": 349,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.288281,
+     "cy": 0.610938,
+     "w": 0.173437,
+     "h": 0.35
+    },
+    {
+     "type": "scratch",
+     "cx": 0.860938,
+     "cy": 0.404687,
+     "w": 0.079687,
+     "h": 0.25625
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.933,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 4,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/07_05_short_07_jpg.rf.516a562631de1663b1faa0fec6feb25b.jpg",
+   "x0": 5040,
+   "y": 40,
+   "enter_frame": 268,
+   "center_frame": 337,
+   "exit_frame": 406,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.7875,
+     "cy": 0.635938,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.907813,
+     "cy": 0.84375,
+     "w": 0.04375,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.178125,
+     "cy": 0.157812,
+     "w": 0.04375,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.417969,
+     "cy": 0.714844,
+     "w": 0.034375,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.833,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 5,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/03_09_missing_hole_09_jpg.rf.6351f210e46230d557c20820d4c9efc4.jpg",
+   "x0": 5840,
+   "y": 34,
+   "enter_frame": 325,
+   "center_frame": 394,
+   "exit_frame": 463,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.957812,
+     "cy": 0.460156,
+     "w": 0.020313,
+     "h": 0.026562
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.9,
+     "cy": 0.732031,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.566406,
+     "cy": 0.638281,
+     "w": 0.026562,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.289844,
+     "cy": 0.502344,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.441406,
+     "cy": 0.310937,
+     "w": 0.021875,
+     "h": 0.026562
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.847,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 6,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/07_09_spurious_copper_04_jpg.rf.ad6ec6199bf6915c7793c722631091df.jpg",
+   "x0": 6640,
+   "y": 37,
+   "enter_frame": 382,
+   "center_frame": 451,
+   "exit_frame": 520,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.376563,
+     "cy": 0.2125,
+     "w": 0.020313,
+     "h": 0.045312
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.93125,
+     "cy": 0.442188,
+     "w": 0.03125,
+     "h": 0.035937
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.524219,
+     "cy": 0.464062,
+     "w": 0.053125,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.839844,
+     "cy": 0.207031,
+     "w": 0.035937,
+     "h": 0.021875
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.211719,
+     "cy": 0.373437,
+     "w": 0.021875,
+     "h": 0.0625
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.836,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 7,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/03_10_spurious-copper_pinhole_scratch_04_jpg.rf.9d97a2d96d286517f2595ce870c756d0.jpg",
+   "x0": 7440,
+   "y": 35,
+   "enter_frame": 440,
+   "center_frame": 509,
+   "exit_frame": 578,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.576562,
+     "cy": 0.296875,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.580469,
+     "cy": 0.126562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.739062,
+     "cy": 0.542188,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.845313,
+     "cy": 0.511719,
+     "w": 0.025,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.892188,
+     "cy": 0.721094,
+     "w": 0.017188,
+     "h": 0.039062
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.752344,
+     "cy": 0.15,
+     "w": 0.025,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.758594,
+     "cy": 0.392969,
+     "w": 0.023438,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.826562,
+     "cy": 0.640625,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.86875,
+     "cy": 0.788281,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.296875,
+     "cy": 0.535156,
+     "w": 0.195312,
+     "h": 0.298438
+    },
+    {
+     "type": "scratch",
+     "cx": 0.421875,
+     "cy": 0.709375,
+     "w": 0.276562,
+     "h": 0.110937
+    },
+    {
+     "type": "scratch",
+     "cx": 0.517969,
+     "cy": 0.892969,
+     "w": 0.132812,
+     "h": 0.0625
+    }
+   ],
+   "model_check": {
+    "n_det": 12,
+    "max_conf": 0.937,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 8,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/03_10_mouse-bite_spur_scratch_03_jpg.rf.29b93af4e9143d48bb815bdbdac1a946.jpg",
+   "x0": 8240,
+   "y": 37,
+   "enter_frame": 497,
+   "center_frame": 566,
+   "exit_frame": 635,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.760938,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.84375,
+     "w": 0.032813,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.836719,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.824219,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.35,
+     "w": 0.039062,
+     "h": 0.023438
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.553125,
+     "w": 0.029687,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.25625,
+     "w": 0.332813,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.390625,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.944,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 9,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/07_07_missing_hole_10_jpg.rf.ceffc685e37c668beddd3fdd325ccc48.jpg",
+   "x0": 9040,
+   "y": 41,
+   "enter_frame": 554,
+   "center_frame": 623,
+   "exit_frame": 692,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.279687,
+     "cy": 0.173437,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.285156,
+     "cy": 0.396875,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.511719,
+     "cy": 0.289844,
+     "w": 0.028125,
+     "h": 0.0375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.728125,
+     "cy": 0.310156,
+     "w": 0.0375,
+     "h": 0.045312
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.839063,
+     "cy": 0.307812,
+     "w": 0.03125,
+     "h": 0.048438
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.833,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 10,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/01_10_mouse-bite_spur_scratch_03_jpg.rf.cd9907ba70fc1044ff13857395bb833d.jpg",
+   "x0": 9840,
+   "y": 36,
+   "enter_frame": 611,
+   "center_frame": 680,
+   "exit_frame": 749,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.444531,
+     "cy": 0.232813,
+     "w": 0.03125,
+     "h": 0.045312
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.760938,
+     "cy": 0.5375,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.84375,
+     "cy": 0.314063,
+     "w": 0.034375,
+     "h": 0.032813
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.836719,
+     "cy": 0.834375,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.824219,
+     "cy": 0.614062,
+     "w": 0.034375,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.35,
+     "cy": 0.417187,
+     "w": 0.023438,
+     "h": 0.039062
+    },
+    {
+     "type": "spur",
+     "cx": 0.451562,
+     "cy": 0.725781,
+     "w": 0.025,
+     "h": 0.048438
+    },
+    {
+     "type": "spur",
+     "cx": 0.553125,
+     "cy": 0.816406,
+     "w": 0.028125,
+     "h": 0.029687
+    },
+    {
+     "type": "scratch",
+     "cx": 0.25625,
+     "cy": 0.435937,
+     "w": 0.178125,
+     "h": 0.332813
+    },
+    {
+     "type": "scratch",
+     "cx": 0.390625,
+     "cy": 0.772656,
+     "w": 0.254688,
+     "h": 0.215625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.664844,
+     "cy": 0.871094,
+     "w": 0.182812,
+     "h": 0.05625
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.949,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 11,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/01_11_open-circuit_scratch_04_jpg.rf.7a45e86148637ec232f6ba5acceb71fd.jpg",
+   "x0": 10640,
+   "y": 35,
+   "enter_frame": 668,
+   "center_frame": 737,
+   "exit_frame": 806,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.433594,
+     "cy": 0.185156,
+     "w": 0.03125,
+     "h": 0.029687
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.514062,
+     "cy": 0.058594,
+     "w": 0.04375,
+     "h": 0.034375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.461719,
+     "cy": 0.384375,
+     "w": 0.03125,
+     "h": 0.023438
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.323437,
+     "cy": 0.492969,
+     "w": 0.029687,
+     "h": 0.020313
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.357031,
+     "cy": 0.40625,
+     "w": 0.029687,
+     "h": 0.025
+    },
+    {
+     "type": "scratch",
+     "cx": 0.611719,
+     "cy": 0.917188,
+     "w": 0.240625,
+     "h": 0.070312
+    },
+    {
+     "type": "scratch",
+     "cx": 0.28125,
+     "cy": 0.8375,
+     "w": 0.30625,
+     "h": 0.215625
+    }
+   ],
+   "model_check": {
+    "n_det": 7,
+    "max_conf": 0.896,
+    "types": [
+     "opencircuit",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 12,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/08_10_open_circuit_04_jpg.rf.5c3f0c82c293556972ae0776ce54adae.jpg",
+   "x0": 11440,
+   "y": 39,
+   "enter_frame": 725,
+   "center_frame": 794,
+   "exit_frame": 863,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.701562,
+     "cy": 0.404687,
+     "w": 0.028125,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.685937,
+     "cy": 0.158594,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.467187,
+     "cy": 0.526563,
+     "w": 0.029687,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.560937,
+     "cy": 0.644531,
+     "w": 0.039062,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.511719,
+     "cy": 0.305469,
+     "w": 0.039062,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.828,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 13,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/03_10_open_circuit_04_jpg.rf.6225ecbccc3b0b726cf58649491051df.jpg",
+   "x0": 12240,
+   "y": 43,
+   "enter_frame": 782,
+   "center_frame": 851,
+   "exit_frame": 920,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.404687,
+     "cy": 0.298438,
+     "w": 0.0375,
+     "h": 0.028125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.158594,
+     "cy": 0.314063,
+     "w": 0.04375,
+     "h": 0.034375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.526563,
+     "cy": 0.532813,
+     "w": 0.04375,
+     "h": 0.028125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.644531,
+     "cy": 0.439063,
+     "w": 0.0375,
+     "h": 0.0375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.305469,
+     "cy": 0.488281,
+     "w": 0.04375,
+     "h": 0.0375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.858,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 14,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/07_10_open_circuit_04_jpg.rf.e20ecc676b2ff484f19ead0c0d95323a.jpg",
+   "x0": 13040,
+   "y": 34,
+   "enter_frame": 840,
+   "center_frame": 909,
+   "exit_frame": 978,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 15,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/01_07_short_10_jpg.rf.33594fa6e53052650f6620f6d844843e.jpg",
+   "x0": 13840,
+   "y": 35,
+   "enter_frame": 897,
+   "center_frame": 966,
+   "exit_frame": 1035,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 16,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/05_05_scratch_03_jpg.rf.afd618ac93de6b88d3c72dd20975664b.jpg",
+   "x0": 14640,
+   "y": 34,
+   "enter_frame": 954,
+   "center_frame": 1023,
+   "exit_frame": 1092,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.625,
+     "cy": 0.269531,
+     "w": 0.132812,
+     "h": 0.092188
+    },
+    {
+     "type": "scratch",
+     "cx": 0.703125,
+     "cy": 0.253906,
+     "w": 0.190625,
+     "h": 0.289062
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.916,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 17,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/03_05_short_07_jpg.rf.3749abb89fca28f5f2b09167a1339901.jpg",
+   "x0": 15440,
+   "y": 43,
+   "enter_frame": 1011,
+   "center_frame": 1080,
+   "exit_frame": 1149,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 18,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/04_11_open-circuit_scratch_04_jpg.rf.ce2d0eb1638ab631dda5fbc1a323cfa4.jpg",
+   "x0": 16240,
+   "y": 36,
+   "enter_frame": 1068,
+   "center_frame": 1137,
+   "exit_frame": 1206,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.185156,
+     "cy": 0.433594,
+     "w": 0.029687,
+     "h": 0.03125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.058594,
+     "cy": 0.514062,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.384375,
+     "cy": 0.461719,
+     "w": 0.023438,
+     "h": 0.03125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.492969,
+     "cy": 0.323437,
+     "w": 0.020313,
+     "h": 0.029687
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.40625,
+     "cy": 0.357031,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "scratch",
+     "cx": 0.917188,
+     "cy": 0.611719,
+     "w": 0.070312,
+     "h": 0.240625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8375,
+     "cy": 0.28125,
+     "w": 0.215625,
+     "h": 0.30625
+    }
+   ],
+   "model_check": {
+    "n_det": 7,
+    "max_conf": 0.846,
+    "types": [
+     "opencircuit",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 19,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/07_11_pinhole_scratch_14_jpg.rf.c654c142da36920835a90c9569abe275.jpg",
+   "x0": 17040,
+   "y": 42,
+   "enter_frame": 1125,
+   "center_frame": 1194,
+   "exit_frame": 1263,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.564844,
+     "cy": 0.123438,
+     "w": 0.020313,
+     "h": 0.025
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.74375,
+     "cy": 0.3375,
+     "w": 0.020313,
+     "h": 0.023438
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.84375,
+     "cy": 0.345313,
+     "w": 0.020313,
+     "h": 0.023438
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.433594,
+     "cy": 0.841406,
+     "w": 0.020313,
+     "h": 0.029687
+    },
+    {
+     "type": "scratch",
+     "cx": 0.355469,
+     "cy": 0.192188,
+     "w": 0.253125,
+     "h": 0.142187
+    },
+    {
+     "type": "scratch",
+     "cx": 0.778906,
+     "cy": 0.622656,
+     "w": 0.345313,
+     "h": 0.1875
+    }
+   ],
+   "model_check": {
+    "n_det": 6,
+    "max_conf": 0.925,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 20,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/06_10_mouse-bite_spur_scratch_02_jpg.rf.6b0207734a507a338471c8d8874f9f8f.jpg",
+   "x0": 17840,
+   "y": 35,
+   "enter_frame": 1182,
+   "center_frame": 1251,
+   "exit_frame": 1320,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.592187,
+     "cy": 0.296875,
+     "w": 0.034375,
+     "h": 0.040625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.432812,
+     "cy": 0.417187,
+     "w": 0.039062,
+     "h": 0.040625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.698438,
+     "cy": 0.490625,
+     "w": 0.040625,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.866406,
+     "cy": 0.513281,
+     "w": 0.029687,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.220312,
+     "w": 0.034375,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.435937,
+     "cy": 0.725,
+     "w": 0.035937,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.457813,
+     "cy": 0.229687,
+     "w": 0.021875,
+     "h": 0.045312
+    },
+    {
+     "type": "spur",
+     "cx": 0.538281,
+     "cy": 0.396875,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.789844,
+     "cy": 0.3125,
+     "w": 0.029687,
+     "h": 0.039062
+    },
+    {
+     "type": "scratch",
+     "cx": 0.278906,
+     "cy": 0.759375,
+     "w": 0.235937,
+     "h": 0.21875
+    },
+    {
+     "type": "scratch",
+     "cx": 0.486719,
+     "cy": 0.611719,
+     "w": 0.21875,
+     "h": 0.10625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.397656,
+     "cy": 0.926562,
+     "w": 0.040625,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 12,
+    "max_conf": 0.93,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 21,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/02_07_short_06_jpg.rf.03959c9b47b70e805c66aa514575576e.jpg",
+   "x0": 18640,
+   "y": 39,
+   "enter_frame": 1240,
+   "center_frame": 1309,
+   "exit_frame": 1378,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.582031,
+     "cy": 0.446094,
+     "w": 0.039062,
+     "h": 0.040625
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.717187,
+     "cy": 0.513281,
+     "w": 0.04375,
+     "h": 0.051562
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.428125,
+     "cy": 0.496094,
+     "w": 0.040625,
+     "h": 0.045312
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.157812,
+     "cy": 0.341406,
+     "w": 0.051562,
+     "h": 0.051562
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.325781,
+     "cy": 0.205469,
+     "w": 0.040625,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.855,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 22,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/03_11_scratch_03_jpg.rf.c1f3d5980f58a9d1951fb6779b896589.jpg",
+   "x0": 19440,
+   "y": 43,
+   "enter_frame": 1297,
+   "center_frame": 1366,
+   "exit_frame": 1435,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.288281,
+     "cy": 0.610938,
+     "w": 0.173437,
+     "h": 0.351562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.860938,
+     "cy": 0.404687,
+     "w": 0.079687,
+     "h": 0.257812
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.934,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 23,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/08_10_open_circuit_04_jpg.rf.5c3f0c82c293556972ae0776ce54adae.jpg",
+   "x0": 20240,
+   "y": 34,
+   "enter_frame": 1354,
+   "center_frame": 1423,
+   "exit_frame": 1492,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 24,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/01_11_spurious-copper_pinhole_scratch_05_jpg.rf.5eb88646177318a1b1a6eb9210bd7bc8.jpg",
+   "x0": 21040,
+   "y": 35,
+   "enter_frame": 1411,
+   "center_frame": 1480,
+   "exit_frame": 1549,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.378906,
+     "cy": 0.080469,
+     "w": 0.045312,
+     "h": 0.026562
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.625,
+     "cy": 0.171875,
+     "w": 0.035937,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.370312,
+     "cy": 0.475,
+     "w": 0.04375,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.529687,
+     "cy": 0.492969,
+     "w": 0.048438,
+     "h": 0.020313
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.616406,
+     "cy": 0.550781,
+     "w": 0.034375,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.414844,
+     "cy": 0.278906,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.258594,
+     "cy": 0.34375,
+     "w": 0.021875,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.282813,
+     "cy": 0.652344,
+     "w": 0.020313,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.915625,
+     "cy": 0.810156,
+     "w": 0.029687,
+     "h": 0.034375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.264062,
+     "cy": 0.477344,
+     "w": 0.148438,
+     "h": 0.15
+    },
+    {
+     "type": "scratch",
+     "cx": 0.795312,
+     "cy": 0.75625,
+     "w": 0.176563,
+     "h": 0.226562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.805469,
+     "cy": 0.935156,
+     "w": 0.254688,
+     "h": 0.092188
+    }
+   ],
+   "model_check": {
+    "n_det": 12,
+    "max_conf": 0.936,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 25,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/09_07_open-circuit_scratch_07_jpg.rf.19abd7d9ef193af5223f80ad8ba0a84b.jpg",
+   "x0": 21840,
+   "y": 37,
+   "enter_frame": 1468,
+   "center_frame": 1537,
+   "exit_frame": 1606,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.5375,
+     "cy": 0.3375,
+     "w": 0.021875,
+     "h": 0.023438
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.283594,
+     "cy": 0.484375,
+     "w": 0.017188,
+     "h": 0.03125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.232813,
+     "cy": 0.407813,
+     "w": 0.026562,
+     "h": 0.029687
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.65625,
+     "cy": 0.122656,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.8125,
+     "cy": 0.24375,
+     "w": 0.021875,
+     "h": 0.029687
+    },
+    {
+     "type": "scratch",
+     "cx": 0.910156,
+     "cy": 0.123438,
+     "w": 0.146875,
+     "h": 0.107813
+    },
+    {
+     "type": "scratch",
+     "cx": 0.310156,
+     "cy": 0.839063,
+     "w": 0.16875,
+     "h": 0.129688
+    }
+   ],
+   "model_check": {
+    "n_det": 7,
+    "max_conf": 0.913,
+    "types": [
+     "opencircuit",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 26,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/09_09_spurious_copper_03_jpg.rf.0bb0e3a13f925fecd600fe3ff907c878.jpg",
+   "x0": 22640,
+   "y": 43,
+   "enter_frame": 1525,
+   "center_frame": 1594,
+   "exit_frame": 1663,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 27,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/08_05_short_08_jpg.rf.ad762fc28f9a56580ed3db54e4a25864.jpg",
+   "x0": 23440,
+   "y": 40,
+   "enter_frame": 1582,
+   "center_frame": 1651,
+   "exit_frame": 1720,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.941406,
+     "cy": 0.764062,
+     "w": 0.029687,
+     "h": 0.028125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.59375,
+     "cy": 0.80625,
+     "w": 0.035937,
+     "h": 0.039062
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.69375,
+     "cy": 0.272656,
+     "w": 0.045312,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.834,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 28,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/05_10_spurious_copper_01_jpg.rf.493fbf184e7801d34c4c79c444c1ab76.jpg",
+   "x0": 24240,
+   "y": 36,
+   "enter_frame": 1640,
+   "center_frame": 1709,
+   "exit_frame": 1778,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.839063,
+     "cy": 0.242969,
+     "w": 0.04375,
+     "h": 0.029687
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.560937,
+     "cy": 0.454688,
+     "w": 0.028125,
+     "h": 0.057813
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.417187,
+     "cy": 0.721094,
+     "w": 0.025,
+     "h": 0.053125
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.553906,
+     "cy": 0.763281,
+     "w": 0.054688,
+     "h": 0.028125
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.667969,
+     "cy": 0.657813,
+     "w": 0.026562,
+     "h": 0.059375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.824,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 29,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/06_12_pinhole_scratch_05_jpg.rf.c7e28bc4355de9108a4a98299319c01e.jpg",
+   "x0": 25040,
+   "y": 44,
+   "enter_frame": 1697,
+   "center_frame": 1766,
+   "exit_frame": 1835,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.578125,
+     "cy": 0.160938,
+     "w": 0.017188,
+     "h": 0.014063
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.069531,
+     "cy": 0.550781,
+     "w": 0.025,
+     "h": 0.020313
+    },
+    {
+     "type": "scratch",
+     "cx": 0.675781,
+     "cy": 0.367969,
+     "w": 0.15,
+     "h": 0.2125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.59375,
+     "cy": 0.535937,
+     "w": 0.173437,
+     "h": 0.10625
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.926,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 30,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/08_10_mouse-bite_spur_scratch_03_jpg.rf.8024dd8ced8f04036a7a523f025e2c42.jpg",
+   "x0": 25840,
+   "y": 38,
+   "enter_frame": 1754,
+   "center_frame": 1823,
+   "exit_frame": 1892,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.555469,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.239063,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.15625,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.163281,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.175781,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.65,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.548438,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.446875,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.74375,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.609375,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.335156,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.938,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 31,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/07_spur/originals/images/07_04_spur_11_jpg.rf.f5286de706d8535d1a3fc5e4ecf7ef6a.jpg",
+   "x0": 26640,
+   "y": 39,
+   "enter_frame": 1811,
+   "center_frame": 1880,
+   "exit_frame": 1949,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 32,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/05_04_missing_hole_16_jpg.rf.72606e80d36bf1d3de7656a114301f42.jpg",
+   "x0": 27440,
+   "y": 43,
+   "enter_frame": 1868,
+   "center_frame": 1937,
+   "exit_frame": 2006,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.392969,
+     "cy": 0.319531,
+     "w": 0.017188,
+     "h": 0.021875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.4125,
+     "cy": 0.635938,
+     "w": 0.020313,
+     "h": 0.026562
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.279687,
+     "cy": 0.216406,
+     "w": 0.020313,
+     "h": 0.026562
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.832,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 33,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/05_10_mouse-bite_spur_scratch_03_jpg.rf.02ba6d9f34f45aa9908fbb675a3fe487.jpg",
+   "x0": 28240,
+   "y": 39,
+   "enter_frame": 1925,
+   "center_frame": 1994,
+   "exit_frame": 2063,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.555469,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.239063,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.15625,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.163281,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.175781,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.65,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.548438,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.446875,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.74375,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.609375,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.335156,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.941,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 34,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/05_04_missing_hole_16_jpg.rf.72606e80d36bf1d3de7656a114301f42.jpg",
+   "x0": 29040,
+   "y": 41,
+   "enter_frame": 1982,
+   "center_frame": 2051,
+   "exit_frame": 2120,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 35,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/07_11_mouse_bite_05_jpg.rf.73de30edbd512bf0fef578b6b43e9318.jpg",
+   "x0": 29840,
+   "y": 35,
+   "enter_frame": 2040,
+   "center_frame": 2109,
+   "exit_frame": 2178,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.611719,
+     "cy": 0.930469,
+     "w": 0.04375,
+     "h": 0.028125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.638281,
+     "cy": 0.716406,
+     "w": 0.0375,
+     "h": 0.028125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.471094,
+     "cy": 0.495312,
+     "w": 0.04375,
+     "h": 0.021875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.746094,
+     "cy": 0.482812,
+     "w": 0.0375,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.653906,
+     "cy": 0.285938,
+     "w": 0.04375,
+     "h": 0.03125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.831,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 36,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/09_04_mouse_bite_12_jpg.rf.a2e2fb325c19c56d0415ee9c83038b08.jpg",
+   "x0": 30640,
+   "y": 35,
+   "enter_frame": 2097,
+   "center_frame": 2166,
+   "exit_frame": 2235,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 37,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/02_11_pinhole_scratch_06_jpg.rf.c37804b6a217456f1288d97d80c2d911.jpg",
+   "x0": 31440,
+   "y": 41,
+   "enter_frame": 2154,
+   "center_frame": 2223,
+   "exit_frame": 2292,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.439063,
+     "cy": 0.214844,
+     "w": 0.025,
+     "h": 0.025
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.239063,
+     "cy": 0.439063,
+     "w": 0.020313,
+     "h": 0.021875
+    },
+    {
+     "type": "scratch",
+     "cx": 0.278906,
+     "cy": 0.821094,
+     "w": 0.259375,
+     "h": 0.110937
+    },
+    {
+     "type": "scratch",
+     "cx": 0.535937,
+     "cy": 0.9,
+     "w": 0.457813,
+     "h": 0.10625
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.902,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 38,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/08_11_mouse_bite_05_jpg.rf.f97b0d3c2815181626b5a82212269cc7.jpg",
+   "x0": 32240,
+   "y": 41,
+   "enter_frame": 2211,
+   "center_frame": 2280,
+   "exit_frame": 2349,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.930469,
+     "cy": 0.611719,
+     "w": 0.029687,
+     "h": 0.04375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.716406,
+     "cy": 0.638281,
+     "w": 0.028125,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.495312,
+     "cy": 0.471094,
+     "w": 0.021875,
+     "h": 0.04375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.482812,
+     "cy": 0.746094,
+     "w": 0.03125,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.285938,
+     "cy": 0.653906,
+     "w": 0.03125,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.828,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 39,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/02_11_scratch_03_jpg.rf.a972ba3493d3af05cd72bf38d6937375.jpg",
+   "x0": 33040,
+   "y": 41,
+   "enter_frame": 2268,
+   "center_frame": 2337,
+   "exit_frame": 2406,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.711719,
+     "cy": 0.389062,
+     "w": 0.173437,
+     "h": 0.35
+    },
+    {
+     "type": "scratch",
+     "cx": 0.139063,
+     "cy": 0.595313,
+     "w": 0.079687,
+     "h": 0.25625
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.929,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 40,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/08_09_missing_hole_10_jpg.rf.b1e6f44704f70eeff2e810cff63bcd07.jpg",
+   "x0": 33840,
+   "y": 41,
+   "enter_frame": 2325,
+   "center_frame": 2394,
+   "exit_frame": 2463,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.441406,
+     "cy": 0.3125,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.56875,
+     "cy": 0.180469,
+     "w": 0.025,
+     "h": 0.032813
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.491406,
+     "cy": 0.50625,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.734375,
+     "cy": 0.732812,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.214844,
+     "cy": 0.310156,
+     "w": 0.021875,
+     "h": 0.032813
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.841,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 41,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/06_10_open_circuit_04_jpg.rf.385af0da8616f49bf407611d295ab43b.jpg",
+   "x0": 34640,
+   "y": 38,
+   "enter_frame": 2382,
+   "center_frame": 2451,
+   "exit_frame": 2520,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.701562,
+     "cy": 0.595313,
+     "w": 0.028125,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.685937,
+     "cy": 0.841406,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.467187,
+     "cy": 0.473438,
+     "w": 0.029687,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.560937,
+     "cy": 0.355469,
+     "w": 0.039062,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.511719,
+     "cy": 0.694531,
+     "w": 0.039062,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.832,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 42,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/01_07_scratch_01_jpg.rf.3f194faef874ec5ac956b623347396ce.jpg",
+   "x0": 35440,
+   "y": 35,
+   "enter_frame": 2440,
+   "center_frame": 2509,
+   "exit_frame": 2578,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.317188,
+     "cy": 0.274219,
+     "w": 0.221875,
+     "h": 0.396875
+    }
+   ],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.943,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 43,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/09_04_mouse_bite_12_jpg.rf.a2e2fb325c19c56d0415ee9c83038b08.jpg",
+   "x0": 36240,
+   "y": 36,
+   "enter_frame": 2497,
+   "center_frame": 2566,
+   "exit_frame": 2635,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.767969,
+     "cy": 0.192188,
+     "w": 0.03125,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.170313,
+     "cy": 0.217188,
+     "w": 0.032813,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.182812,
+     "cy": 0.423438,
+     "w": 0.03125,
+     "h": 0.025
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.844,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 44,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/10_05_scratch_03_jpg.rf.623360ce0cda9740e05b4910be4ded1e.jpg",
+   "x0": 37040,
+   "y": 35,
+   "enter_frame": 2554,
+   "center_frame": 2623,
+   "exit_frame": 2692,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.375,
+     "cy": 0.730469,
+     "w": 0.132812,
+     "h": 0.092188
+    },
+    {
+     "type": "scratch",
+     "cx": 0.296875,
+     "cy": 0.746094,
+     "w": 0.190625,
+     "h": 0.289062
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.915,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 45,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/07_05_short_07_jpg.rf.516a562631de1663b1faa0fec6feb25b.jpg",
+   "x0": 37840,
+   "y": 45,
+   "enter_frame": 2611,
+   "center_frame": 2680,
+   "exit_frame": 2749,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 46,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/07_11_scratch_05_jpg.rf.8087e8de90bc34050a401da4e11cb180.jpg",
+   "x0": 38640,
+   "y": 39,
+   "enter_frame": 2668,
+   "center_frame": 2737,
+   "exit_frame": 2806,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.707812,
+     "cy": 0.486719,
+     "w": 0.084375,
+     "h": 0.115625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.567187,
+     "cy": 0.596094,
+     "w": 0.284375,
+     "h": 0.134375
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.934,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 47,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/09_11_spurious-copper_pinhole_08_jpg.rf.e30a6ec0b4eed07e7774f46226aee84d.jpg",
+   "x0": 39440,
+   "y": 45,
+   "enter_frame": 2725,
+   "center_frame": 2794,
+   "exit_frame": 2863,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.752344,
+     "cy": 0.126562,
+     "w": 0.065625,
+     "h": 0.048438
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.528906,
+     "cy": 0.073438,
+     "w": 0.035937,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.830469,
+     "cy": 0.435156,
+     "w": 0.034375,
+     "h": 0.0625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.696875,
+     "cy": 0.529687,
+     "w": 0.039062,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.783594,
+     "cy": 0.636719,
+     "w": 0.026562,
+     "h": 0.0625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.853125,
+     "cy": 0.34375,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.699219,
+     "cy": 0.345313,
+     "w": 0.021875,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.759375,
+     "cy": 0.579688,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.796875,
+     "cy": 0.696094,
+     "w": 0.025,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 9,
+    "max_conf": 0.831,
+    "types": [
+     "falsecopper",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 48,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/06_11_mouse_bite_05_jpg.rf.9d9b483ee30e16ca434fee4c5d0308f2.jpg",
+   "x0": 40240,
+   "y": 38,
+   "enter_frame": 2782,
+   "center_frame": 2851,
+   "exit_frame": 2920,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.611719,
+     "cy": 0.069531,
+     "w": 0.04375,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.638281,
+     "cy": 0.283594,
+     "w": 0.039062,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.471094,
+     "cy": 0.504687,
+     "w": 0.04375,
+     "h": 0.021875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.746094,
+     "cy": 0.517188,
+     "w": 0.039062,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.653906,
+     "cy": 0.714063,
+     "w": 0.04375,
+     "h": 0.03125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.841,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 49,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/07_09_spurious_copper_04_jpg.rf.ad6ec6199bf6915c7793c722631091df.jpg",
+   "x0": 41040,
+   "y": 41,
+   "enter_frame": 2840,
+   "center_frame": 2909,
+   "exit_frame": 2978,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 50,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/08_12_pinhole_scratch_05_jpg.rf.7e1848978a5bbce785e17e6772e5f4c3.jpg",
+   "x0": 41840,
+   "y": 45,
+   "enter_frame": 2897,
+   "center_frame": 2966,
+   "exit_frame": 3035,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.839063,
+     "cy": 0.421875,
+     "w": 0.014063,
+     "h": 0.017188
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.449219,
+     "cy": 0.930469,
+     "w": 0.020313,
+     "h": 0.025
+    },
+    {
+     "type": "scratch",
+     "cx": 0.632031,
+     "cy": 0.324219,
+     "w": 0.210938,
+     "h": 0.15
+    },
+    {
+     "type": "scratch",
+     "cx": 0.464062,
+     "cy": 0.40625,
+     "w": 0.10625,
+     "h": 0.173437
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.913,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 51,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/01_10_mouse-bite_spur_scratch_03_jpg.rf.cd9907ba70fc1044ff13857395bb833d.jpg",
+   "x0": 42640,
+   "y": 36,
+   "enter_frame": 2954,
+   "center_frame": 3023,
+   "exit_frame": 3092,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.444531,
+     "cy": 0.232813,
+     "w": 0.03125,
+     "h": 0.045312
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.760938,
+     "cy": 0.5375,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.84375,
+     "cy": 0.314063,
+     "w": 0.034375,
+     "h": 0.032813
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.836719,
+     "cy": 0.834375,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.824219,
+     "cy": 0.614062,
+     "w": 0.034375,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.35,
+     "cy": 0.417187,
+     "w": 0.023438,
+     "h": 0.039062
+    },
+    {
+     "type": "spur",
+     "cx": 0.451562,
+     "cy": 0.725781,
+     "w": 0.025,
+     "h": 0.048438
+    },
+    {
+     "type": "spur",
+     "cx": 0.553125,
+     "cy": 0.816406,
+     "w": 0.028125,
+     "h": 0.029687
+    },
+    {
+     "type": "scratch",
+     "cx": 0.25625,
+     "cy": 0.435937,
+     "w": 0.178125,
+     "h": 0.332813
+    },
+    {
+     "type": "scratch",
+     "cx": 0.390625,
+     "cy": 0.772656,
+     "w": 0.254688,
+     "h": 0.215625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.664844,
+     "cy": 0.871094,
+     "w": 0.182812,
+     "h": 0.05625
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.949,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 52,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/09_10_missing-hole_short_02_jpg.rf.86481e8e3c1db249253d9ff37d3235a6.jpg",
+   "x0": 43440,
+   "y": 42,
+   "enter_frame": 3011,
+   "center_frame": 3080,
+   "exit_frame": 3149,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.550781,
+     "cy": 0.803906,
+     "w": 0.017188,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.807813,
+     "cy": 0.852344,
+     "w": 0.017188,
+     "h": 0.034375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.446875,
+     "cy": 0.36875,
+     "w": 0.026562,
+     "h": 0.023438
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.428906,
+     "cy": 0.55625,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.290625,
+     "cy": 0.4125,
+     "w": 0.029687,
+     "h": 0.039062
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.647656,
+     "cy": 0.56875,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.914844,
+     "cy": 0.689844,
+     "w": 0.026562,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 7,
+    "max_conf": 0.832,
+    "types": [
+     "missinghole",
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 53,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/03_09_missing_hole_09_jpg.rf.6351f210e46230d557c20820d4c9efc4.jpg",
+   "x0": 44240,
+   "y": 34,
+   "enter_frame": 3068,
+   "center_frame": 3137,
+   "exit_frame": 3206,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 54,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/04_10_missing_hole_03_jpg.rf.2d4adafe2bef5078be67a4ef2c9c7e29.jpg",
+   "x0": 45040,
+   "y": 37,
+   "enter_frame": 3125,
+   "center_frame": 3194,
+   "exit_frame": 3263,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.59375,
+     "cy": 0.18125,
+     "w": 0.029687,
+     "h": 0.03125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.694531,
+     "cy": 0.40625,
+     "w": 0.03125,
+     "h": 0.034375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.649219,
+     "cy": 0.567187,
+     "w": 0.03125,
+     "h": 0.034375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.495312,
+     "cy": 0.729688,
+     "w": 0.04375,
+     "h": 0.04375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.613281,
+     "cy": 0.751563,
+     "w": 0.029687,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.845,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 55,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/04_11_spurious-copper_pinhole_05_jpg.rf.15167381e28d81204e7c7a890b0fbb7e.jpg",
+   "x0": 45840,
+   "y": 42,
+   "enter_frame": 3182,
+   "center_frame": 3251,
+   "exit_frame": 3320,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.378906,
+     "cy": 0.080469,
+     "w": 0.045312,
+     "h": 0.026562
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.625,
+     "cy": 0.171875,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.370312,
+     "cy": 0.475,
+     "w": 0.04375,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.529687,
+     "cy": 0.492969,
+     "w": 0.048438,
+     "h": 0.020313
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.616406,
+     "cy": 0.550781,
+     "w": 0.034375,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.414844,
+     "cy": 0.278906,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.258594,
+     "cy": 0.34375,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.282813,
+     "cy": 0.652344,
+     "w": 0.020313,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.915625,
+     "cy": 0.810156,
+     "w": 0.029687,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 9,
+    "max_conf": 0.858,
+    "types": [
+     "falsecopper",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 56,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/02_10_open_circuit_04_jpg.rf.93af7b01902c6d875f9d1e5e959ca178.jpg",
+   "x0": 46640,
+   "y": 39,
+   "enter_frame": 3240,
+   "center_frame": 3309,
+   "exit_frame": 3378,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.595313,
+     "cy": 0.298438,
+     "w": 0.039062,
+     "h": 0.029687
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.841406,
+     "cy": 0.314063,
+     "w": 0.04375,
+     "h": 0.032813
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.473438,
+     "cy": 0.532813,
+     "w": 0.04375,
+     "h": 0.028125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.355469,
+     "cy": 0.439063,
+     "w": 0.039062,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.694531,
+     "cy": 0.488281,
+     "w": 0.04375,
+     "h": 0.039062
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.856,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 57,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/10_07_short_03_jpg.rf.23b14c57a51d1d1839a0173bc2564dd0.jpg",
+   "x0": 47440,
+   "y": 36,
+   "enter_frame": 3297,
+   "center_frame": 3366,
+   "exit_frame": 3435,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.514062,
+     "cy": 0.326562,
+     "w": 0.03125,
+     "h": 0.048438
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.632031,
+     "cy": 0.355469,
+     "w": 0.028125,
+     "h": 0.048438
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.74375,
+     "cy": 0.457813,
+     "w": 0.03125,
+     "h": 0.057813
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.501563,
+     "cy": 0.430469,
+     "w": 0.039062,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.4125,
+     "cy": 0.475781,
+     "w": 0.025,
+     "h": 0.035937
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.827,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 58,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/09_04_short_07_jpg.rf.ccfd8fa52f46f967258b9c14fefc628d.jpg",
+   "x0": 48240,
+   "y": 45,
+   "enter_frame": 3354,
+   "center_frame": 3423,
+   "exit_frame": 3492,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.307812,
+     "cy": 0.632031,
+     "w": 0.03125,
+     "h": 0.040625
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.644531,
+     "cy": 0.56875,
+     "w": 0.04375,
+     "h": 0.045312
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.678125,
+     "cy": 0.691406,
+     "w": 0.035937,
+     "h": 0.053125
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.85,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 59,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/01_07_missing_hole_09_jpg.rf.6dc1d48d669383f98748a6238ff91b90.jpg",
+   "x0": 49040,
+   "y": 42,
+   "enter_frame": 3411,
+   "center_frame": 3480,
+   "exit_frame": 3549,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.579688,
+     "cy": 0.245312,
+     "w": 0.028125,
+     "h": 0.039062
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.305469,
+     "cy": 0.555469,
+     "w": 0.026562,
+     "h": 0.045312
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.401562,
+     "cy": 0.557813,
+     "w": 0.026562,
+     "h": 0.045312
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.761719,
+     "cy": 0.777344,
+     "w": 0.029687,
+     "h": 0.051562
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.497656,
+     "cy": 0.775,
+     "w": 0.029687,
+     "h": 0.048438
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.851,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 60,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/03_10_mouse-bite_spur_scratch_03_jpg.rf.29b93af4e9143d48bb815bdbdac1a946.jpg",
+   "x0": 49840,
+   "y": 34,
+   "enter_frame": 3468,
+   "center_frame": 3537,
+   "exit_frame": 3606,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.760938,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.84375,
+     "w": 0.032813,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.836719,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.824219,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.35,
+     "w": 0.039062,
+     "h": 0.023438
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.553125,
+     "w": 0.029687,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.25625,
+     "w": 0.332813,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.390625,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.944,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 61,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/10_10_mouse-bite_spur_scratch_02_jpg.rf.6b0207734a507a338471c8d8874f9f8f.jpg",
+   "x0": 50640,
+   "y": 46,
+   "enter_frame": 3525,
+   "center_frame": 3594,
+   "exit_frame": 3663,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.592187,
+     "cy": 0.296875,
+     "w": 0.034375,
+     "h": 0.040625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.432812,
+     "cy": 0.417187,
+     "w": 0.039062,
+     "h": 0.040625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.698438,
+     "cy": 0.490625,
+     "w": 0.040625,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.866406,
+     "cy": 0.513281,
+     "w": 0.029687,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.220312,
+     "w": 0.034375,
+     "h": 0.029687
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.435937,
+     "cy": 0.725,
+     "w": 0.035937,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.457813,
+     "cy": 0.229687,
+     "w": 0.021875,
+     "h": 0.045312
+    },
+    {
+     "type": "spur",
+     "cx": 0.538281,
+     "cy": 0.396875,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.789844,
+     "cy": 0.3125,
+     "w": 0.029687,
+     "h": 0.039062
+    },
+    {
+     "type": "scratch",
+     "cx": 0.278906,
+     "cy": 0.759375,
+     "w": 0.235937,
+     "h": 0.21875
+    },
+    {
+     "type": "scratch",
+     "cx": 0.486719,
+     "cy": 0.611719,
+     "w": 0.21875,
+     "h": 0.10625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.397656,
+     "cy": 0.926562,
+     "w": 0.040625,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 12,
+    "max_conf": 0.93,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 62,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/04_10_missing_hole_03_jpg.rf.2d4adafe2bef5078be67a4ef2c9c7e29.jpg",
+   "x0": 51440,
+   "y": 42,
+   "enter_frame": 3582,
+   "center_frame": 3651,
+   "exit_frame": 3720,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 63,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/03_11_spurious_copper_01_jpg.rf.a2fdaf6004b0c300d30b1d62fea3cb24.jpg",
+   "x0": 52240,
+   "y": 38,
+   "enter_frame": 3640,
+   "center_frame": 3709,
+   "exit_frame": 3778,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.407813,
+     "cy": 0.174219,
+     "w": 0.023438,
+     "h": 0.035937
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.498437,
+     "cy": 0.30625,
+     "w": 0.021875,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.551562,
+     "cy": 0.492969,
+     "w": 0.034375,
+     "h": 0.020313
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.520312,
+     "cy": 0.647656,
+     "w": 0.017188,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.373437,
+     "cy": 0.616406,
+     "w": 0.023438,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.845,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 64,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/10_08_spur_07_jpg.rf.7ede39fd928abbc213f8ce56125ca326.jpg",
+   "x0": 53040,
+   "y": 44,
+   "enter_frame": 3697,
+   "center_frame": 3766,
+   "exit_frame": 3835,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.264062,
+     "cy": 0.361719,
+     "w": 0.021875,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.386719,
+     "cy": 0.439063,
+     "w": 0.020313,
+     "h": 0.039062
+    },
+    {
+     "type": "spur",
+     "cx": 0.664844,
+     "cy": 0.442188,
+     "w": 0.023438,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.539844,
+     "cy": 0.628906,
+     "w": 0.020313,
+     "h": 0.04375
+    },
+    {
+     "type": "spur",
+     "cx": 0.3375,
+     "cy": 0.607031,
+     "w": 0.040625,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.834,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 65,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/10_10_spurious-copper_pinhole_scratch_06_jpg.rf.97ae9d5d7dd516d074810236c891a94d.jpg",
+   "x0": 53840,
+   "y": 35,
+   "enter_frame": 3754,
+   "center_frame": 3823,
+   "exit_frame": 3892,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.704688,
+     "cy": 0.507031,
+     "w": 0.048438,
+     "h": 0.029687
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.800781,
+     "cy": 0.514062,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.890625,
+     "cy": 0.513281,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.489063,
+     "cy": 0.526563,
+     "w": 0.025,
+     "h": 0.045312
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.665625,
+     "cy": 0.642969,
+     "w": 0.020313,
+     "h": 0.053125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.491406,
+     "cy": 0.167969,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.444531,
+     "cy": 0.366406,
+     "w": 0.020313,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.895312,
+     "cy": 0.342187,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.86875,
+     "cy": 0.586719,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.257031,
+     "cy": 0.140625,
+     "w": 0.014063,
+     "h": 0.134375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.357031,
+     "cy": 0.227344,
+     "w": 0.139063,
+     "h": 0.110937
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.916,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 66,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/07_10_open_circuit_04_jpg.rf.e20ecc676b2ff484f19ead0c0d95323a.jpg",
+   "x0": 54640,
+   "y": 45,
+   "enter_frame": 3811,
+   "center_frame": 3880,
+   "exit_frame": 3949,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.595313,
+     "cy": 0.298438,
+     "w": 0.0375,
+     "h": 0.028125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.841406,
+     "cy": 0.314063,
+     "w": 0.04375,
+     "h": 0.034375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.473438,
+     "cy": 0.532813,
+     "w": 0.04375,
+     "h": 0.028125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.355469,
+     "cy": 0.439063,
+     "w": 0.0375,
+     "h": 0.0375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.694531,
+     "cy": 0.488281,
+     "w": 0.04375,
+     "h": 0.0375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.833,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 67,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/08_11_scratch_03_jpg.rf.ba4a719eacbbc189a6730c8b110832c2.jpg",
+   "x0": 55440,
+   "y": 38,
+   "enter_frame": 3868,
+   "center_frame": 3937,
+   "exit_frame": 4006,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.288281,
+     "cy": 0.610938,
+     "w": 0.173437,
+     "h": 0.35
+    },
+    {
+     "type": "scratch",
+     "cx": 0.860938,
+     "cy": 0.404687,
+     "w": 0.079687,
+     "h": 0.25625
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.931,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 68,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/10_10_open_circuit_04_jpg.rf.b2438b4a4df5e7dccdd95ceb9d62a040.jpg",
+   "x0": 56240,
+   "y": 42,
+   "enter_frame": 3925,
+   "center_frame": 3994,
+   "exit_frame": 4063,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.298438,
+     "cy": 0.595313,
+     "w": 0.028125,
+     "h": 0.0375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.314063,
+     "cy": 0.841406,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.532813,
+     "cy": 0.473438,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.439063,
+     "cy": 0.355469,
+     "w": 0.0375,
+     "h": 0.0375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.488281,
+     "cy": 0.694531,
+     "w": 0.0375,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.834,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 69,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/08_11_spurious-copper_pinhole_08_jpg.rf.e30a6ec0b4eed07e7774f46226aee84d.jpg",
+   "x0": 57040,
+   "y": 39,
+   "enter_frame": 3982,
+   "center_frame": 4051,
+   "exit_frame": 4120,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.752344,
+     "cy": 0.126562,
+     "w": 0.065625,
+     "h": 0.048438
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.528906,
+     "cy": 0.073438,
+     "w": 0.035937,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.830469,
+     "cy": 0.435156,
+     "w": 0.034375,
+     "h": 0.0625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.696875,
+     "cy": 0.529687,
+     "w": 0.039062,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.783594,
+     "cy": 0.636719,
+     "w": 0.026562,
+     "h": 0.0625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.853125,
+     "cy": 0.34375,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.699219,
+     "cy": 0.345313,
+     "w": 0.021875,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.759375,
+     "cy": 0.579688,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.796875,
+     "cy": 0.696094,
+     "w": 0.025,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 9,
+    "max_conf": 0.831,
+    "types": [
+     "falsecopper",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 70,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/09_10_spur_01_jpg.rf.4586870f8ef5716ba91412bfd99f8d7f.jpg",
+   "x0": 57840,
+   "y": 36,
+   "enter_frame": 4040,
+   "center_frame": 4109,
+   "exit_frame": 4178,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.379688,
+     "cy": 0.471094,
+     "w": 0.04375,
+     "h": 0.045312
+    },
+    {
+     "type": "spur",
+     "cx": 0.169531,
+     "cy": 0.34375,
+     "w": 0.03125,
+     "h": 0.045312
+    },
+    {
+     "type": "spur",
+     "cx": 0.258594,
+     "cy": 0.1,
+     "w": 0.048438,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.555469,
+     "cy": 0.517188,
+     "w": 0.057813,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.652344,
+     "cy": 0.308594,
+     "w": 0.057813,
+     "h": 0.03125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.841,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 71,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/01_07_short_10_jpg.rf.33594fa6e53052650f6620f6d844843e.jpg",
+   "x0": 58640,
+   "y": 39,
+   "enter_frame": 4097,
+   "center_frame": 4166,
+   "exit_frame": 4235,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.580469,
+     "cy": 0.491406,
+     "w": 0.039062,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.629687,
+     "cy": 0.453125,
+     "w": 0.035937,
+     "h": 0.035937
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.689063,
+     "cy": 0.232031,
+     "w": 0.03125,
+     "h": 0.0625
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.496094,
+     "cy": 0.43125,
+     "w": 0.03125,
+     "h": 0.048438
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.407813,
+     "cy": 0.497656,
+     "w": 0.032813,
+     "h": 0.045312
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.843,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 72,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/05_11_open_circuit_05_jpg.rf.56f1643a86ec64eb57356bb2264e7642.jpg",
+   "x0": 59440,
+   "y": 46,
+   "enter_frame": 4154,
+   "center_frame": 4223,
+   "exit_frame": 4292,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.341406,
+     "cy": 0.06875,
+     "w": 0.026562,
+     "h": 0.028125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.435937,
+     "cy": 0.18125,
+     "w": 0.025,
+     "h": 0.021875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.674219,
+     "cy": 0.449219,
+     "w": 0.028125,
+     "h": 0.039062
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.285938,
+     "cy": 0.53125,
+     "w": 0.026562,
+     "h": 0.03125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.485938,
+     "cy": 0.664844,
+     "w": 0.026562,
+     "h": 0.026562
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.835,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 73,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/02_07_missing_hole_10_jpg.rf.4e5ba8d3cd7b4d6288d1d8cd0db86921.jpg",
+   "x0": 60240,
+   "y": 37,
+   "enter_frame": 4211,
+   "center_frame": 4280,
+   "exit_frame": 4349,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.720313,
+     "cy": 0.173437,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.714844,
+     "cy": 0.396875,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.488281,
+     "cy": 0.289844,
+     "w": 0.029687,
+     "h": 0.039062
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.271875,
+     "cy": 0.310156,
+     "w": 0.039062,
+     "h": 0.045312
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.160938,
+     "cy": 0.307812,
+     "w": 0.03125,
+     "h": 0.048438
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.854,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 74,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/09_09_spurious_copper_03_jpg.rf.0bb0e3a13f925fecd600fe3ff907c878.jpg",
+   "x0": 61040,
+   "y": 42,
+   "enter_frame": 4268,
+   "center_frame": 4337,
+   "exit_frame": 4406,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.50625,
+     "cy": 0.222656,
+     "w": 0.020313,
+     "h": 0.053125
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.578125,
+     "cy": 0.217188,
+     "w": 0.021875,
+     "h": 0.051562
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.93125,
+     "cy": 0.392969,
+     "w": 0.03125,
+     "h": 0.045312
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.63125,
+     "cy": 0.574219,
+     "w": 0.021875,
+     "h": 0.051562
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.839063,
+     "cy": 0.246094,
+     "w": 0.034375,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.834,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 75,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/09_11_scratch_03_jpg.rf.13efc75b0aa3c777a41ddd38e3144271.jpg",
+   "x0": 61840,
+   "y": 42,
+   "enter_frame": 4325,
+   "center_frame": 4394,
+   "exit_frame": 4463,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.610938,
+     "cy": 0.288281,
+     "w": 0.35,
+     "h": 0.173437
+    },
+    {
+     "type": "scratch",
+     "cx": 0.404687,
+     "cy": 0.860938,
+     "w": 0.25625,
+     "h": 0.079687
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.931,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 76,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/05_10_mouse-bite_spur_scratch_03_jpg.rf.02ba6d9f34f45aa9908fbb675a3fe487.jpg",
+   "x0": 62640,
+   "y": 46,
+   "enter_frame": 4382,
+   "center_frame": 4451,
+   "exit_frame": 4520,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.232813,
+     "cy": 0.555469,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.5375,
+     "cy": 0.239063,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.314063,
+     "cy": 0.15625,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.834375,
+     "cy": 0.163281,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.614062,
+     "cy": 0.175781,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.417187,
+     "cy": 0.65,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.725781,
+     "cy": 0.548438,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.816406,
+     "cy": 0.446875,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.435937,
+     "cy": 0.74375,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.772656,
+     "cy": 0.609375,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.871094,
+     "cy": 0.335156,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.941,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 77,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/04_05_short_08_jpg.rf.534dbbe944bbaf6cec547964ad2f4590.jpg",
+   "x0": 63440,
+   "y": 42,
+   "enter_frame": 4440,
+   "center_frame": 4509,
+   "exit_frame": 4578,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.058594,
+     "cy": 0.764062,
+     "w": 0.029687,
+     "h": 0.028125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.40625,
+     "cy": 0.80625,
+     "w": 0.035937,
+     "h": 0.039062
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.30625,
+     "cy": 0.272656,
+     "w": 0.045312,
+     "h": 0.04375
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.831,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 78,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/07_04_spur_11_jpg.rf.f5286de706d8535d1a3fc5e4ecf7ef6a.jpg",
+   "x0": 64240,
+   "y": 39,
+   "enter_frame": 4497,
+   "center_frame": 4566,
+   "exit_frame": 4635,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.707031,
+     "cy": 0.751563,
+     "w": 0.020313,
+     "h": 0.039062
+    },
+    {
+     "type": "spur",
+     "cx": 0.319531,
+     "cy": 0.866406,
+     "w": 0.034375,
+     "h": 0.029687
+    },
+    {
+     "type": "spur",
+     "cx": 0.863281,
+     "cy": 0.696875,
+     "w": 0.020313,
+     "h": 0.039062
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.823,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 79,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/05_11_spurious-copper_pinhole_05_jpg.rf.15167381e28d81204e7c7a890b0fbb7e.jpg",
+   "x0": 65040,
+   "y": 44,
+   "enter_frame": 4554,
+   "center_frame": 4623,
+   "exit_frame": 4692,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.378906,
+     "cy": 0.080469,
+     "w": 0.045312,
+     "h": 0.026562
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.625,
+     "cy": 0.171875,
+     "w": 0.034375,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.370312,
+     "cy": 0.475,
+     "w": 0.04375,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.529687,
+     "cy": 0.492969,
+     "w": 0.048438,
+     "h": 0.020313
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.616406,
+     "cy": 0.550781,
+     "w": 0.034375,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.414844,
+     "cy": 0.278906,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.258594,
+     "cy": 0.34375,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.282813,
+     "cy": 0.652344,
+     "w": 0.020313,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.915625,
+     "cy": 0.810156,
+     "w": 0.029687,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 9,
+    "max_conf": 0.858,
+    "types": [
+     "falsecopper",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 80,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/03_opencircuit/originals/images/06_10_open_circuit_04_jpg.rf.385af0da8616f49bf407611d295ab43b.jpg",
+   "x0": 65840,
+   "y": 37,
+   "enter_frame": 4611,
+   "center_frame": 4680,
+   "exit_frame": 4749,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 81,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/01_11_spurious-copper_pinhole_scratch_05_jpg.rf.5eb88646177318a1b1a6eb9210bd7bc8.jpg",
+   "x0": 66640,
+   "y": 43,
+   "enter_frame": 4668,
+   "center_frame": 4737,
+   "exit_frame": 4806,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.378906,
+     "cy": 0.080469,
+     "w": 0.045312,
+     "h": 0.026562
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.625,
+     "cy": 0.171875,
+     "w": 0.035937,
+     "h": 0.039062
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.370312,
+     "cy": 0.475,
+     "w": 0.04375,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.529687,
+     "cy": 0.492969,
+     "w": 0.048438,
+     "h": 0.020313
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.616406,
+     "cy": 0.550781,
+     "w": 0.034375,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.414844,
+     "cy": 0.278906,
+     "w": 0.021875,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.258594,
+     "cy": 0.34375,
+     "w": 0.021875,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.282813,
+     "cy": 0.652344,
+     "w": 0.020313,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.915625,
+     "cy": 0.810156,
+     "w": 0.029687,
+     "h": 0.034375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.264062,
+     "cy": 0.477344,
+     "w": 0.148438,
+     "h": 0.15
+    },
+    {
+     "type": "scratch",
+     "cx": 0.795312,
+     "cy": 0.75625,
+     "w": 0.176563,
+     "h": 0.226562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.805469,
+     "cy": 0.935156,
+     "w": 0.254688,
+     "h": 0.092188
+    }
+   ],
+   "model_check": {
+    "n_det": 12,
+    "max_conf": 0.936,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 82,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/04_10_mouse-bite_spur_scratch_03_jpg.rf.0bcd8f408a8fa265d05fbbd351a21c86.jpg",
+   "x0": 67440,
+   "y": 46,
+   "enter_frame": 4725,
+   "center_frame": 4794,
+   "exit_frame": 4863,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.767188,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.4625,
+     "cy": 0.760938,
+     "w": 0.0375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.685937,
+     "cy": 0.84375,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.165625,
+     "cy": 0.836719,
+     "w": 0.034375,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.385937,
+     "cy": 0.824219,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.582812,
+     "cy": 0.35,
+     "w": 0.0375,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.274219,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.183594,
+     "cy": 0.553125,
+     "w": 0.028125,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.564063,
+     "cy": 0.25625,
+     "w": 0.33125,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.227344,
+     "cy": 0.390625,
+     "w": 0.215625,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.128906,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.931,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 83,
+   "kind": "defect",
+   "case": "spur",
+   "source": "results/pcb/showcase/07_spur/originals/images/02_10_mouse-bite_spur_scratch_03_jpg.rf.112e0727278dc478c0c0c1cf6cadbb38.jpg",
+   "x0": 68240,
+   "y": 46,
+   "enter_frame": 4782,
+   "center_frame": 4851,
+   "exit_frame": 4920,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.767188,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.4625,
+     "cy": 0.760938,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.685937,
+     "cy": 0.84375,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.165625,
+     "cy": 0.836719,
+     "w": 0.032813,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.385937,
+     "cy": 0.824219,
+     "w": 0.029687,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.582812,
+     "cy": 0.35,
+     "w": 0.039062,
+     "h": 0.023438
+    },
+    {
+     "type": "spur",
+     "cx": 0.274219,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.183594,
+     "cy": 0.553125,
+     "w": 0.029687,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.564063,
+     "cy": 0.25625,
+     "w": 0.332813,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.227344,
+     "cy": 0.390625,
+     "w": 0.217188,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.128906,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.938,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 84,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/10_10_spurious-copper_pinhole_scratch_06_jpg.rf.97ae9d5d7dd516d074810236c891a94d.jpg",
+   "x0": 69040,
+   "y": 46,
+   "enter_frame": 4840,
+   "center_frame": 4909,
+   "exit_frame": 4978,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.704688,
+     "cy": 0.507031,
+     "w": 0.048438,
+     "h": 0.029687
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.800781,
+     "cy": 0.514062,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.890625,
+     "cy": 0.513281,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.489063,
+     "cy": 0.526563,
+     "w": 0.025,
+     "h": 0.045312
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.665625,
+     "cy": 0.642969,
+     "w": 0.020313,
+     "h": 0.053125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.491406,
+     "cy": 0.167969,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.444531,
+     "cy": 0.366406,
+     "w": 0.020313,
+     "h": 0.026562
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.895312,
+     "cy": 0.342187,
+     "w": 0.025,
+     "h": 0.029687
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.86875,
+     "cy": 0.586719,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.257031,
+     "cy": 0.140625,
+     "w": 0.014063,
+     "h": 0.134375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.357031,
+     "cy": 0.227344,
+     "w": 0.139063,
+     "h": 0.110937
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.916,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 85,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "results/pcb/showcase/00_falsecopper/originals/images/06_11_spurious_copper_09_jpg.rf.3a6b233fc47cd9df1e2c52c77da42afb.jpg",
+   "x0": 69840,
+   "y": 37,
+   "enter_frame": 4897,
+   "center_frame": 4966,
+   "exit_frame": 5035,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.367969,
+     "cy": 0.269531,
+     "w": 0.054688,
+     "h": 0.021875
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.627344,
+     "cy": 0.404687,
+     "w": 0.021875,
+     "h": 0.040625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.394531,
+     "cy": 0.397656,
+     "w": 0.029687,
+     "h": 0.029687
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.627344,
+     "cy": 0.730469,
+     "w": 0.026562,
+     "h": 0.04375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.510938,
+     "cy": 0.765625,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.435937,
+     "cy": 0.923438,
+     "w": 0.0625,
+     "h": 0.029687
+    }
+   ],
+   "model_check": {
+    "n_det": 6,
+    "max_conf": 0.842,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 86,
+   "kind": "normal",
+   "case": "normal",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/02_07_missing_hole_10_jpg.rf.4e5ba8d3cd7b4d6288d1d8cd0db86921.jpg",
+   "x0": 70640,
+   "y": 46,
+   "enter_frame": 4954,
+   "center_frame": 5023,
+   "exit_frame": 5092,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 87,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/03_05_short_07_jpg.rf.3749abb89fca28f5f2b09167a1339901.jpg",
+   "x0": 71440,
+   "y": 37,
+   "enter_frame": 5011,
+   "center_frame": 5080,
+   "exit_frame": 5149,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.635938,
+     "cy": 0.2125,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.84375,
+     "cy": 0.092188,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.157812,
+     "cy": 0.821875,
+     "w": 0.04375,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.714844,
+     "cy": 0.582031,
+     "w": 0.04375,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.84,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 88,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/10_07_missing_hole_10_jpg.rf.1c5c4846df3b16844f7749c8acf9b9ae.jpg",
+   "x0": 72240,
+   "y": 40,
+   "enter_frame": 5068,
+   "center_frame": 5137,
+   "exit_frame": 5206,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.279687,
+     "cy": 0.826562,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.285156,
+     "cy": 0.603125,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.511719,
+     "cy": 0.710156,
+     "w": 0.028125,
+     "h": 0.0375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.728125,
+     "cy": 0.689844,
+     "w": 0.0375,
+     "h": 0.045312
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.839063,
+     "cy": 0.692187,
+     "w": 0.03125,
+     "h": 0.048438
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.836,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 89,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "results/pcb/showcase/04_pinhole/originals/images/04_11_pinhole_scratch_06_jpg.rf.51dcac1e2787a919520a5dba23435532.jpg",
+   "x0": 73040,
+   "y": 45,
+   "enter_frame": 5125,
+   "center_frame": 5194,
+   "exit_frame": 5263,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.785156,
+     "cy": 0.439063,
+     "w": 0.025,
+     "h": 0.025
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.560937,
+     "cy": 0.239063,
+     "w": 0.021875,
+     "h": 0.020313
+    },
+    {
+     "type": "scratch",
+     "cx": 0.178906,
+     "cy": 0.278906,
+     "w": 0.110937,
+     "h": 0.259375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.1,
+     "cy": 0.535937,
+     "w": 0.10625,
+     "h": 0.457813
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.881,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 90,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "results/pcb/showcase/02_mousebite/originals/images/02_10_mouse-bite_spur_scratch_03_jpg.rf.112e0727278dc478c0c0c1cf6cadbb38.jpg",
+   "x0": 73840,
+   "y": 46,
+   "enter_frame": 5182,
+   "center_frame": 5251,
+   "exit_frame": 5320,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.767188,
+     "cy": 0.444531,
+     "w": 0.045312,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.4625,
+     "cy": 0.760938,
+     "w": 0.039062,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.685937,
+     "cy": 0.84375,
+     "w": 0.034375,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.165625,
+     "cy": 0.836719,
+     "w": 0.032813,
+     "h": 0.039062
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.385937,
+     "cy": 0.824219,
+     "w": 0.029687,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.582812,
+     "cy": 0.35,
+     "w": 0.039062,
+     "h": 0.023438
+    },
+    {
+     "type": "spur",
+     "cx": 0.274219,
+     "cy": 0.451562,
+     "w": 0.048438,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.183594,
+     "cy": 0.553125,
+     "w": 0.029687,
+     "h": 0.028125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.564063,
+     "cy": 0.25625,
+     "w": 0.332813,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.227344,
+     "cy": 0.390625,
+     "w": 0.217188,
+     "h": 0.254688
+    },
+    {
+     "type": "scratch",
+     "cx": 0.128906,
+     "cy": 0.664844,
+     "w": 0.05625,
+     "h": 0.182812
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.938,
+    "types": [
+     "mousebite",
+     "scratch",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 91,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "results/pcb/showcase/05_scratch/originals/images/04_11_scratch_03_jpg.rf.35d2d9bcdb3e0513272686abd32e63a9.jpg",
+   "x0": 74640,
+   "y": 37,
+   "enter_frame": 5240,
+   "center_frame": 5309,
+   "exit_frame": 5378,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.711719,
+     "cy": 0.389062,
+     "w": 0.173437,
+     "h": 0.351562
+    },
+    {
+     "type": "scratch",
+     "cx": 0.139063,
+     "cy": 0.595313,
+     "w": 0.079687,
+     "h": 0.257812
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.93,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 92,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "results/pcb/showcase/06_shortcircuit/originals/images/06_07_short_03_jpg.rf.769cc70509f60c882a9979690eef6d31.jpg",
+   "x0": 75440,
+   "y": 37,
+   "enter_frame": 5297,
+   "center_frame": 5366,
+   "exit_frame": 5435,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.673438,
+     "cy": 0.485938,
+     "w": 0.048438,
+     "h": 0.03125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.644531,
+     "cy": 0.367969,
+     "w": 0.048438,
+     "h": 0.029687
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.542188,
+     "cy": 0.25625,
+     "w": 0.057813,
+     "h": 0.03125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.569531,
+     "cy": 0.498437,
+     "w": 0.04375,
+     "h": 0.039062
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.524219,
+     "cy": 0.5875,
+     "w": 0.035937,
+     "h": 0.025
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.828,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 93,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "results/pcb/showcase/01_missinghole/originals/images/06_04_missing_hole_19_jpg.rf.fc106df57772c4cdeccc047ff5cf5a5e.jpg",
+   "x0": 76240,
+   "y": 42,
+   "enter_frame": 5354,
+   "center_frame": 5423,
+   "exit_frame": 5492,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.430469,
+     "cy": 0.635938,
+     "w": 0.017188,
+     "h": 0.026562
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.504687,
+     "cy": 0.68125,
+     "w": 0.020313,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.700781,
+     "cy": 0.657813,
+     "w": 0.021875,
+     "h": 0.025
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.825,
+    "types": [
+     "missinghole"
+    ]
+   }
+  }
+ ]
+}

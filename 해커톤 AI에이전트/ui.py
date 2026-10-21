@@ -19,7 +19,8 @@ from agent.pipeline import (INBOX, OUT, analyze, finalize, load_result, process_
 from agent.report import build_report
 from loading_icon import loading_data_uri
 
-SHOWCASE = {'pcb': ROOT / 'results/pcb/showcase', 'msdd': ROOT / 'results/msdd/showcase'}
+SHOWCASE = {'pcb': ROOT / 'results/pcb/showcase', 'msdd': ROOT / 'results/msdd/showcase',
+            'mobile': ROOT / 'results/mobile/showcase'}
 BADGE = {'normal': '#2E7D32', 'review': '#E68A00', 'reject': '#C62828'}
 DOT = {'normal': '🟢', 'review': '🟠', 'reject': '🔴'}
 IMG_TYPES = ['jpg', 'jpeg', 'png', 'bmp']
@@ -208,7 +209,7 @@ def meta_inputs():
 
 
 def domain_input():
-    return keep('domain', ['pcb', 'msdd'], t('domain'), radio=True, horizontal=True,
+    return keep('domain', ['pcb', 'msdd', 'mobile'], t('domain'), radio=True, horizontal=True,
                 format_func=lambda d: t(f'domain_{d}'))
 
 

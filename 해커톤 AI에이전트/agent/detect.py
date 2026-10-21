@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MODELS = {
     'pcb':  (ROOT / 'models/pcb_v2_yolo11s.pt', 640),
     'msdd': (ROOT / 'models/msdd_v1_yolo11s_seg.pt', 512),
+    'mobile': (ROOT / 'models/mobile_surface_yolo11s_seg.pt', 512),   # 스마트폰 표면 (1920×1080 사진을 512 로 학습)
 }
 TAXONOMIES = {d: yaml.safe_load((ROOT / f'knowledge/defect_taxonomy_{d}.yaml').read_text(encoding='utf-8'))
               for d in MODELS}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Inspection</title>
+<style>
+:root { --bg:#0e1116; --panel:#171b22; --line:#2a303a; --ink:#e8ecf1; --muted:#97a3b0;
+        --ng:#e1282d; --hold:#ff9600; --ok:#46af46; --font:"Malgun Gothic","Segoe UI",system-ui,sans-serif; }
+* { box-sizing:border-box; }
+html, body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:15px/1.45 var(--font); }
+body { display:grid; grid-template-columns:minmax(0,1fr) 340px; grid-template-rows:auto minmax(0,1fr); height:100vh; }
+header { grid-column:1 / 3; display:flex; align-items:center; gap:14px; padding:10px 16px; border-bottom:1px solid var(--line); }
+header h1 { font-size:18px; margin:0; font-weight:700; }
+header .dot { width:10px; height:10px; border-radius:50%; background:var(--ng); box-shadow:0 0 8px var(--ng); }
+header .sp { flex:1; }
+header select, header button { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:5px 10px; font:inherit; cursor:pointer; }
+.video { display:flex; align-items:center; justify-content:center; padding:10px; min-width:0; }
+.video img { max-width:100%; max-height:100%; border-radius:6px; background:#000; }
+.video.alarm img { outline:4px solid var(--ng); animation:blink .5s 3; }
+@keyframes blink { 50% { outline-color:transparent; } }
+aside { border-left:1px solid var(--line); padding:12px; overflow:auto; display:flex; flex-direction:column; gap:12px; }
+.counts { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.counts div { background:var(--panel); border-radius:8px; padding:8px; text-align:center; }
+.counts b { display:block; font-size:26px; font-variant-numeric:tabular-nums; }
+.c-ng b { color:var(--ng); } .c-hold b { color:var(--hold); } .c-ok b { color:var(--ok); }
+.meta { color:var(--muted); font-size:13px; display:flex; justify-content:space-between; }
+h2 { font-size:13px; margin:0; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
+.alert { background:#3a1717; border-left:3px solid var(--ng); padding:6px 8px; border-radius:4px; font-size:13px; }
+.ev { display:grid; grid-template-columns:56px minmax(0,1fr); gap:8px; align-items:center; background:var(--panel); border-radius:8px; padding:6px; }
+.ev img { width:56px; height:56px; object-fit:cover; border-radius:4px; }
+.tag { display:inline-block; font-weight:700; font-size:12px; padding:1px 7px; border-radius:10px; color:#fff; }
+.t-reject { background:var(--ng); } .t-review { background:var(--hold); } .t-normal { background:var(--ok); }
+.small { color:var(--muted); font-size:12px; }
+.off { color:var(--muted); padding:40px; text-align:center; }
+</style>
+</head>
+<body>
+<header>
+  <span class="dot"></span><h1 id="title">실시간 PCB 검사</h1>
+  <span class="small" id="src"></span>
+  <span class="sp"></span>
+  <button id="pause">⏸</button>
+  <select id="lang"><option value="ko">한국어</option><option value="vi">Tiếng Việt</option><option value="en">English</option></select>
+</header>
+<div class="video" id="video"><img id="stream" src="/stream.mjpg" alt="live"></div>
+<aside>
+  <div class="counts">
+    <div class="c-ng"><b id="n-reject">0</b><span data-t="ng"></span></div>
+    <div class="c-hold"><b id="n-review">0</b><span data-t="hold"></span></div>
+    <div class="c-ok"><b id="n-normal">0</b><span data-t="ok"></span></div>
+  </div>
+  <div class="meta"><span id="inspected"></span><span id="perf"></span></div>
+  <div id="gt" class="small"></div>
+  <h2 data-t="alerts"></h2><div id="alerts"></div>
+  <h2 data-t="recent"></h2><div id="events" style="display:grid;gap:6px"></div>
+</aside>
+<script>
+const T = {
+  ko: {title:'실시간 PCB 검사', ng:'이상', hold:'의심', ok:'정상', alerts:'라인 감시 경고', recent:'최근 판정',
+       inspected:n=>`검사 ${n}장`, queue:n=>n?`보고서 대기 ${n}`:'', none:'경고 없음',
+       report:{none:'', queued:'보고서 대기', writing:'AI 보고서 작성 중', ready:'보고서 초안 → 대시보드 확인 대기', no_llm:'기록됨 (AI 문장 없음)', logged:'대장에 기록 (AI 문장은 대시보드에서)', error:'기록 실패'},
+       streak:a=>`연속 불량 ${a.n}장 — 공정 상태를 점검하세요`,
+       type_repeat:a=>`같은 유형 반복: ${a.type} (최근 ${a.of}장 중 ${a.n}장)`,
+       location_repeat:a=>`같은 위치 반복: ${a.type} · ${a.position} (최근 ${a.of}장 중 ${a.n}장) — 마스크·드릴 등 공정 점검 권고`,
+       ng_rate:a=>`최근 불량률 ${Math.round(a.rate*100)}% (${a.n}장)`, off:'영상 서버에 연결 중…'},
+  vi: {title:'Kiểm tra PCB thời gian thực', ng:'Bất thường', hold:'Nghi ngờ', ok:'Bình thường', alerts:'Cảnh báo dây chuyền', recent:'Kết quả gần đây',
+       inspected:n=>`Đã kiểm ${n}`, queue:n=>n?`Chờ báo cáo ${n}`:'', none:'Không có cảnh báo',
+       report:{none:'', queued:'Chờ báo cáo', writing:'AI đang viết báo cáo', ready:'Bản nháp → chờ xác nhận trên bảng điều khiển', no_llm:'Đã ghi (không có câu AI)', logged:'Đã ghi sổ (câu AI tạo trên bảng điều khiển)', error:'Ghi thất bại'},
+       streak:a=>`${a.n} tấm lỗi liên tiếp — hãy kiểm tra công đoạn`,
+       type_repeat:a=>`Lặp lại cùng loại: ${a.type} (${a.n}/${a.of} tấm gần nhất)`,
+       location_repeat:a=>`Lặp lại cùng vị trí: ${a.type} · ${a.position} (${a.n}/${a.of}) — khuyến nghị kiểm tra công đoạn`,
+       ng_rate:a=>`Tỷ lệ lỗi gần đây ${Math.round(a.rate*100)}% (${a.n} tấm)`, off:'Đang kết nối máy chủ video…'},
+  en: {title:'Live PCB Inspection', ng:'Abnormal', hold:'Suspect', ok:'Normal', alerts:'Line alerts', recent:'Recent results',
+       inspected:n=>`${n} inspected`, queue:n=>n?`${n} reports queued`:'', none:'No alerts',
+       report:{none:'', queued:'Report queued', writing:'AI writing report', ready:'Draft ready → confirm on dashboard', no_llm:'Logged (no AI text)', logged:'Logged (AI text on the dashboard)', error:'Logging failed'},
+       streak:a=>`${a.n} NG boards in a row — check the process`,
+       type_repeat:a=>`Same type repeating: ${a.type} (${a.n} of last ${a.of})`,
+       location_repeat:a=>`Same location repeating: ${a.type} · ${a.position} (${a.n} of last ${a.of}) — check the process`,
+       ng_rate:a=>`Recent NG rate ${Math.round(a.rate*100)}% (${a.n} boards)`, off:'Connecting to the video server…'},
+};
+const POS = {vi:{'상단':'trên','중앙':'giữa','하단':'dưới','좌측':'trái','우측':'phải'},
+             en:{'상단':'top','중앙':'center','하단':'bottom','좌측':'left','우측':'right'}};
+const pos = (p, l) => POS[l] ? p.split(' ').map(w => POS[l][w] || w).join(' ') : p;
+let lang = 'ko', lastAlert = 0, paused = false;
+const SHOW_EVAL = new URLSearchParams(location.search).get('eval') === '1';
+try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('live-lang') || 'ko'; } catch (e) {}
+const $ = id => document.getElementById(id);
+function applyLang() {
+  const t = T[lang]; document.documentElement.lang = lang; $('lang').value = lang; $('title').textContent = t.title;
+  document.querySelectorAll('[data-t]').forEach(e => e.textContent = t[e.dataset.t]);
+}
+$('lang').onchange = e => { lang = e.target.value; try { localStorage.setItem('live-lang', lang); } catch (x) {} applyLang(); };
+$('pause').onclick = () => fetch('/control?cmd=' + (paused ? 'resume' : 'pause'));
+async function poll() {
+  try {
+    const s = await (await fetch('/state')).json(), t = T[lang];
+    paused = s.paused; $('pause').textContent = paused ? '▶' : '⏸';
+    for (const k of ['reject','review','normal']) $('n-' + k).textContent = s.counts[k];
+    $('inspected').textContent = t.inspected(s.inspected) + (s.queue ? ' · ' + t.queue(s.queue) : '');
+    $('perf').textContent = `${s.fps} fps · ${s.infer_ms} ms`;
+    $('src').textContent = s.source;
+    const g = SHOW_EVAL ? s.eval : null;   // 정답 대조는 ?eval=1 일 때만 (확인용)
+    $('gt').innerHTML = g && g.boards ? `<b style="color:var(--ink)">${{ko:'정답 대조',vi:'Đối chiếu đáp án',en:'Ground truth'}[lang]}</b> · ${{ko:'기판',vi:'Tấm',en:'Boards'}[lang]} ${(100*g.board_acc).toFixed(1)}% (${g.correct}/${g.boards}) · F1 ${g.f1.toFixed(3)} (P ${g.precision.toFixed(3)} R ${g.recall.toFixed(3)})` : '';
+    $('alerts').innerHTML = s.alerts.length ? s.alerts.slice(0, 4).map(a =>
+      `<div class="alert">${a.time} · ${t[a.kind]({...a, position: a.position ? pos(a.position, lang) : ''})}</div>`).join('')
+      : `<div class="small">${t.none}</div>`;
+    if (s.alerts.length && s.alerts[0].seq !== lastAlert) {
+      lastAlert = s.alerts[0].seq; $('video').classList.remove('alarm'); void $('video').offsetWidth; $('video').classList.add('alarm');
+    }
+    const vn = {reject:t.ng, review:t.hold, normal:t.ok};
+    $('events').innerHTML = s.events.slice(0, 12).map(e => `<div class="ev"><img src="${e.capture}" alt="">
+      <div><span class="tag t-${e.verdict}">#${e.seq} ${vn[e.verdict]}</span>${SHOW_EVAL && e.gt ? (e.gt.ok && !e.gt.fp && !e.gt.fn ? ' ✅' : e.gt.ok ? ' ⚠️' : ' ❌') : ''} <span class="small">${e.time}</span><br>
+      <span class="small">${e.types.join(', ') || '-'}${e.report !== 'none' ? ' · ' + t.report[e.report] : ''}</span></div></div>`).join('');
+  } catch (e) { $('events').innerHTML = `<div class="off">${T[lang].off}</div>`; }
+}
+applyLang(); poll(); setInterval(poll, 700);
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿index,kind,case,verdict,gt_defects,pred_defects,matched,missed,false_alarm,types
+0,defect,shortcircuit,reject,5,5,5,0,0,shortcircuit
+1,defect,mousebite,reject,11,11,11,0,0,mousebite scratch spur
+2,defect,falsecopper,reject,12,12,12,0,0,falsecopper pinhole scratch
+3,defect,scratch,review,2,2,2,0,0,scratch
+4,defect,shortcircuit,reject,4,5,4,0,1,shortcircuit
+5,defect,missinghole,reject,5,5,5,0,0,missinghole
+6,defect,falsecopper,reject,5,5,5,0,0,falsecopper
+7,defect,pinhole,reject,12,12,12,0,0,falsecopper pinhole scratch
+8,defect,spur,reject,11,11,11,0,0,mousebite scratch spur
+9,defect,missinghole,reject,5,5,5,0,0,missinghole
+10,defect,mousebite,reject,11,11,11,0,0,mousebite scratch spur
+11,defect,opencircuit,reject,7,7,7,0,0,opencircuit scratch
+12,defect,opencircuit,reject,5,5,5,0,0,opencircuit
+13,defect,opencircuit,reject,5,5,5,0,0,opencircuit
+14,normal,normal,normal,0,0,0,0,0,
+15,normal,normal,normal,0,0,0,0,0,
+16,defect,scratch,review,2,2,2,0,0,scratch
+17,normal,normal,normal,0,0,0,0,0,
+18,defect,opencircuit,reject,7,7,7,0,0,opencircuit scratch
+19,defect,pinhole,review,6,6,6,0,0,pinhole scratch
+20,defect,spur,reject,12,12,12,0,0,mousebite scratch spur
+21,defect,shortcircuit,reject,5,5,5,0,0,shortcircuit
+22,defect,scratch,review,2,2,2,0,0,scratch
+23,normal,normal,normal,0,0,0,0,0,
+24,defect,falsecopper,reject,12,12,12,0,0,falsecopper pinhole scratch
+25,defect,opencircuit,reject,7,7,7,0,0,opencircuit scratch
+26,normal,normal,normal,0,0,0,0,0,
+27,defect,shortcircuit,reject,3,3,3,0,0,shortcircuit
+28,defect,falsecopper,reject,5,5,5,0,0,falsecopper
+29,defect,pinhole,review,4,4,4,0,0,pinhole scratch
+30,defect,spur,reject,11,11,11,0,0,mousebite scratch spur
+31,normal,normal,normal,0,0,0,0,0,
+32,defect,missinghole,reject,3,3,3,0,0,missinghole
+33,defect,mousebite,reject,11,11,11,0,0,mousebite scratch spur
+34,normal,normal,normal,0,0,0,0,0,
+35,defect,mousebite,reject,5,5,5,0,0,mousebite
+36,normal,normal,normal,0,0,0,0,0,
+37,defect,pinhole,review,4,4,4,0,0,pinhole scratch
+38,defect,mousebite,reject,5,5,5,0,0,mousebite
+39,defect,scratch,review,2,2,2,0,0,scratch
+40,defect,missinghole,reject,5,5,5,0,0,missinghole
+41,defect,opencircuit,reject,5,5,5,0,0,opencircuit
+42,defect,scratch,review,1,1,1,0,0,scratch
+43,defect,mousebite,reject,3,3,3,0,0,mousebite
+44,defect,scratch,review,2,2,2,0,0,scratch
+45,normal,normal,normal,0,0,0,0,0,
+46,defect,scratch,review,2,2,2,0,0,scratch
+47,defect,pinhole,reject,9,9,9,0,0,falsecopper pinhole
+48,defect,mousebite,reject,5,5,5,0,0,mousebite
+49,normal,normal,reject,0,1,0,0,1,falsecopper
+50,defect,pinhole,review,4,4,4,0,0,pinhole scratch
+51,defect,spur,reject,11,11,11,0,0,mousebite scratch spur
+52,defect,missinghole,reject,7,7,7,0,0,missinghole shortcircuit
+53,normal,normal,normal,0,0,0,0,0,
+54,defect,missinghole,reject,5,5,5,0,0,missinghole
+55,defect,falsecopper,reject,9,9,9,0,0,falsecopper pinhole
+56,defect,opencircuit,reject,5,5,5,0,0,opencircuit
+57,defect,shortcircuit,reject,5,5,5,0,0,shortcircuit
+58,defect,shortcircuit,reject,3,3,3,0,0,shortcircuit
+59,defect,missinghole,reject,5,5,5,0,0,missinghole
+60,defect,mousebite,reject,11,11,11,0,0,mousebite scratch spur
+61,defect,mousebite,reject,12,12,12,0,0,mousebite scratch spur
+62,normal,normal,normal,0,0,0,0,0,
+63,defect,falsecopper,reject,5,5,5,0,0,falsecopper
+64,defect,spur,reject,5,5,5,0,0,spur
+65,defect,pinhole,reject,11,11,11,0,0,falsecopper pinhole scratch
+66,defect,opencircuit,reject,5,5,5,0,0,opencircuit
+67,defect,scratch,review,2,2,2,0,0,scratch
+68,defect,opencircuit,reject,5,5,5,0,0,opencircuit
+69,defect,falsecopper,reject,9,9,9,0,0,falsecopper pinhole
+70,defect,spur,reject,5,5,5,0,0,spur
+71,defect,shortcircuit,reject,5,5,5,0,0,shortcircuit
+72,defect,opencircuit,reject,5,5,5,0,0,opencircuit
+73,defect,missinghole,reject,5,5,5,0,0,missinghole
+74,defect,falsecopper,reject,5,5,5,0,0,falsecopper
+75,defect,scratch,review,2,2,2,0,0,scratch
+76,defect,spur,reject,11,11,11,0,0,mousebite scratch spur
+77,defect,shortcircuit,reject,3,3,3,0,0,shortcircuit
+78,defect,spur,reject,3,3,3,0,0,spur
+79,defect,pinhole,reject,9,9,9,0,0,falsecopper pinhole
+80,normal,normal,normal,0,0,0,0,0,
+81,defect,pinhole,reject,12,12,12,0,0,falsecopper pinhole scratch
+82,defect,spur,reject,11,11,11,0,0,mousebite scratch spur
+83,defect,spur,reject,11,11,11,0,0,mousebite scratch spur
+84,defect,falsecopper,reject,11,11,11,0,0,falsecopper pinhole scratch
+85,defect,falsecopper,reject,6,6,6,0,0,falsecopper
+86,normal,normal,normal,0,0,0,0,0,
+87,defect,shortcircuit,reject,4,4,4,0,0,shortcircuit
+88,defect,missinghole,reject,5,5,5,0,0,missinghole
+89,defect,pinhole,review,4,4,4,0,0,pinhole scratch
+90,defect,mousebite,reject,11,11,11,0,0,mousebite scratch spur
+91,defect,scratch,review,2,2,2,0,0,scratch
+92,defect,shortcircuit,reject,5,5,5,0,0,shortcircuit
+93,defect,missinghole,reject,3,3,3,0,0,missinghole

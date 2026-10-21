@@ -1,0 +1,86 @@
+# 스마트폰 표면(화면·외관) 결함 지식베이스 — 모델: models/mobile_surface_yolo11s_seg.pt (oil / scratch / stain)
+# 원본: Izumi 브랜치 feat/auto-router-rag-data-audit (2026-10-21). 판정 기준값은 초안이며 고객 외관 기준서로 바꿔야 한다.
+# 데이터: PKU-Market-Phone (Kaggle "Mobile Phone Defect Segmentation Dataset") — 라이선스 미확인(GPL-3.0 가능성)
+version: 0.1
+
+judgment:            # 정상 / 의심(재검사, Hold) / 이상
+  conf_reject: 0.50
+  conf_review: 0.25
+  rules:             # 유형별 예외: 스크래치·얼룩은 허용 여부를 사람이 판단해야 해서 최대 '의심'
+    scratch:
+      max_level: review
+      note: 긁힘의 길이·폭과 디스플레이·기능층이 드러났는지 확인한다.
+      note_vi: Kiểm tra chiều dài, chiều rộng và lớp hiển thị hoặc lớp chức năng có bị lộ không.
+      note_en: Check the scratch length and width, and whether the display or functional layer is exposed.
+    stain:
+      max_level: review
+      note: 표면을 다시 세척한 뒤 재검사한다.
+      note_vi: Vệ sinh lại bề mặt rồi kiểm tra lại.
+      note_en: Re-clean the surface and inspect again.
+
+situations:          # 판정 결과별 에이전트 동작
+  normal:
+    label: 정상
+    action: 통과 처리. 검사 이력만 기록한다.
+  review:
+    label: 의심
+    output: 재검사 의뢰서 (Hold)
+    action: 제품을 보류(Hold)하고 의심 영역을 표시해 재검사를 의뢰한다. 불합격이면 부적합 보고서(NCR)를 발행하고, 합격(오탐)이면 Hold 를 해제한다.
+    note: 기각된 이미지는 정상 샘플로, 확정된 이미지는 결함 샘플로 모아 재학습에 사용한다.
+  reject:
+    label: 이상
+    output: 부적합 보고서 (NCR)
+    action: 제품을 격리하고 유형별 원인 후보와 조치를 붙여 부적합 보고서(NCR)를 만들고, 작업자 확인 후 품질 담당자에게 전송한다.
+  multi_type:
+    label: 복합 결함
+    action: 심각도가 높은 유형을 대표 판정으로 하고, 나머지 유형도 보고서에 모두 기재한다.
+
+defects:
+  oil:
+    name_ko: 오일 오염
+    name_vi: Dính dầu
+    name_en: Oil contamination
+    group: 오염
+    severity: major
+    description: 표면에 오일 또는 유분이 남은 상태
+    causes:
+      - 장비 또는 지그의 오일 누유
+      - 장갑·공구·트레이 오염
+      - 세척 및 건조 불량
+    actions:
+      immediate: 해당 제품을 격리하고 승인된 방법으로 세척 후 재검사한다.
+      check: 장비 누유, 지그, 장갑 및 세척액 상태를 확인한다.
+      prevent: 누유 점검과 세척·건조 조건을 표준화한다.
+    measure: 면적, 위치
+  scratch:
+    name_ko: 스크래치
+    name_vi: Vết xước
+    name_en: Scratch
+    group: 표면 손상
+    severity: major
+    description: 표면에 생긴 선형 긁힘 또는 코팅 손상
+    causes:
+      - 취급·적재 중 부품 간 접촉
+      - 지그·트레이·컨베이어 마찰
+      - 조립 중 공구 또는 이물 접촉
+    actions:
+      immediate: 제품을 격리하고 길이·폭·깊이를 외관 기준과 비교한다.
+      check: 지그와 이송 경로의 접촉·이물을 확인한다.
+      prevent: 보호재를 사용하고 취급 공정을 점검한다.
+    measure: 길이, 폭, 깊이, 위치
+  stain:
+    name_ko: 얼룩
+    name_vi: Vết ố
+    name_en: Stain
+    group: 외관 오염
+    severity: minor
+    description: 표면에 남은 국부적인 색상 또는 광택 변화
+    causes:
+      - 세척 잔류물
+      - 접착제·손자국·화학물질 접촉
+      - 건조 및 보관 조건 불량
+    actions:
+      immediate: 승인된 세척 방법으로 제거 가능 여부를 확인한다.
+      check: 세척액 농도와 건조 조건을 확인한다.
+      prevent: 세척·건조·포장 조건을 표준화한다.
+    measure: 면적, 위치

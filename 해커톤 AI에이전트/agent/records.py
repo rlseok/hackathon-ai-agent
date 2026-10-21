@@ -40,7 +40,7 @@ def make_entry(result, status, out_root):
         # 언어와 무관한 값 (엑셀 대장은 이 값으로 영어를 만든다)
         'domain': det['domain'], 'rep': rep or '', 'process': meta.get('process', ''),
         '일시': time.strftime('%Y-%m-%d %H:%M:%S'),
-        '도메인': {'pcb': 'PCB', 'msdd': '금속'}.get(det['domain'], det['domain']),
+        '도메인': {'pcb': 'PCB', 'msdd': '금속', 'mobile': '휴대폰'}.get(det['domain'], det['domain']),
         '대상': det.get('part') or Path(det['image']).name,
         '사진 수': len(det.get('views') or [1]),
         '품번': meta.get('part_no', ''),
@@ -54,6 +54,7 @@ def make_entry(result, status, out_root):
         '작업자 수정': sum(d.get('reason_key') == 'edited' for d in defects) + len(det.get('excluded', [])),
         '처리 상태': STATUS['ko'][status],
         'status': status,
+        'source': result.get('source', ''),       # 'live' = 실시간 검사 라인에서 들어온 건
         '보고서': _rel(result.get('report'), out_root),
         'md': '',
         'image': det.get('marked_image') or det['image'],
@@ -124,14 +125,52 @@ def pending(out_root):
     return [e for e in load(out_root) if e['status'] == 'pending']
 
 
-def upsert(result, out_root, status):
-    """기록 추가/갱신 → md 작성 → 엑셀 다시 만들기. 엑셀이 열려 있어 저장 못 하면 경고 문자열을 돌려준다."""
+class _Lock:
+    """여러 프로세스(대시보드·채팅·실시간 검사 서버)가 같은 대장에 동시에 쓰지 않도록 잠금 파일로 순서를 맞춘다."""
+
+    def __init__(self, out_root, timeout=30, stale=60):
+        self.path, self.timeout, self.stale = Path(out_root) / '.ledger.lock', timeout, stale
+
+    def __enter__(self):
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        end = time.time() + self.timeout
+        while True:
+            try:
+                os.close(os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+                return self
+            except FileExistsError:
+                try:                 # 쓰던 프로세스가 죽어서 남은 잠금은 치운다
+                    if time.time() - self.path.stat().st_mtime > self.stale:
+                        self.path.unlink(missing_ok=True)
+                        continue
+                except FileNotFoundError:
+                    continue
+                if time.time() > end:
+                    return self      # 너무 오래 기다리면 그냥 쓴다 (기록을 잃는 것보다 낫다)
+                time.sleep(0.05)
+
+    def __exit__(self, *exc):
+        self.path.unlink(missing_ok=True)
+
+
+def upsert(result, out_root, status, xlsx=True):
+    """기록 추가/갱신 → md 작성 → 엑셀 다시 만들기. 엑셀이 열려 있어 저장 못 하면 경고 문자열을 돌려준다.
+
+    xlsx=False: 기록(jsonl·md)만 바로 쓰고 엑셀은 나중에 (실시간 검사처럼 자주 쓸 때, rebuild_xlsx 로 모아서)
+    """
     out_root = Path(out_root)
     e = make_entry(result, status, out_root)
     e['md'] = _rel(write_md(result, e, out_root), out_root)
-    with open(out_root / JSONL, 'a', encoding='utf-8') as f:
-        f.write(json.dumps(e, ensure_ascii=False) + '\n')
-    return build_xlsx(out_root)
+    with _Lock(out_root):
+        with open(out_root / JSONL, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(e, ensure_ascii=False) + '\n')
+        return build_xlsx(out_root) if xlsx else None
+
+
+def rebuild_xlsx(out_root):
+    """잠금을 잡고 엑셀 대장만 다시 만든다."""
+    with _Lock(out_root):
+        return build_xlsx(out_root)
 
 
 def _thumb(src, out_root):
@@ -149,9 +188,9 @@ def _thumb(src, out_root):
 # 기록에는 언어와 무관한 값(domain, verdict, rep, process, 결함별 class·level·reason_key)이 있고,
 # 그 값으로 영어 문구를 만든다. 이 값이 없는 예전 기록은 한국어 값을 거꾸로 바꿔 쓴다.
 _KO_VERDICT = {'정상': 'normal', '의심': 'review', '이상': 'reject'}
-_KO_DOMAIN = {'PCB': 'pcb', '금속': 'msdd'}
+_KO_DOMAIN = {'PCB': 'pcb', '금속': 'msdd', '휴대폰': 'mobile'}
 _KO_PROCESS = {v: k for k, v in PROCESS_NAME['ko'].items() if k}
-DOMAIN_EN = {'pcb': 'PCB', 'msdd': 'Metal'}
+DOMAIN_EN = {'pcb': 'PCB', 'msdd': 'Metal', 'mobile': 'Phone'}
 _OUT_ROOT = [Path('outputs')]        # build_xlsx 가 정한다 (예전 기록의 결과 파일 경로 기준)
 
 

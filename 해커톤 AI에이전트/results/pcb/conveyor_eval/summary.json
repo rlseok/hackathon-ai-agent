@@ -1,0 +1,96 @@
+{
+ "video": "pcb_conveyor.mp4",
+ "iou": 0.5,
+ "board_level": {
+  "boards": 94,
+  "defect_boards": 80,
+  "normal_boards": 14,
+  "defect_caught": 80,
+  "normal_passed": 13,
+  "board_accuracy": 0.9894,
+  "defect_board_recall": 1.0,
+  "normal_false_alarm_rate": 0.0714,
+  "verdicts_on_defect_boards": {
+   "reject": 65,
+   "review": 15
+  },
+  "verdicts_on_normal_boards": {
+   "normal": 13,
+   "reject": 1
+  }
+ },
+ "defect_level": {
+  "tp": 495,
+  "fp": 2,
+  "fn": 0,
+  "precision": 0.996,
+  "recall": 1.0,
+  "f1": 0.998,
+  "per_class": {
+   "falsecopper": {
+    "tp": 76,
+    "fp": 1,
+    "fn": 0,
+    "precision": 0.987,
+    "recall": 1.0,
+    "f1": 0.9935
+   },
+   "missinghole": {
+    "tp": 46,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "mousebite": {
+    "tp": 85,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "opencircuit": {
+    "tp": 50,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "pinhole": {
+    "tp": 52,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "scratch": {
+    "tp": 90,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "shortcircuit": {
+    "tp": 44,
+    "fp": 1,
+    "fn": 0,
+    "precision": 0.9778,
+    "recall": 1.0,
+    "f1": 0.9888
+   },
+   "spur": {
+    "tp": 52,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   }
+  }
+ }
+}

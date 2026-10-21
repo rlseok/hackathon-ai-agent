@@ -3,7 +3,7 @@
 화면(app.py)에서는 analyze → (작업자 수정 → refresh) → finalize / reject_false_positive 순서로 쓴다.
 
 사용:
-  python -m agent.pipeline <이미지> [--domain pcb|msdd] [--part "품번 / 공정"] [--lang ko|vi]
+  python -m agent.pipeline <이미지> [--domain pcb|msdd|mobile] [--part "품번 / 공정"] [--lang ko|vi]
   python -m agent.pipeline <이미지1> <이미지2> ... --domain msdd   # 부품 1개의 여러 방향 사진 → 부품 단위 판정
   python -m agent.pipeline --showcase          # 우수 사례 케이스별 첫 이미지로 일괄 실행
   python -m agent.pipeline --showcase-parts    # 금속 우수 사례를 부품별로 묶어 부품 단위 판정 + 검사자 OK/NG 비교
@@ -25,7 +25,7 @@ from agent.report import SITUATION_KO, build_report
 from agent.writer import write_report_text
 
 OUT = ROOT / 'outputs'
-INBOX = ROOT / 'inbox'      # inbox/pcb/, inbox/msdd/ 에 사진을 넣고 일괄 검사
+INBOX = ROOT / 'inbox'      # inbox/pcb/, inbox/msdd/, inbox/mobile/ 에 사진을 넣고 일괄 검사
 ROUTE = {   # 판정 → (보관 폴더, 결과물 이름, 작업자 확인 없이 처리할 때의 상태)
     'reject': ('abnormal', 'NCR', 'auto_reject'),                       # 부적합 보고서
     'review': ('second_inspection', 'reinspection_hold', 'review_wait'),  # 재검사 의뢰서 (Hold)
@@ -46,10 +46,10 @@ def load_result(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
 
 
-def register_pending(result, out_root=OUT):
-    """분석 직후: 결과 저장 + 검사 대장에 '작업자 확인 대기'로 기록."""
+def register_pending(result, out_root=OUT, xlsx=True):
+    """분석 직후: 결과 저장 + 검사 대장에 '작업자 확인 대기'로 기록. xlsx=False 면 엑셀 대장은 나중에 모아서."""
     save_result(result)
-    result['record_warning'] = records.upsert(result, out_root, 'pending')
+    result['record_warning'] = records.upsert(result, out_root, 'pending', xlsx=xlsx)
     return result
 
 
@@ -71,6 +71,14 @@ def analyze(image_paths, domain='pcb', part_info='', lang='ko', out_root=OUT, na
         det = detect(paths[0], domain, work, tile=tile)
     result = {'name': name, 'work': str(work), 'part_info': part_info, 'meta': meta or {}, 'lang': lang,
               'detection': det}
+    return refresh(result)
+
+
+def analyze_detected(det, name, part_info='', lang='ko', out_root=OUT, meta=None, source=''):
+    """이미 검출·판정까지 끝난 결과(실시간 검사 서버)로 지식 조회·문장 작성만 한다 (YOLO 를 다시 돌리지 않음)."""
+    meta = meta or {}
+    result = {'name': name, 'work': str(Path(out_root) / 'work' / name), 'part_info': part_info or format_meta(meta, lang),
+              'meta': meta, 'lang': lang, 'detection': det, 'source': source}
     return refresh(result)
 
 
@@ -130,7 +138,7 @@ def run_part(image_paths, domain='msdd', part_info='', lang='ko', out_root=OUT, 
 def scan_inbox(inbox=INBOX):
     """inbox/<도메인>/ 의 새 사진 목록."""
     return {d: sorted(p for p in (Path(inbox) / d).glob('*') if p.suffix.lower() in IMG_EXT)
-            for d in ('pcb', 'msdd') if (Path(inbox) / d).is_dir()}
+            for d in ('pcb', 'msdd', 'mobile') if (Path(inbox) / d).is_dir()}
 
 
 def process_inbox(lang='ko', meta=None, inbox=INBOX, out_root=OUT, progress=None):
@@ -175,6 +183,7 @@ def process_inbox(lang='ko', meta=None, inbox=INBOX, out_root=OUT, progress=None
 def run_showcase(lang='ko'):
     cases = [('pcb', p) for p in sorted((ROOT / 'results/pcb/showcase').glob('*/originals/images/01_*'))]
     cases += [('msdd', p) for p in sorted((ROOT / 'results/msdd/showcase').glob('*/originals/images/01_*'))]
+    cases += [('mobile', p) for p in sorted((ROOT / 'results/mobile/showcase').glob('*/originals/images/01_*'))]
     for domain, img in cases:
         case = img.parents[2].name
         t0 = time.time()
@@ -211,13 +220,13 @@ def run_showcase_parts(lang='ko', min_views=2):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('images', nargs='*')
-    ap.add_argument('--domain', default='pcb', choices=['pcb', 'msdd'])
+    ap.add_argument('--domain', default='pcb', choices=['pcb', 'msdd', 'mobile'])
     ap.add_argument('--part', default='')
     ap.add_argument('--lang', default='ko', choices=['ko', 'vi'])
     ap.add_argument('--tile', choices=['auto', 'on', 'off'], default='auto')
     ap.add_argument('--showcase', action='store_true')
     ap.add_argument('--showcase-parts', action='store_true')
-    ap.add_argument('--inbox', action='store_true', help='inbox/pcb, inbox/msdd 의 사진을 일괄 검사')
+    ap.add_argument('--inbox', action='store_true', help='inbox/pcb, inbox/msdd, inbox/mobile 의 사진을 일괄 검사')
     a = ap.parse_args()
     if a.inbox:
         res = process_inbox(a.lang, progress=lambda i, n, s: print(f'[{i}/{n}] {s}') if s else None)

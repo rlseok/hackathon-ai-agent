@@ -12,6 +12,7 @@
 """
 import argparse
 import csv
+import shutil
 from pathlib import Path
 
 import cv2
@@ -109,11 +110,14 @@ def main():
     ap.add_argument('--conf', type=float, default=0.25)
     ap.add_argument('--top', type=int, default=10)
     ap.add_argument('--imgsz', type=int, default=640)
+    ap.add_argument('--originals', action='store_true', help='고른 사진의 원본 이미지·라벨도 <케이스>/originals/ 에 복사')
     args = ap.parse_args()
 
     cfg = yaml.safe_load(args.data.read_text(encoding='utf-8'))
     names = cfg['names']
-    root = Path(cfg['path'])
+    root = Path(cfg.get('path') or '.')
+    if not root.is_absolute():                   # 상대 경로는 data.yaml 위치 기준
+        root = (args.data.parent / root).resolve()
     img_dir = root / cfg[args.split if args.split != 'valid' else 'val']
     lbl_dir = Path(str(img_dir).replace('images', 'labels'))
     model = YOLO(str(args.model))
@@ -160,6 +164,11 @@ def main():
             pn = panel(draw_gt(img, gt, names), r.plot(), title)
             imwrite(d / f'{k:02d}_{p.stem[:60]}.jpg', pn)
             thumbs.append(cv2.resize(pn, (pn.shape[1] // 2, pn.shape[0] // 2)))
+            if args.originals:           # 원본 사진·라벨 (에이전트 화면의 예시 사진, 영상 만들기에 쓴다)
+                for sub, src in (('images', p), ('labels', lbl_dir / (p.stem + '.txt'))):
+                    (d / 'originals' / sub).mkdir(parents=True, exist_ok=True)
+                    if src.exists():
+                        shutil.copy2(src, d / 'originals' / sub / f'{k:02d}_{src.name}')
         cols = 2
         while len(thumbs) % cols:
             thumbs.append(np.zeros_like(thumbs[0]))

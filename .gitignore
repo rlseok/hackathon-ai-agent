@@ -24,3 +24,8 @@ __pycache__/
 Thumbs.db
 desktop.ini
 ~$*
+
+# 실시간 검사 영상 (Release 로 배포, 크기 초과)
+**/videos/*.mp4
+# 내려받은 데이터셋
+**/data/

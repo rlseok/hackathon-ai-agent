@@ -18,7 +18,7 @@ TEXT = {
     'ko': {
         'title': '부품 불량 사진 분석 에이전트',
         'input': '검사 입력',
-        'domain': '검사 대상', 'domain_pcb': 'PCB', 'domain_msdd': '금속 부품',
+        'domain': '검사 대상', 'domain_pcb': 'PCB', 'domain_msdd': '금속 부품', 'domain_mobile': '휴대폰 표면',
         'source': '사진', 'source_example': '예시 사진', 'source_upload': '업로드', 'source_inbox': '대기함',
         'part_info': '부품 정보 (품번 · 공정 · 로트)',
         'm_part_no': '품번', 'm_process': '공정', 'm_lot': '로트',
@@ -116,7 +116,7 @@ TEXT = {
     'vi': {
         'title': 'Tác tử AI phân tích ảnh lỗi linh kiện',
         'input': 'Thông tin kiểm tra',
-        'domain': 'Đối tượng kiểm tra', 'domain_pcb': 'PCB', 'domain_msdd': 'Linh kiện kim loại',
+        'domain': 'Đối tượng kiểm tra', 'domain_pcb': 'PCB', 'domain_msdd': 'Linh kiện kim loại', 'domain_mobile': 'Bề mặt điện thoại',
         'source': 'Ảnh', 'source_example': 'Ảnh mẫu', 'source_upload': 'Tải lên', 'source_inbox': 'Hộp chờ',
         'part_info': 'Thông tin linh kiện (mã · công đoạn · lô)',
         'm_part_no': 'Mã sản phẩm', 'm_process': 'Công đoạn', 'm_lot': 'Lô',
@@ -216,7 +216,7 @@ TEXT = {
     'en': {
         'title': 'Part Defect Photo Analysis Agent',
         'input': 'Inspection input',
-        'domain': 'Inspection target', 'domain_pcb': 'PCB', 'domain_msdd': 'Metal part',
+        'domain': 'Inspection target', 'domain_pcb': 'PCB', 'domain_msdd': 'Metal part', 'domain_mobile': 'Phone surface',
         'source': 'Photo', 'source_example': 'Examples', 'source_upload': 'Upload', 'source_inbox': 'Inbox',
         'part_info': 'Part info (part no. · process · lot)',
         'm_part_no': 'Part no.', 'm_process': 'Process', 'm_lot': 'Lot',
@@ -552,8 +552,9 @@ REPORT = {
         'r_release': 'Hold release approved (name / signature / date)',
     },
 }
-DOMAIN = {'ko': {'pcb': 'PCB', 'msdd': '금속 부품 표면'}, 'vi': {'pcb': 'PCB', 'msdd': 'Bề mặt linh kiện kim loại'},
-          'en': {'pcb': 'PCB', 'msdd': 'Metal part surface'}}
+DOMAIN = {'ko': {'pcb': 'PCB', 'msdd': '금속 부품 표면', 'mobile': '휴대폰 표면 (화면·외관)'},
+          'vi': {'pcb': 'PCB', 'msdd': 'Bề mặt linh kiện kim loại', 'mobile': 'Bề mặt điện thoại (màn hình, vỏ)'},
+          'en': {'pcb': 'PCB', 'msdd': 'Metal part surface', 'mobile': 'Phone surface (screen, housing)'}}
 SEVERITY = {'ko': {'critical': '치명', 'major': '중', 'minor': '경'},
             'vi': {'critical': 'Nghiêm trọng', 'major': 'Nặng', 'minor': 'Nhẹ'},
             'en': {'critical': 'Critical', 'major': 'Major', 'minor': 'Minor'}}
@@ -647,7 +648,7 @@ TOUR = {
         'tour_ledger_b': '지금까지의 모든 검사가 쌓입니다. 🔴 이상 · 🟠 의심 · 🟢 정상, **⏳ 는 작업자 확인 대기**. '
                          '누르면 그 검사가 열리고, 보기·검색으로 걸러 볼 수 있습니다. 아래에서 **영어 엑셀 대장**을 내려받습니다.',
         'tour_input_t': '📷 검사 입력',
-        'tour_input_b': '검사 대상(PCB / 금속)을 고르고 사진을 넣습니다. **예시 사진**, **업로드**(여러 장이면 부품 단위 판정), '
+        'tour_input_b': '검사 대상(PCB / 금속 / 휴대폰)을 고르고 사진을 넣습니다. **예시 사진**, **업로드**(여러 장이면 부품 단위 판정), '
                         '**대기함**(inbox 폴더의 사진을 일괄 검사) 중 하나를 쓰세요. 품번·공정·로트는 보고서와 대장에 기록됩니다.',
         'tour_verdict_t': '⚖ 판정',
         'tour_verdict_b': '사진 전체의 판정입니다. **이상**은 부적합 보고서(NCR), **의심**은 재검사 의뢰서(Hold), **정상**은 기록만 합니다. '
@@ -702,7 +703,7 @@ TOUR = {
         'tour_ledger_b': 'Mọi lần kiểm tra được lưu ở đây. 🔴 Bất thường · 🟠 Nghi ngờ · 🟢 Bình thường, **⏳ chờ công nhân xác nhận**. '
                          'Nhấn để mở; lọc và tìm kiếm được. Phía dưới có thể tải **sổ kiểm tra Excel (tiếng Anh)**.',
         'tour_input_t': '📷 Thông tin kiểm tra',
-        'tour_input_b': 'Chọn đối tượng (PCB / kim loại) và đưa ảnh vào: **Ảnh mẫu**, **Tải lên** (nhiều ảnh = đánh giá theo linh kiện) '
+        'tour_input_b': 'Chọn đối tượng (PCB / kim loại / điện thoại) và đưa ảnh vào: **Ảnh mẫu**, **Tải lên** (nhiều ảnh = đánh giá theo linh kiện) '
                         'hoặc **Hộp chờ** (kiểm tra hàng loạt ảnh trong thư mục inbox). Mã SP · công đoạn · lô được ghi vào báo cáo và sổ.',
         'tour_verdict_t': '⚖ Kết quả',
         'tour_verdict_b': 'Kết quả của cả ảnh. **Bất thường** → báo cáo không phù hợp (NCR), **Nghi ngờ** → phiếu tái kiểm (Hold), **Bình thường** → chỉ ghi sổ. '
@@ -757,7 +758,7 @@ TOUR = {
         'tour_ledger_b': 'Every inspection is listed here. 🔴 Abnormal · 🟠 Suspect · 🟢 Normal, **⏳ waiting for the worker**. '
                          'Click to open; filter and search. Download the **English Excel ledger** at the bottom.',
         'tour_input_t': '📷 Inspection input',
-        'tour_input_b': 'Pick the target (PCB / metal) and add photos: **Examples**, **Upload** (several photos = part-level judgment) '
+        'tour_input_b': 'Pick the target (PCB / metal / phone) and add photos: **Examples**, **Upload** (several photos = part-level judgment) '
                         'or **Inbox** (batch-inspect photos in the inbox folder). Part no. · process · lot go into the report and ledger.',
         'tour_verdict_t': '⚖ Verdict',
         'tour_verdict_b': 'The verdict for the whole photo. **Abnormal** → nonconformance report (NCR), **Suspect** → re-inspection request (Hold), **Normal** → logged only. '
