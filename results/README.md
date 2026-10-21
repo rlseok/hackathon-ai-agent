@@ -4,7 +4,8 @@
 
 ```
 results/
-├─ confusion_matrix_test.xlsx      도메인별 시트 (PCB / Metal Surface / Mobile Surface): 개수 + 행 정규화 혼동 행렬 (test)
+├─ confusion_matrix_test.xlsx      도메인별 시트 (PCB / Metal Surface / Mobile Surface): 혼동 행렬 + True total·Recall·Missed rate (수식), 신뢰도 0.25 이상 검출 기준
+├─ model_metrics_test.xlsx         Summary + 도메인별 시트: 클래스별 P / R / F1 / AP50 / AP50-95 (box, segmentation 은 mask 도), 지연 시간
 ├─ model_benchmark.csv / .json     모델별 test 성능 (정밀도·재현율·F1·mAP)  ← tools/benchmark_models.py
 ├─ pcb/  msdd/  mobile/
 │   ├─ showcase/                   결함 유형(케이스)별 우수 사례
@@ -26,7 +27,8 @@ results/
 
 ## 재생성
 ```
-python tools/make_results.py [pcb msdd mobile]     # test_eval, showcase, splits.csv, confusion_matrix_test.xlsx
+python tools/make_results.py [pcb msdd mobile]          # test_eval, showcase, splits.csv
+python tools/make_result_workbooks.py [pcb msdd mobile] # confusion_matrix_test.xlsx, model_metrics_test.xlsx
 ```
 학습 데이터(`data/…`)가 필요하다 (저장소에는 없다).
 
