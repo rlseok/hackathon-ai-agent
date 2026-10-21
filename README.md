@@ -19,7 +19,7 @@
 
 | 파일 | 내용 |
 |---|---|
-| [live/server.py](해커톤%20AI에이전트/live/server.py) | 영상 서버 (포트 8506, `--line pcb|phone`): 영상 읽기 → 미리보기 검출 → 센싱 구역 판정 → 보고 에이전트·라인 감시 에이전트, 전용 뷰어 |
+| [live/server.py](해커톤%20AI에이전트/live/server.py) | 영상 서버 (포트 8506, `--line pcb\|phone`): 영상 읽기 → 미리보기 검출 → 센싱 구역 판정 → 보고 에이전트·라인 감시 에이전트, 전용 뷰어 |
 | [app_live.py](해커톤%20AI에이전트/app_live.py) | 실시간 검사 화면 (포트 8505) |
 | [tools/make_conveyor_video.py](해커톤%20AI에이전트/tools/make_conveyor_video.py) | PCB 우수 사례 사진으로 컨베이어 영상 만들기 |
 | [videos/pcb_conveyor.json](해커톤%20AI에이전트/videos/pcb_conveyor.json) | 영상 속 기판 순서·위치·정답 라벨 |
