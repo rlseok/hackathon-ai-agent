@@ -1,0 +1,108 @@
+{
+ "dataset": "msdd",
+ "splits": {
+  "train": {
+   "images": 1195,
+   "boxes": 3520,
+   "empty_label_images": 183,
+   "missing_label_files": 0,
+   "malformed_lines": 0,
+   "out_of_range": 0,
+   "tiny_boxes_lt_1pct_side": 24,
+   "duplicate_labels": 2,
+   "class_counts": {
+    "Oxidation": 373,
+    "Dark Spot": 537,
+    "Fold": 296,
+    "Porosity": 593,
+    "Scratch": 1466,
+    "Stain": 255
+   },
+   "box_area_median_pct": {
+    "Oxidation": 5.77,
+    "Dark Spot": 0.11,
+    "Fold": 16.43,
+    "Porosity": 18.47,
+    "Scratch": 3.82,
+    "Stain": 6.63
+   }
+  },
+  "val": {
+   "images": 150,
+   "boxes": 472,
+   "empty_label_images": 36,
+   "missing_label_files": 0,
+   "malformed_lines": 0,
+   "out_of_range": 0,
+   "tiny_boxes_lt_1pct_side": 1,
+   "duplicate_labels": 0,
+   "class_counts": {
+    "Scratch": 195,
+    "Porosity": 78,
+    "Dark Spot": 75,
+    "Oxidation": 49,
+    "Stain": 35,
+    "Fold": 40
+   },
+   "box_area_median_pct": {
+    "Scratch": 4.07,
+    "Porosity": 18.66,
+    "Dark Spot": 0.1,
+    "Oxidation": 1.67,
+    "Stain": 5.22,
+    "Fold": 22.56
+   }
+  },
+  "test": {
+   "images": 150,
+   "boxes": 384,
+   "empty_label_images": 25,
+   "missing_label_files": 0,
+   "malformed_lines": 0,
+   "out_of_range": 0,
+   "tiny_boxes_lt_1pct_side": 1,
+   "duplicate_labels": 0,
+   "class_counts": {
+    "Porosity": 80,
+    "Scratch": 116,
+    "Dark Spot": 77,
+    "Fold": 38,
+    "Oxidation": 48,
+    "Stain": 25
+   },
+   "box_area_median_pct": {
+    "Porosity": 73.61,
+    "Scratch": 5.22,
+    "Dark Spot": 0.24,
+    "Fold": 12.59,
+    "Oxidation": 1.68,
+    "Stain": 5.8
+   }
+  }
+ },
+ "duplicates": {
+  "images_sharing_exact_hash_beyond_first": 23,
+  "images_with_near_duplicate_in_same_split": {
+   "train": 634,
+   "val": 89,
+   "test": 88
+  },
+  "near_duplicate_pair_counts_across_splits": {
+   "train-val": 972,
+   "test-train": 1194,
+   "test-val": 159
+  }
+ },
+ "leakage_vs_train": {
+  "val": {
+   "images": 150,
+   "with_near_duplicate_in_train": 86,
+   "pct": 57.3
+  },
+  "test": {
+   "images": 150,
+   "with_near_duplicate_in_train": 83,
+   "pct": 55.3
+  }
+ }
+}

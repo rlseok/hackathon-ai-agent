@@ -1,0 +1,39 @@
+{
+ "model": "resnet50-finetune",
+ "test": {
+  "acc": 1.0,
+  "macro_f1": 1.0,
+  "confusion": [
+   [
+    980,
+    0,
+    0
+   ],
+   [
+    0,
+    150,
+    0
+   ],
+   [
+    0,
+    0,
+    122
+   ]
+  ]
+ },
+ "auroc_msp_vs_ood_synthetic_metal": 0.9977622470713525,
+ "auroc_msp_vs_ood_ui_screens": 1.0,
+ "msp_threshold_val95": 0.9505757689476013,
+ "test_accept_rate": 0.9840255591054313,
+ "ood_accept_rate": {
+  "ood_synthetic_metal": 0.03,
+  "ood_ui_screens": 0.0
+ },
+ "perturb_acc": {
+  "jpeg": 1.0,
+  "blur": 1.0,
+  "small": 1.0,
+  "dark": 1.0,
+  "crop": 1.0
+ }
+}

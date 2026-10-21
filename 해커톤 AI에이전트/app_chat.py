@@ -16,7 +16,7 @@ from agent.chat import apply_edit, looks_like_edit, propose_edit
 from agent.pipeline import load_result
 from ui import (DOT, ICONS, IMG_TYPES, OUT, _adopt, app_chrome, domain_input, example_picker, header, inbox_summary, init_state,
                 ledger_sidebar, meta_inputs, open_record, persist, quick_questions, right_panel_css, run_inbox,
-                save_uploads, scan_inbox, ss, start, stream_answer, sync_result, t, type_name, verdict_name, work_panel)
+                save_uploads, scan_inbox, ss, start, stream_answer, sync_result, t, type_name, unsure_box, verdict_name, work_panel)
 
 st.set_page_config(page_title='Defect Agent · Chat', page_icon=str(ICONS['chat']), layout='wide')
 app_chrome('chat')
@@ -39,6 +39,11 @@ def say(role, content, **extra):
 def inspect(paths, domain, meta, user_text):
     say('user', user_text, files=[str(p) for p in paths])
     r = start(paths, domain, meta)
+    if r is None:                            # 자동 판별 불확실 → 대화에 안내하고 종류 선택을 기다린다
+        probs = ss.unsure['route']['probs']
+        best = max(probs, key=probs.get)
+        say('assistant', t('route_unsure', best=t(f'domain_{best}'), conf=f'{probs[best]:.2f}'))
+        return
     ss.panel_open = True
     say('assistant', f'{r["text"].get("summary", "")}\n\n{t("card_hint_panel")}', card=card_of(r))
 
@@ -135,13 +140,13 @@ ledger_sidebar(on_open=on_ledger_open)
 # ── 가운데: 대화 ───────────────────────────────────────────────────
 narrow = ss.panel_open                   # 작업 패널이 열리면 가운데가 좁아지므로 버튼을 아이콘 위주로
 tb1, tb2, tb3, tb4 = st.container(key='tour_toolbar').columns(4)
-with tb1.popover(f'⚙ {t("domain_" + ss.get("sel_domain", "pcb"))}' + ('' if narrow else f' · {t("part_short")}'),
+with tb1.popover(f'⚙ {t("domain_" + ss.get("sel_domain", "auto"))}' + ('' if narrow else f' · {t("part_short")}'),
                  width='stretch', help=t('part_short')):
     domain = domain_input()
     meta = meta_inputs()
 with tb2.popover('📷' if narrow else f'📷 {t("source_example")}', width='stretch', help=t('source_example')):
     ex_paths = example_picker(domain)
-    if st.button(t('run'), type='primary', key='ex_run'):
+    if st.button(t('run'), type='primary', key='ex_run', disabled=not ex_paths):
         inspect(ex_paths, domain, meta, t('chat_example_msg', name=ex_paths[0].name[:40], n=len(ex_paths)))
         st.rerun()
 n_inbox = sum(len(v) for v in scan_inbox().values())
@@ -191,6 +196,7 @@ if guide_shown:
 
 # 입력창은 화면 하단 고정이 아니라 대화창 바로 아래에 둔다
 # (하단 고정이면 Streamlit 이 페이지를 계속 맨 아래로 붙여, 화면 안내가 위쪽 영역을 보여줄 수 없다)
+unsure_box()                             # 자동 판별이 불확실하면 작업자가 종류를 고른다
 inrow = st.container(key='tour_inputrow')
 msg = inrow.chat_input(t('chat_ph_panel'), accept_file='multiple', file_type=IMG_TYPES)
 qcol, hcol, ecol = inrow.columns([1.3, 0.5, 1] if narrow else [4, 0.6, 1.3], vertical_alignment='center')
@@ -225,12 +231,8 @@ if q:
     with box:                            # 질문 → Qwen (지금 열린 검사 기준)
         st.chat_message('user').markdown(q)
         with st.chat_message('assistant'):
-            if ss.result:
-                ans = stream_answer([{'role': m['role'], 'content': m['content']} for m in ss.log if m['content']],
-                                    ss.result)
-            else:
-                ans = t('chat_no_result')
-                st.markdown(ans)
+            ans = stream_answer([{'role': m['role'], 'content': m['content']} for m in ss.log if m['content']],
+                                ss.result)
     say('assistant', ans)
     if guide_shown:                      # 첫 질문을 했으니 안내 상자를 접은 화면으로
         st.rerun()

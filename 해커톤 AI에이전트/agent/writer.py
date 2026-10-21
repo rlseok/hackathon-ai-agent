@@ -3,13 +3,16 @@
 원인 후보·조치 '목록' 은 지식베이스에서 코드가 그대로 가져가고, Qwen 은 주어진 사실로 문장만 쓴다.
 """
 import json
+import os
 from collections import defaultdict
 
 import ollama
 
 from agent.i18n import pos_text, reason_text, type_name
+from agent import rag
+from agent.knowledge import localize
 
-MODEL = 'qwen3:8b'
+MODEL = os.environ.get('DEFECT_LLM', 'qwen3:8b')     # fine-tune 모델(qwen3-defect)이 검증되면 DEFECT_LLM=qwen3-defect 로 바꾼다
 LANGS = {'ko': '한국어', 'vi': '베트남어(Tiếng Việt)', 'en': '영어(English)'}
 
 SYSTEM = """너는 제조 품질 불량 보고서를 작성하는 보조자다.
@@ -61,11 +64,13 @@ def summarize_detection(detection, knowledge, lang='ko'):
 
 def _kb_facts(knowledge, lang='ko'):
     keys = ('description', 'causes', 'actions', 'measure', 'surface_note')
+    knowledge = [localize(k, lang) for k in knowledge]       # 베트남어는 번역된 원인·조치를 LLM 에 준다
     return [{'type': k['type'], 'name': type_name(k['type'], k, lang), 'severity': k.get('severity'),
              **{x: k[x] for x in keys if x in k}} for k in knowledge]
 
 
-def write_report_text(detection, knowledge, situation, part_info='', lang='ko', model=MODEL):
+def build_prompt(detection, knowledge, situation, part_info='', lang='ko', refs=None):
+    """LLM 에 보낼 (system, user) 프롬프트. fine-tune 데이터(tools/make_sft_data.py)도 이 함수로 만든다."""
     facts = summarize_detection(detection, knowledge, lang)
     extra = [f'{situation[k]["label"]}: {situation[k]["action"]}'
              + (f' (해당 유형: {", ".join(situation[k]["types"])})' if 'types' in situation[k] else '')
@@ -88,10 +93,22 @@ def write_report_text(detection, knowledge, situation, part_info='', lang='ko', 
   "cause_text": "대표 유형 중심의 원인 후보 설명 1~3문장 (지식이 없으면 빈 문자열)",
   "action_immediate": "즉시 조치 1~2문장",
   "action_prevent": "점검·재발 방지 1~2문장"}}"""
+    if refs:                         # 웹에서 모은 문서(RAG) — [지식]을 보충하는 근거. 쓰면 [S1] 처럼 출처 번호를 붙인다
+        user += ('\n\n[참고 자료] (보충 설명용. 사용한 문장 끝에 [S1] 처럼 출처 번호를 붙이고, 자료에 없는 내용은 쓰지 않는다)\n'
+                 + rag.context_block(refs))
     if lang != 'ko':                 # 한국어 프롬프트에 끌려 한국어로 쓰는 것을 막기 위해 마지막에 대상 언어로 다시 지시
         user += '\n\n' + FINAL_LANG_RULE[lang]
+    return SYSTEM, user, facts
+
+
+def write_report_text(detection, knowledge, situation, part_info='', lang='ko', model=MODEL):
+    try:                             # RAG 가 없어도 보고서는 만든다
+        refs = rag.refs_for(knowledge, situation, detection['domain']) if knowledge else []
+    except Exception:  # noqa: BLE001 — sentence-transformers 미설치·모델 없음
+        refs = []
+    system, user, facts = build_prompt(detection, knowledge, situation, part_info, lang, refs)
     res = ollama.chat(model=model, format='json', think=False,
-                      messages=[{'role': 'system', 'content': SYSTEM},
+                      messages=[{'role': 'system', 'content': system},
                                 {'role': 'user', 'content': user}],
                       options={'temperature': 0.2})
     text = json.loads(res['message']['content'])
@@ -99,6 +116,8 @@ def write_report_text(detection, knowledge, situation, part_info='', lang='ko', 
     # LLM 이 빠뜨리거나 지어낸 유형은 코드가 바로잡는다
     descs = {d.get('type'): d.get('description', '') for d in text.get('defects', []) if isinstance(d, dict)}
     text['defects'] = [{'type': f['type'], 'description': descs.get(f['type'], '')} for f in facts]
+    text['sources'] = [{'id': f'S{i}', 'title': h['title'], 'section': h['section'], 'url': h['source'].split(' ; ')[0],
+                        'license': h['license']} for i, h in enumerate(refs, 1)]
     # 원인 후보 목록은 지식베이스 원문 (LLM 생성 아님)
     text['causes'] = [{'type': k['type'], 'cause': c} for k in knowledge for c in k.get('causes', [])]
     for key in ('summary', 'cause_text', 'action_immediate', 'action_prevent'):

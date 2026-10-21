@@ -1,0 +1,193 @@
+# Knowledge cards: short domain facts (ko / vi / en) distilled from the retrieved web corpus (knowledge/rag/corpus/*.md).
+# Each card names its source document + section so answers can cite it. They are used (1) as fine-tuning data so that the model learns the
+# technical terms in all three languages and (2) as the gold content for knowledge Q&A samples. Keep every statement traceable to the source.
+pcb:
+  opencircuit:
+    source: pcb_bare_board_defects.md#Open circuit (opencircuit / broken trace)
+    ko:
+      - 제조 원인으로는 불완전 식각, 비아 도금 불량, 구리 열팽창으로 인한 비아 도금 균열이 있다.
+      - 육안(확대), 멀티미터 도통 시험, 기능 시험으로 찾고, 끊어진 배선은 얇은 전선으로 이어 수리하며 약한 납땜은 리플로 한다.
+    vi:
+      - Nguyên nhân sản xuất gồm ăn mòn không hoàn chỉnh, mạ via kém và nứt lớp mạ via do đồng giãn nở nhiệt.
+      - Phát hiện bằng kiểm tra bằng mắt có phóng đại, đo thông mạch bằng đồng hồ vạn năng và kiểm tra chức năng; đường mạch đứt được nối bằng dây mảnh, mối hàn yếu thì hàn lại (reflow).
+    en:
+      - Manufacturing causes include incomplete etching, poorly plated vias and cracked via plating from copper thermal expansion.
+      - Find it by magnified visual inspection, multimeter continuity tests and functional tests; bridge a broken trace with thin wire and reflow weak solder joints.
+  shortcircuit:
+    source: pcb_bare_board_defects.md#Short circuit
+    ko:
+      - 제조 원인은 네트를 잇는 구리 조각·납 파편, 잔류 이물, 솔더 브리지(솔더 마스크 댐이 브리지를 막아 준다).
+      - 불완전 식각(미식각)으로 배선 사이에 구리가 남아도 단락이 생긴다.
+    vi:
+      - Nguyên nhân sản xuất là mảnh đồng hoặc mảnh hàn nối các mạng, dị vật còn sót và cầu hàn (dam của lớp phủ hàn giúp ngăn cầu hàn).
+      - Ăn mòn chưa hết (under-etch) để lại đồng giữa các đường mạch cũng gây đoản mạch.
+    en:
+      - Manufacturing causes are copper slivers or solder fragments joining nets, residual debris and solder bridging (solder-mask dams help prevent bridging).
+      - Under-etching that leaves copper between traces also creates shorts.
+  mousebite:
+    source: pcb_bare_board_defects.md#Mouse bite (surface defect, not the panel breakaway perforation)
+    ko:
+      - 마우스바이트는 배선·패드 가장자리의 미세한 톱니형 파임이며, 여러 공정 관리가 약해진 연쇄 때문에 생긴다 (드라이필름 기포·먼지, 식각액 편차, 마스크 전처리 불량).
+      - 10~30배 확대와 사이드 조명, 골든 샘플 비교로 보고 IPC-A-600 등급(1/2/3)과 구리 노출 여부로 합격을 판단하며, 식각 후 AOI 를 둔다.
+    vi:
+      - Khuyết mép (mouse bite) là các vết lõm răng cưa nhỏ ở mép đường mạch hoặc pad, do nhiều khâu kiểm soát yếu nối tiếp nhau (bọt khí hoặc bụi ở màng khô, sai lệch dung dịch ăn mòn, tiền xử lý lớp phủ hàn kém).
+      - Quan sát với phóng đại 10–30 lần, chiếu sáng bên và so với mẫu chuẩn; chấp nhận theo cấp IPC-A-600 (1/2/3) và việc có lộ đồng hay không, đồng thời đặt AOI sau công đoạn ăn mòn.
+    en:
+      - A mouse bite is a tiny saw-tooth notch on a conductor or pad edge, caused by a chain of weak process controls (dry-film bubbles or dust, etchant drift, poor solder-mask pre-clean).
+      - Inspect at 10–30x with side lighting and a golden sample; accept by IPC-A-600 class (1/2/3) and whether copper is exposed, and place AOI after etching.
+  spur:
+    source: pcb_bare_board_defects.md#Spur and spurious copper
+    ko:
+      - 스퍼는 배선 가장자리에서 튀어나온 구리로, 인접 배선 간격을 줄여 단락·신호 잡음 위험이 있다.
+      - 레지스트 결함이나 불완전 식각에서 생기며, 고객 등급이 허용할 때만 제거하고 이미징·식각 관리를 고친다.
+    vi:
+      - Gai đồng (spur) là phần đồng nhô ra từ mép đường mạch, làm hẹp khoảng cách và có nguy cơ đoản mạch, nhiễu tín hiệu.
+      - Sinh ra từ lỗi lớp cản quang hoặc ăn mòn chưa hết; chỉ loại bỏ khi cấp khách hàng cho phép và phải sửa kiểm soát tạo ảnh, ăn mòn.
+    en:
+      - A spur is copper projecting from a trace edge that narrows the gap and risks shorts and signal noise.
+      - It comes from resist defects or incomplete etching; remove it only if the customer class allows, and fix imaging and etch controls.
+  falsecopper:
+    source: pcb_bare_board_defects.md#Spur and spurious copper
+    ko:
+      - 잔여 동박(스퓨리어스 구리)은 의도하지 않은 위치에 고립된 구리로, 단락·기생 결합·EMC 위험이 있다.
+      - 레지스트 결함이나 불완전 식각이 원인이며, 인접 배선과의 거리를 확인해 처리한다.
+    vi:
+      - Đồng thừa (spurious copper) là đồng cô lập ở vị trí không mong muốn, có nguy cơ đoản mạch, ghép ký sinh và EMC.
+      - Nguyên nhân là lỗi lớp cản quang hoặc ăn mòn chưa hết; xử lý sau khi kiểm tra khoảng cách tới đường mạch lân cận.
+    en:
+      - Spurious copper is isolated copper in an unintended area that risks shorts, parasitic coupling and EMC problems.
+      - It is caused by resist defects or incomplete etching; check the distance to neighbouring traces before disposition.
+  missinghole:
+    source: pcb_bare_board_defects.md#Missing hole
+    ko:
+      - 드릴 비트는 마모되거나 부러지므로 드릴 타격 수를 관리하고 드릴 파일·정렬을 확인한다.
+      - 드릴 후 AOI 또는 X-ray 로 홀 유무를 검사한다 (일반 관행).
+    vi:
+      - Mũi khoan bị mòn hoặc gãy nên cần theo dõi số lần khoan và kiểm tra tệp khoan và độ căn chỉnh.
+      - Kiểm tra sự có mặt của lỗ bằng AOI hoặc X-ray sau khi khoan (thực hành chung).
+    en:
+      - Drill bits wear out or break, so monitor hit count and check the drill file and registration.
+      - Verify hole presence with AOI or X-ray after drilling (general practice).
+  pinhole:
+    source: pcb_bare_board_defects.md#Pinhole and blowhole
+    ko:
+      - 도금 구멍의 핀홀은 구리 도금의 공극으로 수분·휘발분이 빠져나가면서 생긴다.
+      - 충분한 구리 두께와 건조(베이킹)된 양질의 기판을 쓰면 줄일 수 있다.
+    vi:
+      - Lỗ kim ở lỗ mạ xuyên là do hơi ẩm và chất bay hơi thoát ra qua các lỗ rỗng của lớp mạ đồng.
+      - Dùng vật liệu nền chất lượng tốt, đã sấy và có độ dày đồng đủ sẽ giảm lỗi này.
+    en:
+      - Pinholes in plated through-holes come from moisture and volatiles escaping through voids in the copper plating.
+      - Using well-baked, higher-quality laminate with adequate copper thickness reduces them.
+  scratch:
+    source: metal_surface_forging_sheetmetal.md#Scratches and surface damage
+    ko:
+      - 스크래치는 단조 자체보다 취급과 공구에서 생기며, 패드 지지대·보호 필름·금형 청소로 줄인다 (일반 표면 결함 자료).
+      - 외관 기준과 기능면 여부로 합격을 판단한다.
+    vi:
+      - Vết xước thường đến từ thao tác và dụng cụ hơn là từ bản thân công đoạn tạo hình; giảm bằng giá đỡ có đệm, màng bảo vệ và vệ sinh khuôn (tài liệu bề mặt chung).
+      - Đánh giá chấp nhận theo tiêu chuẩn ngoại quan và việc có nằm trên bề mặt chức năng hay không.
+    en:
+      - Scratches come mainly from handling and tooling rather than the forming step itself; reduce them with padded supports, protective film and clean dies (generic surface-defect source).
+      - Accept or reject by the appearance standard and whether the scratch lies on a functional surface.
+msdd:
+  Fold:
+    source: metal_surface_forging_sheetmetal.md#Fold / lap / cold shut (forging)
+    ko:
+      - 접힘(랩)은 금속 표면이 자기 자신 위로 접힌 짧은 균열로, 모서리와 표면에 직각 방향에서 흔하다.
+      - 날카로운 금형 모서리, 부적절한 금형 설계, 과도한 소재 냉각이 원인이며 침투탐상으로 깊이를 확인한다.
+    vi:
+      - Nếp gấp (lap) là vết nứt ngắn do bề mặt kim loại gấp chồng lên chính nó, thường ở góc và vuông góc với bề mặt.
+      - Nguyên nhân là góc khuôn sắc, thiết kế khuôn không phù hợp và phôi bị nguội quá mức; kiểm tra độ sâu bằng thẩm thấu.
+    en:
+      - A fold (lap) is a short crack where the metal surface folds back on itself, common at corners and at right angles to the surface.
+      - Causes are sharp die corners, improper die design and excessive chilling of the metal; check depth by penetrant testing.
+  Porosity:
+    source: casting_metal_defects.md#Gas porosity
+    ko:
+      - 기공은 표면이나 내부의 기포로 크기는 보통 0.01~0.5mm(큰 주물은 약 1mm)이며 국부 강도를 떨어뜨린다.
+      - 용해 가스(H2, N2, O2)·금형 수분·난류 주입이 원인이고, 초음파·X-ray·CT 로 찾으며 진공 탈가스와 금형 건조로 줄인다.
+    vi:
+      - Rỗ khí là các bọt khí trên bề mặt hoặc bên trong, kích thước thường 0,01–0,5 mm (vật đúc lớn khoảng 1 mm) và làm giảm độ bền cục bộ.
+      - Nguyên nhân là khí hòa tan (H2, N2, O2), hơi ẩm trong khuôn và rót rối; phát hiện bằng siêu âm, X-ray, CT và giảm bằng khử khí chân không, sấy khuôn.
+    en:
+      - Gas porosity is bubbles on or inside the casting, typically 0.01–0.5 mm (about 1 mm in large castings), reducing local strength.
+      - Causes are dissolved gas (H2, N2, O2), mould moisture and turbulent pouring; find it by ultrasonic, X-ray or CT and reduce it with vacuum degassing and dry moulds.
+  Scratch:
+    source: metal_surface_forging_sheetmetal.md#Scratches and surface damage
+    ko:
+      - 스크래치는 손상된 빌릿, 취급 불량, 금형 오염에서 생긴다.
+      - 빌릿·금형을 점검·청소하고 패드 지지대와 보호 필름을 쓴다.
+    vi:
+      - Vết xước do phôi bị hư hỏng, thao tác kém và khuôn bị nhiễm bẩn.
+      - Kiểm tra và làm sạch phôi, khuôn; dùng giá đỡ có đệm và màng bảo vệ.
+    en:
+      - Scratches come from damaged billets, poor handling and die contamination.
+      - Inspect and clean billets and dies, and use padded supports and protective film.
+  Oxidation:
+    source: metal_surface_forging_sheetmetal.md#Oxidation, scale and scale pits
+    ko:
+      - 가열 시 로 분위기가 나쁘거나 노출 시간이 길면 스케일(산화막)이 생기고, 이것이 눌리면 스케일 피트가 된다.
+      - 보호·불활성 분위기, 짧은 가열, 최종 가공 전 스케일 제거로 막으며 부식은 코팅·정기 세척·점검으로 관리한다.
+    vi:
+      - Khi nung trong môi trường lò kém hoặc quá lâu sẽ tạo vảy oxy hóa (scale); nếu vảy bị ép vào bề mặt sẽ thành hố vảy.
+      - Ngăn bằng môi trường bảo vệ hoặc trơ, nung ngắn và loại vảy trước khi gia công cuối; ăn mòn được quản lý bằng lớp phủ, vệ sinh và kiểm tra định kỳ.
+    en:
+      - A poor furnace atmosphere or long heating builds a scale layer, and scale pressed into the surface becomes scale pits.
+      - Prevent it with a protective or inert atmosphere, short heating and descaling before final machining; manage corrosion with coatings and regular cleaning and inspection.
+  Dark Spot:
+    source: metal_surface_forging_sheetmetal.md#Oxidation, scale and scale pits
+    ko:
+      - 흑점은 산화·오염·열 변색(히트 틴트)과 연관되는 경우가 많으나 자료에서 확정되지 않았으므로 세척 후 재검사로 확인할 가설이다.
+      - 금형에 남은 스케일은 피팅(작은 구덩이)을 만든다.
+    vi:
+      - Đốm đen thường liên quan đến oxy hóa, nhiễm bẩn hoặc đổi màu do nhiệt, nhưng nguồn chưa khẳng định nên chỉ là giả thuyết cần kiểm chứng bằng rửa sạch và kiểm tra lại.
+      - Vảy còn sót trong khuôn gây ra các hố nhỏ (pitting).
+    en:
+      - Dark spots are often linked to oxidation, contamination or heat tint, but the sources do not confirm it, so treat it as a hypothesis to verify by cleaning and re-inspection.
+      - Scale left in dies causes pitting.
+  Stain:
+    source: mobile_cosmetic_defects.md#Stains versus real defects
+    ko:
+      - 얼룩(지문, 접착제·세정제 잔류, 먼지)은 불량으로 오판되어 양품을 폐기하는 원인이 된다.
+      - 불량으로 판정하기 전에 다시 세척하고 재검사한다 (일반 관행).
+    vi:
+      - Vết ố (dấu vân tay, cặn keo hoặc chất tẩy, bụi) thường bị đánh giá nhầm là lỗi và làm loại bỏ sản phẩm tốt.
+      - Rửa lại rồi kiểm tra lại trước khi kết luận là lỗi (thực hành chung).
+    en:
+      - Stains (fingerprints, adhesive or cleaner residue, dust) are often misjudged as defects and cause good products to be rejected.
+      - Re-clean and re-inspect before rejecting (general practice).
+mobile:
+  oil:
+    source: mobile_cosmetic_defects.md#Causes and prevention (factory view)
+    ko:
+      - 기름·지문 오염은 장갑 없는 취급, 이형제·윤활제, 불완전 세척이 원인일 수 있다 (일반 관행, 출처에 원인 분석 없음).
+      - 얼룩과 마찬가지로 승인된 방법으로 세척 후 재검사한다.
+    vi:
+      - Nhiễm dầu hoặc dấu vân tay có thể do thao tác không đeo găng, chất tách khuôn, chất bôi trơn hoặc rửa chưa sạch (thực hành chung, nguồn không phân tích nguyên nhân).
+      - Giống như vết ố, làm sạch bằng phương pháp được phê duyệt rồi kiểm tra lại.
+    en:
+      - Oil or fingerprint contamination may come from bare-hand handling, release agents, lubricants or incomplete cleaning (general practice; the sources do not analyse causes).
+      - As with stains, clean with an approved method and re-inspect.
+  scratch:
+    source: mobile_cosmetic_defects.md#Defect types inspected on assembled phones
+    ko:
+      - 조립 후 포장 전에 하우징과 커버글라스의 스크래치·깨짐·찍힘·변색을 검사하며, 수작업 검사는 대량 생산에서 일관성이 떨어진다.
+      - 다방향 암시야 조명이 커버글라스 전체의 스크래치를 드러내 준다.
+    vi:
+      - Sau khi lắp ráp và trước khi đóng gói, vỏ và kính cường lực được kiểm tra vết xước, nứt, mẻ, lõm và đổi màu; kiểm tra thủ công kém ổn định ở sản lượng lớn.
+      - Chiếu sáng nền tối đa hướng giúp làm lộ vết xước trên toàn bộ kính.
+    en:
+      - After assembly and before packing, the housing and cover glass are checked for scratches, cracks, chips, dents and discolouration; manual inspection is inconsistent at volume.
+      - Multi-directional dark-field lighting reveals scratches across the whole cover glass.
+  stain:
+    source: mobile_cosmetic_defects.md#Stains versus real defects
+    ko:
+      - 얼룩(지문, 접착제 잔류, 세정제 잔류, 먼지)은 불량으로 오판되기 쉬워 양품 손실을 키운다.
+      - 분광 영상 연구에서 약 95% 정확도로 얼룩과 실제 결함을 구분했다.
+    vi:
+      - Vết ố (dấu vân tay, cặn keo, cặn chất tẩy, bụi) dễ bị đánh giá nhầm là lỗi và làm tăng tổn thất sản phẩm tốt.
+      - Nghiên cứu ảnh siêu phổ đã phân biệt vết ố và lỗi thật với độ chính xác khoảng 95%.
+    en:
+      - Stains (fingerprints, adhesive residue, cleaner residue, dust) are easily misjudged as defects and raise good-product loss.
+      - A hyperspectral study separated stains from real defects with about 95% accuracy.

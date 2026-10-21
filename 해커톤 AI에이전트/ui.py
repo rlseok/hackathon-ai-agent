@@ -11,6 +11,8 @@ import streamlit as st
 
 from agent import records
 from agent.chat import chat_stream
+from agent.router import DomainUncertain
+from agent.history import answer as history_answer, looks_like_history
 from agent.detect import ROOT, _model, parse_view
 from agent.i18n import (LANGS, PROCESS, STATUS, T, level_name, pos_text, process_name, reason_text, type_name,
                         verdict_name)
@@ -20,6 +22,9 @@ from agent.report import build_report
 from loading_icon import loading_data_uri
 
 SHOWCASE = {'pcb': ROOT / 'results/pcb/showcase', 'msdd': ROOT / 'results/msdd/showcase'}
+# 우수 사례 폴더가 없는 도메인은 학습 데이터의 test 사진 일부를 예시로 쓴다 (데이터 폴더가 있을 때만)
+SAMPLES = {'mobile': ROOT.parent / 'data/mobile_surface/images/test'}
+DOMAINS = ['auto', 'pcb', 'msdd', 'mobile']
 BADGE = {'normal': '#2E7D32', 'review': '#E68A00', 'reject': '#C62828'}
 DOT = {'normal': '🟢', 'review': '🟠', 'reject': '🔴'}
 IMG_TYPES = ['jpg', 'jpeg', 'png', 'bmp']
@@ -56,9 +61,14 @@ def t(key, **kw):
 # ── 입력 도우미 ───────────────────────────────────────────────────
 @st.cache_data
 def examples(domain):
-    """케이스 → 우수 사례 원본 이미지 목록."""
-    return {p.name.split('_', 1)[1]: sorted((p / 'originals/images').glob('*.jpg'))
-            for p in sorted(SHOWCASE[domain].iterdir()) if (p / 'originals/images').is_dir()}
+    """케이스 → 예시 사진 목록. 'auto' 는 모든 도메인 예시를 합친다 (종류를 모르는 상태로 시작)."""
+    if domain == 'auto':
+        return {f'{d}/{k}': v for d in SHOWCASE.keys() | SAMPLES.keys() for k, v in examples(d).items()}
+    if domain in SHOWCASE:
+        return {p.name.split('_', 1)[1]: sorted((p / 'originals/images').glob('*.jpg'))
+                for p in sorted(SHOWCASE[domain].iterdir()) if (p / 'originals/images').is_dir()}
+    folder = SAMPLES.get(domain)
+    return {'sample': sorted(folder.glob('*.jpg'))[:12]} if folder and folder.is_dir() else {}
 
 
 def same_part_images(img):
@@ -150,12 +160,38 @@ def sync_result():
 
 # ── 동작 ─────────────────────────────────────────────────────────
 def start(paths, domain, meta):
-    """분석 → 검사 대장에 '작업자 확인 대기'로 기록 → 지금 열린 검사로."""
-    with st.spinner(t('analyzing')):
-        r = register_pending(analyze(paths if len(paths) > 1 else paths[0], domain, lang=ss.lang, meta=meta))
+    """분석 → 검사 대장에 '작업자 확인 대기'로 기록 → 지금 열린 검사로.
+
+    domain='auto' 인데 라우터가 확신하지 못하면 None 을 돌려주고 ss.unsure 에 후보를 남긴다 (unsure_box 가 작업자에게 묻는다).
+    """
+    try:
+        with st.spinner(t('analyzing')):
+            r = register_pending(analyze(paths if len(paths) > 1 else paths[0], domain, lang=ss.lang, meta=meta))
+    except DomainUncertain as e:
+        ss.unsure = {'paths': [str(p) for p in paths], 'route': e.route, 'meta': meta}
+        return None
+    ss.unsure = None
     _adopt(r)
     ss.chat = []
     return r
+
+
+def unsure_box():
+    """라우터가 종류를 정하지 못했을 때: 후보 확률을 보여주고 작업자가 직접 고르게 한다. 고르면 그 종류로 검사."""
+    u = ss.get('unsure')
+    if not u:
+        return
+    probs = u['route']['probs']
+    best = max(probs, key=probs.get)
+    with st.container(border=True):
+        st.warning(t('route_unsure', best=t(f'domain_{best}'), conf=f'{probs[best]:.2f}'))
+        order = sorted(probs, key=probs.get, reverse=True)
+        pick = st.radio(t('domain'), order, horizontal=True, key='unsure_pick',
+                        format_func=lambda d: f'{t("domain_" + d)} ({probs[d]:.2f})')
+        if st.button(t('route_pick'), type='primary', key='unsure_go'):
+            ss.sel_domain = pick
+            start(u['paths'], pick, u['meta'])
+            st.rerun()
 
 
 def open_record(entry):
@@ -208,20 +244,23 @@ def meta_inputs():
 
 
 def domain_input():
-    return keep('domain', ['pcb', 'msdd'], t('domain'), radio=True, horizontal=True,
+    return keep('domain', DOMAINS, t('domain'), radio=True, horizontal=True,
                 format_func=lambda d: t(f'domain_{d}'))
 
 
 def example_picker(domain):
     """예시 사진 선택 → 사진 경로 목록."""
     ex = examples(domain)
+    if not ex:
+        st.info(t('no_examples'))
+        return []
     e1, e2 = st.columns([1, 2])
     with e1:
         case = keep(f'case_{domain}', ex, t('case'))
     with e2:
         img = keep(f'img_{domain}_{case}', ex[case], t('image'), format_func=lambda p: p.name[:48])
     paths = [img]
-    ss.sel_whole = domain == 'msdd' and st.checkbox(t('whole_part'), ss.get('sel_whole', False))
+    ss.sel_whole = (domain == 'msdd' or str(case).startswith('msdd/')) and st.checkbox(t('whole_part'), ss.get('sel_whole', False))
     if ss.sel_whole:
         paths = same_part_images(img)
     st.image([str(p) for p in paths], width=100)
@@ -286,6 +325,10 @@ def _verdict_header(r, compact):
     c4.metric(t('representative'), type_name(rep, kb_map.get(rep), ss.lang) if rep else '-')
     if r['text'].get('summary'):
         st.write(r['text']['summary'])
+    route = r.get('routing')
+    if route:
+        st.caption(t('route_fallback') if route.get('fallback') else
+                   t('route_info', domain=t(f'domain_{route["domain"]}'), conf=f'{route["confidence"]:.2f}'))
     if det['verdict'] != 'normal' and r.get('lang') != ss.lang:
         st.caption(t('lang_mismatch', name=LANGS[r['lang']]))
 
@@ -518,6 +561,11 @@ def work_panel(r, on_close=None):
 def stream_answer(messages, r):
     """Qwen 답변을 스트리밍으로 표시하고 전체 답을 돌려준다."""
     try:
+        if r is None or looks_like_history(messages[-1]['content']):     # 이력 질문 → 도구로 검사 이력 조회
+            with st.spinner(t('history_thinking')):
+                ans = history_answer(messages, ss.lang)
+            st.markdown(ans)
+            return ans
         return st.write_stream(chat_stream(messages, r, ss.lang))
     except Exception as e:  # noqa: BLE001 — Ollama 미실행 등
         ans = f'{t("chat_error")} ({e})'
@@ -564,6 +612,6 @@ def _chat_panel(r, height):
 
 
 __all__ = ['INBOX', 'OUT', 'ROOT', 'IMG_TYPES', 'ss', 'init_state', 't', 'keep', 'save_uploads', 'scan_inbox',
-           'start', 'open_record', 'run_inbox', 'inbox_summary', 'header', 'meta_inputs', 'domain_input',
+           'start', 'unsure_box', 'open_record', 'run_inbox', 'inbox_summary', 'header', 'meta_inputs', 'domain_input',
            'example_picker', 'ledger_sidebar', 'verdict_header', 'result_body', 'chat_panel', 'stream_answer',
            'quick_questions', 'DOT', 'verdict_name', 'type_name']

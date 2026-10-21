@@ -1,0 +1,60 @@
+{
+ "A_deployed_unseen": {
+  "n": 8588,
+  "uncertain_rate": 0.0017466231951560607,
+  "acc_overall": 0.9982533768048439,
+  "acc_when_accepted": 1.0,
+  "wrong_accepted": 0,
+  "per_class": {
+   "pcb": {
+    "n": 8316,
+    "recall_auto": 0.9996392496392497,
+    "wrong_accepted": 0
+   },
+   "msdd": {
+    "n": 150,
+    "recall_auto": 0.9533333333333334,
+    "wrong_accepted": 0
+   },
+   "mobile": {
+    "n": 122,
+    "recall_auto": 0.9590163934426229,
+    "wrong_accepted": 0
+   }
+  },
+  "ood_accepted_rate": {
+   "ood_synthetic_metal": 0.0,
+   "ood_ui_screens": 0.0
+  },
+  "note": "images never used to train/calibrate the deployed head (original test split + unused pcb train images)"
+ },
+ "B_group_cv": {
+  "n": 12381,
+  "uncertain_rate": 0.022776835473709678,
+  "acc_overall": 0.9772231645262903,
+  "acc_when_accepted": 1.0,
+  "wrong_accepted": 0,
+  "per_class": {
+   "pcb": {
+    "n": 9666,
+    "recall_auto": 0.9988619904821022,
+    "wrong_accepted": 0
+   },
+   "msdd": {
+    "n": 1495,
+    "recall_auto": 0.9170568561872909,
+    "wrong_accepted": 0
+   },
+   "mobile": {
+    "n": 1220,
+    "recall_auto": 0.8795081967213115,
+    "wrong_accepted": 0
+   }
+  },
+  "ood_accepted_rate": {
+   "ood_synthetic_metal": 0.0,
+   "ood_ui_screens": 0.0
+  },
+  "note": "5-fold GroupKFold over all images (14,622)"
+ }
+}

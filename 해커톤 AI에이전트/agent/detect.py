@@ -14,20 +14,26 @@ from torchvision.ops import nms
 from ultralytics import YOLO
 from ultralytics.utils.plotting import Annotator, colors
 
+from agent.device import pick_device
 from agent.i18n import reason_text
 
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = {
     'pcb':  (ROOT / 'models/pcb_v2_yolo11s.pt', 640),
     'msdd': (ROOT / 'models/msdd_v1_yolo11s_seg.pt', 512),
+    'mobile': (ROOT / 'models/mobile_surface_yolo11s_seg.pt', 512),
 }
 TAXONOMIES = {d: yaml.safe_load((ROOT / f'knowledge/defect_taxonomy_{d}.yaml').read_text(encoding='utf-8'))
               for d in MODELS}
 TAXONOMY = TAXONOMIES['pcb']         # 하위 호환
-TILE_TRIGGER = 1.5                   # 긴 변이 imgsz 의 이 배수를 넘으면 타일링
+# 모델이 학습 때 본 원본 사진 크기 (가로, 세로). 타일 조각을 이 크기로 잘라야 결함 크기가 학습 때와 같아진다.
+# pcb 는 640 조각, msdd 는 512 사진, mobile 은 1920×1080 사진을 512 로 줄여 학습했다.
+NATIVE = {'pcb': (640, 640), 'msdd': (512, 512), 'mobile': (1920, 1080)}
+TILE_TRIGGER = 1.5                   # 사진이 학습 사진 크기의 이 배수를 넘으면 타일링
 TILE_OVERLAP = 0.2
 CROP_PAD = 24                        # 결함 확대 이미지 여백(px)
 _cache = {}
+_devices = {}
 
 
 def thresholds(domain):
@@ -38,6 +44,13 @@ def _model(domain):
     if domain not in _cache:
         _cache[domain] = YOLO(str(MODELS[domain][0]))
     return _cache[domain]
+
+
+def device_for(domain):
+    """모델별 장치: 처음 쓸 때 한 번 정한다 (GPU 우선, 다른 프로세스가 GPU 를 바쁘게 쓰면 CPU). ultralytics 는 첫 추론 뒤 장치를 바꾸지 않는다."""
+    if domain not in _devices:
+        _devices[domain] = pick_device(need_mb=1500)
+    return _devices[domain]
 
 
 def _position(cx, cy, w, h):
@@ -65,6 +78,17 @@ def _tile_origins(length, size, overlap):
     return xs
 
 
+def _window(domain, w, h):
+    """학습 사진 크기 조각 (사진이 세로로 길면 가로·세로를 바꾼다)."""
+    ww, wh = NATIVE[domain]
+    return (wh, ww) if (h > w) != (wh > ww) and ww != wh else (ww, wh)
+
+
+def needs_tiling(domain, w, h):
+    ww, wh = _window(domain, w, h)
+    return max(w / ww, h / wh) > TILE_TRIGGER
+
+
 def _merge(boxes, scores, cls, iou=0.5, contain=0.7):
     """조각 경계에서 중복된 박스 제거: 클래스별 NMS + 작은 박스가 큰 박스에 대부분 포함되면 제거."""
     keep_all = []
@@ -85,21 +109,26 @@ def _merge(boxes, scores, cls, iou=0.5, contain=0.7):
     return torch.tensor(sorted(keep_all), dtype=torch.long)
 
 
-def _predict_tiled(model, img, imgsz, conf):
+def _predict_tiled(model, img, imgsz, conf, domain='pcb'):
+    """사진을 학습 사진 크기(NATIVE) 조각으로 잘라 추론 → 합치기. 세그멘테이션 모델은 마스크 면적도 돌려준다."""
     h, w = img.shape[:2]
-    origins = [(x, y) for y in _tile_origins(h, imgsz, TILE_OVERLAP) for x in _tile_origins(w, imgsz, TILE_OVERLAP)]
-    crops = [img[y:y + imgsz, x:x + imgsz] for x, y in origins]
-    boxes, scores, cls = [], [], []
-    for (x, y), r in zip(origins, model.predict(crops, imgsz=imgsz, conf=conf, verbose=False)):
-        if len(r.boxes):
-            boxes.append(r.boxes.xyxy.cpu() + torch.tensor([x, y, x, y]))
-            scores.append(r.boxes.conf.cpu())
-            cls.append(r.boxes.cls.cpu())
+    ww, wh = _window(domain, w, h)
+    origins = [(x, y) for y in _tile_origins(h, wh, TILE_OVERLAP) for x in _tile_origins(w, ww, TILE_OVERLAP)]
+    crops = [img[y:y + wh, x:x + ww] for x, y in origins]
+    boxes, scores, cls, areas = [], [], [], []
+    for (x, y), r in zip(origins, model.predict(crops, imgsz=imgsz, conf=conf, verbose=False, device=device_for(domain))):
+        if not len(r.boxes):
+            continue
+        boxes.append(r.boxes.xyxy.cpu() + torch.tensor([x, y, x, y]))
+        scores.append(r.boxes.conf.cpu())
+        cls.append(r.boxes.cls.cpu())
+        ch, cw = r.orig_shape
+        areas += [_poly_area(p) * cw * ch / (w * h) for p in r.masks.xyn] if r.masks is not None else [None] * len(r.boxes)
     if not boxes:
         return [], len(origins)
     boxes, scores, cls = torch.cat(boxes), torch.cat(scores), torch.cat(cls)
     keep = _merge(boxes, scores, cls)
-    return [(boxes[k].tolist(), float(scores[k]), int(cls[k]), None) for k in keep], len(origins)
+    return [(boxes[k].tolist(), float(scores[k]), int(cls[k]), areas[k]) for k in keep], len(origins)
 
 
 def classify(d, domain):
@@ -140,13 +169,13 @@ def detect(image_path, domain='pcb', save_dir=None, tile=None):
         raise FileNotFoundError(image_path)
     h, w = img.shape[:2]
     if tile is None:
-        tile = domain == 'pcb' and max(h, w) > TILE_TRIGGER * imgsz
+        tile = needs_tiling(domain, w, h)
 
     if tile:
-        raw, n_tiles = _predict_tiled(model, img, imgsz, th['conf_review'])
+        raw, n_tiles = _predict_tiled(model, img, imgsz, th['conf_review'], domain)
         r = None
     else:
-        r = model.predict(img, imgsz=imgsz, conf=th['conf_review'], verbose=False)[0]
+        r = model.predict(img, imgsz=imgsz, conf=th['conf_review'], verbose=False, device=device_for(domain))[0]
         n_tiles = 1
         areas = [_poly_area(p) for p in r.masks.xyn] if r.masks is not None else [None] * len(r.boxes)
         raw = [(b.tolist(), float(c), int(k), a) for b, c, k, a in zip(r.boxes.xyxy, r.boxes.conf, r.boxes.cls, areas)]

@@ -1,0 +1,19 @@
+{
+ "dataset": "msdd",
+ "twin_cosine": 0.97,
+ "original": {
+  "train": 1195,
+  "val": 150,
+  "test": 150
+ },
+ "kept": {
+  "train": 1167,
+  "val": 143,
+  "test": 148
+ },
+ "boxes_kept": {
+  "train": 3419,
+  "val": 471,
+  "test": 383
+ }
+}

@@ -3,7 +3,8 @@
 화면(app.py)에서는 analyze → (작업자 수정 → refresh) → finalize / reject_false_positive 순서로 쓴다.
 
 사용:
-  python -m agent.pipeline <이미지> [--domain pcb|msdd] [--part "품번 / 공정"] [--lang ko|vi]
+  python -m agent.pipeline <이미지> [--domain auto|pcb|msdd|mobile] [--part "품번 / 공정"] [--lang ko|vi]
+      (--domain auto 가 기본: 라우터가 부품 종류를 자동으로 판별. 확신이 없으면 직접 지정하라는 안내와 함께 멈춘다)
   python -m agent.pipeline <이미지1> <이미지2> ... --domain msdd   # 부품 1개의 여러 방향 사진 → 부품 단위 판정
   python -m agent.pipeline --showcase          # 우수 사례 케이스별 첫 이미지로 일괄 실행
   python -m agent.pipeline --showcase-parts    # 금속 우수 사례를 부품별로 묶어 부품 단위 판정 + 검사자 OK/NG 비교
@@ -13,11 +14,12 @@ import argparse
 import csv
 import json
 import shutil
+import sys
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from agent import records
+from agent import notify, records, router
 from agent.detect import ROOT, detect, detect_part, judge, parse_view
 from agent.i18n import format_meta
 from agent.knowledge import lookup, situation
@@ -50,10 +52,23 @@ def register_pending(result, out_root=OUT):
     """분석 직후: 결과 저장 + 검사 대장에 '작업자 확인 대기'로 기록."""
     save_result(result)
     result['record_warning'] = records.upsert(result, out_root, 'pending')
+    notify.notify(result, out_root, 'pending')
     return result
 
 
-def analyze(image_paths, domain='pcb', part_info='', lang='ko', out_root=OUT, name=None, tile=None, meta=None):
+def pick_domain(paths, domain='auto'):
+    """domain='auto' 면 라우터로 부품 종류를 정한다 → (domain, routing). 직접 지정하면 routing=None.
+
+    라우터 파일(models/router.joblib)이 없으면 예전처럼 pcb 로 처리한다 (routing.fallback). 확신이 없으면 DomainUncertain.
+    """
+    if domain != 'auto':
+        return domain, None
+    if not router.available():
+        return 'pcb', {'domain': 'pcb', 'accepted': True, 'fallback': True, 'confidence': None}
+    return router.resolve(paths, 'auto')
+
+
+def analyze(image_paths, domain='auto', part_info='', lang='ko', out_root=OUT, name=None, tile=None, meta=None):
     """검출·판정·지식 조회·문장 작성까지 (보고서는 아직 만들지 않음 → 작업자 확인 후 finalize).
 
     image_paths: 사진 1장(경로) 또는 부품 1개의 여러 방향 사진(경로 목록).
@@ -61,6 +76,7 @@ def analyze(image_paths, domain='pcb', part_info='', lang='ko', out_root=OUT, na
     """
     part_info = part_info or format_meta(meta, lang)
     paths = [image_paths] if isinstance(image_paths, (str, Path)) else list(image_paths)
+    domain, routing = pick_domain(paths, domain)
     if len(paths) > 1:
         name = name or f'part_{parse_view(paths[0])[0] or Path(paths[0]).stem}'
         work = Path(out_root) / 'work' / name
@@ -70,7 +86,7 @@ def analyze(image_paths, domain='pcb', part_info='', lang='ko', out_root=OUT, na
         work = Path(out_root) / 'work' / name
         det = detect(paths[0], domain, work, tile=tile)
     result = {'name': name, 'work': str(work), 'part_info': part_info, 'meta': meta or {}, 'lang': lang,
-              'detection': det}
+              'detection': det, 'routing': routing}
     return refresh(result)
 
 
@@ -102,6 +118,7 @@ def finalize(result, out_root=OUT, status=None):
     result['status'] = status or default_status
     save_result(result)
     result['record_warning'] = records.upsert(result, out_root, result['status'])
+    notify.notify(result, out_root, result['status'])
     return result
 
 
@@ -118,19 +135,23 @@ def reject_false_positive(result, out_root=OUT):
     return finalize(result, out_root, status='fp')
 
 
-def run(image_path, domain='pcb', part_info='', lang='ko', out_root=OUT, tile=None, name=None):
+def run(image_path, domain='auto', part_info='', lang='ko', out_root=OUT, tile=None, name=None):
     """사진 1장, 작업자 확인 없이 판정대로 처리. 이상 → outputs/abnormal/, 의심 → outputs/second_inspection/, 모두 inspection_ledger.xlsx."""
     return finalize(analyze(image_path, domain, part_info, lang, out_root, name, tile), out_root)
 
 
-def run_part(image_paths, domain='msdd', part_info='', lang='ko', out_root=OUT, name=None):
+def run_part(image_paths, domain='auto', part_info='', lang='ko', out_root=OUT, name=None):
     return finalize(analyze(list(image_paths), domain, part_info, lang, out_root, name), out_root)
 
 
 def scan_inbox(inbox=INBOX):
     """inbox/<도메인>/ 의 새 사진 목록."""
-    return {d: sorted(p for p in (Path(inbox) / d).glob('*') if p.suffix.lower() in IMG_EXT)
-            for d in ('pcb', 'msdd') if (Path(inbox) / d).is_dir()}
+    found = {d: sorted(p for p in (Path(inbox) / d).glob('*') if p.suffix.lower() in IMG_EXT)
+             for d in ('pcb', 'msdd', 'mobile') if (Path(inbox) / d).is_dir()}
+    loose = sorted(p for p in Path(inbox).glob('*') if p.is_file() and p.suffix.lower() in IMG_EXT) if Path(inbox).is_dir() else []
+    if loose:                        # inbox/ 바로 아래 사진은 라우터가 종류를 정한다 ('auto')
+        found['auto'] = loose
+    return found
 
 
 def process_inbox(lang='ko', meta=None, inbox=INBOX, out_root=OUT, progress=None):
@@ -143,20 +164,19 @@ def process_inbox(lang='ko', meta=None, inbox=INBOX, out_root=OUT, progress=None
     out_root = Path(out_root)
     jobs = []
     for domain, files in scan_inbox(inbox).items():
-        dest = out_root / 'received' / time.strftime('%Y%m%d') / domain
-        dest.mkdir(parents=True, exist_ok=True)
-        moved = []
-        for p in files:
-            q = dest / p.name
-            if q.exists():
-                q = dest / f'{p.stem}_{time.strftime("%H%M%S")}{p.suffix}'
-            shutil.move(str(p), q)
-            moved.append(q)
-        groups = defaultdict(list)
-        for q in moved:
-            pid = parse_view(q)[0] if domain == 'msdd' else None
-            groups[pid or q.stem].append(q)
-        jobs += [(domain, g) for g in groups.values()]
+        if domain == 'auto':         # 종류를 모르는 사진: 사진마다 라우터로 판별, 확신 없으면 inbox/_unsure/ 로 따로 둔다
+            routed = defaultdict(list)
+            for p in files:
+                try:
+                    routed[pick_domain([p])[0]].append(p)
+                except router.DomainUncertain:
+                    (Path(inbox) / '_unsure').mkdir(exist_ok=True)
+                    shutil.move(str(p), Path(inbox) / '_unsure' / p.name)
+            sub = routed
+        else:
+            sub = {domain: files}
+        for domain, files in sub.items():
+            jobs += _stage_inbox(domain, files, out_root)
     done = []
     for i, (domain, group) in enumerate(jobs):
         if progress:
@@ -170,6 +190,24 @@ def process_inbox(lang='ko', meta=None, inbox=INBOX, out_root=OUT, progress=None
     if progress:
         progress(len(jobs), len(jobs), '')
     return done
+
+
+def _stage_inbox(domain, files, out_root):
+    """사진을 outputs/received/<날짜>/<도메인>/ 로 옮기고 분석 단위(금속은 부품별 묶음)로 나눈다."""
+    dest = out_root / 'received' / time.strftime('%Y%m%d') / domain
+    dest.mkdir(parents=True, exist_ok=True)
+    moved = []
+    for p in files:
+        q = dest / p.name
+        if q.exists():
+            q = dest / f'{p.stem}_{time.strftime("%H%M%S")}{p.suffix}'
+        shutil.move(str(p), q)
+        moved.append(q)
+    groups = defaultdict(list)
+    for q in moved:
+        pid = parse_view(q)[0] if domain == 'msdd' else None
+        groups[pid or q.stem].append(q)
+    return [(domain, g) for g in groups.values()]
 
 
 def run_showcase(lang='ko'):
@@ -211,14 +249,21 @@ def run_showcase_parts(lang='ko', min_views=2):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('images', nargs='*')
-    ap.add_argument('--domain', default='pcb', choices=['pcb', 'msdd'])
+    ap.add_argument('--domain', default='auto', choices=['auto', 'pcb', 'msdd', 'mobile'])
     ap.add_argument('--part', default='')
     ap.add_argument('--lang', default='ko', choices=['ko', 'vi'])
     ap.add_argument('--tile', choices=['auto', 'on', 'off'], default='auto')
     ap.add_argument('--showcase', action='store_true')
     ap.add_argument('--showcase-parts', action='store_true')
-    ap.add_argument('--inbox', action='store_true', help='inbox/pcb, inbox/msdd 의 사진을 일괄 검사')
+    ap.add_argument('--inbox', action='store_true', help='inbox/pcb, inbox/msdd, inbox/mobile 의 사진을 일괄 검사')
     a = ap.parse_args()
+    try:
+        _cli(a, ap)
+    except router.DomainUncertain as e:
+        sys.exit(f'{e}\n후보 확률: {e.route["probs"]}\n→ --domain pcb|msdd|mobile 로 직접 지정해 다시 실행하세요.')
+
+
+def _cli(a, ap):
     if a.inbox:
         res = process_inbox(a.lang, progress=lambda i, n, s: print(f'[{i}/{n}] {s}') if s else None)
         print(', '.join(f'{k} {v}' for k, v in Counter(r['detection']['verdict'] for r in res).items()) or '대기함이 비어 있음',

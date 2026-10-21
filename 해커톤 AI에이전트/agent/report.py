@@ -16,6 +16,7 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
 from agent.detect import thresholds
+from agent.knowledge import localize
 from agent.i18n import DOMAIN, SEVERITY, R, pos_text, process_name, reason_text, situation_text, type_name, verdict_name
 
 FONT = '맑은 고딕'                   # 한글·베트남어 모두 표시됨
@@ -186,6 +187,17 @@ def _crops(doc, c, caption):
         ct.cell(1, j).text = f'#{d["id"]} {c.name(d["type"])} {d["conf"]:.2f} {c.vname(d["level"])}'
 
 
+def _references(doc, c, L):
+    """본문 문장에서 [S#] 로 인용된 웹 수집 문서만 출처와 함께 나열한다."""
+    import re
+    cited = set(re.findall(r'\[(S\d+)\]', ' '.join(str(c.text.get(k, '')) for k in ('summary', 'cause_text', 'action_immediate', 'action_prevent'))))
+    srcs = [s for s in c.text.get('sources', []) if s['id'] in cited]
+    if srcs:
+        p = doc.add_paragraph()
+        p.add_run(L('refs') + ': ').bold = True
+        p.add_run('; '.join(f'[{s["id"]}] {s["title"]} ({s["url"]}, {s["license"]})' for s in srcs)).font.size = Pt(8.5)
+
+
 def _situation_notes(doc, c):
     for key, s in c.extra.items():
         types = f' ({c.L("applies_to")}: {", ".join(c.name(x) for x in s["types"])})' if 'types' in s else ''
@@ -280,9 +292,11 @@ def _ncr(result):
     doc.add_heading(L('n_h_cause'), level=1)
     if c.text.get('cause_text'):
         doc.add_paragraph(c.text['cause_text'])
-    if c.lang == 'ko':               # 지식베이스 원문 (한국어)
-        for k in c.kb:
-            doc.add_paragraph(f'{k["name_ko"]} ({c.sev(k["type"])}): ' + ' / '.join(k['causes']), style='List Bullet')
+    # 지식베이스 원문 (한국어) / 번역본 (translations_<언어>.yaml — 번역 없으면 건너뜀)
+    for k in c.kb:
+        if c.lang == 'ko' or k.get(c.lang):
+            doc.add_paragraph(f'{c.name(k["type"])} ({c.sev(k["type"])}): ' + ' / '.join(localize(k, c.lang)['causes']), style='List Bullet')
+    _references(doc, c, L)
     note = doc.add_paragraph().add_run(L('cause_note'))
     note.italic = True
     note.font.size = Pt(9)
@@ -290,12 +304,13 @@ def _ncr(result):
     doc.add_heading(L('n_h_corrective'), level=1)
     rows = [[L('a_kind'), L('a_content')], [L('a_now'), c.text.get('action_immediate', '')],
             [L('a_prevent'), c.text.get('action_prevent', '')]]
-    if c.lang == 'ko':
-        for k in c.kb:
-            a = k.get('actions', {})
-            rows.append([f'{L("a_ref")} {k["name_ko"]}',
-                         f'{L("a_ref_now")}: {a.get("immediate", "-")}\n{L("a_ref_check")}: {a.get("check", "-")}\n'
-                         f'{L("a_ref_prevent")}: {a.get("prevent", "-")}'])
+    for k in c.kb:
+        if c.lang != 'ko' and not k.get(c.lang):
+            continue
+        a = localize(k, c.lang).get('actions', {})
+        rows.append([f'{L("a_ref")} {c.name(k["type"])}',
+                     f'{L("a_ref_now")}: {a.get("immediate", "-")}\n{L("a_ref_check")}: {a.get("check", "-")}\n'
+                     f'{L("a_ref_prevent")}: {a.get("prevent", "-")}'])
     _table(doc, rows, widths=[Cm(3.5), Cm(13.9)])
     _situation_notes(doc, c)
 
@@ -353,7 +368,9 @@ def _hold(result):
         if c.lang == 'ko':
             how = rule.get('note') or c.kb_map.get(d['type'], {}).get('actions', {}).get('immediate') or L('how_default')
         else:
-            how = rule.get(f'note_{c.lang}') or L('how_default')
+            how = (rule.get(f'note_{c.lang}')
+                   or (localize(c.kb_map[d['type']], c.lang).get('actions', {}).get('immediate') if c.kb_map.get(d['type'], {}).get(c.lang) else None)
+                   or L('how_default'))
         rows.append([d['id'], *([d['view']] if has_view else []), c.name(d['type']), pos_text(d['position'], c.lang), _size(d),
                      f'{d["conf"]:.2f}', reason_text(d, c.lang), how, L('check_box')])
     _table(doc, rows, size=8)

@@ -1,5 +1,14 @@
 """② 찾는다: 결함 유형 → 한글명·심각도·원인 후보·조치 (taxonomy YAML 조회)."""
+from pathlib import Path
+
+import yaml
+
 from agent.detect import TAXONOMIES
+
+# 베트남어 번역 (원인·조치·설명). 있으면 베트남어 보고서·프롬프트에 한국어 원문 대신 쓴다 (knowledge/translations_vi.yaml)
+_KDIR = Path(__file__).resolve().parents[1] / 'knowledge'
+TRANSLATIONS = {l: (yaml.safe_load((_KDIR / f'translations_{l}.yaml').read_text(encoding='utf-8'))
+                    if (_KDIR / f'translations_{l}.yaml').exists() else {}) for l in ('vi', 'en')}
 
 SEVERITY_ORDER = {'critical': 0, 'major': 1, 'minor': 2}
 
@@ -15,7 +24,12 @@ def lookup(defect_types, domain='pcb'):
     for t in sorted(set(defect_types)):
         info = kb.get(t)
         if info:
-            items.append({'type': t, **info})
+            item = {'type': t, **info}
+            for l in ('vi', 'en'):
+                tr = TRANSLATIONS[l].get(domain, {}).get(t)
+                if tr:
+                    item[l] = tr
+            items.append(item)
     return sorted(items, key=lambda x: SEVERITY_ORDER.get(x['severity'], 9))
 
 
@@ -49,3 +63,11 @@ def situation(detection, knowledge):
     elif defects:                    # 지식베이스에 없는 유형뿐: 신뢰도 최고 유형
         s['representative'] = defects[0]['type']
     return s
+
+
+def localize(k, lang='ko'):
+    """지식 항목을 해당 언어 본문(설명·원인·조치)으로 바꾼 사본. 번역이 없으면 원문(한국어) 그대로."""
+    tr = k.get(lang) if isinstance(k.get(lang), dict) else None
+    if lang == 'ko' or not tr:
+        return k
+    return {**k, **{x: tr[x] for x in ('description', 'causes', 'actions') if x in tr}}

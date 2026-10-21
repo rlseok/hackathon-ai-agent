@@ -24,3 +24,18 @@ __pycache__/
 Thumbs.db
 desktop.ini
 ~$*
+
+# 학습·실험 산출물 / 대용량 (재생성 가능하거나 저장소에 둘 필요 없음)
+/data/
+**/runs/
+tmux-*.log
+results/logs/
+results/**/*.npz
+results/**/*.pt
+tools/pretrained/
+tools/llm_ft/.venv/
+tools/llm_ft/out/
+tools/llm_ft/llama.cpp/
+*.gguf
+**/models/*_960.pt
+results/*.log

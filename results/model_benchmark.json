@@ -1,0 +1,72 @@
+[
+  {
+    "model": "mobile",
+    "weights": "/mnt/hdd/ECG/hackathon-ai-agent/해커톤 AI에이전트/models/mobile_surface_yolo11s_seg.pt",
+    "data": "/mnt/hdd/ECG/hackathon-ai-agent/data/mobile_surface/data.yaml",
+    "imgsz": 512,
+    "test_images": 122,
+    "box_precision": 0.9857302349089672,
+    "box_recall": 0.9732315796938439,
+    "box_f1": 0.9794052688314059,
+    "box_map50": 0.9838292091766818,
+    "box_map50_95": 0.8170302056934432,
+    "mask_precision": 0.8262303298487739,
+    "mask_recall": 0.8184841637150223,
+    "mask_f1": 0.8222798143078963,
+    "mask_map50": 0.8007315332730439,
+    "mask_map50_95": 0.5065027700538851,
+    "latency": {
+      "images": 122,
+      "wall_mean_ms": 37.345493639834594,
+      "wall_p50_ms": 37.46268400573172,
+      "wall_p95_ms": 39.48941401904449,
+      "model_speed_mean_ms": 5.475246444340704,
+      "inference_mean_ms": 4.033816616207392
+    }
+  },
+  {
+    "model": "msdd",
+    "weights": "/mnt/hdd/ECG/hackathon-ai-agent/해커톤 AI에이전트/models/msdd_v1_yolo11s_seg.pt",
+    "data": "/mnt/hdd/ECG/hackathon-ai-agent/data/huggingface/metal-surface-defect-v1/data.yaml",
+    "imgsz": 512,
+    "test_images": 150,
+    "box_precision": 0.6416480029481632,
+    "box_recall": 0.5773894254557828,
+    "box_f1": 0.6039736558895988,
+    "box_map50": 0.5764904764942689,
+    "box_map50_95": 0.38234087368964487,
+    "mask_precision": 0.7118936592505863,
+    "mask_recall": 0.5363011022031684,
+    "mask_f1": 0.6015520111355322,
+    "mask_map50": 0.5636333198526594,
+    "mask_map50_95": 0.34053254854167836,
+    "latency": {
+      "images": 150,
+      "wall_mean_ms": 7.350522282067686,
+      "wall_p50_ms": 7.385864475509152,
+      "wall_p95_ms": 7.657070993445814,
+      "model_speed_mean_ms": 6.301617158654456,
+      "inference_mean_ms": 5.4968826049783575
+    }
+  },
+  {
+    "model": "pcb",
+    "weights": "/mnt/hdd/ECG/hackathon-ai-agent/해커톤 AI에이전트/models/pcb_v2_yolo11s.pt",
+    "data": "/mnt/hdd/ECG/hackathon-ai-agent/data/huggingface/pcb-defect-v2/data.yaml",
+    "imgsz": 640,
+    "test_images": 980,
+    "box_precision": 0.9113621495414417,
+    "box_recall": 0.8674920114634669,
+    "box_f1": 0.8876707425192958,
+    "box_map50": 0.8858465761347065,
+    "box_map50_95": 0.47412198308634357,
+    "latency": {
+      "images": 200,
+      "wall_mean_ms": 8.025176253577229,
+      "wall_p50_ms": 7.94572799350135,
+      "wall_p95_ms": 8.613777987193316,
+      "model_speed_mean_ms": 6.363633555592969,
+      "inference_mean_ms": 5.587310226983391
+    }
+  }
+]

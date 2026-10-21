@@ -6,6 +6,7 @@ import json
 
 import ollama
 
+from agent import rag
 from agent.i18n import situation_text, type_name
 from agent.writer import LANGS, MODEL, _kb_facts, summarize_detection
 
@@ -18,7 +19,8 @@ SYSTEM = """너는 제조 현장 작업자를 돕는 품질 검사 에이전트�
 3. 격리·수리·폐기 같은 물리적 조치는 작업자 확인 후 실시하도록 안내한다.
 4. 원인은 '후보'로 말하고 단정하지 않는다.
 5. 3~6문장 이내로 짧고 명확하게, 질문한 언어로 답한다 (기본 언어: {lang}).
-6. 결함 유형은 영문 코드 대신 name 으로 부른다."""
+6. 결함 유형은 영문 코드 대신 name 으로 부른다.
+7. [참고 자료]가 있으면 [지식]을 보충하는 설명으로만 쓰고, 쓴 내용 끝에 [S1] 처럼 출처 번호를 붙인다. 참고 자료로 판정을 바꾸거나 [검사 결과]에 없는 수치를 만들지 않는다."""
 
 
 def build_context(result, lang='ko'):
@@ -99,9 +101,23 @@ def apply_edit(result, changes):
     return result
 
 
+def references(question, result, k=2):
+    """질문 + 대표 결함에 맞는 웹 수집 문서 조각 (RAG). 라이브러리·모델이 없으면 조용히 건너뛴다."""
+    try:
+        rep = result['situation'].get('representative') or ''
+        kb = next((x for x in result['knowledge'] if x['type'] == rep), {})
+        names = ' '.join(str(kb.get(f'name_{l}', '')) for l in ('ko', 'vi', 'en'))     # 한·베·영 이름을 함께 붙여 검색
+        return rag.search(f'{question} {rep} {names}', result['detection']['domain'], k=k)
+    except Exception:  # noqa: BLE001 — sentence-transformers 미설치·모델 없음
+        return []
+
+
 def chat_stream(messages, result, lang='ko', model=MODEL, history=10):
     """messages: [{'role': 'user'|'assistant', 'content': ...}] → 답변 조각을 차례로 돌려준다."""
     system = SYSTEM.format(lang=LANGS[lang]) + '\n\n' + build_context(result, lang)
+    refs = references(messages[-1]['content'], result)
+    if refs:
+        system += f'\n[참고 자료]\n{rag.context_block(refs)}'
     stream = ollama.chat(model=model, think=False, stream=True, options={'temperature': 0.3},
                          messages=[{'role': 'system', 'content': system}, *messages[-history:]])
     for chunk in stream:

@@ -8,7 +8,7 @@
 import streamlit as st
 
 import tour
-from ui import (ICONS, INBOX, IMG_TYPES, ROOT, app_chrome, chat_panel, domain_input, example_picker, header,
+from ui import (ICONS, unsure_box, INBOX, IMG_TYPES, ROOT, app_chrome, chat_panel, domain_input, example_picker, header,
                 inbox_summary, init_state, keep, ledger_sidebar, meta_inputs, result_body, run_inbox, save_uploads,
                 scan_inbox, ss, start, t, verdict_header)
 
@@ -48,9 +48,12 @@ with st.container(key='tour_input'), st.expander(f'📷 {t("input")}', expanded=
             st.rerun()
         if ss.get('inbox_msg'):
             st.success(f'{ss.inbox_msg} — {t("inbox_next")}')
-    if mode != 'inbox' and st.button(t('run'), type='primary', disabled=mode == 'upload' and not files):
+    if mode != 'inbox' and st.button(t('run'), type='primary',
+                                     disabled=(mode == 'upload' and not files) or (mode == 'example' and not paths)):
         start(paths if mode == 'example' else save_uploads(files), domain, meta)
         st.rerun()
+
+unsure_box()                             # 자동 판별이 불확실하면 작업자가 종류를 고른다
 
 # ── 검사 결과 ─────────────────────────────────────────────────────
 r = ss.result

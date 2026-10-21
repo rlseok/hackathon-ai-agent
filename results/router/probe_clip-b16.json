@@ -1,0 +1,60 @@
+{
+ "model": "clip-b16",
+ "val": {
+  "acc": 0.9976303317535545,
+  "macro_f1": 0.9977777530861455,
+  "confusion": [
+   [
+    149,
+    1,
+    0
+   ],
+   [
+    0,
+    150,
+    0
+   ],
+   [
+    0,
+    0,
+    122
+   ]
+  ]
+ },
+ "test": {
+  "acc": 1.0,
+  "macro_f1": 1.0,
+  "confusion": [
+   [
+    980,
+    0,
+    0
+   ],
+   [
+    0,
+    150,
+    0
+   ],
+   [
+    0,
+    0,
+    122
+   ]
+  ]
+ },
+ "auroc_msp_vs_ood_synthetic_metal": 1.0,
+ "auroc_msp_vs_ood_ui_screens": 1.0,
+ "msp_threshold_val95": 0.9947323799133301,
+ "test_accept_rate": 0.9720447284345048,
+ "ood_accept_rate": {
+  "ood_synthetic_metal": 0.0,
+  "ood_ui_screens": 0.0
+ },
+ "perturb_acc": {
+  "jpeg": 1.0,
+  "blur": 1.0,
+  "small": 1.0,
+  "dark": 1.0,
+  "crop": 0.9641148325358851
+ }
+}

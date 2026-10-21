@@ -6,3 +6,10 @@ streamlit               # 작업자 확인 화면 (에이전트 UI)
 python-docx             # 보고서 Word 출력
 openpyxl              # 검사 대장 엑셀 (outputs/검사대장.xlsx)
 mammoth               # 보고서 미리보기 (docx → HTML)
+# 자동 분류(라우터)·RAG — torch 2.5 와 맞는 버전으로 고정 (transformers 5.x 는 torch>=2.6 필요)
+timm                  # 라우터 backbone (DINOv2)
+scikit-learn          # 라우터 분류기 (로지스틱 회귀)
+joblib                # 라우터 파일 읽기
+transformers==4.46.3  # RAG 임베딩 (sentence-transformers 의존)
+sentence-transformers==3.3.1   # 한·베·영 다국어 검색 (CPU 로 실행)
+opencv-python         # CLAHE 전처리·타일링
