@@ -1,0 +1,183 @@
+# English version of the defect knowledge (description / causes / actions), same keys as the YOLO class names.
+# Source: defect_taxonomy_<domain>.yaml (Korean). Used for English reports and as fine-tuning data. Draft: review with a QA engineer.
+pcb:
+  opencircuit:
+    description: The trace is broken, so it no longer conducts electrically.
+    causes:
+      - Over-etching (etchant concentration, temperature or speed too high)
+      - Poor exposure (scratches or dust on the exposure film leave part of the pattern unexposed)
+      - Dry-film lift-off or poor lamination
+      - Mechanical damage during handling
+    actions:
+      immediate: Isolate the board. It is normally scrapped; repair with a jumper wire only if the customer allows it.
+      check: Check the etching condition records (concentration, temperature, conveyor speed) and the exposure film condition.
+      prevent: Inspect and replace exposure film regularly, control lamination pressure and temperature, and manage etching conditions with SPC.
+  shortcircuit:
+    description: Traces that should be separate are connected by copper.
+    causes:
+      - Under-etching (insufficient etching)
+      - Copper debris or foreign particles
+      - Dry-film defect (resist left between traces)
+      - Insufficient trace spacing in the design
+    actions:
+      immediate: Isolate the board. If the short location is clear, cut it open with a knife or laser and re-check with an electrical test.
+      check: Check the etching conditions, the development state and foreign-matter control in the work area.
+      prevent: Control etching conditions, control particles in the clean room, and review pattern spacing in the design (DFM).
+  mousebite:
+    description: The trace edge is nibbled away as if bitten (reduced trace width).
+    causes:
+      - Uneven etching
+      - Poor dry-film edge (unsuitable exposure or development conditions)
+      - Foreign particles on the resist
+    actions:
+      immediate: Measure the trace-width reduction and judge it against the customer standard (a defect if the limit is exceeded).
+      check: Check exposure energy, development conditions and etching uniformity.
+      prevent: Optimise exposure and development conditions and inspect the etching nozzles to keep etching uniform.
+  spur:
+    description: Copper protruding from a trace like a thorn (reduced spacing between traces).
+    causes:
+      - Resist residue (insufficient development)
+      - Over-exposure that blurs the pattern
+      - Foreign particles
+    actions:
+      immediate: Measure the spacing reduction and judge it against the customer standard; remove the protrusion if repair is needed.
+      check: Check the developer condition and development time, and the exposure energy.
+      prevent: Control development conditions and measure exposure energy regularly.
+  falsecopper:
+    description: A piece of copper left where no pattern should exist.
+    causes:
+      - Under-etching
+      - Resist residue or foreign particles blocking the etch
+      - Defective copper-clad base material
+    actions:
+      immediate: Check the distance to other traces; it is a defect if there is a short risk, otherwise remove it or accept it conditionally.
+      check: Check the etching and development conditions and the incoming-inspection records of the base material.
+      prevent: Control etching and development conditions and strengthen incoming inspection of the base material.
+  missinghole:
+    description: A hole required by the design has not been drilled.
+    causes:
+      - Missing or wrong drill program (NC data)
+      - Broken drill bit or a missed tool change
+      - Drill bit life exceeded
+    actions:
+      immediate: Inspect all holes in the lot. Re-drill if position accuracy can be ensured, otherwise scrap.
+      check: Compare the NC data with the design data and check the drill-bit breakage history.
+      prevent: Manage drill-bit life, check the breakage-detection device, and run a hole-count check after drilling.
+  pinhole:
+    description: A small hole in the copper foil or plating layer.
+    causes:
+      - Air bubbles attached during plating
+      - Contaminated plating bath
+      - Fine dust on the resist
+      - Defect in the copper-clad base material
+    actions:
+      immediate: Compare size and count with the standard. If the hole eats into the trace width, raise the severity to medium.
+      check: Check the plating-bath analysis records and the filter condition.
+      prevent: Analyse and filter the plating bath regularly, control agitation conditions and control clean-room dust.
+  scratch:
+    description: A scratch on the surface.
+    causes:
+      - Careless handling
+      - Friction with transfer rollers or conveyors
+      - Friction between boards when stacked
+    actions:
+      immediate: If no copper is exposed and no trace is damaged, accept within the appearance standard. If a trace is cut, re-judge it as an open circuit.
+      check: Trace the process from the scratch position (if the scratch follows the transfer direction, check the rollers).
+      prevent: Use interleaving paper between boards, service transfer equipment regularly, and train operators in handling.
+
+msdd:
+  Fold:
+    description: A linear defect where material was folded and pressed over itself during forging, rolling or forming (it may be a gap running inward).
+    causes:
+      - Poor material flow in forging or forming (die shape, billet position)
+      - A pre-existing surface defect of the stock (lap, seam) exposed after machining
+      - Unsuitable forming temperature and pressure
+    actions:
+      immediate: Isolate the part. Confirm the depth by non-destructive testing such as penetrant testing to tell it apart from a crack.
+      check: Check the material lot, the forming condition records and the die wear.
+      prevent: Improve die shape and billet position, strengthen incoming inspection of stock, and control forming conditions.
+  Porosity:
+    description: Small holes exposed on the machined surface (internal voids of the material opened by cutting).
+    causes:
+      - Gas entrapment or insufficient degassing during casting or sintering
+      - Internal defects of the raw material
+      - Moisture or contamination in the melt or powder
+    actions:
+      immediate: Compare hole size and count with the standard. It is a defect if it lies on a functional surface such as a sealing face or thread.
+      check: Check the raw-material lot history and the casting or sintering condition records.
+      prevent: Control degassing and drying conditions and strengthen incoming inspection of raw material (cross-section, density).
+  Scratch:
+    description: A linear scratch on the surface.
+    causes:
+      - Contact between parts during handling or stacking
+      - Friction with transfer jigs or conveyors
+      - A chip trapped between the tool and the machined surface
+      - Tool wear or a damaged cutting edge
+    actions:
+      immediate: Compare depth and length with the appearance standard. Accept conditionally if it is not on a functional surface and within the standard.
+      check: Trace the process from the scratch direction (same as the machining direction means during machining, random means during handling).
+      prevent: Use interleaving paper or trays between parts, manage chip removal and cutting fluid, and manage tool-change intervals.
+  Oxidation:
+    description: The surface is oxidised or corroded, causing discolouration or rust.
+    causes:
+      - Poor drying after washing
+      - Missed rust-proofing or insufficient rust-preventive oil
+      - Poor control of humidity and temperature in storage
+      - Unsuitable cooling and atmosphere control after heat treatment
+    actions:
+      immediate: Judge after checking whether it is surface oxidation that rust removal can restore, or corrosion that has damaged dimensions or function.
+      check: Check the washing, drying and rust-proofing records and the storage humidity.
+      prevent: Standardise drying and rust-proofing, control storage humidity, and use first-in-first-out to avoid long storage.
+  Dark Spot:
+    description: A locally dark spot on the surface.
+    causes:
+      - Foreign matter or carbonised cutting fluid stuck on the surface
+      - Local corrosion or oxidation
+      - Heat-treatment scale left on the surface
+      - Exposed inclusions in the material
+    actions:
+      immediate: Check whether it is deposit that washing removes. If not, treat it as corrosion or an inclusion and compare its size with the standard.
+      check: Check the washing process, the cutting-fluid contamination level and the post-heat-treatment records.
+      prevent: Control washing conditions, manage the cutting-fluid change interval and check the descaling step after heat treatment.
+  Stain:
+    description: A mark left when washing liquid or cutting fluid dried on the surface.
+    causes:
+      - Washing liquid or cutting fluid left and dried naturally
+      - Insufficient rinsing or drying
+      - Handling with bare hands (fingerprints)
+    actions:
+      immediate: Check whether re-washing removes it. If it does, re-wash and accept.
+      check: Check the washing-liquid concentration and change interval, and the drying temperature and time.
+      prevent: Control rinsing, air-blow and drying conditions, and handle with gloves.
+
+mobile:
+  oil:
+    description: Oil or grease is left on the surface.
+    causes:
+      - Oil leaking from equipment or a jig
+      - Contaminated gloves, tools or trays
+      - Poor washing and drying
+    actions:
+      immediate: Isolate the product, clean it with an approved method and re-inspect.
+      check: Check equipment leaks, jigs, gloves and the condition of the washing liquid.
+      prevent: Inspect for leaks and standardise washing and drying conditions.
+  scratch:
+    description: A linear scratch or coating damage on the surface.
+    causes:
+      - Contact between parts during handling or stacking
+      - Friction with jigs, trays or conveyors
+      - Contact with tools or foreign objects during assembly
+    actions:
+      immediate: Isolate the product and compare length, width and depth with the appearance standard.
+      check: Check contact points and foreign matter on the jigs and the transfer path.
+      prevent: Use protective material and review the handling process.
+  stain:
+    description: A local change of colour or gloss on the surface.
+    causes:
+      - Washing residue
+      - Contact with adhesive, handprints or chemicals
+      - Poor drying and storage conditions
+    actions:
+      immediate: Check whether an approved cleaning method can remove it.
+      check: Check the washing-liquid concentration and the drying conditions.
+      prevent: Standardise washing, drying and packing conditions.

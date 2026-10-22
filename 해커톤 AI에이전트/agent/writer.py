@@ -8,10 +8,13 @@ from collections import defaultdict
 
 import ollama
 
-from agent.i18n import SEVERITY, pos_text, reason_text, type_name
+from agent.i18n import SEVERITY, pos_text, reason_texts, type_name
+from agent.knowledge import localize
 
 # 보고서·상담에 쓰는 Ollama 모델. 환경 변수 DEFECT_LLM 으로 바꾼다 (예: Izumi LoRA 를 합친 qwen3-defect)
 MODEL = os.environ.get('DEFECT_LLM', 'qwen3:8b')
+# 출력 길이 상한 — 모델이 같은 말을 되풀이하는 일이 생겨도 끝없이 쓰지 않게 (보고서 JSON 은 보통 300~600 토큰)
+JSON_OPTS = {'num_predict': 1024}
 LANGS = {'ko': '한국어', 'vi': '베트남어(Tiếng Việt)', 'en': '영어(English)'}
 
 SYSTEM = """너는 제조 품질 불량 보고서를 작성하는 보조자다.
@@ -48,7 +51,7 @@ def summarize_detection(detection, knowledge, lang='ko'):
              'max_conf': max(d['conf'] for d in ds),
              'abnormal': sum(d['level'] == 'reject' for d in ds),
              'suspected': sum(d['level'] == 'review' for d in ds),
-             'judgment_basis': sorted({reason_text(d, lang) for d in ds})[:3],
+             'judgment_basis': reason_texts(ds, lang)[:3],     # 같은 근거는 한 문장으로 (신뢰도는 범위)
              'positions': sorted({(f'{d["view"]} ' if 'view' in d else '') + pos_text(d['position'], lang) for d in ds}),
              'box_long_side_px': f'{min(long_side)}~{max(long_side)}' if len(ds) > 1 else long_side[0]}
         if 'area_ratio' in ds[0]:    # 세그멘테이션: 박스보다 실제 결함 면적이 정확
@@ -62,7 +65,9 @@ def summarize_detection(detection, knowledge, lang='ko'):
 
 
 def _kb_facts(knowledge, lang='ko'):
-    keys = ('description', 'causes', 'actions', 'measure', 'surface_note')
+    # 영어·베트남어는 번역된 설명·원인·조치를 넘기고, 번역이 없는 측정·표면 메모는 뺀다 (한국어 원문이 문장에 섞이지 않게)
+    keys = ('description', 'causes', 'actions', 'measure', 'surface_note') if lang == 'ko' else ('description', 'causes', 'actions')
+    knowledge = [localize(k, lang) for k in knowledge]
     # 심각도는 영문 코드(major) 대신 해당 언어 이름(중 / Nặng / Major)으로 — 코드가 답변·보고서 문장에 섞여 나오지 않게
     return [{'type': k['type'], 'name': type_name(k['type'], k, lang),
              'severity': SEVERITY.get(lang, SEVERITY['ko']).get(k.get('severity'), k.get('severity')),
@@ -97,7 +102,7 @@ def write_report_text(detection, knowledge, situation, part_info='', lang='ko', 
     res = ollama.chat(model=model, format='json', think=False,
                       messages=[{'role': 'system', 'content': SYSTEM},
                                 {'role': 'user', 'content': user}],
-                      options={'temperature': 0.2})
+                      options={'temperature': 0.2, **JSON_OPTS})
     text = json.loads(res['message']['content'])
 
     # LLM 이 빠뜨리거나 지어낸 유형은 코드가 바로잡는다

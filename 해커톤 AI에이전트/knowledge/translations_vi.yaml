@@ -1,0 +1,203 @@
+# Bản dịch tiếng Việt của kiến thức lỗi (nguyên nhân / biện pháp) — dùng cho báo cáo tiếng Việt và làm dữ liệu fine-tune.
+# Nguồn: defect_taxonomy_<domain>.yaml (tiếng Hàn). Khóa trùng với tên lớp YOLO. Thuật ngữ thống nhất ở glossary bên dưới.
+# CẦN người Việt trong ngành (FPT) rà soát trước khi dùng chính thức; bản này chưa được người bản ngữ kiểm tra.
+glossary:
+  동박: lá đồng
+  배선: đường mạch
+  식각: ăn mòn (etching)
+  노광: phơi sáng
+  현상: hiện hình (develop)
+  드라이필름: màng khô (dry film)
+  레지스트: lớp cản quang (resist)
+  도금: mạ
+  드릴: khoan
+  클린룸: phòng sạch
+  간지: giấy lót ngăn
+  침투탐상: kiểm tra thẩm thấu (PT)
+  방청: chống gỉ
+  절삭유: dầu cắt gọt
+  지그: đồ gá (jig)
+  격리: cách ly
+  기능면: bề mặt chức năng
+
+pcb:
+  opencircuit:
+    description: Đường mạch bị đứt nên không dẫn điện được.
+    causes:
+      - Ăn mòn quá mức (nồng độ, nhiệt độ hoặc tốc độ dung dịch ăn mòn quá cao)
+      - Phơi sáng kém (phim phơi sáng bị xước hoặc dính bụi nên một phần mẫu không được phơi sáng)
+      - Màng khô bị bong hoặc ép màng không đạt
+      - Hư hỏng cơ học trong lúc thao tác
+    actions:
+      immediate: Cách ly bo mạch. Thông thường loại bỏ; chỉ sửa bằng dây nối khi khách hàng cho phép.
+      check: Kiểm tra hồ sơ điều kiện ăn mòn (nồng độ, nhiệt độ, tốc độ băng tải) và tình trạng phim phơi sáng.
+      prevent: Kiểm tra và thay phim phơi sáng định kỳ, kiểm soát áp suất và nhiệt độ ép màng, quản lý điều kiện ăn mòn bằng SPC.
+  shortcircuit:
+    description: Các đường mạch lẽ ra phải tách biệt lại bị nối với nhau bằng đồng.
+    causes:
+      - Ăn mòn chưa hết (ăn mòn thiếu)
+      - Mạt đồng hoặc dị vật bám vào
+      - Lỗi màng khô (lớp cản quang còn sót giữa các đường mạch)
+      - Khoảng cách giữa các mẫu mạch trong thiết kế quá nhỏ
+    actions:
+      immediate: Cách ly bo mạch. Nếu vị trí đoản mạch rõ ràng thì cắt bằng dao hoặc laser để sửa, sau đó kiểm tra điện lại.
+      check: Kiểm tra điều kiện ăn mòn, trạng thái hiện hình và việc kiểm soát dị vật tại khu vực làm việc.
+      prevent: Quản lý điều kiện ăn mòn, kiểm soát dị vật trong phòng sạch, rà soát khoảng cách mẫu mạch ở khâu thiết kế (DFM).
+  mousebite:
+    description: Mép đường mạch bị khuyết, lõm vào như bị gặm (độ rộng đường mạch giảm).
+    causes:
+      - Ăn mòn không đồng đều
+      - Mép màng khô không đạt (điều kiện phơi sáng, hiện hình không phù hợp)
+      - Dị vật trên lớp cản quang
+    actions:
+      immediate: Đo tỉ lệ giảm độ rộng đường mạch và so với tiêu chuẩn của khách hàng (vượt tiêu chuẩn thì là lỗi).
+      check: Kiểm tra năng lượng phơi sáng, điều kiện hiện hình và độ đồng đều của quá trình ăn mòn.
+      prevent: Tối ưu điều kiện phơi sáng và hiện hình, kiểm tra vòi phun ăn mòn để đảm bảo độ đồng đều.
+  spur:
+    description: Đồng nhô ra như gai từ đường mạch (khoảng cách giữa các đường mạch bị thu hẹp).
+    causes:
+      - Cặn lớp cản quang (hiện hình chưa đủ)
+      - Phơi sáng quá mức làm mẫu mạch bị loe
+      - Dị vật bám vào
+    actions:
+      immediate: Đo tỉ lệ giảm khoảng cách giữa các đường mạch và so với tiêu chuẩn của khách hàng; khi cần thì loại bỏ phần nhô ra để sửa.
+      check: Kiểm tra trạng thái dung dịch hiện hình, thời gian hiện hình và năng lượng phơi sáng.
+      prevent: Quản lý điều kiện hiện hình, đo năng lượng phơi sáng định kỳ.
+  falsecopper:
+    description: Mảnh đồng còn sót ở vị trí lẽ ra không có mẫu mạch.
+    causes:
+      - Ăn mòn chưa hết
+      - Cặn lớp cản quang hoặc dị vật làm cản trở quá trình ăn mòn
+      - Lỗi tấm đồng nguyên liệu
+    actions:
+      immediate: Kiểm tra khoảng cách tới các đường mạch khác; nếu có nguy cơ đoản mạch thì là lỗi, nếu không thì loại bỏ để sửa hoặc chấp nhận có điều kiện.
+      check: Kiểm tra điều kiện ăn mòn, hiện hình và hồ sơ kiểm tra đầu vào của tấm nguyên liệu.
+      prevent: Quản lý điều kiện ăn mòn và hiện hình, tăng cường kiểm tra đầu vào tấm nguyên liệu.
+  missinghole:
+    description: Lỗ lẽ ra phải có theo thiết kế nhưng chưa được khoan.
+    causes:
+      - Thiếu hoặc sai chương trình khoan (dữ liệu NC)
+      - Mũi khoan gãy hoặc quên thay dụng cụ
+      - Mũi khoan quá tuổi thọ
+    actions:
+      immediate: Kiểm tra toàn bộ lỗ của lô. Nếu độ chính xác vị trí đảm bảo thì khoan lại, nếu không thì loại bỏ.
+      check: Đối chiếu dữ liệu NC với dữ liệu thiết kế, kiểm tra lịch sử gãy mũi khoan.
+      prevent: Quản lý tuổi thọ mũi khoan, kiểm tra thiết bị phát hiện gãy mũi, kiểm tra đếm lỗ sau khi khoan.
+  pinhole:
+    description: Lỗ nhỏ xuất hiện trên lá đồng hoặc lớp mạ.
+    causes:
+      - Bọt khí bám vào trong lúc mạ
+      - Dung dịch mạ bị nhiễm bẩn
+      - Bụi mịn trên lớp cản quang
+      - Khuyết tật của tấm đồng nguyên liệu
+    actions:
+      immediate: So sánh kích thước và số lượng với tiêu chuẩn. Nếu lỗ ăn vào độ rộng đường mạch thì nâng mức nghiêm trọng lên "trung bình".
+      check: Kiểm tra hồ sơ phân tích dung dịch mạ và tình trạng hệ thống lọc.
+      prevent: Phân tích và lọc dung dịch mạ định kỳ, quản lý điều kiện khuấy, kiểm soát bụi trong phòng sạch.
+  scratch:
+    description: Vết xước trên bề mặt.
+    causes:
+      - Thao tác bất cẩn
+      - Ma sát với con lăn vận chuyển hoặc băng tải
+      - Ma sát giữa các bo mạch khi xếp chồng
+    actions:
+      immediate: Nếu không lộ đồng hoặc không làm hỏng đường mạch thì chấp nhận trong tiêu chuẩn ngoại quan. Nếu làm đứt đường mạch thì đánh giá lại là hở mạch.
+      check: Truy vết công đoạn theo vị trí xước (xước theo hướng vận chuyển thì kiểm tra con lăn).
+      prevent: Dùng giấy lót giữa các bo mạch, bảo dưỡng thiết bị vận chuyển định kỳ, đào tạo thao tác.
+
+msdd:
+  Fold:
+    description: Khuyết tật dạng đường do vật liệu bị gấp chồng và ép lên nhau khi rèn, cán hoặc tạo hình (có thể là khe nứt ăn sâu vào bên trong).
+    causes:
+      - Dòng chảy vật liệu kém khi rèn hoặc tạo hình (hình dạng khuôn, vị trí đặt phôi)
+      - Khuyết tật sẵn có trên bề mặt phôi (nếp gấp, đường nối) lộ ra sau gia công
+      - Điều kiện nhiệt độ và áp suất tạo hình không phù hợp
+    actions:
+      immediate: Cách ly chi tiết. Kiểm tra độ sâu bằng phương pháp không phá hủy như kiểm tra thẩm thấu để phân biệt với vết nứt.
+      check: Kiểm tra lô phôi, hồ sơ điều kiện tạo hình và tình trạng mòn của khuôn.
+      prevent: Cải thiện hình dạng khuôn và vị trí đặt phôi, tăng cường kiểm tra phôi đầu vào, quản lý điều kiện tạo hình.
+  Porosity:
+    description: Những lỗ nhỏ lộ ra trên bề mặt gia công (lỗ rỗng bên trong vật liệu bị lộ ra khi cắt gọt).
+    causes:
+      - Lẫn khí khi đúc hoặc thiêu kết, hoặc khử khí chưa đủ
+      - Khuyết tật bên trong vật liệu gốc
+      - Hơi ẩm hoặc tạp chất trong kim loại nóng chảy hoặc bột
+    actions:
+      immediate: So sánh kích thước và số lượng lỗ với tiêu chuẩn. Nếu nằm ở bề mặt chức năng như mặt làm kín hoặc phần ren thì là lỗi.
+      check: Kiểm tra lịch sử lô vật liệu gốc và hồ sơ điều kiện đúc hoặc thiêu kết.
+      prevent: Quản lý điều kiện khử khí và sấy khô, tăng cường kiểm tra đầu vào vật liệu gốc (mặt cắt, khối lượng riêng).
+  Scratch:
+    description: Vết xước dạng đường trên bề mặt.
+    causes:
+      - Các chi tiết va chạm nhau khi thao tác hoặc xếp chồng
+      - Ma sát với đồ gá vận chuyển hoặc băng tải
+      - Phoi kẹt giữa dụng cụ và bề mặt gia công
+      - Dụng cụ bị mòn hoặc mẻ lưỡi cắt
+    actions:
+      immediate: So sánh độ sâu và chiều dài với tiêu chuẩn ngoại quan. Nếu không ở bề mặt chức năng và trong tiêu chuẩn thì chấp nhận có điều kiện.
+      check: Truy vết công đoạn theo hướng xước (cùng hướng gia công thì xảy ra khi gia công, ngẫu nhiên thì xảy ra khi thao tác).
+      prevent: Dùng giấy lót ngăn hoặc khay giữa các chi tiết, quản lý việc thoát phoi và dầu cắt gọt, quản lý chu kỳ thay dụng cụ.
+  Oxidation:
+    description: Bề mặt bị oxy hóa hoặc ăn mòn nên đổi màu hoặc xuất hiện gỉ.
+    causes:
+      - Sấy khô kém sau khi rửa
+      - Bỏ sót công đoạn chống gỉ hoặc thiếu dầu chống gỉ
+      - Quản lý độ ẩm và nhiệt độ nơi bảo quản chưa tốt
+      - Quản lý làm nguội và môi trường sau nhiệt luyện chưa phù hợp
+    actions:
+      immediate: Xác định đó là oxy hóa bề mặt có thể khôi phục bằng cách làm sạch gỉ hay là ăn mòn đã làm hỏng kích thước và chức năng, rồi mới đánh giá.
+      check: Kiểm tra hồ sơ các công đoạn rửa, sấy, chống gỉ và độ ẩm nơi bảo quản.
+      prevent: Chuẩn hóa công đoạn sấy và chống gỉ, quản lý độ ẩm nơi bảo quản, áp dụng nhập trước xuất trước để tránh lưu kho lâu.
+  Dark Spot:
+    description: Đốm tối cục bộ trên bề mặt.
+    causes:
+      - Dị vật hoặc cặn cacbon từ dầu cắt gọt bám vào
+      - Ăn mòn hoặc oxy hóa cục bộ
+      - Còn sót vảy sau nhiệt luyện
+      - Tạp chất bên trong vật liệu lộ ra
+    actions:
+      immediate: Kiểm tra xem có phải chất bám có thể rửa sạch không. Nếu không rửa được thì coi là ăn mòn hoặc tạp chất và so sánh kích thước với tiêu chuẩn.
+      check: Kiểm tra công đoạn rửa, mức độ nhiễm bẩn của dầu cắt gọt và hồ sơ xử lý sau nhiệt luyện.
+      prevent: Quản lý điều kiện rửa, chu kỳ thay dầu cắt gọt, kiểm tra công đoạn loại bỏ vảy sau nhiệt luyện.
+  Stain:
+    description: Vết ố do dung dịch rửa hoặc dầu cắt gọt khô lại để lại.
+    causes:
+      - Dung dịch rửa hoặc dầu cắt gọt còn sót rồi khô tự nhiên
+      - Xả nước hoặc sấy khô chưa đủ
+      - Cầm bằng tay trần (dấu vân tay)
+    actions:
+      immediate: Kiểm tra xem rửa lại có làm sạch không. Nếu sạch thì rửa lại rồi cho đạt.
+      check: Kiểm tra nồng độ và chu kỳ thay dung dịch rửa, nhiệt độ và thời gian sấy.
+      prevent: Quản lý điều kiện xả nước, thổi khí và sấy khô; thao tác khi đeo găng tay.
+
+mobile:
+  oil:
+    description: Trên bề mặt còn sót dầu hoặc chất nhờn.
+    causes:
+      - Rò rỉ dầu từ thiết bị hoặc đồ gá
+      - Găng tay, dụng cụ hoặc khay bị bẩn
+      - Rửa và sấy khô kém
+    actions:
+      immediate: Cách ly sản phẩm, làm sạch bằng phương pháp được phê duyệt rồi kiểm tra lại.
+      check: Kiểm tra rò rỉ dầu của thiết bị, đồ gá, găng tay và tình trạng dung dịch rửa.
+      prevent: Kiểm tra rò rỉ và chuẩn hóa điều kiện rửa, sấy khô.
+  scratch:
+    description: Vết xước dạng đường hoặc lớp phủ bị hư hỏng trên bề mặt.
+    causes:
+      - Các chi tiết va chạm nhau khi thao tác hoặc xếp chồng
+      - Ma sát với đồ gá, khay hoặc băng tải
+      - Dụng cụ hoặc dị vật chạm vào khi lắp ráp
+    actions:
+      immediate: Cách ly sản phẩm và so sánh chiều dài, chiều rộng, độ sâu với tiêu chuẩn ngoại quan.
+      check: Kiểm tra điểm tiếp xúc và dị vật trên đồ gá và đường vận chuyển.
+      prevent: Sử dụng vật liệu bảo vệ và rà soát công đoạn thao tác.
+  stain:
+    description: Vùng cục bộ trên bề mặt bị đổi màu hoặc đổi độ bóng.
+    causes:
+      - Cặn của dung dịch rửa
+      - Tiếp xúc với keo, dấu tay hoặc hóa chất
+      - Điều kiện sấy khô và bảo quản không tốt
+    actions:
+      immediate: Kiểm tra xem có thể loại bỏ bằng phương pháp rửa được phê duyệt hay không.
+      check: Kiểm tra nồng độ dung dịch rửa và điều kiện sấy khô.
+      prevent: Chuẩn hóa điều kiện rửa, sấy khô và đóng gói.

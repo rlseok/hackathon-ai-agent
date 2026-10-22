@@ -3,12 +3,13 @@
 지금 화면의 검사 결과·지식베이스를 프롬프트에 넣고 Qwen 이 답한다. 판정은 바꾸지 못한다 (작업자가 화면에서 수정).
 """
 import json
+import re
 
 import ollama
 
 from agent.detect import thresholds
-from agent.i18n import reason_text, situation_text, type_name, verdict_name
-from agent.writer import LANGS, MODEL, _kb_facts, summarize_detection
+from agent.i18n import reason_texts, situation_text, type_name, verdict_name
+from agent.writer import JSON_OPTS, LANGS, MODEL, _kb_facts, summarize_detection
 
 SYSTEM = """너는 제조 현장 작업자를 돕는 품질 검사 에이전트다. 아래 [검사 결과]와 [지식]만 근거로 답한다.
 규칙:
@@ -39,14 +40,24 @@ RULE_TEXT = {
 
 
 def _verdict_reason(det, kb, lang):
-    """판정을 정한 결함들 (판정과 같은 등급, 신뢰도 높은 순 최대 3개) → [{'name', 'confidence', 'level', 'basis'}]."""
+    """판정을 정한 결함들 (판정과 같은 등급)을 유형별로 묶어 신뢰도 높은 순 최대 3유형
+    → [{'name', 'count', 'confidence', 'level', 'basis'}]. 같은 근거를 결함 수만큼 되풀이하지 않게 묶는다."""
     level = det['verdict']
     if level == 'normal':
         return []
     kb_map = {k['type']: k for k in kb}
-    top = sorted((d for d in det['defects'] if d['level'] == level), key=lambda d: -d['conf'])[:3]
-    return [{'name': type_name(d['type'], kb_map.get(d['type']), lang), 'confidence': round(d['conf'], 2),
-             'level': verdict_name(d['level'], lang), 'basis': reason_text(d, lang)} for d in top]
+    by_type = {}
+    for d in det['defects']:
+        if d['level'] == level:
+            by_type.setdefault(d['type'], []).append(d)
+    top = sorted(by_type.items(), key=lambda kv: -max(d['conf'] for d in kv[1]))[:3]
+    out = []
+    for t, ds in top:
+        lo, hi = min(d['conf'] for d in ds), max(d['conf'] for d in ds)
+        out.append({'name': type_name(t, kb_map.get(t), lang), 'count': len(ds),
+                    'confidence': f'{hi:.2f}' if f'{lo:.2f}' == f'{hi:.2f}' else f'{lo:.2f}~{hi:.2f}',
+                    'level': verdict_name(level, lang), 'basis': ' / '.join(reason_texts(ds, lang))})
+    return out
 
 
 def build_context(result, lang='ko'):
@@ -102,7 +113,7 @@ def propose_edit(request, result, lang='ko', model=MODEL):
     current['defects'] = [{'type': d['type'], 'description': d.get('description', '')} for d in tx.get('defects', [])]
     user = (f'[현재 문장]\n{json.dumps(current, ensure_ascii=False)}\n\n{build_context(result, lang)}\n\n'
             f'[작업자 요청]\n{request}')
-    res = ollama.chat(model=model, format='json', think=False, options={'temperature': 0.2},
+    res = ollama.chat(model=model, format='json', think=False, options={'temperature': 0.2, **JSON_OPTS},
                       messages=[{'role': 'system', 'content': EDIT_SYSTEM.format(lang=LANGS[result.get('lang', lang)])},
                                 {'role': 'user', 'content': user}])
     out = json.loads(res['message']['content'])
@@ -130,10 +141,25 @@ def apply_edit(result, changes):
     return result
 
 
+VI_CHARS = re.compile(r'[ăâđêôơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]', re.I)
+
+
+def question_lang(text, default='ko'):
+    """질문 언어: 한글 → ko, 베트남어 성조·모음 → vi, 그 밖의 라틴 문자 → en, 판단할 글자가 없으면 화면 언어.
+    작은 모델이 '질문한 언어로' 규칙보다 근거 자료의 언어를 따라가서, 근거까지 질문 언어로 만들어 넘긴다."""
+    if re.search(r'[가-힣]', text):
+        return 'ko'
+    if VI_CHARS.search(text):
+        return 'vi'
+    return 'en' if re.search(r'[A-Za-z]{2,}', text) else default
+
+
 def chat_stream(messages, result, lang='ko', model=MODEL, history=10):
     """messages: [{'role': 'user'|'assistant', 'content': ...}] → 답변 조각을 차례로 돌려준다."""
+    lang = question_lang(next((m['content'] for m in reversed(messages) if m['role'] == 'user'), ''), lang)
     system = SYSTEM.format(lang=LANGS[lang]) + '\n\n' + build_context(result, lang)
-    stream = ollama.chat(model=model, think=False, stream=True, options={'temperature': 0.3},
+    # 자유 문장 답변: 반복 억제(1.1) + 길이 상한. JSON 출력에는 반복 억제를 걸지 않는다 (따옴표·괄호 같은 구조 토큰까지 억제돼 형식이 깨질 수 있음)
+    stream = ollama.chat(model=model, think=False, stream=True, options={'temperature': 0.3, 'repeat_penalty': 1.1, 'num_predict': 600},
                          messages=[{'role': 'system', 'content': system}, *messages[-history:]])
     for chunk in stream:
         yield chunk['message']['content']

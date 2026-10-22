@@ -1,4 +1,5 @@
 """화면·보고서 문구 (한국어 / 베트남어 / 영어). 키가 없으면 한국어로 대신한다."""
+import json
 
 LANGS = {'ko': '한국어', 'vi': 'Tiếng Việt', 'en': 'English'}
 
@@ -861,6 +862,24 @@ def reason_text(d, lang='ko'):
     if key == 'above_cut':
         s += (rs['lowered'] if args.get('lowered') else '') + (rs['surface'] if args.get('surface') else '')
     return s
+
+
+def reason_texts(ds, lang='ko'):
+    """같은 근거의 결함들을 한 문장으로 묶는다 — 신뢰도만 다르면 범위로 (예: '신뢰도 0.83~0.84 ≥ 이상 기준 0.35 …').
+    LLM 이 같은 근거를 결함 수만큼 되풀이해 나열하지 않게."""
+    groups = {}
+    for d in ds:
+        args = {k: v for k, v in d.get('reason_args', {}).items() if k != 'conf'}
+        groups.setdefault((d.get('reason_key'), json.dumps(args, sort_keys=True, default=str)), []).append(d)
+    out = []
+    for g in groups.values():
+        top = max(g, key=lambda d: d['conf'])
+        s = reason_text(top, lang)
+        lo = min(d['conf'] for d in g)
+        if f'{lo:.2f}' != f'{top["conf"]:.2f}':
+            s = s.replace(f'{top["conf"]:.2f}', f'{lo:.2f}~{top["conf"]:.2f}', 1)
+        out.append(s)
+    return out
 
 
 def process_name(code, lang='ko'):

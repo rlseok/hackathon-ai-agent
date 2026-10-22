@@ -5,6 +5,7 @@
 """
 import importlib
 import json
+import os
 import sys
 import urllib.request
 from pathlib import Path
@@ -87,7 +88,8 @@ def check_ollama():
     except Exception as e:  # noqa: BLE001
         report(False, f'Ollama 연결 실패 ({e}) → Ollama 실행 여부 확인')
         return
-    qwen = [m for m in models if m.startswith('qwen')]
+    want = os.environ.get('DEFECT_LLM', 'qwen3:8b')        # 에이전트가 실제로 쓰는 모델을 먼저 시험
+    qwen = sorted((m for m in models if m.startswith('qwen')), key=lambda m: m.split(':')[0] != want.split(':')[0])
     if not qwen:
         report(False, 'Qwen 모델 없음 → ollama pull qwen3:8b')
         return

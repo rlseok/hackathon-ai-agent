@@ -4,60 +4,60 @@
   "case": "pcb/01_missinghole",
   "verdict": "reject",
   "lang": "ko",
-  "seconds": 4.1,
+  "seconds": 4.7,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 289
+  "chars": 323
  },
  {
   "model": "qwen3:8b",
   "case": "pcb/01_missinghole",
   "verdict": "reject",
   "lang": "vi",
-  "seconds": 4.2,
+  "seconds": 4.0,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 611
+  "chars": 559
  },
  {
   "model": "qwen3:8b",
   "case": "pcb/01_missinghole",
   "verdict": "reject",
   "lang": "en",
-  "seconds": 3.4,
+  "seconds": 3.2,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 710
+  "chars": 609
  },
  {
   "model": "qwen3:8b",
   "case": "pcb/05_scratch",
   "verdict": "review",
   "lang": "ko",
-  "seconds": 4.0,
+  "seconds": 4.1,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 243
+  "chars": 247
  },
  {
   "model": "qwen3:8b",
   "case": "pcb/05_scratch",
   "verdict": "review",
   "lang": "vi",
-  "seconds": 3.9,
+  "seconds": 3.6,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 602
+  "chars": 557
  },
  {
   "model": "qwen3:8b",
@@ -69,55 +69,55 @@
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 579
+  "chars": 549
  },
  {
   "model": "qwen3:8b",
   "case": "msdd/03_Porosity",
   "verdict": "reject",
   "lang": "ko",
-  "seconds": 3.8,
+  "seconds": 4.5,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 254
+  "chars": 322
  },
  {
   "model": "qwen3:8b",
   "case": "msdd/03_Porosity",
   "verdict": "reject",
   "lang": "vi",
-  "seconds": 5.0,
+  "seconds": 4.1,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 784
+  "chars": 594
  },
  {
   "model": "qwen3:8b",
   "case": "msdd/03_Porosity",
   "verdict": "reject",
   "lang": "en",
-  "seconds": 3.8,
+  "seconds": 3.6,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 815
+  "chars": 775
  },
  {
   "model": "qwen3:8b",
   "case": "msdd/05_Stain",
   "verdict": "review",
   "lang": "ko",
-  "seconds": 4.3,
+  "seconds": 3.5,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 269
+  "chars": 203
  },
  {
   "model": "qwen3:8b",
@@ -129,19 +129,19 @@
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 523
+  "chars": 488
  },
  {
   "model": "qwen3:8b",
   "case": "msdd/05_Stain",
   "verdict": "review",
   "lang": "en",
-  "seconds": 3.2,
+  "seconds": 3.0,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 570
+  "chars": 501
  },
  {
   "model": "qwen3:8b",
@@ -153,67 +153,67 @@
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 232
+  "chars": 215
  },
  {
   "model": "qwen3:8b",
   "case": "mobile/00_oil",
   "verdict": "reject",
   "lang": "vi",
-  "seconds": 3.5,
+  "seconds": 3.4,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 490
+  "chars": 471
  },
  {
   "model": "qwen3:8b",
   "case": "mobile/00_oil",
   "verdict": "reject",
   "lang": "en",
-  "seconds": 2.8,
+  "seconds": 2.9,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 553
+  "chars": 560
  },
  {
   "model": "qwen3:8b",
   "case": "mobile/01_scratch",
   "verdict": "review",
   "lang": "ko",
-  "seconds": 3.8,
+  "seconds": 4.3,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 247
+  "chars": 282
  },
  {
   "model": "qwen3:8b",
   "case": "mobile/01_scratch",
   "verdict": "review",
   "lang": "vi",
-  "seconds": 3.5,
+  "seconds": 3.9,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 519
+  "chars": 563
  },
  {
   "model": "qwen3:8b",
   "case": "mobile/01_scratch",
   "verdict": "review",
   "lang": "en",
-  "seconds": 3.6,
+  "seconds": 3.4,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 783
+  "chars": 700
  },
  {
   "model": "qwen3-defect",
@@ -237,38 +237,38 @@
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 777
+  "chars": 738
  },
  {
   "model": "qwen3-defect",
   "case": "pcb/01_missinghole",
   "verdict": "reject",
   "lang": "en",
-  "seconds": 4.0,
+  "seconds": 3.8,
   "json_ok": true,
-  "hangul_fields": 1,
+  "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 753
+  "chars": 765
  },
  {
   "model": "qwen3-defect",
   "case": "pcb/05_scratch",
   "verdict": "review",
   "lang": "ko",
-  "seconds": 4.4,
+  "seconds": 4.3,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 300
+  "chars": 294
  },
  {
   "model": "qwen3-defect",
   "case": "pcb/05_scratch",
   "verdict": "review",
   "lang": "vi",
-  "seconds": 4.5,
+  "seconds": 4.4,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
@@ -280,12 +280,12 @@
   "case": "pcb/05_scratch",
   "verdict": "review",
   "lang": "en",
-  "seconds": 3.7,
+  "seconds": 3.5,
   "json_ok": true,
-  "hangul_fields": 1,
+  "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 725
+  "chars": 764
  },
  {
   "model": "qwen3-defect",
@@ -304,12 +304,12 @@
   "case": "msdd/03_Porosity",
   "verdict": "reject",
   "lang": "vi",
-  "seconds": 5.3,
+  "seconds": 5.6,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 879
+  "chars": 946
  },
  {
   "model": "qwen3-defect",
@@ -318,10 +318,10 @@
   "lang": "en",
   "seconds": 4.4,
   "json_ok": true,
-  "hangul_fields": 1,
+  "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 861
+  "chars": 980
  },
  {
   "model": "qwen3-defect",
@@ -340,24 +340,24 @@
   "case": "msdd/05_Stain",
   "verdict": "review",
   "lang": "vi",
-  "seconds": 4.6,
+  "seconds": 4.7,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 684
+  "chars": 667
  },
  {
   "model": "qwen3-defect",
   "case": "msdd/05_Stain",
   "verdict": "review",
   "lang": "en",
-  "seconds": 4.2,
+  "seconds": 3.6,
   "json_ok": true,
-  "hangul_fields": 2,
+  "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 570
+  "chars": 712
  },
  {
   "model": "qwen3-defect",
@@ -376,59 +376,59 @@
   "case": "mobile/00_oil",
   "verdict": "reject",
   "lang": "vi",
-  "seconds": 4.5,
+  "seconds": 4.4,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 684
+  "chars": 651
  },
  {
   "model": "qwen3-defect",
   "case": "mobile/00_oil",
   "verdict": "reject",
   "lang": "en",
-  "seconds": 3.5,
+  "seconds": 3.2,
   "json_ok": true,
-  "hangul_fields": 1,
+  "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 627
+  "chars": 637
  },
  {
   "model": "qwen3-defect",
   "case": "mobile/01_scratch",
   "verdict": "review",
   "lang": "ko",
-  "seconds": 4.7,
+  "seconds": 4.6,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 325
+  "chars": 324
  },
  {
   "model": "qwen3-defect",
   "case": "mobile/01_scratch",
   "verdict": "review",
   "lang": "vi",
-  "seconds": 4.5,
+  "seconds": 4.7,
   "json_ok": true,
   "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 697
+  "chars": 711
  },
  {
   "model": "qwen3-defect",
   "case": "mobile/01_scratch",
   "verdict": "review",
   "lang": "en",
-  "seconds": 3.8,
+  "seconds": 3.6,
   "json_ok": true,
-  "hangul_fields": 1,
+  "hangul_fields": 0,
   "code_leaks": 0,
   "fake_citations": 0,
-  "chars": 674
+  "chars": 764
  }
 ]
