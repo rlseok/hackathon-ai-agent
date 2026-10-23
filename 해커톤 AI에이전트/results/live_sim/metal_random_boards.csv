@@ -1,0 +1,144 @@
+﻿seq,time,video_board,gt_kind,gt_types,verdict,pred_types,board_ok,tp,fp,fn,capture
+1,21:38:51,0,defect,Dark Spot,reject,Dark Spot Fold Porosity,1,2,3,0,live_20261022_213851_0001
+2,21:38:52,1,defect,Scratch,review,Scratch,1,1,2,0,live_20261022_213852_0002
+3,21:38:54,2,defect,Porosity,reject,Porosity,1,1,7,0,live_20261022_213854_0003
+4,21:38:55,3,defect,Scratch Stain,review,Scratch Stain,1,2,1,3,live_20261022_213855_0004
+5,21:38:56,4,defect,Scratch,review,Scratch,1,1,0,0,live_20261022_213856_0005
+6,21:38:57,5,defect,Fold Porosity,reject,Porosity Scratch,1,1,2,3,live_20261022_213857_0006
+7,21:38:58,6,defect,Porosity Scratch,reject,Porosity,1,1,0,3,live_20261022_213858_0007
+8,21:39:00,7,defect,Dark Spot,normal,,0,0,0,1,live_20261022_213900_0008
+9,21:39:01,8,defect,Dark Spot Oxidation,review,Dark Spot Oxidation,1,2,1,1,live_20261022_213901_0009
+10,21:39:02,9,defect,Dark Spot Fold Scratch,reject,Dark Spot Fold Scratch,1,3,3,2,live_20261022_213902_0010
+11,21:39:03,10,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_213903_0011
+12,21:39:05,11,defect,Fold Porosity,reject,Fold Porosity Scratch,1,2,1,1,live_20261022_213905_0012
+13,21:39:06,12,normal,,normal,,1,0,0,0,live_20261022_213906_0013
+14,21:39:07,13,defect,Scratch,reject,Dark Spot Scratch,1,2,2,2,live_20261022_213907_0014
+15,21:39:08,14,defect,Oxidation,reject,Oxidation Scratch,1,1,2,4,live_20261022_213908_0015
+16,21:39:10,15,defect,Scratch Stain,review,Dark Spot Scratch Stain,1,1,2,4,live_20261022_213910_0016
+17,21:39:12,17,normal,,normal,,1,0,0,0,live_20261022_213912_0017
+18,21:39:13,18,defect,Oxidation,reject,Fold Oxidation Scratch,1,2,4,4,live_20261022_213913_0018
+19,21:39:14,19,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_213914_0019
+20,21:39:16,20,defect,Dark Spot,reject,Dark Spot Fold Porosity,1,2,3,0,live_20261022_213916_0020
+21,21:39:17,21,defect,Scratch,review,Scratch,1,2,1,4,live_20261022_213917_0021
+22,21:39:18,22,normal,,review,Dark Spot,0,0,1,0,live_20261022_213918_0022
+23,21:39:19,23,defect,Dark Spot,review,Dark Spot,1,3,2,1,live_20261022_213919_0023
+24,21:39:21,24,defect,Porosity,reject,Porosity,1,1,1,1,live_20261022_213921_0024
+25,21:39:22,25,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,6,0,0,live_20261022_213922_0025
+26,21:39:23,26,defect,Dark Spot Oxidation,reject,Oxidation,1,5,7,2,live_20261022_213923_0026
+27,21:39:24,27,defect,Scratch,reject,Scratch,1,1,1,3,live_20261022_213924_0027
+28,21:39:26,28,defect,Scratch,normal,,0,0,0,1,live_20261022_213926_0028
+29,21:39:27,29,defect,Dark Spot Oxidation Scratch,reject,Dark Spot Fold Oxidation Scratch,1,2,2,5,live_20261022_213927_0029
+30,21:39:28,30,normal,,normal,,1,0,0,0,live_20261022_213928_0030
+31,21:39:29,31,defect,Dark Spot Oxidation,reject,Dark Spot Oxidation,1,4,5,1,live_20261022_213929_0031
+32,21:39:30,32,defect,Stain,review,Stain,1,2,0,0,live_20261022_213930_0032
+33,21:39:32,33,defect,Porosity Scratch,reject,Porosity,1,1,9,2,live_20261022_213932_0033
+34,21:39:33,34,normal,,normal,,1,0,0,0,live_20261022_213933_0034
+35,21:39:34,35,defect,Dark Spot,reject,Dark Spot Fold Porosity,1,2,2,0,live_20261022_213934_0035
+36,21:39:35,36,defect,Fold Porosity Scratch,reject,Fold Porosity Scratch,1,2,3,3,live_20261022_213935_0036
+37,21:39:37,37,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,5,1,1,live_20261022_213937_0037
+38,21:39:38,38,normal,,normal,,1,0,0,0,live_20261022_213938_0038
+39,21:39:39,39,defect,Scratch,reject,Dark Spot Fold Scratch,1,2,5,0,live_20261022_213939_0039
+40,21:39:40,40,defect,Porosity,review,Porosity Scratch,1,1,3,0,live_20261022_213940_0040
+41,21:39:42,41,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_213942_0041
+42,21:39:44,43,defect,Fold Porosity Scratch,reject,Fold Porosity Scratch,1,2,1,1,live_20261022_213944_0042
+43,21:39:45,44,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,5,2,1,live_20261022_213945_0043
+44,21:39:47,45,defect,Scratch,review,Scratch,1,3,0,5,live_20261022_213947_0044
+45,21:39:48,46,defect,Oxidation,reject,Fold Oxidation,1,1,1,1,live_20261022_213948_0045
+46,21:39:49,47,defect,Fold Porosity Scratch,reject,Fold Porosity Scratch,1,3,2,3,live_20261022_213949_0046
+47,21:39:52,49,defect,Porosity,reject,Porosity,1,1,0,7,live_20261022_213952_0047
+48,21:39:53,50,defect,Scratch Stain,review,Scratch Stain,1,3,2,2,live_20261022_213953_0048
+49,21:39:54,51,normal,,normal,,1,0,0,0,live_20261022_213954_0049
+50,21:39:55,52,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_213955_0050
+51,21:39:56,53,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_213956_0051
+52,21:39:58,54,normal,,normal,,1,0,0,0,live_20261022_213958_0052
+53,21:39:59,55,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,5,1,1,live_20261022_213959_0053
+54,21:40:00,56,defect,Scratch,review,Scratch,1,2,2,7,live_20261022_214000_0054
+55,21:40:01,57,defect,Stain,review,Dark Spot Stain,1,1,2,0,live_20261022_214001_0055
+56,21:40:02,58,defect,Porosity,reject,Porosity Scratch,1,1,2,1,live_20261022_214002_0056
+57,21:40:04,59,defect,Porosity,reject,Porosity Scratch,1,1,1,0,live_20261022_214004_0057
+58,21:40:05,60,normal,,review,Scratch,0,0,1,0,live_20261022_214005_0058
+59,21:40:06,61,defect,Fold,reject,Fold,1,2,2,1,live_20261022_214006_0059
+60,21:40:07,62,defect,Porosity,reject,Porosity,1,1,0,10,live_20261022_214007_0060
+61,21:40:10,64,normal,,normal,,1,0,0,0,live_20261022_214010_0061
+62,21:40:11,65,defect,Fold Porosity,reject,Porosity Scratch,1,1,1,3,live_20261022_214011_0062
+63,21:40:12,66,defect,Scratch,normal,,0,0,0,1,live_20261022_214012_0063
+64,21:40:13,67,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_214013_0064
+65,21:40:14,68,defect,Fold Porosity Scratch,reject,Fold Porosity Scratch,1,3,0,3,live_20261022_214014_0065
+66,21:40:15,69,defect,Fold Porosity,reject,Porosity Scratch,1,1,1,1,live_20261022_214015_0066
+67,21:40:17,70,defect,Scratch,reject,Dark Spot Fold Scratch,1,2,8,0,live_20261022_214017_0067
+68,21:40:18,71,defect,Oxidation Scratch,review,Scratch,1,2,1,6,live_20261022_214018_0068
+69,21:40:19,72,defect,Stain,review,Dark Spot Stain,1,1,1,0,live_20261022_214019_0069
+70,21:40:21,73,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_214021_0070
+71,21:40:22,74,normal,,normal,,1,0,0,0,live_20261022_214022_0071
+72,21:40:23,75,defect,Dark Spot,normal,,0,0,0,1,live_20261022_214023_0072
+73,21:40:24,76,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_214024_0073
+74,21:40:25,77,defect,Stain,review,Stain,1,2,0,0,live_20261022_214025_0074
+75,21:40:27,78,defect,Fold Porosity Scratch,reject,Fold Porosity Scratch,1,3,1,6,live_20261022_214027_0075
+76,21:40:28,79,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_214028_0076
+77,21:40:29,80,defect,Scratch,review,Scratch,1,1,0,0,live_20261022_214029_0077
+78,21:40:30,81,defect,Dark Spot,review,Dark Spot,1,1,0,0,live_20261022_214030_0078
+79,21:40:31,82,defect,Scratch Stain,review,Scratch Stain,1,2,1,1,live_20261022_214031_0079
+80,21:40:32,83,defect,Dark Spot Scratch,review,Dark Spot Scratch,1,2,0,0,live_20261022_214032_0080
+81,21:40:33,84,defect,Porosity,reject,Porosity Scratch,1,1,1,0,live_20261022_214033_0081
+82,21:40:35,85,defect,Scratch,review,Scratch,1,1,0,0,live_20261022_214035_0082
+83,21:40:36,86,defect,Dark Spot Fold Scratch,reject,Dark Spot Scratch,1,3,1,5,live_20261022_214036_0083
+84,21:40:37,87,defect,Scratch,review,Scratch,1,1,0,0,live_20261022_214037_0084
+85,21:40:38,88,normal,,normal,,1,0,0,0,live_20261022_214038_0085
+86,21:40:39,89,defect,Dark Spot,reject,Dark Spot Fold,1,1,1,0,live_20261022_214039_0086
+87,21:40:40,90,defect,Fold Porosity,reject,Porosity,1,1,0,1,live_20261022_214040_0087
+88,21:40:42,91,defect,Fold,reject,Fold,1,1,0,1,live_20261022_214042_0088
+89,21:40:43,92,normal,,normal,,1,0,0,0,live_20261022_214043_0089
+90,21:40:44,93,defect,Oxidation,reject,Oxidation Scratch,1,1,3,4,live_20261022_214044_0090
+91,21:40:45,94,defect,Porosity,reject,Porosity,1,1,0,2,live_20261022_214045_0091
+92,21:40:46,95,defect,Dark Spot,review,Dark Spot,1,0,1,1,live_20261022_214046_0092
+93,21:40:47,96,normal,,review,Scratch,0,0,1,0,live_20261022_214047_0093
+94,21:40:49,97,defect,Dark Spot,review,Porosity,1,0,1,1,live_20261022_214049_0094
+95,21:40:50,98,defect,Dark Spot,normal,,0,0,0,1,live_20261022_214050_0095
+96,21:40:52,100,defect,Dark Spot Scratch,review,Dark Spot,1,1,0,1,live_20261022_214052_0096
+97,21:40:53,101,defect,Porosity,reject,Porosity,1,1,0,9,live_20261022_214053_0097
+98,21:40:54,102,defect,Scratch Stain,review,Dark Spot Scratch Stain,1,3,2,2,live_20261022_214054_0098
+99,21:40:55,103,defect,Stain,review,Stain,1,2,0,0,live_20261022_214055_0099
+100,21:40:57,104,defect,Porosity Scratch,review,Dark Spot Porosity Scratch,1,2,1,0,live_20261022_214057_0100
+101,21:40:58,105,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_214058_0101
+102,21:40:59,106,defect,Porosity Scratch,review,Porosity Scratch,1,2,1,1,live_20261022_214059_0102
+103,21:41:00,107,defect,Fold,normal,,0,0,0,1,live_20261022_214100_0103
+104,21:41:01,108,defect,Scratch,review,Scratch,1,0,2,1,live_20261022_214101_0104
+105,21:41:02,109,defect,Dark Spot,reject,Dark Spot Fold Porosity,1,2,2,0,live_20261022_214102_0105
+106,21:41:04,110,defect,Dark Spot Scratch,reject,Dark Spot Scratch,1,6,1,0,live_20261022_214104_0106
+107,21:41:05,111,defect,Stain,review,Stain,1,1,0,0,live_20261022_214105_0107
+108,21:41:06,112,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_214106_0108
+109,21:41:07,113,defect,Dark Spot Porosity Stain,reject,Dark Spot Porosity Stain,1,3,0,0,live_20261022_214107_0109
+110,21:41:09,114,defect,Fold Porosity,reject,Fold Porosity,1,2,0,0,live_20261022_214109_0110
+111,21:41:10,115,normal,,review,Dark Spot,0,0,1,0,live_20261022_214110_0111
+112,21:41:11,116,normal,,normal,,1,0,0,0,live_20261022_214111_0112
+113,21:41:12,117,defect,Stain,review,Dark Spot Stain,1,1,2,0,live_20261022_214112_0113
+114,21:41:13,118,defect,Fold,normal,,0,0,0,4,live_20261022_214113_0114
+115,21:41:14,119,defect,Dark Spot Fold Scratch,review,Dark Spot Scratch,1,3,3,2,live_20261022_214114_0115
+116,21:41:16,120,normal,,normal,,1,0,0,0,live_20261022_214116_0116
+117,21:41:17,121,normal,,normal,,1,0,0,0,live_20261022_214117_0117
+118,21:41:18,122,defect,Oxidation,reject,Fold Oxidation,1,1,1,1,live_20261022_214118_0118
+119,21:41:19,123,defect,Dark Spot,review,Dark Spot,1,1,1,0,live_20261022_214119_0119
+120,21:41:21,125,normal,,normal,,1,0,0,0,live_20261022_214121_0120
+121,21:41:22,126,normal,,normal,,1,0,0,0,live_20261022_214122_0121
+122,21:41:24,128,defect,Scratch,review,Scratch,1,1,2,2,live_20261022_214124_0122
+123,21:41:26,129,defect,Dark Spot Oxidation,reject,Dark Spot Oxidation,1,4,4,1,live_20261022_214126_0123
+124,21:41:27,130,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_214127_0124
+125,21:41:28,131,defect,Dark Spot Fold Scratch,reject,Dark Spot Fold Scratch,1,4,1,1,live_20261022_214128_0125
+126,21:41:29,132,defect,Fold Porosity,reject,Fold Porosity,1,2,0,1,live_20261022_214129_0126
+127,21:41:30,133,normal,,normal,,1,0,0,0,live_20261022_214130_0127
+128,21:41:32,134,defect,Porosity,review,Porosity,1,1,1,0,live_20261022_214132_0128
+129,21:41:33,135,defect,Dark Spot Fold Scratch,reject,Dark Spot Fold Scratch,1,5,0,3,live_20261022_214133_0129
+130,21:41:34,136,defect,Scratch,reject,Dark Spot Porosity Scratch,1,1,4,1,live_20261022_214134_0130
+131,21:41:35,137,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_214135_0131
+132,21:41:36,138,defect,Dark Spot,normal,,0,0,0,1,live_20261022_214136_0132
+133,21:41:37,139,normal,,normal,,1,0,0,0,live_20261022_214137_0133
+134,21:41:39,140,defect,Dark Spot Porosity Scratch Stain,reject,Porosity Scratch Stain,1,3,0,1,live_20261022_214139_0134
+135,21:41:40,141,defect,Porosity Scratch,reject,Porosity Scratch,1,2,3,1,live_20261022_214140_0135
+136,21:41:41,142,defect,Dark Spot,normal,,0,0,0,1,live_20261022_214141_0136
+137,21:41:42,143,defect,Fold Porosity,reject,Porosity Scratch,1,1,1,1,live_20261022_214142_0137
+138,21:41:43,144,defect,Dark Spot,review,Dark Spot,1,1,0,0,live_20261022_214143_0138
+139,21:41:45,145,defect,Porosity,reject,Porosity,1,1,0,0,live_20261022_214145_0139
+140,21:41:46,146,defect,Porosity,reject,Porosity Scratch,1,1,1,0,live_20261022_214146_0140
+141,21:41:47,147,defect,Dark Spot,reject,Dark Spot Fold,1,2,2,0,live_20261022_214147_0141
+142,21:41:48,148,defect,Stain,review,Stain,1,1,0,0,live_20261022_214148_0142
+143,21:41:49,149,defect,Stain,review,Stain,1,2,0,0,live_20261022_214149_0143

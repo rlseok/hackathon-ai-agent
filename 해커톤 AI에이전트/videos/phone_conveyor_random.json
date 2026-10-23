@@ -1,0 +1,4081 @@
+{
+ "video": "phone_conveyor_random.mp4",
+ "domain": "mobile",
+ "fps": 30,
+ "size": [
+  1280,
+  720
+ ],
+ "board_px": 960,
+ "board_w": 960,
+ "board_h": 540,
+ "belt_bgr": [
+  92,
+  52,
+  18
+ ],
+ "speed_px_per_frame": 20,
+ "frames": 7161,
+ "seconds": 238.7,
+ "seed": 7,
+ "sensing_zone": [
+  160,
+  90,
+  1120,
+  630
+ ],
+ "note": "x of an item at frame f = x0 - f*speed. Labels are normalized boxes on the 960x540 item (from the seg polygons).",
+ "boards": [
+  {
+   "index": 0,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01133_Oil_0080.jpg",
+   "split": "test",
+   "x0": 1880,
+   "y": 86,
+   "enter_frame": 30,
+   "center_frame": 86,
+   "exit_frame": 142,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.497396,
+     "cy": 0.6962965,
+     "w": 0.08750000000000002,
+     "h": 0.14259299999999997
+    }
+   ]
+  },
+  {
+   "index": 1,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01123_Scr_0164.jpg",
+   "split": "test",
+   "x0": 3040,
+   "y": 95,
+   "enter_frame": 88,
+   "center_frame": 144,
+   "exit_frame": 200,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2190105,
+     "cy": 0.7430555,
+     "w": 0.13906300000000002,
+     "h": 0.05833299999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.47239549999999997,
+     "cy": 0.6115740000000001,
+     "w": 0.11041699999999999,
+     "h": 0.26574
+    },
+    {
+     "type": "scratch",
+     "cx": 0.174479,
+     "cy": 0.3958335,
+     "w": 0.03125,
+     "h": 0.26944500000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7020835000000001,
+     "cy": 0.2050925,
+     "w": 0.197917,
+     "h": 0.08055500000000002
+    }
+   ]
+  },
+  {
+   "index": 2,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01175_Scr_0100.jpg",
+   "split": "test",
+   "x0": 4200,
+   "y": 87,
+   "enter_frame": 146,
+   "center_frame": 202,
+   "exit_frame": 258,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.126042,
+     "cy": 0.8796299999999999,
+     "w": 0.012499999999999997,
+     "h": 0.025926000000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.695573,
+     "cy": 0.8217589999999999,
+     "w": 0.15156199999999997,
+     "h": 0.078704
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5140625,
+     "cy": 0.5689815,
+     "w": 0.20937500000000003,
+     "h": 0.019445000000000046
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8450519999999999,
+     "cy": 0.2796295,
+     "w": 0.020311999999999997,
+     "h": 0.196297
+    },
+    {
+     "type": "scratch",
+     "cx": 0.28203100000000003,
+     "cy": 0.237037,
+     "w": 0.008853999999999973,
+     "h": 0.155556
+    },
+    {
+     "type": "scratch",
+     "cx": 0.629427,
+     "cy": 0.2694445,
+     "w": 0.05468799999999996,
+     "h": 0.242593
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01160_Oil_0224.jpg",
+   "split": "test",
+   "x0": 5360,
+   "y": 90,
+   "enter_frame": 204,
+   "center_frame": 260,
+   "exit_frame": 316,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.7,
+     "cy": 0.2949075,
+     "w": 0.13541599999999998,
+     "h": 0.11574099999999998
+    }
+   ]
+  },
+  {
+   "index": 4,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01101_Scr_0049.jpg",
+   "split": "test",
+   "x0": 6520,
+   "y": 90,
+   "enter_frame": 262,
+   "center_frame": 318,
+   "exit_frame": 374,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2466145,
+     "cy": 0.137963,
+     "w": 0.084895,
+     "h": 0.03333399999999999
+    }
+   ]
+  },
+  {
+   "index": 5,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01198_Oil_0203.jpg",
+   "split": "test",
+   "x0": 7680,
+   "y": 91,
+   "enter_frame": 320,
+   "center_frame": 376,
+   "exit_frame": 432,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.6721355,
+     "cy": 0.6486115,
+     "w": 0.08697899999999992,
+     "h": 0.16018500000000002
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01207_Sta_0234.jpg",
+   "split": "test",
+   "x0": 8840,
+   "y": 85,
+   "enter_frame": 378,
+   "center_frame": 434,
+   "exit_frame": 490,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.5169269999999999,
+     "cy": 0.46805549999999996,
+     "w": 0.008854000000000029,
+     "h": 0.013888999999999985
+    },
+    {
+     "type": "stain",
+     "cx": 0.10546900000000001,
+     "cy": 0.251389,
+     "w": 0.009896000000000002,
+     "h": 0.017591999999999997
+    }
+   ]
+  },
+  {
+   "index": 7,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01206_Oil_0286.jpg",
+   "split": "test",
+   "x0": 10000,
+   "y": 86,
+   "enter_frame": 436,
+   "center_frame": 492,
+   "exit_frame": 548,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.4872395,
+     "cy": 0.7958335,
+     "w": 0.02447900000000003,
+     "h": 0.06759300000000001
+    },
+    {
+     "type": "oil",
+     "cx": 0.6015625,
+     "cy": 0.8236110000000001,
+     "w": 0.09270899999999993,
+     "h": 0.130556
+    }
+   ]
+  },
+  {
+   "index": 8,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01114_Oil_0390.jpg",
+   "split": "test",
+   "x0": 11160,
+   "y": 91,
+   "enter_frame": 494,
+   "center_frame": 550,
+   "exit_frame": 606,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.272917,
+     "cy": 0.43379650000000003,
+     "w": 0.06875,
+     "h": 0.21203700000000003
+    },
+    {
+     "type": "oil",
+     "cx": 0.342448,
+     "cy": 0.337963,
+     "w": 0.03489599999999998,
+     "h": 0.09259200000000001
+    }
+   ]
+  },
+  {
+   "index": 9,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01219_Scr_0389.jpg",
+   "split": "test",
+   "x0": 12320,
+   "y": 90,
+   "enter_frame": 552,
+   "center_frame": 608,
+   "exit_frame": 664,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2927085,
+     "cy": 0.811574,
+     "w": 0.172917,
+     "h": 0.039814000000000016
+    },
+    {
+     "type": "scratch",
+     "cx": 0.48880199999999996,
+     "cy": 0.7124999999999999,
+     "w": 0.06718799999999997,
+     "h": 0.025000000000000022
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7203125,
+     "cy": 0.702315,
+     "w": 0.03333300000000006,
+     "h": 0.31944400000000006
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5125,
+     "cy": 0.4347225,
+     "w": 0.11562400000000006,
+     "h": 0.234259
+    },
+    {
+     "type": "scratch",
+     "cx": 0.192969,
+     "cy": 0.4597225,
+     "w": 0.065104,
+     "h": 0.291667
+    },
+    {
+     "type": "scratch",
+     "cx": 0.354427,
+     "cy": 0.4300925,
+     "w": 0.09010399999999996,
+     "h": 0.337963
+    },
+    {
+     "type": "scratch",
+     "cx": 0.781771,
+     "cy": 0.311111,
+     "w": 0.1812499999999999,
+     "h": 0.274074
+    }
+   ]
+  },
+  {
+   "index": 10,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01098_Sta_0398.jpg",
+   "split": "test",
+   "x0": 13480,
+   "y": 92,
+   "enter_frame": 610,
+   "center_frame": 666,
+   "exit_frame": 722,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.148698,
+     "cy": 0.699537,
+     "w": 0.014062000000000019,
+     "h": 0.02129599999999998
+    },
+    {
+     "type": "stain",
+     "cx": 0.36328150000000003,
+     "cy": 0.684259,
+     "w": 0.013021000000000005,
+     "h": 0.02037
+    },
+    {
+     "type": "stain",
+     "cx": 0.8947915,
+     "cy": 0.625926,
+     "w": 0.01041700000000001,
+     "h": 0.02037
+    },
+    {
+     "type": "stain",
+     "cx": 0.7976565,
+     "cy": 0.372222,
+     "w": 0.010936999999999975,
+     "h": 0.025926000000000005
+    }
+   ]
+  },
+  {
+   "index": 11,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01149_Sta_0112.jpg",
+   "split": "test",
+   "x0": 14640,
+   "y": 88,
+   "enter_frame": 668,
+   "center_frame": 724,
+   "exit_frame": 780,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.31354150000000003,
+     "cy": 0.751852,
+     "w": 0.011459000000000052,
+     "h": 0.02037
+    },
+    {
+     "type": "stain",
+     "cx": 0.7541665,
+     "cy": 0.6828700000000001,
+     "w": 0.009375000000000022,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.5736975,
+     "cy": 0.678241,
+     "w": 0.01302099999999995,
+     "h": 0.023147999999999946
+    },
+    {
+     "type": "stain",
+     "cx": 0.7169270000000001,
+     "cy": 0.464815,
+     "w": 0.009896000000000016,
+     "h": 0.024073999999999984
+    }
+   ]
+  },
+  {
+   "index": 12,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01200_Oil_0301.jpg",
+   "split": "test",
+   "x0": 15800,
+   "y": 86,
+   "enter_frame": 726,
+   "center_frame": 782,
+   "exit_frame": 838,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.566927,
+     "cy": 0.321759,
+     "w": 0.09531199999999995,
+     "h": 0.180556
+    }
+   ]
+  },
+  {
+   "index": 13,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01185_Sta_0268.jpg",
+   "split": "test",
+   "x0": 16960,
+   "y": 90,
+   "enter_frame": 784,
+   "center_frame": 840,
+   "exit_frame": 896,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.8716145,
+     "cy": 0.760648,
+     "w": 0.010936999999999975,
+     "h": 0.019444000000000017
+    },
+    {
+     "type": "stain",
+     "cx": 0.15286450000000001,
+     "cy": 0.7319445,
+     "w": 0.01197899999999999,
+     "h": 0.01388900000000004
+    },
+    {
+     "type": "stain",
+     "cx": 0.3984375,
+     "cy": 0.563426,
+     "w": 0.009375000000000022,
+     "h": 0.015739999999999976
+    },
+    {
+     "type": "stain",
+     "cx": 0.3697915,
+     "cy": 0.2814815,
+     "w": 0.009375000000000022,
+     "h": 0.016666999999999987
+    }
+   ]
+  },
+  {
+   "index": 14,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01143_Oil_0377.jpg",
+   "split": "test",
+   "x0": 18120,
+   "y": 92,
+   "enter_frame": 842,
+   "center_frame": 898,
+   "exit_frame": 954,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.538802,
+     "cy": 0.6208335,
+     "w": 0.32343799999999995,
+     "h": 0.16018500000000002
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01216_Scr_0131.jpg",
+   "split": "test",
+   "x0": 19280,
+   "y": 88,
+   "enter_frame": 900,
+   "center_frame": 956,
+   "exit_frame": 1012,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.625521,
+     "cy": 0.8300925,
+     "w": 0.05208400000000002,
+     "h": 0.012037000000000075
+    },
+    {
+     "type": "scratch",
+     "cx": 0.260417,
+     "cy": 0.7078705,
+     "w": 0.21875,
+     "h": 0.11018499999999998
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7539065,
+     "cy": 0.41527800000000004,
+     "w": 0.057813,
+     "h": 0.221296
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4479165,
+     "cy": 0.333796,
+     "w": 0.07187500000000002,
+     "h": 0.321296
+    }
+   ]
+  },
+  {
+   "index": 16,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01195_Sta_0167.jpg",
+   "split": "test",
+   "x0": 20440,
+   "y": 95,
+   "enter_frame": 958,
+   "center_frame": 1014,
+   "exit_frame": 1070,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.3052085,
+     "cy": 0.793056,
+     "w": 0.013541000000000025,
+     "h": 0.025000000000000022
+    },
+    {
+     "type": "stain",
+     "cx": 0.3127605,
+     "cy": 0.38287000000000004,
+     "w": 0.017186999999999952,
+     "h": 0.023148000000000002
+    }
+   ]
+  },
+  {
+   "index": 17,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01154_Scr_0282.jpg",
+   "split": "test",
+   "x0": 21600,
+   "y": 90,
+   "enter_frame": 1016,
+   "center_frame": 1072,
+   "exit_frame": 1128,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.38567700000000005,
+     "cy": 0.791667,
+     "w": 0.05573,
+     "h": 0.25185199999999996
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8479165,
+     "cy": 0.6416664999999999,
+     "w": 0.03541700000000003,
+     "h": 0.24259299999999995
+    },
+    {
+     "type": "scratch",
+     "cx": 0.3333335,
+     "cy": 0.5398145,
+     "w": 0.12604099999999996,
+     "h": 0.11666700000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6067705,
+     "cy": 0.311574,
+     "w": 0.12291699999999994,
+     "h": 0.08055600000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2697915,
+     "cy": 0.169444,
+     "w": 0.07708300000000001,
+     "h": 0.025926000000000005
+    }
+   ]
+  },
+  {
+   "index": 18,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01099_Sta_0295.jpg",
+   "split": "test",
+   "x0": 22760,
+   "y": 89,
+   "enter_frame": 1074,
+   "center_frame": 1130,
+   "exit_frame": 1186,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.1611975,
+     "cy": 0.8101849999999999,
+     "w": 0.01197899999999999,
+     "h": 0.02407400000000004
+    },
+    {
+     "type": "stain",
+     "cx": 0.7622395,
+     "cy": 0.663889,
+     "w": 0.010936999999999975,
+     "h": 0.02777799999999997
+    },
+    {
+     "type": "stain",
+     "cx": 0.2109375,
+     "cy": 0.32963,
+     "w": 0.02083299999999999,
+     "h": 0.025926000000000005
+    },
+    {
+     "type": "stain",
+     "cx": 0.723177,
+     "cy": 0.164815,
+     "w": 0.010938000000000003,
+     "h": 0.029630000000000017
+    }
+   ]
+  },
+  {
+   "index": 19,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01158_Sta_0329.jpg",
+   "split": "test",
+   "x0": 23920,
+   "y": 94,
+   "enter_frame": 1132,
+   "center_frame": 1188,
+   "exit_frame": 1244,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.12109349999999999,
+     "cy": 0.784722,
+     "w": 0.011979000000000004,
+     "h": 0.02129599999999998
+    },
+    {
+     "type": "stain",
+     "cx": 0.786719,
+     "cy": 0.25416649999999996,
+     "w": 0.009896000000000016,
+     "h": 0.01944499999999999
+    }
+   ]
+  },
+  {
+   "index": 20,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01132_Sta_0365.jpg",
+   "split": "test",
+   "x0": 25080,
+   "y": 90,
+   "enter_frame": 1190,
+   "center_frame": 1246,
+   "exit_frame": 1302,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.3817705,
+     "cy": 0.627778,
+     "w": 0.015625,
+     "h": 0.029629999999999934
+    },
+    {
+     "type": "stain",
+     "cx": 0.7463545,
+     "cy": 0.375926,
+     "w": 0.009375000000000022,
+     "h": 0.024073999999999984
+    }
+   ]
+  },
+  {
+   "index": 21,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01177_Sta_0211.jpg",
+   "split": "test",
+   "x0": 26240,
+   "y": 87,
+   "enter_frame": 1248,
+   "center_frame": 1304,
+   "exit_frame": 1360,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.5166665,
+     "cy": 0.808333,
+     "w": 0.014583000000000013,
+     "h": 0.022221999999999964
+    },
+    {
+     "type": "stain",
+     "cx": 0.089323,
+     "cy": 0.703241,
+     "w": 0.016145999999999994,
+     "h": 0.026852000000000098
+    }
+   ]
+  },
+  {
+   "index": 22,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01159_Scr_0218.jpg",
+   "split": "test",
+   "x0": 27400,
+   "y": 86,
+   "enter_frame": 1306,
+   "center_frame": 1362,
+   "exit_frame": 1418,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.8104165000000001,
+     "cy": 0.7726850000000001,
+     "w": 0.230209,
+     "h": 0.06944399999999995
+    },
+    {
+     "type": "scratch",
+     "cx": 0.528385,
+     "cy": 0.740741,
+     "w": 0.09739600000000004,
+     "h": 0.30555599999999994
+    },
+    {
+     "type": "scratch",
+     "cx": 0.198698,
+     "cy": 0.635185,
+     "w": 0.18385400000000002,
+     "h": 0.17592600000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.429427,
+     "cy": 0.37314800000000004,
+     "w": 0.17031200000000002,
+     "h": 0.18148199999999998
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7971355,
+     "cy": 0.4041665,
+     "w": 0.14427100000000004,
+     "h": 0.286111
+    },
+    {
+     "type": "scratch",
+     "cx": 0.1796875,
+     "cy": 0.2185185,
+     "w": 0.11145899999999999,
+     "h": 0.06296299999999999
+    }
+   ]
+  },
+  {
+   "index": 23,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01146_Scr_0250.jpg",
+   "split": "test",
+   "x0": 28560,
+   "y": 85,
+   "enter_frame": 1364,
+   "center_frame": 1420,
+   "exit_frame": 1476,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.468229,
+     "cy": 0.611574,
+     "w": 0.125,
+     "h": 0.28055599999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.708073,
+     "cy": 0.4662035,
+     "w": 0.19531200000000004,
+     "h": 0.01388900000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8736980000000001,
+     "cy": 0.42407399999999995,
+     "w": 0.008854000000000029,
+     "h": 0.122222
+    },
+    {
+     "type": "scratch",
+     "cx": 0.1609375,
+     "cy": 0.385185,
+     "w": 0.120833,
+     "h": 0.17037000000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.620052,
+     "cy": 0.299074,
+     "w": 0.18281200000000009,
+     "h": 0.07777800000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.13880199999999998,
+     "cy": 0.186111,
+     "w": 0.102604,
+     "h": 0.07777800000000001
+    }
+   ]
+  },
+  {
+   "index": 24,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01112_Oil_0034.jpg",
+   "split": "test",
+   "x0": 29720,
+   "y": 86,
+   "enter_frame": 1422,
+   "center_frame": 1478,
+   "exit_frame": 1534,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.3208335,
+     "cy": 0.5444445,
+     "w": 0.203125,
+     "h": 0.16666699999999995
+    }
+   ]
+  },
+  {
+   "index": 25,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01163_Scr_0256.jpg",
+   "split": "test",
+   "x0": 30880,
+   "y": 86,
+   "enter_frame": 1480,
+   "center_frame": 1536,
+   "exit_frame": 1592,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.466927,
+     "cy": 0.5597225,
+     "w": 0.12239599999999995,
+     "h": 0.28425900000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7078125,
+     "cy": 0.4189815,
+     "w": 0.19270900000000002,
+     "h": 0.01388900000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.868229,
+     "cy": 0.41296299999999997,
+     "w": 0.018750000000000044,
+     "h": 0.324074
+    },
+    {
+     "type": "scratch",
+     "cx": 0.1609375,
+     "cy": 0.325926,
+     "w": 0.12187499999999998,
+     "h": 0.164814
+    },
+    {
+     "type": "scratch",
+     "cx": 0.621875,
+     "cy": 0.249537,
+     "w": 0.18125000000000002,
+     "h": 0.07314799999999999
+    },
+    {
+     "type": "scratch",
+     "cx": 0.33541699999999997,
+     "cy": 0.162963,
+     "w": 0.051041999999999976,
+     "h": 0.01111200000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.14036500000000002,
+     "cy": 0.125463,
+     "w": 0.102604,
+     "h": 0.080556
+    }
+   ]
+  },
+  {
+   "index": 26,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01150_Scr_0190.jpg",
+   "split": "test",
+   "x0": 32040,
+   "y": 87,
+   "enter_frame": 1538,
+   "center_frame": 1594,
+   "exit_frame": 1650,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.7385415,
+     "cy": 0.311111,
+     "w": 0.027082999999999968,
+     "h": 0.02222200000000002
+    }
+   ]
+  },
+  {
+   "index": 27,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01179_Sta_0017.jpg",
+   "split": "test",
+   "x0": 33200,
+   "y": 94,
+   "enter_frame": 1596,
+   "center_frame": 1652,
+   "exit_frame": 1708,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.2203125,
+     "cy": 0.5134259999999999,
+     "w": 0.011458999999999997,
+     "h": 0.01759199999999994
+    }
+   ]
+  },
+  {
+   "index": 28,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01213_Sta_0030.jpg",
+   "split": "test",
+   "x0": 34360,
+   "y": 87,
+   "enter_frame": 1654,
+   "center_frame": 1710,
+   "exit_frame": 1766,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.2127605,
+     "cy": 0.662963,
+     "w": 0.013021000000000005,
+     "h": 0.022221999999999964
+    },
+    {
+     "type": "stain",
+     "cx": 0.7427085,
+     "cy": 0.512037,
+     "w": 0.009374999999999911,
+     "h": 0.018518000000000034
+    }
+   ]
+  },
+  {
+   "index": 29,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01120_Scr_0332.jpg",
+   "split": "test",
+   "x0": 35520,
+   "y": 84,
+   "enter_frame": 1712,
+   "center_frame": 1768,
+   "exit_frame": 1824,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.5885415,
+     "cy": 0.7810185000000001,
+     "w": 0.09895899999999991,
+     "h": 0.11203700000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.832031,
+     "cy": 0.12175949999999999,
+     "w": 0.109896,
+     "h": 0.012037000000000006
+    }
+   ]
+  },
+  {
+   "index": 30,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01141_Oil_0383.jpg",
+   "split": "test",
+   "x0": 36680,
+   "y": 91,
+   "enter_frame": 1770,
+   "center_frame": 1826,
+   "exit_frame": 1882,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.397656,
+     "cy": 0.5787035,
+     "w": 0.16510400000000003,
+     "h": 0.292593
+    }
+   ]
+  },
+  {
+   "index": 31,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01118_Scr_0265.jpg",
+   "split": "test",
+   "x0": 37840,
+   "y": 93,
+   "enter_frame": 1828,
+   "center_frame": 1884,
+   "exit_frame": 1940,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.1664065,
+     "cy": 0.787963,
+     "w": 0.09218699999999999,
+     "h": 0.12963000000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4778645,
+     "cy": 0.5597225,
+     "w": 0.12343700000000002,
+     "h": 0.2824070000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7190105,
+     "cy": 0.4185185,
+     "w": 0.1932290000000001,
+     "h": 0.012963000000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.172396,
+     "cy": 0.3296295,
+     "w": 0.120834,
+     "h": 0.168519
+    },
+    {
+     "type": "scratch",
+     "cx": 0.879427,
+     "cy": 0.4060185,
+     "w": 0.01927000000000001,
+     "h": 0.334259
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6328125,
+     "cy": 0.24907400000000002,
+     "w": 0.181249,
+     "h": 0.074074
+    },
+    {
+     "type": "scratch",
+     "cx": 0.408333,
+     "cy": 0.160648,
+     "w": 0.17604200000000003,
+     "h": 0.024999999999999994
+    },
+    {
+     "type": "scratch",
+     "cx": 0.15052100000000002,
+     "cy": 0.1300925,
+     "w": 0.10104199999999999,
+     "h": 0.07870300000000001
+    }
+   ]
+  },
+  {
+   "index": 32,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01140_Oil_0068.jpg",
+   "split": "test",
+   "x0": 39000,
+   "y": 86,
+   "enter_frame": 1886,
+   "center_frame": 1942,
+   "exit_frame": 1998,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.48203150000000006,
+     "cy": 0.525,
+     "w": 0.12552100000000005,
+     "h": 0.13333400000000006
+    }
+   ]
+  },
+  {
+   "index": 33,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01100_Oil_0093.jpg",
+   "split": "test",
+   "x0": 40160,
+   "y": 88,
+   "enter_frame": 1944,
+   "center_frame": 2000,
+   "exit_frame": 2056,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.7796875000000001,
+     "cy": 0.20972249999999998,
+     "w": 0.10312500000000002,
+     "h": 0.11388899999999999
+    }
+   ]
+  },
+  {
+   "index": 34,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01174_Scr_0267.jpg",
+   "split": "test",
+   "x0": 41320,
+   "y": 88,
+   "enter_frame": 2002,
+   "center_frame": 2058,
+   "exit_frame": 2114,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.35026,
+     "cy": 0.6925924999999999,
+     "w": 0.04010399999999997,
+     "h": 0.022222999999999993
+    }
+   ]
+  },
+  {
+   "index": 35,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01173_Oil_0129.jpg",
+   "split": "test",
+   "x0": 42480,
+   "y": 84,
+   "enter_frame": 2060,
+   "center_frame": 2116,
+   "exit_frame": 2172,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.311719,
+     "cy": 0.276852,
+     "w": 0.078646,
+     "h": 0.09259199999999998
+    }
+   ]
+  },
+  {
+   "index": 36,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01214_Sta_0196.jpg",
+   "split": "test",
+   "x0": 43640,
+   "y": 86,
+   "enter_frame": 2118,
+   "center_frame": 2174,
+   "exit_frame": 2230,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.7372395,
+     "cy": 0.639352,
+     "w": 0.011979000000000073,
+     "h": 0.03240799999999999
+    },
+    {
+     "type": "stain",
+     "cx": 0.2341145,
+     "cy": 0.6185185,
+     "w": 0.013021000000000005,
+     "h": 0.033332999999999946
+    },
+    {
+     "type": "stain",
+     "cx": 0.536719,
+     "cy": 0.472685,
+     "w": 0.015103999999999895,
+     "h": 0.030555999999999972
+    }
+   ]
+  },
+  {
+   "index": 37,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01210_Scr_0334.jpg",
+   "split": "test",
+   "x0": 44800,
+   "y": 90,
+   "enter_frame": 2176,
+   "center_frame": 2232,
+   "exit_frame": 2288,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.4,
+     "cy": 0.5296295,
+     "w": 0.024999999999999967,
+     "h": 0.020371000000000028
+    }
+   ]
+  },
+  {
+   "index": 38,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01108_Scr_0362.jpg",
+   "split": "test",
+   "x0": 45960,
+   "y": 92,
+   "enter_frame": 2234,
+   "center_frame": 2290,
+   "exit_frame": 2346,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.45598950000000005,
+     "cy": 0.5587960000000001,
+     "w": 0.09531300000000004,
+     "h": 0.202778
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7783855,
+     "cy": 0.5240739999999999,
+     "w": 0.04947899999999994,
+     "h": 0.20555599999999996
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6593755,
+     "cy": 0.2162035,
+     "w": 0.109375,
+     "h": 0.013889000000000012
+    }
+   ]
+  },
+  {
+   "index": 39,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01165_Oil_0187.jpg",
+   "split": "test",
+   "x0": 47120,
+   "y": 89,
+   "enter_frame": 2292,
+   "center_frame": 2348,
+   "exit_frame": 2404,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.4184895,
+     "cy": 0.7083335,
+     "w": 0.035937,
+     "h": 0.0574070000000001
+    }
+   ]
+  },
+  {
+   "index": 40,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01130_Sta_0002.jpg",
+   "split": "test",
+   "x0": 48280,
+   "y": 93,
+   "enter_frame": 2350,
+   "center_frame": 2406,
+   "exit_frame": 2462,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.5833335,
+     "cy": 0.5333334999999999,
+     "w": 0.01041700000000001,
+     "h": 0.020371000000000028
+    },
+    {
+     "type": "stain",
+     "cx": 0.4518225,
+     "cy": 0.5134259999999999,
+     "w": 0.013021000000000005,
+     "h": 0.019443999999999906
+    }
+   ]
+  },
+  {
+   "index": 41,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01212_Scr_0222.jpg",
+   "split": "test",
+   "x0": 49440,
+   "y": 93,
+   "enter_frame": 2408,
+   "center_frame": 2464,
+   "exit_frame": 2520,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.24192750000000002,
+     "cy": 0.808333,
+     "w": 0.12552100000000002,
+     "h": 0.10370400000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.811979,
+     "cy": 0.7717590000000001,
+     "w": 0.23124999999999996,
+     "h": 0.06944399999999995
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5302085,
+     "cy": 0.739815,
+     "w": 0.09791699999999998,
+     "h": 0.30555599999999994
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2005205,
+     "cy": 0.634259,
+     "w": 0.18333299999999997,
+     "h": 0.17592600000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4320315,
+     "cy": 0.37175899999999995,
+     "w": 0.170313,
+     "h": 0.180556
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7992185,
+     "cy": 0.4032405,
+     "w": 0.14427099999999993,
+     "h": 0.28796299999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.18151050000000002,
+     "cy": 0.21666649999999998,
+     "w": 0.11302100000000001,
+     "h": 0.06481499999999998
+    }
+   ]
+  },
+  {
+   "index": 42,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01205_Scr_0178.jpg",
+   "split": "test",
+   "x0": 50600,
+   "y": 89,
+   "enter_frame": 2466,
+   "center_frame": 2522,
+   "exit_frame": 2578,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.820052,
+     "cy": 0.7513890000000001,
+     "w": 0.12656200000000006,
+     "h": 0.015739999999999976
+    },
+    {
+     "type": "scratch",
+     "cx": 0.770573,
+     "cy": 0.374537,
+     "w": 0.1421880000000001,
+     "h": 0.26388799999999996
+    }
+   ]
+  },
+  {
+   "index": 43,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01136_Oil_0184.jpg",
+   "split": "test",
+   "x0": 51760,
+   "y": 86,
+   "enter_frame": 2524,
+   "center_frame": 2580,
+   "exit_frame": 2636,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.6296875,
+     "cy": 0.603241,
+     "w": 0.03229099999999996,
+     "h": 0.05277799999999999
+    }
+   ]
+  },
+  {
+   "index": 44,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01191_Sta_0090.jpg",
+   "split": "test",
+   "x0": 52920,
+   "y": 95,
+   "enter_frame": 2582,
+   "center_frame": 2638,
+   "exit_frame": 2694,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.526302,
+     "cy": 0.5935185000000001,
+     "w": 0.026562000000000086,
+     "h": 0.04444499999999996
+    },
+    {
+     "type": "stain",
+     "cx": 0.46875,
+     "cy": 0.524537,
+     "w": 0.023958000000000035,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.774219,
+     "cy": 0.470833,
+     "w": 0.015104000000000006,
+     "h": 0.025000000000000022
+    },
+    {
+     "type": "stain",
+     "cx": 0.2635415,
+     "cy": 0.2930555,
+     "w": 0.015625,
+     "h": 0.026851000000000014
+    }
+   ]
+  },
+  {
+   "index": 45,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01184_Scr_0134.jpg",
+   "split": "test",
+   "x0": 54080,
+   "y": 92,
+   "enter_frame": 2640,
+   "center_frame": 2696,
+   "exit_frame": 2752,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.64375,
+     "cy": 0.82963,
+     "w": 0.16458399999999995,
+     "h": 0.022221999999999964
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2578125,
+     "cy": 0.7032404999999999,
+     "w": 0.21666700000000003,
+     "h": 0.11203700000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7515625,
+     "cy": 0.413889,
+     "w": 0.05833299999999997,
+     "h": 0.22222200000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.446094,
+     "cy": 0.33009299999999997,
+     "w": 0.07239600000000002,
+     "h": 0.325
+    }
+   ]
+  },
+  {
+   "index": 46,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01119_Oil_0169.jpg",
+   "split": "test",
+   "x0": 55240,
+   "y": 93,
+   "enter_frame": 2698,
+   "center_frame": 2754,
+   "exit_frame": 2810,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.26875,
+     "cy": 0.7259255,
+     "w": 0.05520800000000001,
+     "h": 0.161111
+    },
+    {
+     "type": "oil",
+     "cx": 0.539583,
+     "cy": 0.4458335,
+     "w": 0.18645800000000007,
+     "h": 0.28796299999999997
+    }
+   ]
+  },
+  {
+   "index": 47,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01129_Sta_0275.jpg",
+   "split": "test",
+   "x0": 56400,
+   "y": 94,
+   "enter_frame": 2756,
+   "center_frame": 2812,
+   "exit_frame": 2868,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.5059899999999999,
+     "cy": 0.5986115000000001,
+     "w": 0.008854000000000029,
+     "h": 0.01388899999999993
+    },
+    {
+     "type": "stain",
+     "cx": 0.7710935,
+     "cy": 0.3828705,
+     "w": 0.011978999999999962,
+     "h": 0.019445000000000046
+    },
+    {
+     "type": "stain",
+     "cx": 0.5408855,
+     "cy": 0.232407,
+     "w": 0.011978999999999962,
+     "h": 0.024073999999999984
+    }
+   ]
+  },
+  {
+   "index": 48,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01131_Sta_0308.jpg",
+   "split": "test",
+   "x0": 57560,
+   "y": 94,
+   "enter_frame": 2814,
+   "center_frame": 2870,
+   "exit_frame": 2926,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.764583,
+     "cy": 0.675926,
+     "w": 0.013541999999999943,
+     "h": 0.02037
+    },
+    {
+     "type": "stain",
+     "cx": 0.2763025,
+     "cy": 0.6069445,
+     "w": 0.018228999999999995,
+     "h": 0.019444999999999935
+    },
+    {
+     "type": "stain",
+     "cx": 0.617969,
+     "cy": 0.32685200000000003,
+     "w": 0.01718799999999998,
+     "h": 0.02222200000000002
+    }
+   ]
+  },
+  {
+   "index": 49,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01156_Oil_0256.jpg",
+   "split": "test",
+   "x0": 58720,
+   "y": 95,
+   "enter_frame": 2872,
+   "center_frame": 2928,
+   "exit_frame": 2984,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.42526050000000004,
+     "cy": 0.711111,
+     "w": 0.10781299999999999,
+     "h": 0.12222199999999994
+    }
+   ]
+  },
+  {
+   "index": 50,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01134_Oil_0307.jpg",
+   "split": "test",
+   "x0": 59880,
+   "y": 84,
+   "enter_frame": 2930,
+   "center_frame": 2986,
+   "exit_frame": 3042,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.5625,
+     "cy": 0.7884260000000001,
+     "w": 0.04479199999999994,
+     "h": 0.14722200000000008
+    },
+    {
+     "type": "oil",
+     "cx": 0.470573,
+     "cy": 0.6009260000000001,
+     "w": 0.04010399999999997,
+     "h": 0.2925920000000001
+    }
+   ]
+  },
+  {
+   "index": 51,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01183_Oil_0128.jpg",
+   "split": "test",
+   "x0": 61040,
+   "y": 91,
+   "enter_frame": 2988,
+   "center_frame": 3044,
+   "exit_frame": 3100,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.213281,
+     "cy": 0.339352,
+     "w": 0.052603999999999984,
+     "h": 0.12314799999999998
+    }
+   ]
+  },
+  {
+   "index": 52,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01155_Sta_0322.jpg",
+   "split": "test",
+   "x0": 62200,
+   "y": 96,
+   "enter_frame": 3046,
+   "center_frame": 3102,
+   "exit_frame": 3158,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.1565105,
+     "cy": 0.7208330000000001,
+     "w": 0.019270999999999983,
+     "h": 0.021296000000000093
+    },
+    {
+     "type": "stain",
+     "cx": 0.6359375,
+     "cy": 0.5555555000000001,
+     "w": 0.012500999999999984,
+     "h": 0.022222999999999993
+    }
+   ]
+  },
+  {
+   "index": 53,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/test/01147_0020.png",
+   "split": "test",
+   "x0": 63360,
+   "y": 94,
+   "enter_frame": 3104,
+   "center_frame": 3160,
+   "exit_frame": 3216,
+   "labels": []
+  },
+  {
+   "index": 54,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01142_Oil_0388.jpg",
+   "split": "test",
+   "x0": 64520,
+   "y": 96,
+   "enter_frame": 3162,
+   "center_frame": 3218,
+   "exit_frame": 3274,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.176823,
+     "cy": 0.3046295,
+     "w": 0.198438,
+     "h": 0.23888900000000002
+    }
+   ]
+  },
+  {
+   "index": 55,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01199_Scr_0236.jpg",
+   "split": "test",
+   "x0": 65680,
+   "y": 92,
+   "enter_frame": 3220,
+   "center_frame": 3276,
+   "exit_frame": 3332,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.4760415,
+     "cy": 0.597685,
+     "w": 0.10729100000000003,
+     "h": 0.24907400000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6648435,
+     "cy": 0.440278,
+     "w": 0.04322899999999996,
+     "h": 0.006481999999999988
+    },
+    {
+     "type": "scratch",
+     "cx": 0.174479,
+     "cy": 0.3310185,
+     "w": 0.1,
+     "h": 0.137963
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5981775,
+     "cy": 0.2689815,
+     "w": 0.056771000000000016,
+     "h": 0.02870299999999998
+    },
+    {
+     "type": "scratch",
+     "cx": 0.1432295,
+     "cy": 0.14537049999999999,
+     "w": 0.102083,
+     "h": 0.07962899999999999
+    }
+   ]
+  },
+  {
+   "index": 56,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01186_Sta_0107.jpg",
+   "split": "test",
+   "x0": 66840,
+   "y": 90,
+   "enter_frame": 3278,
+   "center_frame": 3334,
+   "exit_frame": 3390,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.404427,
+     "cy": 0.6828700000000001,
+     "w": 0.020311999999999997,
+     "h": 0.025000000000000022
+    },
+    {
+     "type": "stain",
+     "cx": 0.5536460000000001,
+     "cy": 0.6782410000000001,
+     "w": 0.013542000000000054,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.9205725,
+     "cy": 0.302315,
+     "w": 0.01302099999999995,
+     "h": 0.030556000000000028
+    },
+    {
+     "type": "stain",
+     "cx": 0.12473999999999999,
+     "cy": 0.2027775,
+     "w": 0.015103999999999992,
+     "h": 0.033333
+    }
+   ]
+  },
+  {
+   "index": 57,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01176_Scr_0283.jpg",
+   "split": "test",
+   "x0": 68000,
+   "y": 90,
+   "enter_frame": 3336,
+   "center_frame": 3392,
+   "exit_frame": 3448,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.37552050000000003,
+     "cy": 0.764815,
+     "w": 0.05937500000000001,
+     "h": 0.24629599999999996
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8364585,
+     "cy": 0.5814815,
+     "w": 0.029166999999999943,
+     "h": 0.22037100000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.316927,
+     "cy": 0.5208335000000001,
+     "w": 0.10781200000000002,
+     "h": 0.11018500000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.589844,
+     "cy": 0.272685,
+     "w": 0.12239600000000006,
+     "h": 0.07685200000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.274479,
+     "cy": 0.164815,
+     "w": 0.12916599999999998,
+     "h": 0.05740799999999999
+    }
+   ]
+  },
+  {
+   "index": 58,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01218_Sta_0062.jpg",
+   "split": "test",
+   "x0": 69160,
+   "y": 90,
+   "enter_frame": 3394,
+   "center_frame": 3450,
+   "exit_frame": 3506,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.1484375,
+     "cy": 0.852778,
+     "w": 0.017708999999999975,
+     "h": 0.025926000000000005
+    },
+    {
+     "type": "stain",
+     "cx": 0.0971355,
+     "cy": 0.6958335,
+     "w": 0.009894999999999987,
+     "h": 0.01759299999999997
+    },
+    {
+     "type": "stain",
+     "cx": 0.0921875,
+     "cy": 0.31851850000000004,
+     "w": 0.016667,
+     "h": 0.024075000000000013
+    }
+   ]
+  },
+  {
+   "index": 59,
+   "kind": "normal",
+   "case": "normal",
+   "source": "data/mobile_surface/images/test/01187_0012.png",
+   "split": "test",
+   "x0": 70320,
+   "y": 90,
+   "enter_frame": 3452,
+   "center_frame": 3508,
+   "exit_frame": 3564,
+   "labels": []
+  },
+  {
+   "index": 60,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01127_Sta_0269.jpg",
+   "split": "test",
+   "x0": 71480,
+   "y": 85,
+   "enter_frame": 3510,
+   "center_frame": 3566,
+   "exit_frame": 3622,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.3429685,
+     "cy": 0.44999999999999996,
+     "w": 0.011979000000000017,
+     "h": 0.02222200000000002
+    }
+   ]
+  },
+  {
+   "index": 61,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01164_Oil_0165.jpg",
+   "split": "test",
+   "x0": 72640,
+   "y": 91,
+   "enter_frame": 3568,
+   "center_frame": 3624,
+   "exit_frame": 3680,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.5270835,
+     "cy": 0.490741,
+     "w": 0.16458299999999998,
+     "h": 0.27222199999999996
+    }
+   ]
+  },
+  {
+   "index": 62,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01180_Oil_0192.jpg",
+   "split": "test",
+   "x0": 73800,
+   "y": 94,
+   "enter_frame": 3626,
+   "center_frame": 3682,
+   "exit_frame": 3738,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.1869795,
+     "cy": 0.3106485,
+     "w": 0.029167,
+     "h": 0.06018499999999999
+    }
+   ]
+  },
+  {
+   "index": 63,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01157_Scr_0197.jpg",
+   "split": "test",
+   "x0": 74960,
+   "y": 90,
+   "enter_frame": 3684,
+   "center_frame": 3740,
+   "exit_frame": 3796,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.8106770000000001,
+     "cy": 0.7611114999999999,
+     "w": 0.23073,
+     "h": 0.06296299999999999
+    },
+    {
+     "type": "scratch",
+     "cx": 0.20468750000000002,
+     "cy": 0.676852,
+     "w": 0.08541699999999999,
+     "h": 0.07592599999999994
+    },
+    {
+     "type": "scratch",
+     "cx": 0.42500000000000004,
+     "cy": 0.3722225,
+     "w": 0.16770800000000002,
+     "h": 0.185185
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7927085,
+     "cy": 0.38888900000000004,
+     "w": 0.14895899999999995,
+     "h": 0.28333400000000003
+    }
+   ]
+  },
+  {
+   "index": 64,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01138_Sta_0176.jpg",
+   "split": "test",
+   "x0": 76120,
+   "y": 84,
+   "enter_frame": 3742,
+   "center_frame": 3798,
+   "exit_frame": 3854,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.4596355,
+     "cy": 0.6634260000000001,
+     "w": 0.011979000000000017,
+     "h": 0.025000000000000022
+    },
+    {
+     "type": "stain",
+     "cx": 0.559375,
+     "cy": 0.5717589999999999,
+     "w": 0.012500000000000067,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.348437,
+     "cy": 0.43287,
+     "w": 0.012499999999999956,
+     "h": 0.024999999999999967
+    }
+   ]
+  },
+  {
+   "index": 65,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01197_Oil_0152.jpg",
+   "split": "test",
+   "x0": 77280,
+   "y": 87,
+   "enter_frame": 3800,
+   "center_frame": 3856,
+   "exit_frame": 3912,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.4828125,
+     "cy": 0.662963,
+     "w": 0.06666699999999998,
+     "h": 0.050000000000000044
+    },
+    {
+     "type": "oil",
+     "cx": 0.7630205,
+     "cy": 0.6069445,
+     "w": 0.04791699999999999,
+     "h": 0.05833299999999997
+    },
+    {
+     "type": "oil",
+     "cx": 0.3138025,
+     "cy": 0.259259,
+     "w": 0.03802100000000003,
+     "h": 0.055555999999999994
+    }
+   ]
+  },
+  {
+   "index": 66,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01161_Sta_0203.jpg",
+   "split": "test",
+   "x0": 78440,
+   "y": 85,
+   "enter_frame": 3858,
+   "center_frame": 3914,
+   "exit_frame": 3970,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.209896,
+     "cy": 0.6212965,
+     "w": 0.013541999999999998,
+     "h": 0.018518999999999952
+    },
+    {
+     "type": "stain",
+     "cx": 0.808073,
+     "cy": 0.3819445,
+     "w": 0.014062000000000019,
+     "h": 0.02129700000000001
+    }
+   ]
+  },
+  {
+   "index": 67,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01124_Sta_0059.jpg",
+   "split": "test",
+   "x0": 79600,
+   "y": 87,
+   "enter_frame": 3916,
+   "center_frame": 3972,
+   "exit_frame": 4028,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.21223950000000003,
+     "cy": 0.7685185,
+     "w": 0.010937000000000002,
+     "h": 0.018518999999999952
+    },
+    {
+     "type": "stain",
+     "cx": 0.1304685,
+     "cy": 0.6078705,
+     "w": 0.010937000000000002,
+     "h": 0.01759299999999997
+    },
+    {
+     "type": "stain",
+     "cx": 0.753385,
+     "cy": 0.5166665,
+     "w": 0.008854000000000029,
+     "h": 0.018518999999999952
+    },
+    {
+     "type": "stain",
+     "cx": 0.6570315,
+     "cy": 0.447685,
+     "w": 0.01302099999999995,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.23724,
+     "cy": 0.277315,
+     "w": 0.008854,
+     "h": 0.01944399999999996
+    }
+   ]
+  },
+  {
+   "index": 68,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01189_Scr_0019.jpg",
+   "split": "test",
+   "x0": 80760,
+   "y": 91,
+   "enter_frame": 3974,
+   "center_frame": 4030,
+   "exit_frame": 4086,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.611198,
+     "cy": 0.614352,
+     "w": 0.047395999999999994,
+     "h": 0.09536999999999995
+    },
+    {
+     "type": "scratch",
+     "cx": 0.266146,
+     "cy": 0.6115740000000001,
+     "w": 0.11250000000000002,
+     "h": 0.16018600000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.44010400000000005,
+     "cy": 0.45972199999999996,
+     "w": 0.147916,
+     "h": 0.05092599999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7723960000000001,
+     "cy": 0.5203705,
+     "w": 0.11145799999999995,
+     "h": 0.24629699999999993
+    }
+   ]
+  },
+  {
+   "index": 69,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01201_Sta_0291.jpg",
+   "split": "test",
+   "x0": 81920,
+   "y": 86,
+   "enter_frame": 4032,
+   "center_frame": 4088,
+   "exit_frame": 4144,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.5515625,
+     "cy": 0.85463,
+     "w": 0.011458999999999997,
+     "h": 0.022221999999999964
+    },
+    {
+     "type": "stain",
+     "cx": 0.16041699999999998,
+     "cy": 0.7689815,
+     "w": 0.011457999999999996,
+     "h": 0.02129700000000001
+    },
+    {
+     "type": "stain",
+     "cx": 0.8734375,
+     "cy": 0.6180555000000001,
+     "w": 0.012499000000000038,
+     "h": 0.02129700000000001
+    },
+    {
+     "type": "stain",
+     "cx": 0.2398435,
+     "cy": 0.187963,
+     "w": 0.01197899999999999,
+     "h": 0.024074000000000012
+    },
+    {
+     "type": "stain",
+     "cx": 0.916667,
+     "cy": 0.180556,
+     "w": 0.012499999999999956,
+     "h": 0.025926000000000005
+    }
+   ]
+  },
+  {
+   "index": 70,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01211_Sta_0177.jpg",
+   "split": "test",
+   "x0": 83080,
+   "y": 85,
+   "enter_frame": 4090,
+   "center_frame": 4146,
+   "exit_frame": 4202,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.4591145,
+     "cy": 0.663889,
+     "w": 0.011979000000000017,
+     "h": 0.025926000000000005
+    },
+    {
+     "type": "stain",
+     "cx": 0.559375,
+     "cy": 0.574074,
+     "w": 0.012500000000000067,
+     "h": 0.02407400000000004
+    },
+    {
+     "type": "stain",
+     "cx": 0.3486975,
+     "cy": 0.432407,
+     "w": 0.013021000000000005,
+     "h": 0.024073999999999984
+    },
+    {
+     "type": "stain",
+     "cx": 0.6734374999999999,
+     "cy": 0.23796299999999998,
+     "w": 0.011458999999999997,
+     "h": 0.022221999999999992
+    }
+   ]
+  },
+  {
+   "index": 71,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01145_Scr_0096.jpg",
+   "split": "test",
+   "x0": 84240,
+   "y": 89,
+   "enter_frame": 4148,
+   "center_frame": 4204,
+   "exit_frame": 4260,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.11328150000000001,
+     "cy": 0.881019,
+     "w": 0.010936999999999988,
+     "h": 0.02499999999999991
+    },
+    {
+     "type": "scratch",
+     "cx": 0.683073,
+     "cy": 0.8333335,
+     "w": 0.15156199999999997,
+     "h": 0.08333299999999999
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4781255,
+     "cy": 0.5777775,
+     "w": 0.159375,
+     "h": 0.0166670000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.835677,
+     "cy": 0.2944445,
+     "w": 0.020311999999999997,
+     "h": 0.19259300000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6197915,
+     "cy": 0.2782405,
+     "w": 0.05312499999999998,
+     "h": 0.241667
+    }
+   ]
+  },
+  {
+   "index": 72,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01122_Sta_0123.jpg",
+   "split": "test",
+   "x0": 85400,
+   "y": 93,
+   "enter_frame": 4206,
+   "center_frame": 4262,
+   "exit_frame": 4318,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.43411449999999996,
+     "cy": 0.573148,
+     "w": 0.014062999999999992,
+     "h": 0.02407399999999993
+    }
+   ]
+  },
+  {
+   "index": 73,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01111_Scr_0156.jpg",
+   "split": "test",
+   "x0": 86560,
+   "y": 84,
+   "enter_frame": 4264,
+   "center_frame": 4320,
+   "exit_frame": 4376,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.490104,
+     "cy": 0.6,
+     "w": 0.07395799999999997,
+     "h": 0.16481400000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.175,
+     "cy": 0.4291665,
+     "w": 0.027083999999999997,
+     "h": 0.26759299999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7028650000000001,
+     "cy": 0.24629649999999997,
+     "w": 0.19635400000000003,
+     "h": 0.081481
+    }
+   ]
+  },
+  {
+   "index": 74,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01121_Sta_0209.jpg",
+   "split": "test",
+   "x0": 87720,
+   "y": 85,
+   "enter_frame": 4322,
+   "center_frame": 4378,
+   "exit_frame": 4434,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.8408855,
+     "cy": 0.712037,
+     "w": 0.017186999999999952,
+     "h": 0.03148200000000001
+    },
+    {
+     "type": "stain",
+     "cx": 0.4145835,
+     "cy": 0.544907,
+     "w": 0.013541000000000025,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.858073,
+     "cy": 0.2546295,
+     "w": 0.015104000000000006,
+     "h": 0.03518500000000002
+    },
+    {
+     "type": "stain",
+     "cx": 0.1145835,
+     "cy": 0.25,
+     "w": 0.013540999999999997,
+     "h": 0.03148200000000001
+    }
+   ]
+  },
+  {
+   "index": 75,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01182_Sta_0324.jpg",
+   "split": "test",
+   "x0": 88880,
+   "y": 84,
+   "enter_frame": 4380,
+   "center_frame": 4436,
+   "exit_frame": 4492,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.15625,
+     "cy": 0.7199070000000001,
+     "w": 0.019791999999999976,
+     "h": 0.023148000000000057
+    },
+    {
+     "type": "stain",
+     "cx": 0.5434895,
+     "cy": 0.6662035,
+     "w": 0.011979000000000073,
+     "h": 0.019445000000000046
+    },
+    {
+     "type": "stain",
+     "cx": 0.6351565,
+     "cy": 0.5550925,
+     "w": 0.011978999999999962,
+     "h": 0.02129700000000001
+    },
+    {
+     "type": "stain",
+     "cx": 0.3567705,
+     "cy": 0.535648,
+     "w": 0.015625,
+     "h": 0.023147999999999946
+    }
+   ]
+  },
+  {
+   "index": 76,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01137_Oil_0142.jpg",
+   "split": "test",
+   "x0": 90040,
+   "y": 93,
+   "enter_frame": 4438,
+   "center_frame": 4494,
+   "exit_frame": 4550,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.340625,
+     "cy": 0.6305555,
+     "w": 0.066666,
+     "h": 0.10740699999999992
+    }
+   ]
+  },
+  {
+   "index": 77,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01188_Sta_0332.jpg",
+   "split": "test",
+   "x0": 91200,
+   "y": 86,
+   "enter_frame": 4496,
+   "center_frame": 4552,
+   "exit_frame": 4608,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.12135399999999999,
+     "cy": 0.7875000000000001,
+     "w": 0.012499999999999997,
+     "h": 0.025000000000000022
+    },
+    {
+     "type": "stain",
+     "cx": 0.790625,
+     "cy": 0.5675924999999999,
+     "w": 0.01041599999999998,
+     "h": 0.0166670000000001
+    },
+    {
+     "type": "stain",
+     "cx": 0.7864585,
+     "cy": 0.253704,
+     "w": 0.009375000000000022,
+     "h": 0.02036999999999997
+    },
+    {
+     "type": "stain",
+     "cx": 0.2059895,
+     "cy": 0.15462949999999998,
+     "w": 0.016144999999999993,
+     "h": 0.020371
+    },
+    {
+     "type": "stain",
+     "cx": 0.5622395,
+     "cy": 0.152778,
+     "w": 0.014062999999999937,
+     "h": 0.02962999999999999
+    }
+   ]
+  },
+  {
+   "index": 78,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01194_Sta_0347.jpg",
+   "split": "test",
+   "x0": 92360,
+   "y": 92,
+   "enter_frame": 4554,
+   "center_frame": 4610,
+   "exit_frame": 4666,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.536719,
+     "cy": 0.650463,
+     "w": 0.008854000000000029,
+     "h": 0.015739999999999976
+    },
+    {
+     "type": "stain",
+     "cx": 0.097396,
+     "cy": 0.5300925000000001,
+     "w": 0.011457999999999996,
+     "h": 0.028703000000000034
+    },
+    {
+     "type": "stain",
+     "cx": 0.448698,
+     "cy": 0.473148,
+     "w": 0.014062000000000019,
+     "h": 0.033333999999999975
+    },
+    {
+     "type": "stain",
+     "cx": 0.3015625,
+     "cy": 0.3680555,
+     "w": 0.011458999999999997,
+     "h": 0.01944499999999999
+    }
+   ]
+  },
+  {
+   "index": 79,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01167_Sta_0313.jpg",
+   "split": "test",
+   "x0": 93520,
+   "y": 85,
+   "enter_frame": 4612,
+   "center_frame": 4668,
+   "exit_frame": 4724,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.6299475,
+     "cy": 0.80787,
+     "w": 0.01302099999999995,
+     "h": 0.023147999999999946
+    },
+    {
+     "type": "stain",
+     "cx": 0.2213545,
+     "cy": 0.6384259999999999,
+     "w": 0.009374999999999994,
+     "h": 0.021296000000000093
+    },
+    {
+     "type": "stain",
+     "cx": 0.8572919999999999,
+     "cy": 0.6328704999999999,
+     "w": 0.012500000000000067,
+     "h": 0.030555
+    }
+   ]
+  },
+  {
+   "index": 80,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01116_Sta_0197.jpg",
+   "split": "test",
+   "x0": 94680,
+   "y": 89,
+   "enter_frame": 4670,
+   "center_frame": 4726,
+   "exit_frame": 4782,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.7375,
+     "cy": 0.638889,
+     "w": 0.01145800000000008,
+     "h": 0.033333999999999975
+    },
+    {
+     "type": "stain",
+     "cx": 0.234375,
+     "cy": 0.6180555000000001,
+     "w": 0.013541999999999998,
+     "h": 0.032406999999999964
+    },
+    {
+     "type": "stain",
+     "cx": 0.5372395000000001,
+     "cy": 0.473148,
+     "w": 0.015105000000000035,
+     "h": 0.02962999999999999
+    },
+    {
+     "type": "stain",
+     "cx": 0.179427,
+     "cy": 0.463426,
+     "w": 0.014062000000000019,
+     "h": 0.026851999999999987
+    }
+   ]
+  },
+  {
+   "index": 81,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01202_Scr_0114.jpg",
+   "split": "test",
+   "x0": 95840,
+   "y": 93,
+   "enter_frame": 4728,
+   "center_frame": 4784,
+   "exit_frame": 4840,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2820315,
+     "cy": 0.5046295000000001,
+     "w": 0.017187000000000008,
+     "h": 0.08148100000000003
+    }
+   ]
+  },
+  {
+   "index": 82,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01135_Oil_0267.jpg",
+   "split": "test",
+   "x0": 97000,
+   "y": 84,
+   "enter_frame": 4786,
+   "center_frame": 4842,
+   "exit_frame": 4898,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.332813,
+     "cy": 0.82037,
+     "w": 0.11874999999999997,
+     "h": 0.12407400000000002
+    },
+    {
+     "type": "oil",
+     "cx": 0.1515625,
+     "cy": 0.35462950000000004,
+     "w": 0.097917,
+     "h": 0.11296299999999998
+    }
+   ]
+  },
+  {
+   "index": 83,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01115_Scr_0287.jpg",
+   "split": "test",
+   "x0": 98160,
+   "y": 85,
+   "enter_frame": 4844,
+   "center_frame": 4900,
+   "exit_frame": 4956,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.44166700000000003,
+     "cy": 0.739352,
+     "w": 0.04999999999999999,
+     "h": 0.16759199999999996
+    }
+   ]
+  },
+  {
+   "index": 84,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01169_Scr_0089.jpg",
+   "split": "test",
+   "x0": 99320,
+   "y": 87,
+   "enter_frame": 4902,
+   "center_frame": 4958,
+   "exit_frame": 5014,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.115625,
+     "cy": 0.87037,
+     "w": 0.01145800000000001,
+     "h": 0.022221999999999964
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6854165,
+     "cy": 0.808333,
+     "w": 0.15208299999999997,
+     "h": 0.07777800000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.840104,
+     "cy": 0.2231485,
+     "w": 0.006249999999999978,
+     "h": 0.11296299999999998
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6174474999999999,
+     "cy": 0.25601850000000004,
+     "w": 0.05572900000000003,
+     "h": 0.24166700000000002
+    }
+   ]
+  },
+  {
+   "index": 85,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01103_Sta_0394.jpg",
+   "split": "test",
+   "x0": 100480,
+   "y": 93,
+   "enter_frame": 4960,
+   "center_frame": 5016,
+   "exit_frame": 5072,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.48333349999999997,
+     "cy": 0.6763889999999999,
+     "w": 0.009374999999999967,
+     "h": 0.015739999999999976
+    },
+    {
+     "type": "stain",
+     "cx": 0.4614585,
+     "cy": 0.6791670000000001,
+     "w": 0.013541000000000025,
+     "h": 0.023148000000000057
+    },
+    {
+     "type": "stain",
+     "cx": 0.179167,
+     "cy": 0.6287039999999999,
+     "w": 0.013541999999999998,
+     "h": 0.022222000000000075
+    },
+    {
+     "type": "stain",
+     "cx": 0.7885415,
+     "cy": 0.5810185,
+     "w": 0.01041700000000001,
+     "h": 0.023149000000000086
+    },
+    {
+     "type": "stain",
+     "cx": 0.659635,
+     "cy": 0.461111,
+     "w": 0.008854000000000029,
+     "h": 0.018518000000000034
+    },
+    {
+     "type": "stain",
+     "cx": 0.1554685,
+     "cy": 0.147685,
+     "w": 0.007812999999999987,
+     "h": 0.02129600000000001
+    }
+   ]
+  },
+  {
+   "index": 86,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01193_Oil_0207.jpg",
+   "split": "test",
+   "x0": 101640,
+   "y": 90,
+   "enter_frame": 5018,
+   "center_frame": 5074,
+   "exit_frame": 5130,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.431771,
+     "cy": 0.816667,
+     "w": 0.06979200000000002,
+     "h": 0.14629599999999998
+    }
+   ]
+  },
+  {
+   "index": 87,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01215_Sta_0248.jpg",
+   "split": "test",
+   "x0": 102800,
+   "y": 86,
+   "enter_frame": 5076,
+   "center_frame": 5132,
+   "exit_frame": 5188,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.116927,
+     "cy": 0.6828704999999999,
+     "w": 0.014062000000000005,
+     "h": 0.01759300000000008
+    },
+    {
+     "type": "stain",
+     "cx": 0.299219,
+     "cy": 0.647685,
+     "w": 0.010938000000000003,
+     "h": 0.019444000000000017
+    }
+   ]
+  },
+  {
+   "index": 88,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01217_Oil_0083.jpg",
+   "split": "test",
+   "x0": 103960,
+   "y": 94,
+   "enter_frame": 5134,
+   "center_frame": 5190,
+   "exit_frame": 5246,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.16875,
+     "cy": 0.822222,
+     "w": 0.08958400000000001,
+     "h": 0.12037000000000009
+    }
+   ]
+  },
+  {
+   "index": 89,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01190_Scr_0248.jpg",
+   "split": "test",
+   "x0": 105120,
+   "y": 88,
+   "enter_frame": 5192,
+   "center_frame": 5248,
+   "exit_frame": 5304,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.8536455000000001,
+     "cy": 0.8842589999999999,
+     "w": 0.10416700000000001,
+     "h": 0.07777800000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.37083350000000004,
+     "cy": 0.7680560000000001,
+     "w": 0.185417,
+     "h": 0.07500000000000007
+    },
+    {
+     "type": "scratch",
+     "cx": 0.11979200000000001,
+     "cy": 0.6685185,
+     "w": 0.007292000000000007,
+     "h": 0.06296299999999999
+    },
+    {
+     "type": "scratch",
+     "cx": 0.831771,
+     "cy": 0.6842595,
+     "w": 0.120834,
+     "h": 0.16851899999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.28463550000000004,
+     "cy": 0.5990745,
+     "w": 0.19531300000000001,
+     "h": 0.012962999999999947
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5247395,
+     "cy": 0.4569445,
+     "w": 0.12343700000000002,
+     "h": 0.28055500000000005
+    }
+   ]
+  },
+  {
+   "index": 90,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01171_Sta_0363.jpg",
+   "split": "test",
+   "x0": 106280,
+   "y": 89,
+   "enter_frame": 5250,
+   "center_frame": 5306,
+   "exit_frame": 5362,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.2270835,
+     "cy": 0.8578705,
+     "w": 0.011458999999999997,
+     "h": 0.019444999999999935
+    },
+    {
+     "type": "stain",
+     "cx": 0.5841145,
+     "cy": 0.677315,
+     "w": 0.014062999999999937,
+     "h": 0.026852000000000098
+    },
+    {
+     "type": "stain",
+     "cx": 0.4020835,
+     "cy": 0.604167,
+     "w": 0.014583000000000013,
+     "h": 0.023147999999999946
+    },
+    {
+     "type": "stain",
+     "cx": 0.9002605,
+     "cy": 0.49351849999999997,
+     "w": 0.01302099999999995,
+     "h": 0.02222300000000005
+    },
+    {
+     "type": "stain",
+     "cx": 0.879948,
+     "cy": 0.128241,
+     "w": 0.015104000000000006,
+     "h": 0.026851999999999987
+    }
+   ]
+  },
+  {
+   "index": 91,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01196_Scr_0277.jpg",
+   "split": "test",
+   "x0": 107440,
+   "y": 93,
+   "enter_frame": 5308,
+   "center_frame": 5364,
+   "exit_frame": 5420,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.37005200000000005,
+     "cy": 0.796759,
+     "w": 0.059896000000000005,
+     "h": 0.250926
+    },
+    {
+     "type": "scratch",
+     "cx": 0.3171875,
+     "cy": 0.547222,
+     "w": 0.11979099999999998,
+     "h": 0.122222
+    },
+    {
+     "type": "scratch",
+     "cx": 0.585677,
+     "cy": 0.3064815,
+     "w": 0.12239599999999995,
+     "h": 0.07777699999999999
+    }
+   ]
+  },
+  {
+   "index": 92,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01209_Sta_0395.jpg",
+   "split": "test",
+   "x0": 108600,
+   "y": 89,
+   "enter_frame": 5366,
+   "center_frame": 5422,
+   "exit_frame": 5478,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.36328150000000003,
+     "cy": 0.6851849999999999,
+     "w": 0.013021000000000005,
+     "h": 0.022222000000000075
+    }
+   ]
+  },
+  {
+   "index": 93,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01192_Scr_0325.jpg",
+   "split": "test",
+   "x0": 109760,
+   "y": 91,
+   "enter_frame": 5424,
+   "center_frame": 5480,
+   "exit_frame": 5536,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.45703150000000003,
+     "cy": 0.651852,
+     "w": 0.17552100000000004,
+     "h": 0.14814799999999995
+    },
+    {
+     "type": "scratch",
+     "cx": 0.25807250000000004,
+     "cy": 0.590741,
+     "w": 0.044271000000000005,
+     "h": 0.25370400000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6877605,
+     "cy": 0.47314849999999997,
+     "w": 0.05052100000000004,
+     "h": 0.28888899999999995
+    },
+    {
+     "type": "scratch",
+     "cx": 0.43203099999999994,
+     "cy": 0.3231485,
+     "w": 0.14010399999999995,
+     "h": 0.209259
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5015625,
+     "cy": 0.149074,
+     "w": 0.10208299999999998,
+     "h": 0.05
+    }
+   ]
+  },
+  {
+   "index": 94,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01178_Oil_0003.jpg",
+   "split": "test",
+   "x0": 110920,
+   "y": 85,
+   "enter_frame": 5482,
+   "center_frame": 5538,
+   "exit_frame": 5594,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.746875,
+     "cy": 0.623148,
+     "w": 0.21875,
+     "h": 0.34444400000000003
+    }
+   ]
+  },
+  {
+   "index": 95,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01126_Scr_0083.jpg",
+   "split": "test",
+   "x0": 112080,
+   "y": 85,
+   "enter_frame": 5540,
+   "center_frame": 5596,
+   "exit_frame": 5652,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.1205725,
+     "cy": 0.875,
+     "w": 0.013021000000000005,
+     "h": 0.02407399999999993
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6898435,
+     "cy": 0.8087960000000001,
+     "w": 0.151563,
+     "h": 0.07685200000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6270830000000001,
+     "cy": 0.278704,
+     "w": 0.012500000000000067,
+     "h": 0.046296000000000004
+    }
+   ]
+  },
+  {
+   "index": 96,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01113_Scr_0098.jpg",
+   "split": "test",
+   "x0": 113240,
+   "y": 91,
+   "enter_frame": 5598,
+   "center_frame": 5654,
+   "exit_frame": 5710,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.11536450000000001,
+     "cy": 0.865278,
+     "w": 0.011979000000000004,
+     "h": 0.023147999999999946
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6851565,
+     "cy": 0.822685,
+     "w": 0.151563,
+     "h": 0.08240800000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.507552,
+     "cy": 0.5652775,
+     "w": 0.21406199999999997,
+     "h": 0.015741000000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.259375,
+     "cy": 0.2291665,
+     "w": 0.001042000000000043,
+     "h": 0.012036999999999992
+    },
+    {
+     "type": "scratch",
+     "cx": 0.8390625,
+     "cy": 0.28240750000000003,
+     "w": 0.02083299999999999,
+     "h": 0.196297
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2778645,
+     "cy": 0.189815,
+     "w": 0.005728999999999984,
+     "h": 0.07963
+    },
+    {
+     "type": "scratch",
+     "cx": 0.6234375000000001,
+     "cy": 0.2685185,
+     "w": 0.05208299999999999,
+     "h": 0.24259300000000003
+    }
+   ]
+  },
+  {
+   "index": 97,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01170_Scr_0055.jpg",
+   "split": "test",
+   "x0": 114400,
+   "y": 91,
+   "enter_frame": 5656,
+   "center_frame": 5712,
+   "exit_frame": 5768,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.7,
+     "cy": 0.7787035,
+     "w": 0.19374999999999998,
+     "h": 0.06296299999999999
+    },
+    {
+     "type": "scratch",
+     "cx": 0.226823,
+     "cy": 0.225,
+     "w": 0.10052000000000003,
+     "h": 0.15926
+    }
+   ]
+  },
+  {
+   "index": 98,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01208_Scr_0048.jpg",
+   "split": "test",
+   "x0": 115560,
+   "y": 91,
+   "enter_frame": 5714,
+   "center_frame": 5770,
+   "exit_frame": 5826,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2367185,
+     "cy": 0.15,
+     "w": 0.04843699999999998,
+     "h": 0.024073999999999984
+    }
+   ]
+  },
+  {
+   "index": 99,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01152_Scr_0017.jpg",
+   "split": "test",
+   "x0": 116720,
+   "y": 91,
+   "enter_frame": 5772,
+   "center_frame": 5828,
+   "exit_frame": 5884,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.267708,
+     "cy": 0.5916665,
+     "w": 0.11250000000000002,
+     "h": 0.161111
+    },
+    {
+     "type": "scratch",
+     "cx": 0.44114600000000004,
+     "cy": 0.440278,
+     "w": 0.147916,
+     "h": 0.05092600000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7739579999999999,
+     "cy": 0.500926,
+     "w": 0.11249999999999993,
+     "h": 0.24814799999999998
+    }
+   ]
+  },
+  {
+   "index": 100,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01168_Oil_0292.jpg",
+   "split": "test",
+   "x0": 117880,
+   "y": 88,
+   "enter_frame": 5830,
+   "center_frame": 5886,
+   "exit_frame": 5942,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.5625,
+     "cy": 0.785185,
+     "w": 0.04583399999999993,
+     "h": 0.11851800000000001
+    },
+    {
+     "type": "oil",
+     "cx": 0.46458299999999997,
+     "cy": 0.5310185000000001,
+     "w": 0.06145799999999996,
+     "h": 0.21759300000000004
+    }
+   ]
+  },
+  {
+   "index": 101,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01204_Oil_0287.jpg",
+   "split": "test",
+   "x0": 119040,
+   "y": 85,
+   "enter_frame": 5888,
+   "center_frame": 5944,
+   "exit_frame": 6000,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.5341145,
+     "cy": 0.813426,
+     "w": 0.12447900000000006,
+     "h": 0.139814
+    }
+   ]
+  },
+  {
+   "index": 102,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01128_Scr_0165.jpg",
+   "split": "test",
+   "x0": 120200,
+   "y": 86,
+   "enter_frame": 5946,
+   "center_frame": 6002,
+   "exit_frame": 6058,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.248698,
+     "cy": 0.7777780000000001,
+     "w": 0.19114599999999998,
+     "h": 0.07777800000000001
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4765625,
+     "cy": 0.651852,
+     "w": 0.11041699999999999,
+     "h": 0.26851800000000003
+    },
+    {
+     "type": "scratch",
+     "cx": 0.17630200000000001,
+     "cy": 0.43935199999999996,
+     "w": 0.03281199999999998,
+     "h": 0.26944399999999996
+    },
+    {
+     "type": "scratch",
+     "cx": 0.704948,
+     "cy": 0.241667,
+     "w": 0.20052000000000003,
+     "h": 0.075926
+    }
+   ]
+  },
+  {
+   "index": 103,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01106_Sta_0355.jpg",
+   "split": "test",
+   "x0": 121360,
+   "y": 85,
+   "enter_frame": 6004,
+   "center_frame": 6060,
+   "exit_frame": 6116,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.216667,
+     "cy": 0.251389,
+     "w": 0.012500000000000011,
+     "h": 0.024999999999999994
+    },
+    {
+     "type": "stain",
+     "cx": 0.7955725,
+     "cy": 0.235648,
+     "w": 0.011978999999999962,
+     "h": 0.019444000000000017
+    },
+    {
+     "type": "stain",
+     "cx": 0.7966145,
+     "cy": 0.2162035,
+     "w": 0.0067710000000000825,
+     "h": 0.010185
+    }
+   ]
+  },
+  {
+   "index": 104,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01151_Sta_0321.jpg",
+   "split": "test",
+   "x0": 122520,
+   "y": 95,
+   "enter_frame": 6062,
+   "center_frame": 6118,
+   "exit_frame": 6174,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.1565105,
+     "cy": 0.7194445,
+     "w": 0.019270999999999983,
+     "h": 0.020371000000000028
+    }
+   ]
+  },
+  {
+   "index": 105,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01153_Sta_0307.jpg",
+   "split": "test",
+   "x0": 123680,
+   "y": 89,
+   "enter_frame": 6120,
+   "center_frame": 6176,
+   "exit_frame": 6232,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.282552,
+     "cy": 0.6319444999999999,
+     "w": 0.017188000000000037,
+     "h": 0.02129700000000001
+    },
+    {
+     "type": "stain",
+     "cx": 0.624219,
+     "cy": 0.353241,
+     "w": 0.015104000000000006,
+     "h": 0.01944399999999996
+    }
+   ]
+  },
+  {
+   "index": 106,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01109_Scr_0052.jpg",
+   "split": "test",
+   "x0": 124840,
+   "y": 95,
+   "enter_frame": 6178,
+   "center_frame": 6234,
+   "exit_frame": 6290,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.275781,
+     "cy": 0.1569445,
+     "w": 0.191146,
+     "h": 0.067593
+    }
+   ]
+  },
+  {
+   "index": 107,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01102_Oil_0300.jpg",
+   "split": "test",
+   "x0": 126000,
+   "y": 88,
+   "enter_frame": 6236,
+   "center_frame": 6292,
+   "exit_frame": 6348,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.573698,
+     "cy": 0.7898145,
+     "w": 0.04010400000000003,
+     "h": 0.11111099999999996
+    },
+    {
+     "type": "oil",
+     "cx": 0.4947915,
+     "cy": 0.2833335,
+     "w": 0.008333000000000035,
+     "h": 0.018519000000000008
+    },
+    {
+     "type": "oil",
+     "cx": 0.561458,
+     "cy": 0.324074,
+     "w": 0.06874999999999998,
+     "h": 0.214814
+    }
+   ]
+  },
+  {
+   "index": 108,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01125_Scr_0041.jpg",
+   "split": "test",
+   "x0": 127160,
+   "y": 91,
+   "enter_frame": 6294,
+   "center_frame": 6350,
+   "exit_frame": 6406,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.6653645,
+     "cy": 0.7199074999999999,
+     "w": 0.02968700000000002,
+     "h": 0.13425900000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.471875,
+     "cy": 0.664352,
+     "w": 0.10104199999999997,
+     "h": 0.2175919999999999
+    },
+    {
+     "type": "scratch",
+     "cx": 0.26614550000000003,
+     "cy": 0.388426,
+     "w": 0.128125,
+     "h": 0.039814000000000016
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7559895,
+     "cy": 0.2064815,
+     "w": 0.051563000000000025,
+     "h": 0.13703700000000002
+    },
+    {
+     "type": "scratch",
+     "cx": 0.41328149999999997,
+     "cy": 0.188889,
+     "w": 0.08802099999999996,
+     "h": 0.12962999999999997
+    }
+   ]
+  },
+  {
+   "index": 109,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01162_Sta_0241.jpg",
+   "split": "test",
+   "x0": 128320,
+   "y": 95,
+   "enter_frame": 6352,
+   "center_frame": 6408,
+   "exit_frame": 6464,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.379948,
+     "cy": 0.6796295,
+     "w": 0.015104000000000006,
+     "h": 0.03703699999999999
+    },
+    {
+     "type": "stain",
+     "cx": 0.5221355,
+     "cy": 0.5240739999999999,
+     "w": 0.009894999999999987,
+     "h": 0.01666599999999996
+    },
+    {
+     "type": "stain",
+     "cx": 0.390104,
+     "cy": 0.4324075,
+     "w": 0.007291999999999965,
+     "h": 0.012962999999999947
+    },
+    {
+     "type": "stain",
+     "cx": 0.9041665,
+     "cy": 0.22083350000000002,
+     "w": 0.015625,
+     "h": 0.03240699999999999
+    }
+   ]
+  },
+  {
+   "index": 110,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01105_Sta_0073.jpg",
+   "split": "test",
+   "x0": 129480,
+   "y": 86,
+   "enter_frame": 6410,
+   "center_frame": 6466,
+   "exit_frame": 6522,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.102604,
+     "cy": 0.816667,
+     "w": 0.012500000000000011,
+     "h": 0.025926000000000005
+    },
+    {
+     "type": "stain",
+     "cx": 0.3328125,
+     "cy": 0.7328705,
+     "w": 0.019791000000000003,
+     "h": 0.032406999999999964
+    },
+    {
+     "type": "stain",
+     "cx": 0.498177,
+     "cy": 0.5865739999999999,
+     "w": 0.014061999999999963,
+     "h": 0.01759199999999994
+    },
+    {
+     "type": "stain",
+     "cx": 0.7895835,
+     "cy": 0.423611,
+     "w": 0.009374999999999911,
+     "h": 0.026851999999999987
+    },
+    {
+     "type": "stain",
+     "cx": 0.257552,
+     "cy": 0.400463,
+     "w": 0.014062000000000019,
+     "h": 0.026851999999999987
+    }
+   ]
+  },
+  {
+   "index": 111,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01172_Oil_0392.jpg",
+   "split": "test",
+   "x0": 130640,
+   "y": 92,
+   "enter_frame": 6468,
+   "center_frame": 6524,
+   "exit_frame": 6580,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.1307295,
+     "cy": 0.5791665,
+     "w": 0.11458299999999999,
+     "h": 0.430555
+    }
+   ]
+  },
+  {
+   "index": 112,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01144_Scr_0195.jpg",
+   "split": "test",
+   "x0": 131800,
+   "y": 84,
+   "enter_frame": 6526,
+   "center_frame": 6582,
+   "exit_frame": 6638,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.8177085,
+     "cy": 0.7726855,
+     "w": 0.230209,
+     "h": 0.06574100000000005
+    },
+    {
+     "type": "scratch",
+     "cx": 0.1921875,
+     "cy": 0.6648149999999999,
+     "w": 0.045832999999999985,
+     "h": 0.046296000000000004
+    },
+    {
+     "type": "scratch",
+     "cx": 0.434375,
+     "cy": 0.37916649999999996,
+     "w": 0.16875000000000007,
+     "h": 0.18611099999999997
+    },
+    {
+     "type": "scratch",
+     "cx": 0.801823,
+     "cy": 0.4027775,
+     "w": 0.14635399999999998,
+     "h": 0.28333300000000006
+    }
+   ]
+  },
+  {
+   "index": 113,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01110_Oil_0240.jpg",
+   "split": "test",
+   "x0": 132960,
+   "y": 87,
+   "enter_frame": 6584,
+   "center_frame": 6640,
+   "exit_frame": 6696,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.804948,
+     "cy": 0.8435185000000001,
+     "w": 0.05364600000000008,
+     "h": 0.12407500000000005
+    },
+    {
+     "type": "oil",
+     "cx": 0.7802085000000001,
+     "cy": 0.6546295,
+     "w": 0.060417000000000054,
+     "h": 0.15925900000000004
+    }
+   ]
+  },
+  {
+   "index": 114,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01166_Sta_0118.jpg",
+   "split": "test",
+   "x0": 134120,
+   "y": 92,
+   "enter_frame": 6642,
+   "center_frame": 6698,
+   "exit_frame": 6754,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.541927,
+     "cy": 0.6324069999999999,
+     "w": 0.015104000000000006,
+     "h": 0.02407400000000004
+    }
+   ]
+  },
+  {
+   "index": 115,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01203_Oil_0195.jpg",
+   "split": "test",
+   "x0": 135280,
+   "y": 89,
+   "enter_frame": 6700,
+   "center_frame": 6756,
+   "exit_frame": 6812,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.5382815,
+     "cy": 0.412037,
+     "w": 0.02968700000000002,
+     "h": 0.061112
+    }
+   ]
+  },
+  {
+   "index": 116,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01107_Oil_0350.jpg",
+   "split": "test",
+   "x0": 136440,
+   "y": 86,
+   "enter_frame": 6758,
+   "center_frame": 6814,
+   "exit_frame": 6870,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.5682290000000001,
+     "cy": 0.464352,
+     "w": 0.11875000000000002,
+     "h": 0.18055599999999994
+    },
+    {
+     "type": "oil",
+     "cx": 0.27005199999999996,
+     "cy": 0.432407,
+     "w": 0.04010399999999997,
+     "h": 0.14814799999999995
+    },
+    {
+     "type": "oil",
+     "cx": 0.3921875,
+     "cy": 0.46990750000000003,
+     "w": 0.11770900000000001,
+     "h": 0.269445
+    }
+   ]
+  },
+  {
+   "index": 117,
+   "kind": "defect",
+   "case": "stain",
+   "source": "data/mobile_surface/images/test/01104_Sta_0384.jpg",
+   "split": "test",
+   "x0": 137600,
+   "y": 95,
+   "enter_frame": 6816,
+   "center_frame": 6872,
+   "exit_frame": 6928,
+   "labels": [
+    {
+     "type": "stain",
+     "cx": 0.159896,
+     "cy": 0.7555555,
+     "w": 0.013541999999999998,
+     "h": 0.029629000000000016
+    }
+   ]
+  },
+  {
+   "index": 118,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01181_Oil_0029.jpg",
+   "split": "test",
+   "x0": 138760,
+   "y": 92,
+   "enter_frame": 6874,
+   "center_frame": 6930,
+   "exit_frame": 6986,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.3127605,
+     "cy": 0.7018519999999999,
+     "w": 0.22031299999999998,
+     "h": 0.255556
+    }
+   ]
+  },
+  {
+   "index": 119,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01148_Oil_0188.jpg",
+   "split": "test",
+   "x0": 139920,
+   "y": 84,
+   "enter_frame": 6932,
+   "center_frame": 6988,
+   "exit_frame": 7044,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.29088499999999995,
+     "cy": 0.713889,
+     "w": 0.033853999999999995,
+     "h": 0.057407999999999904
+    }
+   ]
+  },
+  {
+   "index": 120,
+   "kind": "defect",
+   "case": "oil",
+   "source": "data/mobile_surface/images/test/01117_Oil_0237.jpg",
+   "split": "test",
+   "x0": 141080,
+   "y": 96,
+   "enter_frame": 6990,
+   "center_frame": 7046,
+   "exit_frame": 7102,
+   "labels": [
+    {
+     "type": "oil",
+     "cx": 0.719271,
+     "cy": 0.7828705,
+     "w": 0.06875000000000009,
+     "h": 0.10462899999999997
+    },
+    {
+     "type": "oil",
+     "cx": 0.539844,
+     "cy": 0.598148,
+     "w": 0.08385400000000004,
+     "h": 0.12592599999999998
+    }
+   ]
+  },
+  {
+   "index": 121,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "data/mobile_surface/images/test/01139_Scr_0133.jpg",
+   "split": "test",
+   "x0": 142240,
+   "y": 92,
+   "enter_frame": 7048,
+   "center_frame": 7104,
+   "exit_frame": 7160,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.6617185,
+     "cy": 0.8259259999999999,
+     "w": 0.13697899999999996,
+     "h": 0.01666599999999996
+    },
+    {
+     "type": "scratch",
+     "cx": 0.261979,
+     "cy": 0.709722,
+     "w": 0.217708,
+     "h": 0.10463
+    },
+    {
+     "type": "scratch",
+     "cx": 0.7528645,
+     "cy": 0.40555549999999996,
+     "w": 0.056771000000000016,
+     "h": 0.222223
+    },
+    {
+     "type": "scratch",
+     "cx": 0.44609350000000003,
+     "cy": 0.3319445,
+     "w": 0.07447900000000002,
+     "h": 0.321297
+    }
+   ]
+  }
+ ]
+}

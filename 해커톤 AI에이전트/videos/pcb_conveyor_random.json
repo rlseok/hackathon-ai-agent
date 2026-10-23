@@ -1,0 +1,4901 @@
+{
+ "video": "pcb_conveyor_random.mp4",
+ "fps": 30,
+ "size": [
+  1280,
+  720
+ ],
+ "board_px": 640,
+ "speed_px_per_frame": 14,
+ "frames": 5493,
+ "seconds": 183.1,
+ "seed": 7,
+ "sensing_zone": [
+  320,
+  0,
+  960,
+  720
+ ],
+ "note": "x of a board at frame f = x0 - f*speed. center_frame = board centered (inside the sensing zone).",
+ "boards": [
+  {
+   "index": 0,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_pinhole_scratch_03_jpg.rf.a619dcde8985b558e02f69d5f4d2d3dc.jpg",
+   "x0": 1840,
+   "y": 40,
+   "enter_frame": 40,
+   "center_frame": 109,
+   "exit_frame": 178,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.7484375,
+     "cy": 0.13671875,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.515625,
+     "cy": 0.90234375,
+     "w": 0.0125,
+     "h": 0.0125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.796875,
+     "cy": 0.64765625,
+     "w": 0.0140625,
+     "h": 0.009375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.13359375,
+     "cy": 0.49140625,
+     "w": 0.103125,
+     "h": 0.284375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.24765625,
+     "cy": 0.58515625,
+     "w": 0.134375,
+     "h": 0.2
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.922,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 1,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_spur_06_jpg.rf.2feb4db2f2e1d9e942ed9e919e76836f.jpg",
+   "x0": 2640,
+   "y": 40,
+   "enter_frame": 97,
+   "center_frame": 166,
+   "exit_frame": 235,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.3609375,
+     "cy": 0.57578125,
+     "w": 0.0203125,
+     "h": 0.040625
+    },
+    {
+     "type": "spur",
+     "cx": 0.73828125,
+     "cy": 0.85234375,
+     "w": 0.0296875,
+     "h": 0.025
+    },
+    {
+     "type": "spur",
+     "cx": 0.60546875,
+     "cy": 0.7828125,
+     "w": 0.0171875,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.804,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 2,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_mouse_bite_03_jpg.rf.75b2e5a73a8b392e680ee10fba8dce01.jpg",
+   "x0": 3440,
+   "y": 40,
+   "enter_frame": 154,
+   "center_frame": 223,
+   "exit_frame": 292,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.384375,
+     "cy": 0.3171875,
+     "w": 0.0203125,
+     "h": 0.0359375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.25234375,
+     "cy": 0.521875,
+     "w": 0.0203125,
+     "h": 0.04375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.68515625,
+     "cy": 0.30546875,
+     "w": 0.021875,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.884375,
+     "cy": 0.321875,
+     "w": 0.0171875,
+     "h": 0.0453125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.81015625,
+     "cy": 0.56484375,
+     "w": 0.0203125,
+     "h": 0.0578125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.803,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 3,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_spurious_copper_19_jpg.rf.2d1a2826dee7a0e8a081bd0e3793a236.jpg",
+   "x0": 4240,
+   "y": 35,
+   "enter_frame": 211,
+   "center_frame": 280,
+   "exit_frame": 349,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.22265625,
+     "cy": 0.275,
+     "w": 0.0578125,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.165625,
+     "cy": 0.43515625,
+     "w": 0.065625,
+     "h": 0.01875
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.3546875,
+     "cy": 0.84765625,
+     "w": 0.05,
+     "h": 0.0125
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.799,
+    "types": [
+     "falsecopper",
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 4,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_pinhole_scratch_03_jpg.rf.a236908608956c8cedc7110e88e74d22.jpg",
+   "x0": 5040,
+   "y": 41,
+   "enter_frame": 268,
+   "center_frame": 337,
+   "exit_frame": 406,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.86328125,
+     "cy": 0.2515625,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.09765625,
+     "cy": 0.484375,
+     "w": 0.0125,
+     "h": 0.0125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.35234375,
+     "cy": 0.203125,
+     "w": 0.009375,
+     "h": 0.0140625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.50859375,
+     "cy": 0.86640625,
+     "w": 0.284375,
+     "h": 0.103125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.41484375,
+     "cy": 0.75234375,
+     "w": 0.2,
+     "h": 0.134375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.911,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 5,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_spurious_copper_05_jpg.rf.cc12af4be6f21687a8c54c7b43ebc84f.jpg",
+   "x0": 5840,
+   "y": 44,
+   "enter_frame": 325,
+   "center_frame": 394,
+   "exit_frame": 463,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.8734375,
+     "cy": 0.81640625,
+     "w": 0.0203125,
+     "h": 0.0515625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.48203125,
+     "cy": 0.5,
+     "w": 0.0125,
+     "h": 0.0390625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.3015625,
+     "cy": 0.6234375,
+     "w": 0.0171875,
+     "h": 0.040625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.53125,
+     "cy": 0.66328125,
+     "w": 0.040625,
+     "h": 0.0203125
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.58671875,
+     "cy": 0.81484375,
+     "w": 0.03125,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.809,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 6,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_scratch_11_jpg.rf.91b1b62ecf800a7274348754d4b28e13.jpg",
+   "x0": 6640,
+   "y": 40,
+   "enter_frame": 382,
+   "center_frame": 451,
+   "exit_frame": 520,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.2234375,
+     "cy": 0.27890625,
+     "w": 0.1203125,
+     "h": 0.228125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2671875,
+     "cy": 0.3453125,
+     "w": 0.065625,
+     "h": 0.1109375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.27421875,
+     "cy": 0.47265625,
+     "w": 0.128125,
+     "h": 0.2125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.84140625,
+     "cy": 0.5671875,
+     "w": 0.190625,
+     "h": 0.153125
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.926,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 7,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_short_13_jpg.rf.b2cba0a4827111861841f67447569d5b.jpg",
+   "x0": 7440,
+   "y": 34,
+   "enter_frame": 440,
+   "center_frame": 509,
+   "exit_frame": 578,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.11328125,
+     "cy": 0.30859375,
+     "w": 0.04375,
+     "h": 0.025
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.2328125,
+     "cy": 0.103125,
+     "w": 0.071875,
+     "h": 0.028125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.43046875,
+     "cy": 0.7921875,
+     "w": 0.034375,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.759,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 8,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_mouse-bite_spur_19_jpg.rf.922f1fc1076dc71a44938a8e4f70ea31.jpg",
+   "erased_labels": [
+    [
+     "mousebite",
+     0.32421875,
+     0.60546875,
+     0.03125,
+     0.01875
+    ],
+    [
+     "mousebite",
+     0.42421875,
+     0.26171875,
+     0.03125,
+     0.0171875
+    ],
+    [
+     "mousebite",
+     0.4359375,
+     0.8484375,
+     0.03125,
+     0.01875
+    ],
+    [
+     "spur",
+     0.51328125,
+     0.603125,
+     0.01875,
+     0.028125
+    ],
+    [
+     "spur",
+     0.36796875,
+     0.4109375,
+     0.0375,
+     0.00625
+    ],
+    [
+     "spur",
+     0.27421875,
+     0.2046875,
+     0.01875,
+     0.028125
+    ]
+   ],
+   "x0": 8240,
+   "y": 37,
+   "enter_frame": 497,
+   "center_frame": 566,
+   "exit_frame": 635,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.494,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 9,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/05_short_03_jpg.rf.5b5421bb5ab23d6d5ba074ead55b55be.jpg",
+   "x0": 9040,
+   "y": 35,
+   "enter_frame": 554,
+   "center_frame": 623,
+   "exit_frame": 692,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.91328125,
+     "cy": 0.8609375,
+     "w": 0.03125,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.9546875,
+     "cy": 0.79296875,
+     "w": 0.025,
+     "h": 0.0265625
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.6359375,
+     "cy": 0.54296875,
+     "w": 0.034375,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.825,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 10,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_spur_short_15_jpg.rf.ee16c84e6682990a6df921934e4cd02b.jpg",
+   "x0": 9840,
+   "y": 37,
+   "enter_frame": 611,
+   "center_frame": 680,
+   "exit_frame": 749,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.14296875,
+     "cy": 0.28359375,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.2453125,
+     "cy": 0.19453125,
+     "w": 0.01875,
+     "h": 0.028125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.7125,
+     "cy": 0.46484375,
+     "w": 0.009375,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.84375,
+     "cy": 0.36328125,
+     "w": 0.009375,
+     "h": 0.025
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.79921875,
+     "cy": 0.759375,
+     "w": 0.0125,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.82,
+    "types": [
+     "shortcircuit",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 11,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_mouse_bite_03_jpg.rf.75b2e5a73a8b392e680ee10fba8dce01.jpg",
+   "erased_labels": [
+    [
+     "mousebite",
+     0.384375,
+     0.3171875,
+     0.0203125,
+     0.0359375
+    ],
+    [
+     "mousebite",
+     0.25234375,
+     0.521875,
+     0.0203125,
+     0.04375
+    ],
+    [
+     "mousebite",
+     0.68515625,
+     0.30546875,
+     0.021875,
+     0.034375
+    ],
+    [
+     "mousebite",
+     0.884375,
+     0.321875,
+     0.0171875,
+     0.0453125
+    ],
+    [
+     "mousebite",
+     0.81015625,
+     0.56484375,
+     0.0203125,
+     0.0578125
+    ]
+   ],
+   "x0": 10640,
+   "y": 41,
+   "enter_frame": 668,
+   "center_frame": 737,
+   "exit_frame": 806,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 12,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/09_spurious_copper_04_jpg.rf.ad6ec6199bf6915c7793c722631091df.jpg",
+   "x0": 11440,
+   "y": 36,
+   "enter_frame": 725,
+   "center_frame": 794,
+   "exit_frame": 863,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.3765625,
+     "cy": 0.2125,
+     "w": 0.0203125,
+     "h": 0.0453125
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.93125,
+     "cy": 0.4421875,
+     "w": 0.03125,
+     "h": 0.0359375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.52421875,
+     "cy": 0.4640625,
+     "w": 0.053125,
+     "h": 0.025
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.83984375,
+     "cy": 0.20703125,
+     "w": 0.0359375,
+     "h": 0.021875
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.21171875,
+     "cy": 0.3734375,
+     "w": 0.021875,
+     "h": 0.0625
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.836,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 13,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_09_jpg.rf.7808a25c14d66aeef9fc37bc652085d3.jpg",
+   "x0": 12240,
+   "y": 35,
+   "enter_frame": 782,
+   "center_frame": 851,
+   "exit_frame": 920,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.61875,
+     "cy": 0.83515625,
+     "w": 0.025,
+     "h": 0.009375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.19140625,
+     "cy": 0.178125,
+     "w": 0.021875,
+     "h": 0.009375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.78515625,
+     "cy": 0.10703125,
+     "w": 0.0203125,
+     "h": 0.009375
+    }
+   ],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 14,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/05_open_circuit_10_jpg.rf.2cf9ff01ee518578a68251e87bbeae21.jpg",
+   "x0": 13040,
+   "y": 39,
+   "enter_frame": 840,
+   "center_frame": 909,
+   "exit_frame": 978,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.4828125,
+     "cy": 0.6828125,
+     "w": 0.01875,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.0671875,
+     "cy": 0.790625,
+     "w": 0.01875,
+     "h": 0.025
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.13203125,
+     "cy": 0.725,
+     "w": 0.01875,
+     "h": 0.0296875
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.807,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 15,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_mouse-bite_spur_19_jpg.rf.922f1fc1076dc71a44938a8e4f70ea31.jpg",
+   "x0": 13840,
+   "y": 43,
+   "enter_frame": 897,
+   "center_frame": 966,
+   "exit_frame": 1035,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.32421875,
+     "cy": 0.60546875,
+     "w": 0.03125,
+     "h": 0.01875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.42421875,
+     "cy": 0.26171875,
+     "w": 0.03125,
+     "h": 0.0171875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.4359375,
+     "cy": 0.8484375,
+     "w": 0.03125,
+     "h": 0.01875
+    },
+    {
+     "type": "spur",
+     "cx": 0.51328125,
+     "cy": 0.603125,
+     "w": 0.01875,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.36796875,
+     "cy": 0.4109375,
+     "w": 0.0375,
+     "h": 0.00625
+    },
+    {
+     "type": "spur",
+     "cx": 0.27421875,
+     "cy": 0.2046875,
+     "w": 0.01875,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 6,
+    "max_conf": 0.704,
+    "types": [
+     "mousebite",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 16,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_mouse_bite_02_jpg.rf.61eed03b635f29dcb521198e0bac566a.jpg",
+   "erased_labels": [
+    [
+     "mousebite",
+     0.74765625,
+     0.490625,
+     0.028125,
+     0.0140625
+    ],
+    [
+     "mousebite",
+     0.6109375,
+     0.33984375,
+     0.025,
+     0.0125
+    ],
+    [
+     "mousebite",
+     0.66328125,
+     0.7359375,
+     0.025,
+     0.0140625
+    ]
+   ],
+   "x0": 14640,
+   "y": 34,
+   "enter_frame": 954,
+   "center_frame": 1023,
+   "exit_frame": 1092,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 17,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_pinhole_08_jpg.rf.aae0d72413dceb8a62115d8f9188e95b.jpg",
+   "x0": 15440,
+   "y": 35,
+   "enter_frame": 1011,
+   "center_frame": 1080,
+   "exit_frame": 1149,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.31484375,
+     "cy": 0.27265625,
+     "w": 0.03125,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.2171875,
+     "cy": 0.39765625,
+     "w": 0.01875,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.77890625,
+     "cy": 0.42578125,
+     "w": 0.025,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.5609375,
+     "cy": 0.44921875,
+     "w": 0.034375,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.663,
+    "types": [
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 18,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_spur_09_jpg.rf.ce3dce67ae55cad56cb86f43f2416100.jpg",
+   "x0": 16240,
+   "y": 34,
+   "enter_frame": 1068,
+   "center_frame": 1137,
+   "exit_frame": 1206,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.290625,
+     "cy": 0.5109375,
+     "w": 0.0265625,
+     "h": 0.0203125
+    },
+    {
+     "type": "spur",
+     "cx": 0.16015625,
+     "cy": 0.515625,
+     "w": 0.0203125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.1359375,
+     "cy": 0.90390625,
+     "w": 0.025,
+     "h": 0.025
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.789,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 19,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_pinhole_scratch_03_jpg.rf.9be46eb0557b0180bc12260717de665a.jpg",
+   "x0": 17040,
+   "y": 43,
+   "enter_frame": 1125,
+   "center_frame": 1194,
+   "exit_frame": 1263,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.86328125,
+     "cy": 0.2515625,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.09765625,
+     "cy": 0.484375,
+     "w": 0.0125,
+     "h": 0.0125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.35234375,
+     "cy": 0.203125,
+     "w": 0.009375,
+     "h": 0.0140625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.50859375,
+     "cy": 0.86640625,
+     "w": 0.284375,
+     "h": 0.103125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.41484375,
+     "cy": 0.75234375,
+     "w": 0.2,
+     "h": 0.134375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.911,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 20,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_open_circuit_01_jpg.rf.d9a3455be444f29ab74d44fa2413194b.jpg",
+   "x0": 17840,
+   "y": 36,
+   "enter_frame": 1182,
+   "center_frame": 1251,
+   "exit_frame": 1320,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.671875,
+     "cy": 0.5265625,
+     "w": 0.0203125,
+     "h": 0.0125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.2296875,
+     "cy": 0.36796875,
+     "w": 0.0203125,
+     "h": 0.0140625
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.3484375,
+     "cy": 0.59140625,
+     "w": 0.0203125,
+     "h": 0.0140625
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.584375,
+     "cy": 0.34765625,
+     "w": 0.0203125,
+     "h": 0.0140625
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.4734375,
+     "cy": 0.48828125,
+     "w": 0.0140625,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.652,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 21,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_mouse_bite_02_jpg.rf.61eed03b635f29dcb521198e0bac566a.jpg",
+   "x0": 18640,
+   "y": 42,
+   "enter_frame": 1240,
+   "center_frame": 1309,
+   "exit_frame": 1378,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.74765625,
+     "cy": 0.490625,
+     "w": 0.028125,
+     "h": 0.0140625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.6109375,
+     "cy": 0.33984375,
+     "w": 0.025,
+     "h": 0.0125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.66328125,
+     "cy": 0.7359375,
+     "w": 0.025,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.392,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 22,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_missing_hole_09_jpg.rf.6dc1d48d669383f98748a6238ff91b90.jpg",
+   "erased_labels": [
+    [
+     "missinghole",
+     0.5796875,
+     0.2453125,
+     0.028125,
+     0.0390625
+    ],
+    [
+     "missinghole",
+     0.30546875,
+     0.55546875,
+     0.0265625,
+     0.0453125
+    ],
+    [
+     "missinghole",
+     0.4015625,
+     0.5578125,
+     0.0265625,
+     0.0453125
+    ],
+    [
+     "missinghole",
+     0.76171875,
+     0.77734375,
+     0.0296875,
+     0.0515625
+    ],
+    [
+     "missinghole",
+     0.49765625,
+     0.775,
+     0.0296875,
+     0.0484375
+    ]
+   ],
+   "x0": 19440,
+   "y": 35,
+   "enter_frame": 1297,
+   "center_frame": 1366,
+   "exit_frame": 1435,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.809,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 23,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/12_spurious_copper_08_jpg.rf.d0bfd4cc55631020112439f294c74aa8.jpg",
+   "erased_labels": [
+    [
+     "falsecopper",
+     0.89765625,
+     0.2875,
+     0.0171875,
+     0.0390625
+    ],
+    [
+     "falsecopper",
+     0.7328125,
+     0.58046875,
+     0.021875,
+     0.0359375
+    ],
+    [
+     "falsecopper",
+     0.93984375,
+     0.728125,
+     0.0125,
+     0.034375
+    ],
+    [
+     "falsecopper",
+     0.7015625,
+     0.90625,
+     0.0390625,
+     0.021875
+    ],
+    [
+     "falsecopper",
+     0.33046875,
+     0.47265625,
+     0.0328125,
+     0.0203125
+    ]
+   ],
+   "x0": 20240,
+   "y": 39,
+   "enter_frame": 1354,
+   "center_frame": 1423,
+   "exit_frame": 1492,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 24,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/05_open_circuit_10_jpg.rf.2cf9ff01ee518578a68251e87bbeae21.jpg",
+   "erased_labels": [
+    [
+     "opencircuit",
+     0.4828125,
+     0.6828125,
+     0.01875,
+     0.01875
+    ],
+    [
+     "opencircuit",
+     0.0671875,
+     0.790625,
+     0.01875,
+     0.025
+    ],
+    [
+     "opencircuit",
+     0.13203125,
+     0.725,
+     0.01875,
+     0.0296875
+    ]
+   ],
+   "x0": 21040,
+   "y": 43,
+   "enter_frame": 1411,
+   "center_frame": 1480,
+   "exit_frame": 1549,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 25,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/09_mouse-bite_short_07_jpg.rf.feac25bb94cf77e65b952a46a03ede86.jpg",
+   "erased_labels": [
+    [
+     "mousebite",
+     0.5828125,
+     0.21640625,
+     0.0203125,
+     0.034375
+    ],
+    [
+     "mousebite",
+     0.3921875,
+     0.259375,
+     0.0171875,
+     0.0359375
+    ],
+    [
+     "mousebite",
+     0.80546875,
+     0.38671875,
+     0.021875,
+     0.0390625
+    ],
+    [
+     "mousebite",
+     0.646875,
+     0.43125,
+     0.025,
+     0.025
+    ],
+    [
+     "mousebite",
+     0.0671875,
+     0.803125,
+     0.025,
+     0.0203125
+    ],
+    [
+     "shortcircuit",
+     0.7546875,
+     0.24765625,
+     0.0234375,
+     0.0390625
+    ],
+    [
+     "shortcircuit",
+     0.6984375,
+     0.3375,
+     0.0234375,
+     0.0234375
+    ],
+    [
+     "shortcircuit",
+     0.6984375,
+     0.52890625,
+     0.0265625,
+     0.0203125
+    ]
+   ],
+   "x0": 21840,
+   "y": 34,
+   "enter_frame": 1468,
+   "center_frame": 1537,
+   "exit_frame": 1606,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.766,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 26,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_mouse_bite_08_jpg.rf.7ac129032290b5698f31bcedf986ff0c.jpg",
+   "x0": 22640,
+   "y": 35,
+   "enter_frame": 1525,
+   "center_frame": 1594,
+   "exit_frame": 1663,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.615625,
+     "cy": 0.3109375,
+     "w": 0.01875,
+     "h": 0.0484375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.6234375,
+     "cy": 0.69609375,
+     "w": 0.034375,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.37890625,
+     "cy": 0.34375,
+     "w": 0.0265625,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.25625,
+     "cy": 0.44453125,
+     "w": 0.034375,
+     "h": 0.0265625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.0671875,
+     "cy": 0.2953125,
+     "w": 0.025,
+     "h": 0.053125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.811,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 27,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_mouse_bite_16_jpg.rf.33fe274ed264b443e818c9f8a303672f.jpg",
+   "x0": 23440,
+   "y": 37,
+   "enter_frame": 1582,
+   "center_frame": 1651,
+   "exit_frame": 1720,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.8453125,
+     "cy": 0.21015625,
+     "w": 0.0125,
+     "h": 0.021875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.734375,
+     "cy": 0.71640625,
+     "w": 0.0140625,
+     "h": 0.03125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.915625,
+     "cy": 0.2046875,
+     "w": 0.0078125,
+     "h": 0.025
+    }
+   ],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.476,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 28,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open-circuit_pinhole_07_jpg.rf.ad7d5bf22a7872b391a9a56c9917cd79.jpg",
+   "x0": 24240,
+   "y": 43,
+   "enter_frame": 1640,
+   "center_frame": 1709,
+   "exit_frame": 1778,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.271875,
+     "cy": 0.803125,
+     "w": 0.0140625,
+     "h": 0.025
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.10234375,
+     "cy": 0.3953125,
+     "w": 0.009375,
+     "h": 0.021875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.15234375,
+     "cy": 0.646875,
+     "w": 0.0125,
+     "h": 0.01875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.41953125,
+     "cy": 0.296875,
+     "w": 0.009375,
+     "h": 0.01875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.3078125,
+     "cy": 0.4046875,
+     "w": 0.009375,
+     "h": 0.01875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.30625,
+     "cy": 0.22265625,
+     "w": 0.009375,
+     "h": 0.01875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.2703125,
+     "cy": 0.146875,
+     "w": 0.009375,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 8,
+    "max_conf": 0.706,
+    "types": [
+     "opencircuit",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 29,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_spur_07_jpg.rf.b88a74c334b8c15bb03e117f63b29caf.jpg",
+   "x0": 25040,
+   "y": 40,
+   "enter_frame": 1697,
+   "center_frame": 1766,
+   "exit_frame": 1835,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.7359375,
+     "cy": 0.4703125,
+     "w": 0.0171875,
+     "h": 0.0453125
+    },
+    {
+     "type": "spur",
+     "cx": 0.5171875,
+     "cy": 0.18515625,
+     "w": 0.0359375,
+     "h": 0.021875
+    },
+    {
+     "type": "spur",
+     "cx": 0.35234375,
+     "cy": 0.225,
+     "w": 0.021875,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.44921875,
+     "cy": 0.7296875,
+     "w": 0.0140625,
+     "h": 0.0359375
+    },
+    {
+     "type": "spur",
+     "cx": 0.4796875,
+     "cy": 0.52421875,
+     "w": 0.021875,
+     "h": 0.0171875
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.817,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 30,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_short_10_jpg.rf.94bcdc5ccc74067e6912f44281fff421.jpg",
+   "x0": 25840,
+   "y": 36,
+   "enter_frame": 1754,
+   "center_frame": 1823,
+   "exit_frame": 1892,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.66953125,
+     "cy": 0.35703125,
+     "w": 0.028125,
+     "h": 0.0375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.47109375,
+     "cy": 0.5359375,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.8296875,
+     "cy": 0.61796875,
+     "w": 0.034375,
+     "h": 0.0484375
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.8,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 31,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_mouse_bite_03_jpg.rf.e825d470e464adb0ed6aba07fd655267.jpg",
+   "x0": 26640,
+   "y": 44,
+   "enter_frame": 1811,
+   "center_frame": 1880,
+   "exit_frame": 1949,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.66953125,
+     "cy": 0.18515625,
+     "w": 0.025,
+     "h": 0.0203125
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.7140625,
+     "cy": 0.3640625,
+     "w": 0.0171875,
+     "h": 0.0296875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.3859375,
+     "cy": 0.20546875,
+     "w": 0.0203125,
+     "h": 0.0265625
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.829,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 32,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_spur_09_jpg.rf.ce3dce67ae55cad56cb86f43f2416100.jpg",
+   "erased_labels": [
+    [
+     "spur",
+     0.290625,
+     0.5109375,
+     0.0265625,
+     0.0203125
+    ],
+    [
+     "spur",
+     0.16015625,
+     0.515625,
+     0.0203125,
+     0.034375
+    ],
+    [
+     "spur",
+     0.1359375,
+     0.90390625,
+     0.025,
+     0.025
+    ]
+   ],
+   "x0": 27440,
+   "y": 38,
+   "enter_frame": 1868,
+   "center_frame": 1937,
+   "exit_frame": 2006,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.764,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 33,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_open-circuit_pinhole_08_jpg.rf.0a8f9e114e4cc817eab855bbf3889e00.jpg",
+   "x0": 28240,
+   "y": 39,
+   "enter_frame": 1925,
+   "center_frame": 1994,
+   "exit_frame": 2063,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.42578125,
+     "cy": 0.70078125,
+     "w": 0.0203125,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.5375,
+     "cy": 0.8296875,
+     "w": 0.021875,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.37890625,
+     "cy": 0.421875,
+     "w": 0.025,
+     "h": 0.0203125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.5421875,
+     "cy": 0.77421875,
+     "w": 0.0234375,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.67578125,
+     "cy": 0.73671875,
+     "w": 0.0140625,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.79296875,
+     "cy": 0.75703125,
+     "w": 0.0203125,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.85,
+     "cy": 0.88203125,
+     "w": 0.0203125,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 9,
+    "max_conf": 0.732,
+    "types": [
+     "opencircuit",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 34,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/05_missing_hole_10_jpg.rf.3cb820bf4157865203413c33f09b78b1.jpg",
+   "x0": 29040,
+   "y": 43,
+   "enter_frame": 1982,
+   "center_frame": 2051,
+   "exit_frame": 2120,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.3296875,
+     "cy": 0.240625,
+     "w": 0.0296875,
+     "h": 0.025
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.32578125,
+     "cy": 0.4171875,
+     "w": 0.0234375,
+     "h": 0.025
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.35234375,
+     "cy": 0.55390625,
+     "w": 0.0296875,
+     "h": 0.0265625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.884375,
+     "cy": 0.84140625,
+     "w": 0.0296875,
+     "h": 0.0296875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.6984375,
+     "cy": 0.9015625,
+     "w": 0.028125,
+     "h": 0.0296875
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.809,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 35,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_open-circuit_pinhole_08_jpg.rf.90dfd6ccb957e7959450052a62e14575.jpg",
+   "x0": 29840,
+   "y": 39,
+   "enter_frame": 2040,
+   "center_frame": 2109,
+   "exit_frame": 2178,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.57421875,
+     "cy": 0.29921875,
+     "w": 0.01875,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.4625,
+     "cy": 0.1703125,
+     "w": 0.021875,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.62109375,
+     "cy": 0.578125,
+     "w": 0.025,
+     "h": 0.01875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4578125,
+     "cy": 0.22578125,
+     "w": 0.025,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.32421875,
+     "cy": 0.26328125,
+     "w": 0.0140625,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.20703125,
+     "cy": 0.24296875,
+     "w": 0.01875,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.15,
+     "cy": 0.11796875,
+     "w": 0.01875,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 8,
+    "max_conf": 0.693,
+    "types": [
+     "opencircuit",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 36,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_pinhole_scratch_02_jpg.rf.64cff7f975ee943c8f7c81b72d1e5183.jpg",
+   "x0": 30640,
+   "y": 41,
+   "enter_frame": 2097,
+   "center_frame": 2166,
+   "exit_frame": 2235,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.353125,
+     "cy": 0.446875,
+     "w": 0.0171875,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.36796875,
+     "cy": 0.2546875,
+     "w": 0.0140625,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4328125,
+     "cy": 0.2171875,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.21875,
+     "cy": 0.47109375,
+     "w": 0.209375,
+     "h": 0.3
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2203125,
+     "cy": 0.22734375,
+     "w": 0.0578125,
+     "h": 0.24375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.929,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 37,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_spur_short_18_jpg.rf.6037d824f79454f470c52c505d9a47c6.jpg",
+   "x0": 31440,
+   "y": 35,
+   "enter_frame": 2154,
+   "center_frame": 2223,
+   "exit_frame": 2292,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.83046875,
+     "cy": 0.29296875,
+     "w": 0.0140625,
+     "h": 0.0296875
+    },
+    {
+     "type": "spur",
+     "cx": 0.8859375,
+     "cy": 0.20703125,
+     "w": 0.0125,
+     "h": 0.0203125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.43125,
+     "cy": 0.83046875,
+     "w": 0.009375,
+     "h": 0.0171875
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.27734375,
+     "cy": 0.7765625,
+     "w": 0.0125,
+     "h": 0.0234375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.171875,
+     "cy": 0.609375,
+     "w": 0.0125,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.74,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 38,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_spur_11_jpg.rf.f5286de706d8535d1a3fc5e4ecf7ef6a.jpg",
+   "x0": 32240,
+   "y": 35,
+   "enter_frame": 2211,
+   "center_frame": 2280,
+   "exit_frame": 2349,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.70703125,
+     "cy": 0.7515625,
+     "w": 0.0203125,
+     "h": 0.0390625
+    },
+    {
+     "type": "spur",
+     "cx": 0.31953125,
+     "cy": 0.86640625,
+     "w": 0.034375,
+     "h": 0.0296875
+    },
+    {
+     "type": "spur",
+     "cx": 0.86328125,
+     "cy": 0.696875,
+     "w": 0.0203125,
+     "h": 0.0390625
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.823,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 39,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_missing-hole_short_06_jpg.rf.aa68a002d8d5c654a42b28aea8c8b7d5.jpg",
+   "erased_labels": [
+    [
+     "shortcircuit",
+     0.9078125,
+     0.6546875,
+     0.0296875,
+     0.0203125
+    ],
+    [
+     "shortcircuit",
+     0.8140625,
+     0.24375,
+     0.0203125,
+     0.0171875
+    ],
+    [
+     "missinghole",
+     0.4015625,
+     0.09765625,
+     0.0203125,
+     0.0125
+    ],
+    [
+     "missinghole",
+     0.24375,
+     0.28828125,
+     0.0171875,
+     0.0125
+    ],
+    [
+     "missinghole",
+     0.584375,
+     0.5734375,
+     0.0171875,
+     0.0125
+    ],
+    [
+     "missinghole",
+     0.60703125,
+     0.78125,
+     0.0203125,
+     0.0140625
+    ],
+    [
+     "missinghole",
+     0.85078125,
+     0.38203125,
+     0.0203125,
+     0.0125
+    ]
+   ],
+   "x0": 33040,
+   "y": 41,
+   "enter_frame": 2268,
+   "center_frame": 2337,
+   "exit_frame": 2406,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.526,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 40,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_open_circuit_03_jpg.rf.a73dfe5956d3efd8d1403fd5d50491ee.jpg",
+   "x0": 33840,
+   "y": 41,
+   "enter_frame": 2325,
+   "center_frame": 2394,
+   "exit_frame": 2463,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.35703125,
+     "cy": 0.3171875,
+     "w": 0.025,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.5015625,
+     "cy": 0.40234375,
+     "w": 0.021875,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.19140625,
+     "cy": 0.625,
+     "w": 0.034375,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.755,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 41,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_mouse_bite_03_jpg.rf.e825d470e464adb0ed6aba07fd655267.jpg",
+   "erased_labels": [
+    [
+     "mousebite",
+     0.66953125,
+     0.18515625,
+     0.025,
+     0.0203125
+    ],
+    [
+     "mousebite",
+     0.7140625,
+     0.3640625,
+     0.0171875,
+     0.0296875
+    ],
+    [
+     "mousebite",
+     0.3859375,
+     0.20546875,
+     0.0203125,
+     0.0265625
+    ]
+   ],
+   "x0": 34640,
+   "y": 41,
+   "enter_frame": 2382,
+   "center_frame": 2451,
+   "exit_frame": 2520,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.806,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 42,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_spur_short_15_jpg.rf.ee16c84e6682990a6df921934e4cd02b.jpg",
+   "erased_labels": [
+    [
+     "spur",
+     0.14296875,
+     0.28359375,
+     0.025,
+     0.028125
+    ],
+    [
+     "spur",
+     0.2453125,
+     0.19453125,
+     0.01875,
+     0.028125
+    ],
+    [
+     "shortcircuit",
+     0.7125,
+     0.46484375,
+     0.009375,
+     0.034375
+    ],
+    [
+     "shortcircuit",
+     0.84375,
+     0.36328125,
+     0.009375,
+     0.025
+    ],
+    [
+     "shortcircuit",
+     0.79921875,
+     0.759375,
+     0.0125,
+     0.028125
+    ]
+   ],
+   "x0": 35440,
+   "y": 41,
+   "enter_frame": 2440,
+   "center_frame": 2509,
+   "exit_frame": 2578,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 43,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_missing-hole_open-circuit_01_jpg.rf.78f74bfaa90dd3ef63e41d9665f9e8c5.jpg",
+   "erased_labels": [
+    [
+     "opencircuit",
+     0.55078125,
+     0.63359375,
+     0.0203125,
+     0.0234375
+    ],
+    [
+     "opencircuit",
+     0.446875,
+     0.4546875,
+     0.0125,
+     0.0296875
+    ],
+    [
+     "missinghole",
+     0.53359375,
+     0.40390625,
+     0.0140625,
+     0.0203125
+    ],
+    [
+     "missinghole",
+     0.290625,
+     0.31953125,
+     0.0140625,
+     0.0203125
+    ],
+    [
+     "missinghole",
+     0.2984375,
+     0.65625,
+     0.0140625,
+     0.0171875
+    ]
+   ],
+   "x0": 36240,
+   "y": 38,
+   "enter_frame": 2497,
+   "center_frame": 2566,
+   "exit_frame": 2635,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.538,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 44,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_open_circuit_01_jpg.rf.c6bdb7d639afa67e5dd17b6b541de262.jpg",
+   "x0": 37040,
+   "y": 35,
+   "enter_frame": 2554,
+   "center_frame": 2623,
+   "exit_frame": 2692,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.4734375,
+     "cy": 0.671875,
+     "w": 0.0125,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.63203125,
+     "cy": 0.2296875,
+     "w": 0.0140625,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.40859375,
+     "cy": 0.3484375,
+     "w": 0.0140625,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.65234375,
+     "cy": 0.584375,
+     "w": 0.0140625,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.51171875,
+     "cy": 0.4734375,
+     "w": 0.0140625,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.71,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 45,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_mouse_bite_12_jpg.rf.a2e2fb325c19c56d0415ee9c83038b08.jpg",
+   "x0": 37840,
+   "y": 36,
+   "enter_frame": 2611,
+   "center_frame": 2680,
+   "exit_frame": 2749,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.76796875,
+     "cy": 0.1921875,
+     "w": 0.03125,
+     "h": 0.0296875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.1703125,
+     "cy": 0.2171875,
+     "w": 0.0328125,
+     "h": 0.0296875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.1828125,
+     "cy": 0.4234375,
+     "w": 0.03125,
+     "h": 0.025
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.844,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 46,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_11_jpg.rf.cb3a54741d82f6d2f340260a35c6385f.jpg",
+   "erased_labels": [
+    [
+     "opencircuit",
+     0.86796875,
+     0.6609375,
+     0.009375,
+     0.01875
+    ],
+    [
+     "opencircuit",
+     0.55859375,
+     0.12265625,
+     0.009375,
+     0.01875
+    ],
+    [
+     "opencircuit",
+     0.84765625,
+     0.62734375,
+     0.0140625,
+     0.021875
+    ]
+   ],
+   "x0": 38640,
+   "y": 35,
+   "enter_frame": 2668,
+   "center_frame": 2737,
+   "exit_frame": 2806,
+   "labels": [],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.328,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 47,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_pinhole_09_jpg.rf.dafb325987e4bc88211f4315e84e07ba.jpg",
+   "x0": 39440,
+   "y": 45,
+   "enter_frame": 2725,
+   "center_frame": 2794,
+   "exit_frame": 2863,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.66328125,
+     "cy": 0.18125,
+     "w": 0.0125,
+     "h": 0.0171875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4171875,
+     "cy": 0.3265625,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4734375,
+     "cy": 0.646875,
+     "w": 0.0125,
+     "h": 0.0125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.21875,
+     "cy": 0.09765625,
+     "w": 0.0125,
+     "h": 0.0171875
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.75,
+    "types": [
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 48,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/09_missing_hole_10_jpg.rf.b1e6f44704f70eeff2e810cff63bcd07.jpg",
+   "x0": 40240,
+   "y": 39,
+   "enter_frame": 2782,
+   "center_frame": 2851,
+   "exit_frame": 2920,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.44140625,
+     "cy": 0.3125,
+     "w": 0.025,
+     "h": 0.0296875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.56875,
+     "cy": 0.18046875,
+     "w": 0.025,
+     "h": 0.0328125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.49140625,
+     "cy": 0.50625,
+     "w": 0.021875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.734375,
+     "cy": 0.7328125,
+     "w": 0.025,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.21484375,
+     "cy": 0.31015625,
+     "w": 0.021875,
+     "h": 0.0328125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.841,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 49,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_spurious-copper_pinhole_scratch_05_jpg.rf.dd908bfd9f3fb795454394f572444a07.jpg",
+   "x0": 41040,
+   "y": 45,
+   "enter_frame": 2840,
+   "center_frame": 2909,
+   "exit_frame": 2978,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.19375,
+     "cy": 0.6296875,
+     "w": 0.0328125,
+     "h": 0.01875
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.2484375,
+     "cy": 0.81640625,
+     "w": 0.0125,
+     "h": 0.0453125
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.14453125,
+     "cy": 0.5875,
+     "w": 0.0203125,
+     "h": 0.0296875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.29453125,
+     "cy": 0.20703125,
+     "w": 0.009375,
+     "h": 0.028125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.2203125,
+     "cy": 0.47578125,
+     "w": 0.009375,
+     "h": 0.01875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.3375,
+     "cy": 0.4109375,
+     "w": 0.0125,
+     "h": 0.025
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.17890625,
+     "cy": 0.78515625,
+     "w": 0.0140625,
+     "h": 0.025
+    },
+    {
+     "type": "scratch",
+     "cx": 0.290625,
+     "cy": 0.2921875,
+     "w": 0.1828125,
+     "h": 0.1921875
+    },
+    {
+     "type": "scratch",
+     "cx": 0.3921875,
+     "cy": 0.578125,
+     "w": 0.0375,
+     "h": 0.26875
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4890625,
+     "cy": 0.7390625,
+     "w": 0.10625,
+     "h": 0.284375
+    }
+   ],
+   "model_check": {
+    "n_det": 11,
+    "max_conf": 0.804,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 50,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_spurious_copper_05_jpg.rf.cc12af4be6f21687a8c54c7b43ebc84f.jpg",
+   "erased_labels": [
+    [
+     "falsecopper",
+     0.8734375,
+     0.81640625,
+     0.0203125,
+     0.0515625
+    ],
+    [
+     "falsecopper",
+     0.48203125,
+     0.5,
+     0.0125,
+     0.0390625
+    ],
+    [
+     "falsecopper",
+     0.3015625,
+     0.6234375,
+     0.0171875,
+     0.040625
+    ],
+    [
+     "falsecopper",
+     0.53125,
+     0.66328125,
+     0.040625,
+     0.0203125
+    ],
+    [
+     "falsecopper",
+     0.58671875,
+     0.81484375,
+     0.03125,
+     0.021875
+    ]
+   ],
+   "x0": 41840,
+   "y": 38,
+   "enter_frame": 2897,
+   "center_frame": 2966,
+   "exit_frame": 3035,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.485,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 51,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_short_13_jpg.rf.0663d5bcb3262ed5a8a1766b6247cf8c.jpg",
+   "x0": 42640,
+   "y": 41,
+   "enter_frame": 2954,
+   "center_frame": 3023,
+   "exit_frame": 3092,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.88671875,
+     "cy": 0.30859375,
+     "w": 0.04375,
+     "h": 0.025
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.7671875,
+     "cy": 0.103125,
+     "w": 0.071875,
+     "h": 0.028125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.56953125,
+     "cy": 0.7921875,
+     "w": 0.034375,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.718,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 52,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open-circuit_pinhole_07_jpg.rf.206154baccd6932ca5e522b6ee1b0d5d.jpg",
+   "x0": 43440,
+   "y": 45,
+   "enter_frame": 3011,
+   "center_frame": 3080,
+   "exit_frame": 3149,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.803125,
+     "cy": 0.728125,
+     "w": 0.025,
+     "h": 0.0140625
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.3953125,
+     "cy": 0.89765625,
+     "w": 0.021875,
+     "h": 0.009375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.646875,
+     "cy": 0.84765625,
+     "w": 0.01875,
+     "h": 0.0125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.296875,
+     "cy": 0.58046875,
+     "w": 0.01875,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4046875,
+     "cy": 0.6921875,
+     "w": 0.01875,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.22265625,
+     "cy": 0.69375,
+     "w": 0.01875,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.146875,
+     "cy": 0.7296875,
+     "w": 0.021875,
+     "h": 0.009375
+    }
+   ],
+   "model_check": {
+    "n_det": 6,
+    "max_conf": 0.602,
+    "types": [
+     "opencircuit",
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 53,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_short_12_jpg.rf.0751544933560468cb625171100243fd.jpg",
+   "x0": 44240,
+   "y": 36,
+   "enter_frame": 3068,
+   "center_frame": 3137,
+   "exit_frame": 3206,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.14453125,
+     "cy": 0.49609375,
+     "w": 0.034375,
+     "h": 0.0390625
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.17890625,
+     "cy": 0.3265625,
+     "w": 0.034375,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.38671875,
+     "cy": 0.22109375,
+     "w": 0.0359375,
+     "h": 0.0484375
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.811,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 54,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_short_04_jpg.rf.b12b3e6e8259eb8054aa252618591ea3.jpg",
+   "x0": 45040,
+   "y": 42,
+   "enter_frame": 3125,
+   "center_frame": 3194,
+   "exit_frame": 3263,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.39765625,
+     "cy": 0.6671875,
+     "w": 0.021875,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.49375,
+     "cy": 0.66953125,
+     "w": 0.0265625,
+     "h": 0.0375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.62734375,
+     "cy": 0.52421875,
+     "w": 0.028125,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.515625,
+     "cy": 0.56875,
+     "w": 0.0265625,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.7765625,
+     "cy": 0.66953125,
+     "w": 0.028125,
+     "h": 0.0484375
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.813,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 55,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_short_03_jpg.rf.f9afd904687cc900a13bc20c7b3e17ad.jpg",
+   "x0": 45840,
+   "y": 34,
+   "enter_frame": 3182,
+   "center_frame": 3251,
+   "exit_frame": 3320,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.4859375,
+     "cy": 0.3265625,
+     "w": 0.03125,
+     "h": 0.0484375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.36796875,
+     "cy": 0.35546875,
+     "w": 0.0296875,
+     "h": 0.0484375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.25625,
+     "cy": 0.4578125,
+     "w": 0.03125,
+     "h": 0.0578125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.4984375,
+     "cy": 0.43046875,
+     "w": 0.0390625,
+     "h": 0.04375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.5875,
+     "cy": 0.47578125,
+     "w": 0.025,
+     "h": 0.0359375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.832,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 56,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_11_jpg.rf.cb3a54741d82f6d2f340260a35c6385f.jpg",
+   "x0": 46640,
+   "y": 37,
+   "enter_frame": 3240,
+   "center_frame": 3309,
+   "exit_frame": 3378,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.86796875,
+     "cy": 0.6609375,
+     "w": 0.009375,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.55859375,
+     "cy": 0.12265625,
+     "w": 0.009375,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.84765625,
+     "cy": 0.62734375,
+     "w": 0.0140625,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.571,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 57,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/09_mouse-bite_short_07_jpg.rf.feac25bb94cf77e65b952a46a03ede86.jpg",
+   "x0": 47440,
+   "y": 42,
+   "enter_frame": 3297,
+   "center_frame": 3366,
+   "exit_frame": 3435,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.5828125,
+     "cy": 0.21640625,
+     "w": 0.0203125,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.3921875,
+     "cy": 0.259375,
+     "w": 0.0171875,
+     "h": 0.0359375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.80546875,
+     "cy": 0.38671875,
+     "w": 0.021875,
+     "h": 0.0390625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.646875,
+     "cy": 0.43125,
+     "w": 0.025,
+     "h": 0.025
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.0671875,
+     "cy": 0.803125,
+     "w": 0.025,
+     "h": 0.0203125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.7546875,
+     "cy": 0.24765625,
+     "w": 0.0234375,
+     "h": 0.0390625
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.6984375,
+     "cy": 0.3375,
+     "w": 0.0234375,
+     "h": 0.0234375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.6984375,
+     "cy": 0.52890625,
+     "w": 0.0265625,
+     "h": 0.0203125
+    }
+   ],
+   "model_check": {
+    "n_det": 8,
+    "max_conf": 0.81,
+    "types": [
+     "mousebite",
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 58,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_pinhole_04_jpg.rf.66b4f2e2526be2ad42dec2030d61203e.jpg",
+   "x0": 48240,
+   "y": 39,
+   "enter_frame": 3354,
+   "center_frame": 3423,
+   "exit_frame": 3492,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.6078125,
+     "cy": 0.165625,
+     "w": 0.0140625,
+     "h": 0.021875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.72109375,
+     "cy": 0.54296875,
+     "w": 0.0140625,
+     "h": 0.025
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.146875,
+     "cy": 0.5734375,
+     "w": 0.021875,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.789,
+    "types": [
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 59,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_mouse_bite_10_jpg.rf.49aa9a6b2daec0ed5ff2ae423eb02672.jpg",
+   "x0": 49040,
+   "y": 36,
+   "enter_frame": 3411,
+   "center_frame": 3480,
+   "exit_frame": 3549,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.5640625,
+     "cy": 0.58515625,
+     "w": 0.0125,
+     "h": 0.021875
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.15625,
+     "cy": 0.72109375,
+     "w": 0.01875,
+     "h": 0.0265625
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.55,
+    "types": [
+     "mousebite",
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 60,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_missing_hole_19_jpg.rf.9153ad101dde9b1ba6562b33a9f82bba.jpg",
+   "x0": 49840,
+   "y": 45,
+   "enter_frame": 3468,
+   "center_frame": 3537,
+   "exit_frame": 3606,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.43046875,
+     "cy": 0.6359375,
+     "w": 0.0171875,
+     "h": 0.0265625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.5046875,
+     "cy": 0.68125,
+     "w": 0.01875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.70078125,
+     "cy": 0.6578125,
+     "w": 0.021875,
+     "h": 0.025
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.782,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 61,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_missing-hole_short_06_jpg.rf.a8067e78b1ff04bd20f692e1fb5c63f8.jpg",
+   "x0": 50640,
+   "y": 42,
+   "enter_frame": 3525,
+   "center_frame": 3594,
+   "exit_frame": 3663,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.3453125,
+     "cy": 0.0921875,
+     "w": 0.01875,
+     "h": 0.028125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.75625,
+     "cy": 0.1859375,
+     "w": 0.0171875,
+     "h": 0.01875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.90234375,
+     "cy": 0.5984375,
+     "w": 0.0125,
+     "h": 0.01875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.71171875,
+     "cy": 0.75625,
+     "w": 0.0125,
+     "h": 0.0171875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.4265625,
+     "cy": 0.415625,
+     "w": 0.0125,
+     "h": 0.0171875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.21875,
+     "cy": 0.39296875,
+     "w": 0.0140625,
+     "h": 0.01875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.61796875,
+     "cy": 0.14921875,
+     "w": 0.0125,
+     "h": 0.01875
+    }
+   ],
+   "model_check": {
+    "n_det": 8,
+    "max_conf": 0.781,
+    "types": [
+     "missinghole",
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 62,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_missing-hole_open-circuit_04_jpg.rf.25f8883c1afaa92f1832fadc259a3f2f.jpg",
+   "x0": 51440,
+   "y": 34,
+   "enter_frame": 3582,
+   "center_frame": 3651,
+   "exit_frame": 3720,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.15859375,
+     "cy": 0.13203125,
+     "w": 0.0125,
+     "h": 0.028125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.11328125,
+     "cy": 0.38671875,
+     "w": 0.0171875,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.671875,
+     "cy": 0.55859375,
+     "w": 0.0140625,
+     "h": 0.025
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.45546875,
+     "cy": 0.5609375,
+     "w": 0.0140625,
+     "h": 0.028125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.2859375,
+     "cy": 0.2921875,
+     "w": 0.0140625,
+     "h": 0.025
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.06484375,
+     "cy": 0.2046875,
+     "w": 0.0140625,
+     "h": 0.025
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.06640625,
+     "cy": 0.42578125,
+     "w": 0.0125,
+     "h": 0.0265625
+    }
+   ],
+   "model_check": {
+    "n_det": 8,
+    "max_conf": 0.82,
+    "types": [
+     "missinghole",
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 63,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_pinhole_scratch_02_jpg.rf.7ba023dbe75923110b164327e09ab3fb.jpg",
+   "x0": 52240,
+   "y": 46,
+   "enter_frame": 3640,
+   "center_frame": 3709,
+   "exit_frame": 3778,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.353125,
+     "cy": 0.553125,
+     "w": 0.0171875,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.36796875,
+     "cy": 0.7453125,
+     "w": 0.0140625,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4328125,
+     "cy": 0.7828125,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.21875,
+     "cy": 0.52890625,
+     "w": 0.209375,
+     "h": 0.3015625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2203125,
+     "cy": 0.77265625,
+     "w": 0.0578125,
+     "h": 0.2421875
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.93,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 64,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_open_circuit_01_jpg.rf.c6bdb7d639afa67e5dd17b6b541de262.jpg",
+   "erased_labels": [
+    [
+     "opencircuit",
+     0.4734375,
+     0.671875,
+     0.0125,
+     0.0203125
+    ],
+    [
+     "opencircuit",
+     0.63203125,
+     0.2296875,
+     0.0140625,
+     0.0203125
+    ],
+    [
+     "opencircuit",
+     0.40859375,
+     0.3484375,
+     0.0140625,
+     0.0203125
+    ],
+    [
+     "opencircuit",
+     0.65234375,
+     0.584375,
+     0.0140625,
+     0.0203125
+    ],
+    [
+     "opencircuit",
+     0.51171875,
+     0.4734375,
+     0.0140625,
+     0.0140625
+    ]
+   ],
+   "x0": 53040,
+   "y": 42,
+   "enter_frame": 3697,
+   "center_frame": 3766,
+   "exit_frame": 3835,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 65,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_missing-hole_open-circuit_04_jpg.rf.f5ab3cadd33ae01c5623858a4532ffed.jpg",
+   "x0": 53840,
+   "y": 38,
+   "enter_frame": 3754,
+   "center_frame": 3823,
+   "exit_frame": 3892,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.86796875,
+     "cy": 0.15859375,
+     "w": 0.028125,
+     "h": 0.0125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.61328125,
+     "cy": 0.11328125,
+     "w": 0.028125,
+     "h": 0.0171875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.44140625,
+     "cy": 0.671875,
+     "w": 0.025,
+     "h": 0.0140625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.4390625,
+     "cy": 0.45546875,
+     "w": 0.028125,
+     "h": 0.0140625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.7078125,
+     "cy": 0.2859375,
+     "w": 0.025,
+     "h": 0.0140625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.7953125,
+     "cy": 0.06484375,
+     "w": 0.025,
+     "h": 0.0140625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.57421875,
+     "cy": 0.06640625,
+     "w": 0.0265625,
+     "h": 0.0125
+    }
+   ],
+   "model_check": {
+    "n_det": 8,
+    "max_conf": 0.713,
+    "types": [
+     "missinghole",
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 66,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/05_open_circuit_10_jpg.rf.4a259cec1d9a652b38ef14ac7e683ac0.jpg",
+   "x0": 54640,
+   "y": 44,
+   "enter_frame": 3811,
+   "center_frame": 3880,
+   "exit_frame": 3949,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.4828125,
+     "cy": 0.3171875,
+     "w": 0.01875,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.0671875,
+     "cy": 0.209375,
+     "w": 0.01875,
+     "h": 0.025
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.13203125,
+     "cy": 0.275,
+     "w": 0.01875,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.821,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 67,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_11_jpg.rf.194bc110094dbe29a0ba47740fa3b114.jpg",
+   "x0": 55440,
+   "y": 35,
+   "enter_frame": 3868,
+   "center_frame": 3937,
+   "exit_frame": 4006,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.6609375,
+     "cy": 0.13203125,
+     "w": 0.0203125,
+     "h": 0.009375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.12265625,
+     "cy": 0.44140625,
+     "w": 0.0203125,
+     "h": 0.009375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.62734375,
+     "cy": 0.15234375,
+     "w": 0.021875,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.663,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 68,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/10_scratch_04_jpg.rf.977ec187795fee342bcc8dc3a2af8eeb.jpg",
+   "x0": 56240,
+   "y": 45,
+   "enter_frame": 3925,
+   "center_frame": 3994,
+   "exit_frame": 4063,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.196875,
+     "cy": 0.8375,
+     "w": 0.115625,
+     "h": 0.0453125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5140625,
+     "cy": 0.6390625,
+     "w": 0.090625,
+     "h": 0.2125
+    }
+   ],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.891,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 69,
+   "kind": "defect",
+   "case": "mousebite",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_mouse_bite_07_jpg.rf.f02d389d3472245b9452e0abf45884ec.jpg",
+   "x0": 57040,
+   "y": 38,
+   "enter_frame": 3982,
+   "center_frame": 4051,
+   "exit_frame": 4120,
+   "labels": [
+    {
+     "type": "mousebite",
+     "cx": 0.5328125,
+     "cy": 0.6765625,
+     "w": 0.028125,
+     "h": 0.0265625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.4515625,
+     "cy": 0.52265625,
+     "w": 0.025,
+     "h": 0.034375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.3265625,
+     "cy": 0.66484375,
+     "w": 0.025,
+     "h": 0.0375
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.55625,
+     "cy": 0.53515625,
+     "w": 0.0359375,
+     "h": 0.0265625
+    },
+    {
+     "type": "mousebite",
+     "cx": 0.8328125,
+     "cy": 0.54296875,
+     "w": 0.03125,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.78,
+    "types": [
+     "mousebite"
+    ]
+   }
+  },
+  {
+   "index": 70,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_spur_11_jpg.rf.dfa1453280dfea8245c31fa565819a6c.jpg",
+   "x0": 57840,
+   "y": 42,
+   "enter_frame": 4040,
+   "center_frame": 4109,
+   "exit_frame": 4178,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.7515625,
+     "cy": 0.70703125,
+     "w": 0.0375,
+     "h": 0.01875
+    },
+    {
+     "type": "spur",
+     "cx": 0.86640625,
+     "cy": 0.31953125,
+     "w": 0.028125,
+     "h": 0.034375
+    },
+    {
+     "type": "spur",
+     "cx": 0.696875,
+     "cy": 0.86328125,
+     "w": 0.0375,
+     "h": 0.0203125
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.742,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 71,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_20_jpg.rf.efb5897847371118e60c00049d673fda.jpg",
+   "x0": 58640,
+   "y": 39,
+   "enter_frame": 4097,
+   "center_frame": 4166,
+   "exit_frame": 4235,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.71171875,
+     "cy": 0.740625,
+     "w": 0.0125,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.8296875,
+     "cy": 0.89921875,
+     "w": 0.0125,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.66015625,
+     "cy": 0.7921875,
+     "w": 0.009375,
+     "h": 0.0265625
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.719,
+    "types": [
+     "mousebite",
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 72,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_11_jpg.rf.3a2380c9f90b9b39098261a07e82d50a.jpg",
+   "x0": 59440,
+   "y": 36,
+   "enter_frame": 4154,
+   "center_frame": 4223,
+   "exit_frame": 4292,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.86796875,
+     "cy": 0.3390625,
+     "w": 0.009375,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.55859375,
+     "cy": 0.87734375,
+     "w": 0.009375,
+     "h": 0.0203125
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.84765625,
+     "cy": 0.37265625,
+     "w": 0.0140625,
+     "h": 0.021875
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.679,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 73,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_missing_hole_09_jpg.rf.6dc1d48d669383f98748a6238ff91b90.jpg",
+   "x0": 60240,
+   "y": 39,
+   "enter_frame": 4211,
+   "center_frame": 4280,
+   "exit_frame": 4349,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.5796875,
+     "cy": 0.2453125,
+     "w": 0.028125,
+     "h": 0.0390625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.30546875,
+     "cy": 0.55546875,
+     "w": 0.0265625,
+     "h": 0.0453125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.4015625,
+     "cy": 0.5578125,
+     "w": 0.0265625,
+     "h": 0.0453125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.76171875,
+     "cy": 0.77734375,
+     "w": 0.0296875,
+     "h": 0.0515625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.49765625,
+     "cy": 0.775,
+     "w": 0.0296875,
+     "h": 0.0484375
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.851,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 74,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/12_spurious_copper_08_jpg.rf.d0bfd4cc55631020112439f294c74aa8.jpg",
+   "x0": 61040,
+   "y": 46,
+   "enter_frame": 4268,
+   "center_frame": 4337,
+   "exit_frame": 4406,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.89765625,
+     "cy": 0.2875,
+     "w": 0.0171875,
+     "h": 0.0390625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.7328125,
+     "cy": 0.58046875,
+     "w": 0.021875,
+     "h": 0.0359375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.93984375,
+     "cy": 0.728125,
+     "w": 0.0125,
+     "h": 0.034375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.7015625,
+     "cy": 0.90625,
+     "w": 0.0390625,
+     "h": 0.021875
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.33046875,
+     "cy": 0.47265625,
+     "w": 0.0328125,
+     "h": 0.0203125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.822,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 75,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_pinhole_07_jpg.rf.d7d5e219851ba34a42076f2dc56d784c.jpg",
+   "x0": 61840,
+   "y": 37,
+   "enter_frame": 4325,
+   "center_frame": 4394,
+   "exit_frame": 4463,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.49609375,
+     "cy": 0.10546875,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.2609375,
+     "cy": 0.4,
+     "w": 0.0125,
+     "h": 0.0328125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.60234375,
+     "cy": 0.2140625,
+     "w": 0.0140625,
+     "h": 0.0171875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.8375,
+     "cy": 0.384375,
+     "w": 0.0140625,
+     "h": 0.0234375
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.733,
+    "types": [
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 76,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_missing_hole_05_jpg.rf.370ebe37bcc9d95e3c596e3f9f177270.jpg",
+   "x0": 62640,
+   "y": 42,
+   "enter_frame": 4382,
+   "center_frame": 4451,
+   "exit_frame": 4520,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.45703125,
+     "cy": 0.32578125,
+     "w": 0.025,
+     "h": 0.0296875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.290625,
+     "cy": 0.509375,
+     "w": 0.0203125,
+     "h": 0.021875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.43125,
+     "cy": 0.509375,
+     "w": 0.0203125,
+     "h": 0.025
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.7828125,
+     "cy": 0.56640625,
+     "w": 0.021875,
+     "h": 0.025
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.59375,
+     "cy": 0.796875,
+     "w": 0.021875,
+     "h": 0.0296875
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.809,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 77,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_missing-hole_open-circuit_04_jpg.rf.f5ab3cadd33ae01c5623858a4532ffed.jpg",
+   "erased_labels": [
+    [
+     "opencircuit",
+     0.86796875,
+     0.15859375,
+     0.028125,
+     0.0125
+    ],
+    [
+     "opencircuit",
+     0.61328125,
+     0.11328125,
+     0.028125,
+     0.0171875
+    ],
+    [
+     "missinghole",
+     0.44140625,
+     0.671875,
+     0.025,
+     0.0140625
+    ],
+    [
+     "missinghole",
+     0.4390625,
+     0.45546875,
+     0.028125,
+     0.0140625
+    ],
+    [
+     "missinghole",
+     0.7078125,
+     0.2859375,
+     0.025,
+     0.0140625
+    ],
+    [
+     "missinghole",
+     0.7953125,
+     0.06484375,
+     0.025,
+     0.0140625
+    ],
+    [
+     "missinghole",
+     0.57421875,
+     0.06640625,
+     0.0265625,
+     0.0125
+    ]
+   ],
+   "x0": 63440,
+   "y": 42,
+   "enter_frame": 4440,
+   "center_frame": 4509,
+   "exit_frame": 4578,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.489,
+    "types": [
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 78,
+   "kind": "defect",
+   "case": "scratch",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/05_scratch_09_jpg.rf.715dc36d7683540c9672489394f13512.jpg",
+   "x0": 64240,
+   "y": 46,
+   "enter_frame": 4497,
+   "center_frame": 4566,
+   "exit_frame": 4635,
+   "labels": [
+    {
+     "type": "scratch",
+     "cx": 0.3546875,
+     "cy": 0.7328125,
+     "w": 0.196875,
+     "h": 0.1625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.2859375,
+     "cy": 0.43359375,
+     "w": 0.134375,
+     "h": 0.1109375
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4390625,
+     "cy": 0.21640625,
+     "w": 0.271875,
+     "h": 0.13125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.5671875,
+     "cy": 0.09765625,
+     "w": 0.096875,
+     "h": 0.0484375
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.919,
+    "types": [
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 79,
+   "kind": "defect",
+   "case": "missinghole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/11_missing_hole_04_jpg.rf.38e51939ff341d48e80067f79f7f9272.jpg",
+   "x0": 65040,
+   "y": 42,
+   "enter_frame": 4554,
+   "center_frame": 4623,
+   "exit_frame": 4692,
+   "labels": [
+    {
+     "type": "missinghole",
+     "cx": 0.19375,
+     "cy": 0.34609375,
+     "w": 0.0296875,
+     "h": 0.0296875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.69921875,
+     "cy": 0.31953125,
+     "w": 0.0390625,
+     "h": 0.034375
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.6390625,
+     "cy": 0.6703125,
+     "w": 0.0359375,
+     "h": 0.0390625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.39296875,
+     "cy": 0.796875,
+     "w": 0.03125,
+     "h": 0.040625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.08046875,
+     "cy": 0.82109375,
+     "w": 0.0625,
+     "h": 0.0625
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.846,
+    "types": [
+     "missinghole"
+    ]
+   }
+  },
+  {
+   "index": 80,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/10_pinhole_08_jpg.rf.28d80d86378395e1ee0b080bec1c8051.jpg",
+   "x0": 65840,
+   "y": 39,
+   "enter_frame": 4611,
+   "center_frame": 4680,
+   "exit_frame": 4749,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.709375,
+     "cy": 0.265625,
+     "w": 0.0140625,
+     "h": 0.021875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.52265625,
+     "cy": 0.5640625,
+     "w": 0.0171875,
+     "h": 0.0203125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.0828125,
+     "cy": 0.9078125,
+     "w": 0.0171875,
+     "h": 0.03125
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.797,
+    "types": [
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 81,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_short_13_jpg.rf.0663d5bcb3262ed5a8a1766b6247cf8c.jpg",
+   "erased_labels": [
+    [
+     "shortcircuit",
+     0.88671875,
+     0.30859375,
+     0.04375,
+     0.025
+    ],
+    [
+     "shortcircuit",
+     0.7671875,
+     0.103125,
+     0.071875,
+     0.028125
+    ],
+    [
+     "shortcircuit",
+     0.56953125,
+     0.7921875,
+     0.034375,
+     0.0140625
+    ]
+   ],
+   "x0": 66640,
+   "y": 44,
+   "enter_frame": 4668,
+   "center_frame": 4737,
+   "exit_frame": 4806,
+   "labels": [],
+   "model_check": {
+    "n_det": 1,
+    "max_conf": 0.645,
+    "types": [
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 82,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_06_jpg.rf.6845908961d21f6f12f307ae3eb50489.jpg",
+   "x0": 67440,
+   "y": 37,
+   "enter_frame": 4725,
+   "center_frame": 4794,
+   "exit_frame": 4863,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.50390625,
+     "cy": 0.4046875,
+     "w": 0.009375,
+     "h": 0.021875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.2390625,
+     "cy": 0.28984375,
+     "w": 0.009375,
+     "h": 0.01875
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.0625,
+     "cy": 0.25234375,
+     "w": 0.009375,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.391,
+    "types": [
+     "mousebite",
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 83,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/05_open_circuit_10_jpg.rf.4a259cec1d9a652b38ef14ac7e683ac0.jpg",
+   "erased_labels": [
+    [
+     "opencircuit",
+     0.4828125,
+     0.3171875,
+     0.01875,
+     0.01875
+    ],
+    [
+     "opencircuit",
+     0.0671875,
+     0.209375,
+     0.01875,
+     0.025
+    ],
+    [
+     "opencircuit",
+     0.13203125,
+     0.275,
+     0.01875,
+     0.028125
+    ]
+   ],
+   "x0": 68240,
+   "y": 43,
+   "enter_frame": 4782,
+   "center_frame": 4851,
+   "exit_frame": 4920,
+   "labels": [],
+   "model_check": {
+    "n_det": 0,
+    "max_conf": 0.0,
+    "types": []
+   }
+  },
+  {
+   "index": 84,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_pinhole_04_jpg.rf.5f01d3f4d65d7b693516ad4825f914c6.jpg",
+   "x0": 69040,
+   "y": 46,
+   "enter_frame": 4840,
+   "center_frame": 4909,
+   "exit_frame": 4978,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.89453125,
+     "cy": 0.50390625,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.8015625,
+     "cy": 0.60234375,
+     "w": 0.0203125,
+     "h": 0.0203125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.22265625,
+     "cy": 0.4734375,
+     "w": 0.0296875,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 3,
+    "max_conf": 0.739,
+    "types": [
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 85,
+   "kind": "defect",
+   "case": "falsecopper",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_spurious-copper_pinhole_scratch_09_jpg.rf.04bcdb9befb9e638776f6c4379d046d2.jpg",
+   "x0": 69840,
+   "y": 46,
+   "enter_frame": 4897,
+   "center_frame": 4966,
+   "exit_frame": 5035,
+   "labels": [
+    {
+     "type": "falsecopper",
+     "cx": 0.58515625,
+     "cy": 0.48671875,
+     "w": 0.0765625,
+     "h": 0.0140625
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.77265625,
+     "cy": 0.3234375,
+     "w": 0.0765625,
+     "h": 0.009375
+    },
+    {
+     "type": "falsecopper",
+     "cx": 0.696875,
+     "cy": 0.58203125,
+     "w": 0.0203125,
+     "h": 0.0296875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4125,
+     "cy": 0.459375,
+     "w": 0.025,
+     "h": 0.0125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.51796875,
+     "cy": 0.49765625,
+     "w": 0.025,
+     "h": 0.009375
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.20703125,
+     "cy": 0.9328125,
+     "w": 0.025,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.4390625,
+     "cy": 0.9375,
+     "w": 0.0296875,
+     "h": 0.0125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.4390625,
+     "cy": 0.71484375,
+     "w": 0.16875,
+     "h": 0.178125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.446875,
+     "cy": 0.60234375,
+     "w": 0.025,
+     "h": 0.0828125
+    }
+   ],
+   "model_check": {
+    "n_det": 9,
+    "max_conf": 0.908,
+    "types": [
+     "falsecopper",
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 86,
+   "kind": "defect",
+   "case": "shortcircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_missing-hole_short_06_jpg.rf.aa68a002d8d5c654a42b28aea8c8b7d5.jpg",
+   "x0": 70640,
+   "y": 46,
+   "enter_frame": 4954,
+   "center_frame": 5023,
+   "exit_frame": 5092,
+   "labels": [
+    {
+     "type": "shortcircuit",
+     "cx": 0.9078125,
+     "cy": 0.6546875,
+     "w": 0.0296875,
+     "h": 0.0203125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.8140625,
+     "cy": 0.24375,
+     "w": 0.0203125,
+     "h": 0.0171875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.4015625,
+     "cy": 0.09765625,
+     "w": 0.0203125,
+     "h": 0.0125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.24375,
+     "cy": 0.28828125,
+     "w": 0.0171875,
+     "h": 0.0125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.584375,
+     "cy": 0.5734375,
+     "w": 0.0171875,
+     "h": 0.0125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.60703125,
+     "cy": 0.78125,
+     "w": 0.0203125,
+     "h": 0.0140625
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.85078125,
+     "cy": 0.38203125,
+     "w": 0.0203125,
+     "h": 0.0125
+    }
+   ],
+   "model_check": {
+    "n_det": 7,
+    "max_conf": 0.755,
+    "types": [
+     "missinghole",
+     "shortcircuit"
+    ]
+   }
+  },
+  {
+   "index": 87,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_missing-hole_open-circuit_01_jpg.rf.78f74bfaa90dd3ef63e41d9665f9e8c5.jpg",
+   "x0": 71440,
+   "y": 37,
+   "enter_frame": 5011,
+   "center_frame": 5080,
+   "exit_frame": 5149,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.55078125,
+     "cy": 0.63359375,
+     "w": 0.0203125,
+     "h": 0.0234375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.446875,
+     "cy": 0.4546875,
+     "w": 0.0125,
+     "h": 0.0296875
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.53359375,
+     "cy": 0.40390625,
+     "w": 0.0140625,
+     "h": 0.0203125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.290625,
+     "cy": 0.31953125,
+     "w": 0.0140625,
+     "h": 0.0203125
+    },
+    {
+     "type": "missinghole",
+     "cx": 0.2984375,
+     "cy": 0.65625,
+     "w": 0.0140625,
+     "h": 0.0171875
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.772,
+    "types": [
+     "missinghole",
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 88,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/06_pinhole_scratch_03_jpg.rf.c9a32570849d1dfdac52d6ea7cb6c71b.jpg",
+   "x0": 72240,
+   "y": 46,
+   "enter_frame": 5068,
+   "center_frame": 5137,
+   "exit_frame": 5206,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.13671875,
+     "cy": 0.7484375,
+     "w": 0.0140625,
+     "h": 0.0140625
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.90234375,
+     "cy": 0.515625,
+     "w": 0.0125,
+     "h": 0.0125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.64765625,
+     "cy": 0.796875,
+     "w": 0.009375,
+     "h": 0.0140625
+    },
+    {
+     "type": "scratch",
+     "cx": 0.49140625,
+     "cy": 0.13359375,
+     "w": 0.284375,
+     "h": 0.103125
+    },
+    {
+     "type": "scratch",
+     "cx": 0.58515625,
+     "cy": 0.24765625,
+     "w": 0.2,
+     "h": 0.134375
+    }
+   ],
+   "model_check": {
+    "n_det": 6,
+    "max_conf": 0.908,
+    "types": [
+     "pinhole",
+     "scratch"
+    ]
+   }
+  },
+  {
+   "index": 89,
+   "kind": "defect",
+   "case": "pinhole",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/07_pinhole_08_jpg.rf.dc5ae663e972e70df1a72faa96868f27.jpg",
+   "x0": 73040,
+   "y": 37,
+   "enter_frame": 5125,
+   "center_frame": 5194,
+   "exit_frame": 5263,
+   "labels": [
+    {
+     "type": "pinhole",
+     "cx": 0.27265625,
+     "cy": 0.68515625,
+     "w": 0.0140625,
+     "h": 0.03125
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.39765625,
+     "cy": 0.7828125,
+     "w": 0.0140625,
+     "h": 0.01875
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.42578125,
+     "cy": 0.22109375,
+     "w": 0.0140625,
+     "h": 0.025
+    },
+    {
+     "type": "pinhole",
+     "cx": 0.44921875,
+     "cy": 0.4390625,
+     "w": 0.0140625,
+     "h": 0.034375
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.627,
+    "types": [
+     "pinhole"
+    ]
+   }
+  },
+  {
+   "index": 90,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_spur_short_15_jpg.rf.e4dd9b7bf57db7f39400a9f66933637f.jpg",
+   "x0": 73840,
+   "y": 40,
+   "enter_frame": 5182,
+   "center_frame": 5251,
+   "exit_frame": 5320,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.85703125,
+     "cy": 0.71640625,
+     "w": 0.025,
+     "h": 0.0296875
+    },
+    {
+     "type": "spur",
+     "cx": 0.7546875,
+     "cy": 0.80546875,
+     "w": 0.01875,
+     "h": 0.028125
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.2875,
+     "cy": 0.53515625,
+     "w": 0.009375,
+     "h": 0.034375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.15625,
+     "cy": 0.63671875,
+     "w": 0.0125,
+     "h": 0.025
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.20078125,
+     "cy": 0.240625,
+     "w": 0.0125,
+     "h": 0.028125
+    }
+   ],
+   "model_check": {
+    "n_det": 5,
+    "max_conf": 0.732,
+    "types": [
+     "shortcircuit",
+     "spur"
+    ]
+   }
+  },
+  {
+   "index": 91,
+   "kind": "defect",
+   "case": "opencircuit",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/01_open_circuit_11_jpg.rf.452dc3c49835d0a399254135526aff24.jpg",
+   "x0": 74640,
+   "y": 45,
+   "enter_frame": 5240,
+   "center_frame": 5309,
+   "exit_frame": 5378,
+   "labels": [
+    {
+     "type": "opencircuit",
+     "cx": 0.6609375,
+     "cy": 0.13203125,
+     "w": 0.01875,
+     "h": 0.009375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.12265625,
+     "cy": 0.44140625,
+     "w": 0.01875,
+     "h": 0.009375
+    },
+    {
+     "type": "opencircuit",
+     "cx": 0.62734375,
+     "cy": 0.15234375,
+     "w": 0.021875,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 4,
+    "max_conf": 0.622,
+    "types": [
+     "opencircuit"
+    ]
+   }
+  },
+  {
+   "index": 92,
+   "kind": "normal",
+   "case": "normal",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_spur_06_jpg.rf.2feb4db2f2e1d9e942ed9e919e76836f.jpg",
+   "erased_labels": [
+    [
+     "spur",
+     0.3609375,
+     0.57578125,
+     0.0203125,
+     0.040625
+    ],
+    [
+     "spur",
+     0.73828125,
+     0.85234375,
+     0.0296875,
+     0.025
+    ],
+    [
+     "spur",
+     0.60546875,
+     0.7828125,
+     0.0171875,
+     0.028125
+    ]
+   ],
+   "x0": 75440,
+   "y": 46,
+   "enter_frame": 5297,
+   "center_frame": 5366,
+   "exit_frame": 5435,
+   "labels": [],
+   "model_check": {
+    "n_det": 2,
+    "max_conf": 0.643,
+    "types": [
+     "falsecopper"
+    ]
+   }
+  },
+  {
+   "index": 93,
+   "kind": "defect",
+   "case": "spur",
+   "source": "<roboflow_dl>/pcb_v3_partial/test/images/04_spur_short_09_jpg.rf.45aca1d248a3345fd6373e30714ba4e1.jpg",
+   "x0": 76240,
+   "y": 37,
+   "enter_frame": 5354,
+   "center_frame": 5423,
+   "exit_frame": 5492,
+   "labels": [
+    {
+     "type": "spur",
+     "cx": 0.5109375,
+     "cy": 0.709375,
+     "w": 0.01875,
+     "h": 0.028125
+    },
+    {
+     "type": "spur",
+     "cx": 0.515625,
+     "cy": 0.83984375,
+     "w": 0.034375,
+     "h": 0.01875
+    },
+    {
+     "type": "spur",
+     "cx": 0.90390625,
+     "cy": 0.8640625,
+     "w": 0.025,
+     "h": 0.025
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.23046875,
+     "cy": 0.4859375,
+     "w": 0.025,
+     "h": 0.009375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.290625,
+     "cy": 0.61796875,
+     "w": 0.025,
+     "h": 0.009375
+    },
+    {
+     "type": "shortcircuit",
+     "cx": 0.3375,
+     "cy": 0.41484375,
+     "w": 0.01875,
+     "h": 0.0140625
+    }
+   ],
+   "model_check": {
+    "n_det": 6,
+    "max_conf": 0.71,
+    "types": [
+     "shortcircuit",
+     "spur"
+    ]
+   }
+  }
+ ]
+}

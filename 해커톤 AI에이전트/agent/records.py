@@ -138,19 +138,22 @@ class _Lock:
             try:
                 os.close(os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
                 return self
-            except FileExistsError:
+            except (FileExistsError, PermissionError):   # Windows: 다른 프로세스가 지우는 중이면 PermissionError
                 try:                 # 쓰던 프로세스가 죽어서 남은 잠금은 치운다
                     if time.time() - self.path.stat().st_mtime > self.stale:
                         self.path.unlink(missing_ok=True)
                         continue
-                except FileNotFoundError:
+                except (FileNotFoundError, PermissionError):
                     continue
                 if time.time() > end:
                     return self      # 너무 오래 기다리면 그냥 쓴다 (기록을 잃는 것보다 낫다)
                 time.sleep(0.05)
 
     def __exit__(self, *exc):
-        self.path.unlink(missing_ok=True)
+        try:
+            self.path.unlink(missing_ok=True)
+        except PermissionError:      # 다른 프로세스가 막 열려는 순간 — 오래되면 위에서 치운다
+            pass
 
 
 def upsert(result, out_root, status, xlsx=True, when=None):

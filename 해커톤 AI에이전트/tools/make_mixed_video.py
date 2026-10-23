@@ -35,12 +35,12 @@ BELT = (92, 52, 18)          # 짙은 파랑 (BGR)
 SEAM = (104, 62, 26)
 
 
-def load_items(per, rng):
+def load_items(per, rng, suffix=''):
     """세 라인 영상 json 의 제품 → 라인마다 per 개 (정상 비율 유지). 사진은 원본에서 다시 읽는다 (영상 재압축 없이)."""
     pcb_src = {b['image'].as_posix(): b for b in load_boards()}
     items = []
     for line, dom in LINES.items():
-        boards = json.loads((OUT / f'{line}_conveyor.json').read_text(encoding='utf-8'))['boards']
+        boards = json.loads((OUT / f'{line}_conveyor{suffix}.json').read_text(encoding='utf-8'))['boards']
         normals = [b for b in boards if b['kind'] == 'normal']
         defects = [b for b in boards if b['kind'] == 'defect']
         n_norm = round(per * len(normals) / len(boards))
@@ -49,7 +49,8 @@ def load_items(per, rng):
         for b in pick:
             img = cv2.imread(str(ROOT / b['source']))
             if dom == 'pcb' and b['kind'] == 'normal':       # 원래 라벨로 결함을 지운 기판
-                img, _ = remove_defects(img, pcb_src[(ROOT / b['source']).as_posix()]['labels'])
+                erased = [(l[0], *l[1:]) for l in b['erased_labels']] if 'erased_labels' in b else pcb_src[(ROOT / b['source']).as_posix()]['labels']
+                img, _ = remove_defects(img, erased)
             if img.shape[:2] != (bh, bw):
                 img = cv2.resize(img, (bw, bh), interpolation=cv2.INTER_AREA)
             items.append({'domain': dom, 'line': line, 'kind': b['kind'], 'case': b['case'], 'source': b['source'],
@@ -88,9 +89,10 @@ def main():
     ap.add_argument('--speed', type=float, default=16)
     ap.add_argument('--seed', type=int, default=7)
     ap.add_argument('--name', default='mixed_conveyor')
+    ap.add_argument('--suffix', default='', help='세 라인 영상 세트: videos/<line>_conveyor<suffix>.json 에서 제품을 고른다')
     a = ap.parse_args()
     rng = random.Random(a.seed)
-    seq = load_items(a.per, rng)
+    seq = load_items(a.per, rng, a.suffix)
     rng.shuffle(seq)
     print('items:', {d: sum(i['domain'] == d for i in seq) for d in SIZES},
           'normal:', sum(i['kind'] == 'normal' for i in seq))

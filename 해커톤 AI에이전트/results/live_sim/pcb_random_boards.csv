@@ -1,0 +1,95 @@
+﻿seq,time,video_board,gt_kind,gt_types,verdict,pred_types,board_ok,tp,fp,fn,capture
+1,21:46:50,0,defect,pinhole scratch,review,pinhole scratch,1,2,4,3,live_20261022_214650_0001
+2,21:46:51,1,defect,spur,reject,spur,1,3,0,0,live_20261022_214651_0002
+3,21:46:52,2,defect,mousebite,reject,mousebite,1,5,0,0,live_20261022_214652_0003
+4,21:46:53,3,defect,falsecopper,reject,falsecopper,1,3,0,0,live_20261022_214653_0004
+5,21:46:54,4,defect,pinhole scratch,review,pinhole scratch,1,3,2,2,live_20261022_214654_0005
+6,21:46:56,5,defect,falsecopper,reject,falsecopper,1,5,0,0,live_20261022_214656_0006
+7,21:46:57,6,defect,scratch,review,mousebite scratch,1,4,1,0,live_20261022_214657_0007
+8,21:46:58,7,defect,shortcircuit,reject,shortcircuit,1,3,1,0,live_20261022_214658_0008
+9,21:46:59,8,normal,,reject,falsecopper,0,0,1,0,live_20261022_214659_0009
+10,21:47:00,9,defect,shortcircuit,reject,shortcircuit,1,3,0,0,live_20261022_214700_0010
+11,21:47:01,10,defect,shortcircuit spur,reject,shortcircuit spur,1,5,0,0,live_20261022_214701_0011
+12,21:47:02,11,normal,,normal,,1,0,0,0,live_20261022_214702_0012
+13,21:47:03,12,defect,falsecopper,reject,falsecopper,1,5,0,0,live_20261022_214703_0013
+14,21:47:04,13,defect,opencircuit,normal,,0,0,0,3,live_20261022_214704_0014
+15,21:47:05,14,defect,opencircuit,reject,opencircuit,1,3,0,0,live_20261022_214705_0015
+16,21:47:07,15,defect,mousebite spur,reject,mousebite spur,1,6,0,0,live_20261022_214707_0016
+17,21:47:08,16,normal,,normal,,1,0,0,0,live_20261022_214708_0017
+18,21:47:09,17,defect,pinhole,review,pinhole,1,3,2,1,live_20261022_214709_0018
+19,21:47:10,18,defect,spur,reject,spur,1,3,0,0,live_20261022_214710_0019
+20,21:47:11,19,defect,pinhole scratch,review,pinhole scratch,1,5,0,0,live_20261022_214711_0020
+21,21:47:12,20,defect,opencircuit,reject,opencircuit,1,4,2,1,live_20261022_214712_0021
+22,21:47:13,21,defect,mousebite,normal,,0,0,0,3,live_20261022_214713_0022
+23,21:47:14,22,normal,,reject,shortcircuit,0,0,1,0,live_20261022_214714_0023
+24,21:47:15,23,normal,,normal,,1,0,0,0,live_20261022_214715_0024
+25,21:47:16,24,normal,,normal,,1,0,0,0,live_20261022_214716_0025
+26,21:47:17,25,normal,,reject,falsecopper shortcircuit,0,0,3,0,live_20261022_214717_0026
+27,21:47:18,26,defect,mousebite,reject,mousebite,1,5,0,0,live_20261022_214718_0027
+28,21:47:20,27,defect,mousebite,reject,opencircuit,1,0,1,3,live_20261022_214720_0028
+29,21:47:21,28,defect,opencircuit pinhole,reject,opencircuit pinhole,1,5,3,2,live_20261022_214721_0029
+30,21:47:22,29,defect,spur,reject,spur,1,3,0,2,live_20261022_214722_0030
+31,21:47:23,30,defect,shortcircuit,reject,shortcircuit,1,2,0,1,live_20261022_214723_0031
+32,21:47:24,31,defect,mousebite,reject,mousebite,1,3,0,0,live_20261022_214724_0032
+33,21:47:25,32,normal,,reject,opencircuit spur,0,0,2,0,live_20261022_214725_0033
+34,21:47:26,33,defect,opencircuit pinhole,reject,opencircuit pinhole,1,7,1,0,live_20261022_214726_0034
+35,21:47:27,34,defect,missinghole,reject,missinghole,1,5,0,0,live_20261022_214727_0035
+36,21:47:28,35,defect,opencircuit pinhole,reject,opencircuit pinhole,1,3,6,4,live_20261022_214728_0036
+37,21:47:29,36,defect,pinhole scratch,review,pinhole scratch,1,5,0,0,live_20261022_214729_0037
+38,21:47:30,37,defect,shortcircuit spur,reject,shortcircuit,1,0,3,5,live_20261022_214730_0038
+39,21:47:31,38,defect,spur,reject,spur,1,3,0,0,live_20261022_214731_0039
+40,21:47:32,39,normal,,reject,missinghole,0,0,1,0,live_20261022_214732_0040
+41,21:47:34,40,defect,opencircuit,reject,opencircuit,1,3,0,0,live_20261022_214734_0041
+42,21:47:35,41,normal,,reject,falsecopper spur,0,0,3,0,live_20261022_214735_0042
+43,21:47:36,42,normal,,reject,spur,0,0,1,0,live_20261022_214736_0043
+44,21:47:37,43,normal,,reject,spur,0,0,1,0,live_20261022_214737_0044
+45,21:47:38,44,defect,opencircuit,reject,opencircuit,1,3,1,2,live_20261022_214738_0045
+46,21:47:39,45,defect,mousebite,reject,mousebite,1,3,0,0,live_20261022_214739_0046
+47,21:47:40,46,normal,,normal,,1,0,0,0,live_20261022_214740_0047
+48,21:47:41,47,defect,pinhole,review,pinhole,1,3,1,1,live_20261022_214741_0048
+49,21:47:42,48,defect,missinghole,reject,missinghole,1,5,0,0,live_20261022_214742_0049
+50,21:47:43,49,defect,falsecopper pinhole scratch,reject,falsecopper pinhole scratch,1,7,2,3,live_20261022_214743_0050
+51,21:47:44,50,normal,,normal,,1,0,0,0,live_20261022_214744_0051
+52,21:47:45,51,defect,shortcircuit,reject,mousebite shortcircuit spur,1,2,4,1,live_20261022_214745_0052
+53,21:47:46,52,defect,opencircuit pinhole,reject,opencircuit pinhole,1,4,2,3,live_20261022_214746_0053
+54,21:47:47,53,defect,shortcircuit,reject,shortcircuit,1,2,2,1,live_20261022_214747_0054
+55,21:47:49,54,defect,shortcircuit,reject,shortcircuit,1,4,0,1,live_20261022_214749_0055
+56,21:47:50,55,defect,shortcircuit,reject,shortcircuit,1,5,0,0,live_20261022_214750_0056
+57,21:47:51,56,defect,opencircuit,reject,opencircuit,1,2,0,1,live_20261022_214751_0057
+58,21:47:52,57,defect,mousebite shortcircuit,reject,mousebite shortcircuit,1,8,0,0,live_20261022_214752_0058
+59,21:47:53,58,defect,pinhole,review,pinhole,1,3,0,0,live_20261022_214753_0059
+60,21:47:54,59,defect,mousebite,reject,mousebite opencircuit,1,1,1,1,live_20261022_214754_0060
+61,21:47:55,60,defect,missinghole,reject,missinghole,1,3,1,0,live_20261022_214755_0061
+62,21:47:56,61,defect,missinghole shortcircuit,reject,missinghole shortcircuit,1,4,4,3,live_20261022_214756_0062
+63,21:47:57,62,defect,missinghole opencircuit,reject,missinghole opencircuit,1,6,1,1,live_20261022_214757_0063
+64,21:47:59,63,defect,pinhole scratch,review,pinhole scratch,1,5,0,0,live_20261022_214759_0064
+65,21:48:00,64,normal,,reject,falsecopper,0,0,1,0,live_20261022_214800_0065
+66,21:48:01,65,defect,missinghole opencircuit,reject,missinghole opencircuit,1,4,4,3,live_20261022_214801_0066
+67,21:48:02,66,defect,opencircuit,reject,opencircuit,1,3,0,0,live_20261022_214802_0067
+68,21:48:03,67,defect,opencircuit,reject,opencircuit,1,2,0,1,live_20261022_214803_0068
+69,21:48:04,68,defect,scratch,review,scratch,1,2,0,0,live_20261022_214804_0069
+70,21:48:05,69,defect,mousebite,reject,mousebite,1,5,0,0,live_20261022_214805_0070
+71,21:48:06,70,defect,spur,reject,spur,1,2,1,1,live_20261022_214806_0071
+72,21:48:07,71,defect,opencircuit,reject,mousebite opencircuit,1,2,1,1,live_20261022_214807_0072
+73,21:48:08,72,defect,opencircuit,reject,opencircuit,1,2,0,1,live_20261022_214808_0073
+74,21:48:09,73,defect,missinghole,reject,missinghole,1,5,0,0,live_20261022_214809_0074
+75,21:48:11,74,defect,falsecopper,reject,falsecopper,1,5,0,0,live_20261022_214811_0075
+76,21:48:12,75,defect,pinhole,review,pinhole,1,4,0,0,live_20261022_214812_0076
+77,21:48:13,76,defect,missinghole,reject,missinghole,1,5,1,0,live_20261022_214813_0077
+78,21:48:14,77,normal,,review,spur,0,0,1,0,live_20261022_214814_0078
+79,21:48:15,78,defect,scratch,review,scratch,1,3,0,1,live_20261022_214815_0079
+80,21:48:16,79,defect,missinghole,reject,missinghole,1,4,1,1,live_20261022_214816_0080
+81,21:48:17,80,defect,pinhole,review,pinhole,1,3,0,0,live_20261022_214817_0081
+82,21:48:18,81,normal,,reject,shortcircuit spur,0,0,2,0,live_20261022_214818_0082
+83,21:48:19,82,defect,opencircuit,review,mousebite opencircuit,1,1,2,2,live_20261022_214819_0083
+84,21:48:20,83,normal,,normal,,1,0,0,0,live_20261022_214820_0084
+85,21:48:21,84,defect,pinhole,review,pinhole,1,3,0,0,live_20261022_214821_0085
+86,21:48:22,85,defect,falsecopper pinhole scratch,reject,falsecopper pinhole scratch,1,9,0,0,live_20261022_214822_0086
+87,21:48:23,86,defect,missinghole shortcircuit,reject,missinghole shortcircuit,1,5,2,2,live_20261022_214823_0087
+88,21:48:24,87,defect,missinghole opencircuit,reject,missinghole opencircuit,1,4,0,1,live_20261022_214824_0088
+89,21:48:26,88,defect,pinhole scratch,review,pinhole scratch,1,4,1,1,live_20261022_214826_0089
+90,21:48:27,89,defect,pinhole,review,pinhole,1,0,4,4,live_20261022_214827_0090
+91,21:48:28,90,defect,shortcircuit spur,reject,shortcircuit spur,1,5,0,0,live_20261022_214828_0091
+92,21:48:29,91,defect,opencircuit,reject,opencircuit,1,3,1,0,live_20261022_214829_0092
+93,21:48:30,92,normal,,reject,falsecopper spur,0,0,3,0,live_20261022_214830_0093
+94,21:48:31,93,defect,shortcircuit spur,reject,shortcircuit spur,1,4,2,2,live_20261022_214831_0094

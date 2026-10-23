@@ -100,6 +100,8 @@ def main():
     ap.add_argument('--speed', type=float, default=20)
     ap.add_argument('--seed', type=int, default=7)
     ap.add_argument('--name', default='phone_conveyor')
+    ap.add_argument('--all-test', action='store_true',
+                    help='고르지 않고 test 세트 전체(결함 + 정상)를 무작위 순서로 — 편향 없는 라인 정확도용')
     a = ap.parse_args()
     rng = random.Random(a.seed)
     from ultralytics import YOLO
@@ -109,9 +111,16 @@ def main():
         img = cv2.resize(cv2.imread(str(p)), (BW, BH), interpolation=cv2.INTER_AREA)
         return {'image': p, 'split': split, 'img': img, 'labels': read_labels(DATA / 'labels' / split / f'{p.stem}.txt')}
 
-    # 결함 사진: test 에서 유형별로, 모델이 다 맞힌 것만
+    if a.all_test:           # 모델 결과로 고르지 않는다: test 사진 전부 (정상은 test 의 빈 라벨 사진만)
+        seq = []
+        for p in sorted(q for q in (DATA / 'images/test').iterdir() if q.suffix.lower() in ('.jpg', '.png')):
+            it = load(p, 'test')
+            tag = next((v for k, v in CASE.items() if f'_{k}_' in p.name), None)
+            seq.append({**it, 'case': tag if it['labels'] else 'normal', 'kind': 'defect' if it['labels'] else 'normal'})
+        rng.shuffle(seq)
+        print('all test:', {c: sum(x['case'] == c for x in seq) for c in sorted({x['case'] for x in seq})})
     picked = {c: [] for c in NAMES}
-    tests = sorted((DATA / 'images/test').glob('*.jpg'))
+    tests = [] if a.all_test else sorted((DATA / 'images/test').glob('*.jpg'))
     rng.shuffle(tests)
     for p in tests:
         tag = next((v for k, v in CASE.items() if f'_{k}_' in p.name), None)
@@ -122,7 +131,7 @@ def main():
             picked[tag].append({**it, 'case': tag, 'kind': 'defect'})
     # 정상 사진: 데이터셋 전체의 빈 라벨 사진 중 낮은 기준·압축 후에도 검출이 없는 것
     normals = []
-    for split in ('test', 'val', 'train'):
+    for split in () if a.all_test else ('test', 'val', 'train'):
         for lab in sorted((DATA / 'labels' / split).glob('*.txt')):
             if lab.read_text().strip():
                 continue
@@ -133,9 +142,10 @@ def main():
             sq = cv2.imdecode(cv2.imencode('.jpg', it['img'], [cv2.IMWRITE_JPEG_QUALITY, 40])[1], cv2.IMREAD_COLOR)
             if all(len(r.boxes) == 0 for r in model.predict([it['img'], sq], imgsz=IMGSZ, conf=NORMAL_CONF, verbose=False)):
                 normals.append({**it, 'case': 'normal', 'kind': 'normal'})
-    seq = [x for v in picked.values() for x in v] + normals
-    rng.shuffle(seq)
-    print('picked:', {k: len(v) for k, v in picked.items()}, 'normal:', len(normals))
+    if not a.all_test:
+        seq = [x for v in picked.values() for x in v] + normals
+        rng.shuffle(seq)
+        print('picked:', {k: len(v) for k, v in picked.items()}, 'normal:', len(normals))
 
     pitch, lead = BW + GAP, LEAD * a.speed
     n_frames = int(np.ceil((W + lead + (len(seq) - 1) * pitch + BW + 20) / a.speed))

@@ -383,6 +383,8 @@ class Line:
                     self._report_status_by_name(e['id'], 'ready')
                 except Exception as ex:  # noqa: BLE001 — Ollama 가 꺼져 있으면 열 때 다시 시도
                     self._report_status_by_name(e['id'], 'logged')
+                    if isinstance(ex, OSError):          # 파일 잠금 같은 일시적 문제 → 다음에 다시 시도
+                        self.prefetched.discard(e['id'])
                     print('prefetch error:', ex)
 
     def _report_status_by_name(self, name, status):

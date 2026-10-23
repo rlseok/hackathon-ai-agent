@@ -514,5 +514,681 @@
     }
    }
   }
+ },
+ "phone_random": {
+  "line": "phone",
+  "name": "LCD (phone surface)",
+  "domain": "mobile",
+  "video": "phone_random_sensing_sim.mp4",
+  "frames": 7161,
+  "video_seconds": 238.7,
+  "items_in_video": 122,
+  "inspected": 122,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 2,
+   "review": 83,
+   "reject": 37
+  },
+  "board_acc": 1.0,
+  "correct": 122,
+  "boards": 122,
+  "defect_caught": 120,
+  "defect_boards": 120,
+  "normal_passed": 2,
+  "normal_boards": 2,
+  "tp": 328,
+  "fp": 12,
+  "fn": 7,
+  "precision": 0.9647,
+  "recall": 0.9791,
+  "f1": 0.9719,
+  "proc_ms_mean": 16.4,
+  "proc_ms_p95": 18.4,
+  "proc_fps": 60.9,
+  "wall_seconds": 134.8,
+  "by_type": {
+   "normal": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "normal": 2
+    }
+   },
+   "oil": {
+    "items": 37,
+    "correct": 37,
+    "verdicts": {
+     "reject": 37
+    }
+   },
+   "scratch": {
+    "items": 40,
+    "correct": 40,
+    "verdicts": {
+     "review": 40
+    }
+   },
+   "stain": {
+    "items": 43,
+    "correct": 43,
+    "verdicts": {
+     "review": 43
+    }
+   }
+  },
+  "route_acc": null,
+  "routed_ok": 0,
+  "by_domain": {}
+ },
+ "metal_random": {
+  "line": "metal",
+  "name": "Metal surface",
+  "domain": "msdd",
+  "video": "metal_random_sensing_sim.mp4",
+  "frames": 7322,
+  "video_seconds": 244.1,
+  "items_in_video": 150,
+  "inspected": 143,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 27,
+   "review": 43,
+   "reject": 73
+  },
+  "board_acc": 0.9091,
+  "correct": 130,
+  "boards": 143,
+  "defect_caught": 112,
+  "defect_boards": 121,
+  "normal_passed": 18,
+  "normal_boards": 22,
+  "tp": 208,
+  "fp": 154,
+  "fn": 166,
+  "precision": 0.5746,
+  "recall": 0.5561,
+  "f1": 0.5652,
+  "proc_ms_mean": 23.5,
+  "proc_ms_p95": 28.2,
+  "proc_fps": 42.5,
+  "wall_seconds": 183.6,
+  "by_type": {
+   "Dark Spot": {
+    "items": 17,
+    "correct": 12,
+    "verdicts": {
+     "reject": 6,
+     "normal": 5,
+     "review": 6
+    }
+   },
+   "Dark Spot Fold Scratch": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 4,
+     "review": 1
+    }
+   },
+   "Dark Spot Oxidation": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "review": 1,
+     "reject": 3
+    }
+   },
+   "Dark Spot Oxidation Scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "Dark Spot Porosity Scratch Stain": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "Dark Spot Porosity Stain": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "Dark Spot Scratch": {
+    "items": 7,
+    "correct": 7,
+    "verdicts": {
+     "reject": 5,
+     "review": 2
+    }
+   },
+   "Fold": {
+    "items": 4,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2,
+     "normal": 2
+    }
+   },
+   "Fold Porosity": {
+    "items": 8,
+    "correct": 8,
+    "verdicts": {
+     "reject": 8
+    }
+   },
+   "Fold Porosity Scratch": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 5
+    }
+   },
+   "Oxidation": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 5
+    }
+   },
+   "Oxidation Scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "review": 1
+    }
+   },
+   "Porosity": {
+    "items": 23,
+    "correct": 23,
+    "verdicts": {
+     "reject": 21,
+     "review": 2
+    }
+   },
+   "Porosity Scratch": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 3,
+     "review": 2
+    }
+   },
+   "Scratch": {
+    "items": 17,
+    "correct": 15,
+    "verdicts": {
+     "review": 10,
+     "reject": 5,
+     "normal": 2
+    }
+   },
+   "Scratch Stain": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "review": 5
+    }
+   },
+   "Stain": {
+    "items": 9,
+    "correct": 9,
+    "verdicts": {
+     "review": 9
+    }
+   },
+   "normal": {
+    "items": 22,
+    "correct": 18,
+    "verdicts": {
+     "normal": 18,
+     "review": 4
+    }
+   }
+  },
+  "route_acc": null,
+  "routed_ok": 0,
+  "by_domain": {}
+ },
+ "pcb_random": {
+  "line": "pcb",
+  "name": "PCB",
+  "domain": "pcb",
+  "video": "pcb_random_sensing_sim.mp4",
+  "frames": 5493,
+  "video_seconds": 183.1,
+  "items_in_video": 94,
+  "inspected": 94,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 9,
+   "review": 18,
+   "reject": 67
+  },
+  "board_acc": 0.8511,
+  "correct": 80,
+  "boards": 94,
+  "defect_caught": 73,
+  "defect_boards": 75,
+  "normal_passed": 7,
+  "normal_boards": 19,
+  "tp": 268,
+  "fp": 85,
+  "fn": 69,
+  "precision": 0.7592,
+  "recall": 0.7953,
+  "f1": 0.7768,
+  "proc_ms_mean": 17.4,
+  "proc_ms_p95": 20.8,
+  "proc_fps": 57.5,
+  "wall_seconds": 105.4,
+  "by_type": {
+   "falsecopper": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "falsecopper pinhole scratch": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2
+    }
+   },
+   "missinghole": {
+    "items": 6,
+    "correct": 6,
+    "verdicts": {
+     "reject": 6
+    }
+   },
+   "missinghole opencircuit": {
+    "items": 3,
+    "correct": 3,
+    "verdicts": {
+     "reject": 3
+    }
+   },
+   "missinghole shortcircuit": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2
+    }
+   },
+   "mousebite": {
+    "items": 8,
+    "correct": 7,
+    "verdicts": {
+     "reject": 7,
+     "normal": 1
+    }
+   },
+   "mousebite shortcircuit": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "mousebite spur": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "normal": {
+    "items": 19,
+    "correct": 7,
+    "verdicts": {
+     "reject": 11,
+     "normal": 7,
+     "review": 1
+    }
+   },
+   "opencircuit": {
+    "items": 12,
+    "correct": 11,
+    "verdicts": {
+     "normal": 1,
+     "reject": 10,
+     "review": 1
+    }
+   },
+   "opencircuit pinhole": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "pinhole": {
+    "items": 7,
+    "correct": 7,
+    "verdicts": {
+     "review": 7
+    }
+   },
+   "pinhole scratch": {
+    "items": 6,
+    "correct": 6,
+    "verdicts": {
+     "review": 6
+    }
+   },
+   "scratch": {
+    "items": 3,
+    "correct": 3,
+    "verdicts": {
+     "review": 3
+    }
+   },
+   "shortcircuit": {
+    "items": 7,
+    "correct": 7,
+    "verdicts": {
+     "reject": 7
+    }
+   },
+   "shortcircuit spur": {
+    "items": 4,
+    "correct": 4,
+    "verdicts": {
+     "reject": 4
+    }
+   },
+   "spur": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 5
+    }
+   }
+  },
+  "route_acc": null,
+  "routed_ok": 0,
+  "by_domain": {}
+ },
+ "mixed_random": {
+  "line": "mixed",
+  "name": "Mixed",
+  "domain": "mixed",
+  "video": "mixed_random_sensing_sim.mp4",
+  "frames": 5184,
+  "video_seconds": 172.8,
+  "items_in_video": 90,
+  "inspected": 90,
+  "unmatched": 0,
+  "verdicts": {
+   "normal": 11,
+   "review": 39,
+   "reject": 40
+  },
+  "board_acc": 0.9111,
+  "correct": 82,
+  "boards": 90,
+  "defect_caught": 75,
+  "defect_boards": 79,
+  "normal_passed": 7,
+  "normal_boards": 11,
+  "tp": 226,
+  "fp": 64,
+  "fn": 59,
+  "precision": 0.7793,
+  "recall": 0.793,
+  "f1": 0.7861,
+  "proc_ms_mean": 9.9,
+  "proc_ms_p95": 22.7,
+  "proc_fps": 101.4,
+  "wall_seconds": 61.0,
+  "by_type": {
+   "Dark Spot": {
+    "items": 4,
+    "correct": 3,
+    "verdicts": {
+     "reject": 1,
+     "review": 2,
+     "normal": 1
+    }
+   },
+   "Dark Spot Fold Scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "Dark Spot Oxidation": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "review": 1
+    }
+   },
+   "Dark Spot Scratch": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "review": 1,
+     "reject": 1
+    }
+   },
+   "Fold": {
+    "items": 2,
+    "correct": 0,
+    "verdicts": {
+     "normal": 2
+    }
+   },
+   "Fold Porosity": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "Oxidation": {
+    "items": 3,
+    "correct": 3,
+    "verdicts": {
+     "reject": 3
+    }
+   },
+   "Porosity": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "Porosity Scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "Scratch": {
+    "items": 6,
+    "correct": 5,
+    "verdicts": {
+     "review": 4,
+     "reject": 1,
+     "normal": 1
+    }
+   },
+   "Scratch Stain": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "review": 1
+    }
+   },
+   "Stain": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "review": 2
+    }
+   },
+   "falsecopper": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2
+    }
+   },
+   "falsecopper pinhole scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "missinghole": {
+    "items": 5,
+    "correct": 5,
+    "verdicts": {
+     "reject": 5
+    }
+   },
+   "missinghole opencircuit": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "missinghole shortcircuit": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "mousebite": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "normal": {
+    "items": 11,
+    "correct": 7,
+    "verdicts": {
+     "normal": 7,
+     "reject": 2,
+     "review": 2
+    }
+   },
+   "oil": {
+    "items": 9,
+    "correct": 9,
+    "verdicts": {
+     "reject": 9
+    }
+   },
+   "opencircuit": {
+    "items": 3,
+    "correct": 3,
+    "verdicts": {
+     "reject": 3
+    }
+   },
+   "opencircuit pinhole": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "pinhole": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "review": 2
+    }
+   },
+   "pinhole scratch": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "review": 1
+    }
+   },
+   "scratch": {
+    "items": 11,
+    "correct": 11,
+    "verdicts": {
+     "review": 11
+    }
+   },
+   "shortcircuit": {
+    "items": 2,
+    "correct": 2,
+    "verdicts": {
+     "reject": 2
+    }
+   },
+   "shortcircuit spur": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "spur": {
+    "items": 1,
+    "correct": 1,
+    "verdicts": {
+     "reject": 1
+    }
+   },
+   "stain": {
+    "items": 12,
+    "correct": 12,
+    "verdicts": {
+     "review": 12
+    }
+   }
+  },
+  "route_acc": 1.0,
+  "routed_ok": 90,
+  "by_domain": {
+   "mobile": {
+    "items": 30,
+    "routed_ok": 30,
+    "correct": 30,
+    "rules": {
+     "wide": 30
+    }
+   },
+   "msdd": {
+    "items": 30,
+    "routed_ok": 30,
+    "correct": 25,
+    "rules": {
+     "dark": 30
+    }
+   },
+   "pcb": {
+    "items": 30,
+    "routed_ok": 30,
+    "correct": 27,
+    "rules": {
+     "green": 30
+    }
+   }
+  }
  }
 }

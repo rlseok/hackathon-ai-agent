@@ -40,8 +40,8 @@ class SimLine(server.Line):
         return img
 
 
-def run(line):
-    src = ROOT / f'videos/{line}_conveyor.mp4'
+def run(line, suffix=''):
+    src = ROOT / f'videos/{line}_conveyor{suffix}.mp4'
     a = SimpleNamespace(source=str(src), camera=None, domain=None, board=640, preview_imgsz=None, lang='ko',
                         max_backlog=2, write_now=False, prefetch=False, loop=False)
     sim = SimLine(a)
@@ -50,7 +50,7 @@ def run(line):
     fps = cap.get(cv2.CAP_PROP_FPS) or 30
     w, h = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    mp4 = ROOT / f'videos/{line}_sensing_sim.mp4'
+    mp4 = ROOT / f'videos/{line}{suffix}_sensing_sim.mp4'
     writer = cv2.VideoWriter(str(mp4), cv2.VideoWriter_fourcc(*'avc1'), fps, (w, h))
     proc_ms, idx, t_start = [], 0, time.time()
     while True:
@@ -73,7 +73,7 @@ def run(line):
     if sim.eval_log and sim.eval_log.exists():
         with open(sim.eval_log, encoding='utf-8-sig') as f:
             rows = list(csv.DictReader(f))
-        shutil.move(str(sim.eval_log), OUT_DIR / f'{line}_boards.csv')
+        shutil.move(str(sim.eval_log), OUT_DIR / f'{line}{suffix}_boards.csv')
     e = sim._eval_summary()
     by_type = {}
     for r in rows:                                   # 정답 유형별 제품 판정 (결함 제품만, 유형 하나짜리 기준)
@@ -113,13 +113,14 @@ def run(line):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--line', nargs='+', choices=['pcb', 'phone', 'metal', 'mixed'], default=['pcb', 'phone', 'metal'])
+    ap.add_argument('--suffix', default='', help="다른 영상 세트: videos/<line>_conveyor<suffix>.mp4 → 결과 키 '<line><suffix>'")
     a = ap.parse_args()
     summary_path = OUT_DIR / 'summary.json'
     summary = json.loads(summary_path.read_text(encoding='utf-8')) if summary_path.exists() else {}
     for line in a.line:
         print(f'{line}: simulating …')
-        s = run(line)
-        summary[line] = s
+        s = run(line, a.suffix)
+        summary[line + a.suffix] = s
         print(f'  {line}: {s["inspected"]} inspected, verdict accuracy {s["board_acc"]}, F1 {s["f1"]}, '
               f'{s["proc_ms_mean"]} ms/frame → {s["video"]}')
         OUT_DIR.mkdir(parents=True, exist_ok=True)

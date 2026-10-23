@@ -97,13 +97,32 @@ def main():
     ap.add_argument('--seed', type=int, default=7)
     ap.add_argument('--repeat', type=int, default=1, help='같은 사진 묶음을 몇 번 반복할지 (영상 길이 늘리기)')
     ap.add_argument('--name', default='metal_conveyor')
+    ap.add_argument('--test-from', type=Path, default=None,
+                    help='Roboflow MSDD v9 압축을 푼 폴더: msdd_v1 test 사진 전체(results/msdd/meta.csv)를 모델로 고르지 않고 쓴다')
     a = ap.parse_args()
     rng = random.Random(a.seed)
     from ultralytics import YOLO
     model = YOLO(str(MODEL))
 
     items, dropped = [], []
-    for case_dir in sorted(p for p in SRC.iterdir() if p.is_dir()):
+    if a.test_from:
+        src_names = yaml.safe_load((a.test_from / 'data.yaml').read_text(encoding='utf-8'))['names']
+        meta = [r.split(',') for r in (ROOT / 'results/msdd/meta.csv').read_text(encoding='utf-8-sig').splitlines()[1:]]
+        for name in sorted(r[0] for r in meta if r[1] == 'test'):
+            p = next((q for q in (a.test_from / s / 'images' / name for s in ('train', 'valid', 'test')) if q.exists()), None)
+            if p is None:
+                dropped.append({'case': 'missing', 'image': Path(name)})
+                continue
+            labels = []          # v9 라벨 → 모델 클래스 이름 ('Normal' 전체 윤곽은 msdd_v1 처럼 버림)
+            for line in (p.parent.parent / 'labels' / f'{p.stem}.txt').read_text().splitlines():
+                v = line.split()
+                if len(v) >= 7 and src_names[int(v[0])] in NAMES:
+                    xs, ys = np.array(v[1::2], float), np.array(v[2::2], float)
+                    labels.append((src_names[int(v[0])], (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2,
+                                   xs.max() - xs.min(), ys.max() - ys.min()))
+            items.append({'image': p, 'img': cv2.imread(str(p)), 'labels': labels,
+                          'case': labels[0][0] if labels else 'normal', 'kind': 'defect' if labels else 'normal'})
+    for case_dir in [] if a.test_from else sorted(p for p in SRC.iterdir() if p.is_dir()):
         case = case_dir.name.split('_', 1)[1]
         normal = case.lower() == 'normal'
         for p in sorted((case_dir / 'originals/images').glob('*.jpg')):
@@ -157,7 +176,8 @@ def main():
         'belt_bgr': list(BELT), 'speed_px_per_frame': a.speed, 'frames': n_frames, 'seconds': round(n_frames / FPS, 1),
         'seed': a.seed, 'sensing_zone': [(W - BW) // 2, (H - BH) // 2, (W + BW) // 2, (H + BH) // 2],
         'note': 'x of an item at frame f = x0 - f*speed. Labels are normalized boxes (from the seg polygons).',
-        'boards': [{'index': i, 'kind': b['kind'], 'case': b['case'], 'source': b['image'].relative_to(ROOT).as_posix(),
+        'boards': [{'index': i, 'kind': b['kind'], 'case': b['case'],
+                    'source': (b['image'].relative_to(ROOT) if b['image'].is_relative_to(ROOT) else b['image']).as_posix(),
                     'x0': b['x0'], 'y': b['y'], 'enter_frame': b['enter_frame'], 'center_frame': b['center_frame'],
                     'exit_frame': b['exit_frame'],
                     'labels': [{'type': t, 'cx': cx, 'cy': cy, 'w': w, 'h': h} for t, cx, cy, w, h in b['labels']]}

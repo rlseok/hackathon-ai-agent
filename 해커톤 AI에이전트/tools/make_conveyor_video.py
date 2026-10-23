@@ -50,6 +50,23 @@ def load_boards():
     return boards
 
 
+def load_test_boards(root):
+    """Roboflow PCB v3 압축을 푼 폴더 → 우리 test 분할(results/pcb/split_groups.csv)에 속한 조각 전부. 모델 결과로 고르지 않는다."""
+    import csv
+    import re
+    test = {r['base'] for r in csv.DictReader(open(ROOT / 'results/pcb/split_groups.csv', encoding='utf-8-sig')) if r['split'] == 'test'}
+    boards = []
+    for s in ('train', 'valid', 'test'):
+        lab_dir = Path(root) / s / 'labels'
+        for img in sorted((Path(root) / s / 'images').glob('*.jpg')):
+            lab = lab_dir / f'{img.stem}.txt'
+            if re.sub(r'_jpg\.rf\..*$', '', img.name) not in test or not lab.exists():
+                continue
+            labels = [(NAMES[int(v[0])], *map(float, v[1:])) for v in (l.split() for l in lab.read_text().splitlines()) if len(v) == 5]
+            boards.append({'image': img, 'case': labels[0][0] if labels else 'normal', 'labels': labels})
+    return boards
+
+
 def remove_defects(img, labels, pad=6, ring=14):
     """라벨 박스(조금 넓혀서)를 같은 기판의 비슷한 깨끗한 부분으로 바꿔 결함 없는 기판을 만든다.
 
@@ -144,13 +161,15 @@ def main():
     ap.add_argument('--normal', type=float, default=0.25, help='정상 기판 비율 (결함 기판 수 대비)')
     ap.add_argument('--seed', type=int, default=7)
     ap.add_argument('--name', default='pcb_conveyor')
+    ap.add_argument('--test-from', type=Path, default=None,
+                    help='Roboflow PCB v3 폴더: 우리 test 분할 조각 전부를 쓰고, 정상 기판도 모델 확인 없이 무작위로 만든다')
     a = ap.parse_args()
     rng = random.Random(a.seed)
 
     from ultralytics import YOLO
     model = YOLO(str(MODEL))
 
-    boards = load_boards()
+    boards = load_test_boards(a.test_from) if a.test_from else load_boards()
     for b in boards:
         b['img'] = cv2.imread(str(b['image']))
         b['kind'] = 'defect'
@@ -166,8 +185,9 @@ def main():
         clean, _ = remove_defects(b['img'], b['labels'])
         # 영상 압축 뒤에도 정상으로 나와야 한다 → 원본과 강하게 압축한 사진 둘 다 확인
         squashed = cv2.imdecode(cv2.imencode('.jpg', clean, [cv2.IMWRITE_JPEG_QUALITY, 40])[1], cv2.IMREAD_COLOR)
-        if all(c['n_det'] == 0 for c in check(model, [clean, squashed], NORMAL_CONF)):
-            normals.append({'image': b['image'], 'case': 'normal', 'labels': [], 'img': clean, 'kind': 'normal'})
+        if a.test_from or all(c['n_det'] == 0 for c in check(model, [clean, squashed], NORMAL_CONF)):
+            normals.append({'image': b['image'], 'case': 'normal', 'labels': [], 'img': clean, 'kind': 'normal',
+                            'erased': b['labels']})
     seq = boards + normals
     rng.shuffle(seq)
     for b, c in zip(seq, check(model, [b['img'] for b in seq])):
@@ -208,7 +228,8 @@ def main():
         'sensing_zone': [(W - BOARD) // 2, 0, (W + BOARD) // 2, H],
         'note': 'x of a board at frame f = x0 - f*speed. center_frame = board centered (inside the sensing zone).',
         'boards': [{'index': i, 'kind': b['kind'], 'case': b['case'],
-                    'source': b['image'].relative_to(ROOT).as_posix(), 'x0': b['x0'], 'y': b['y'],
+                    'source': (b['image'].relative_to(ROOT) if b['image'].is_relative_to(ROOT) else b['image']).as_posix(),
+                    **({'erased_labels': [list(l) for l in b['erased']]} if b.get('erased') else {}), 'x0': b['x0'], 'y': b['y'],
                     'enter_frame': b['enter_frame'], 'center_frame': b['center_frame'], 'exit_frame': b['exit_frame'],
                     'labels': [{'type': t, 'cx': cx, 'cy': cy, 'w': w, 'h': h} for t, cx, cy, w, h in b['labels']],
                     'model_check': b['model']} for i, b in enumerate(seq)],

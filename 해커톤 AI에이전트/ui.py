@@ -27,6 +27,28 @@ IMG_TYPES = ['jpg', 'jpeg', 'png', 'bmp']
 ss = st.session_state
 
 
+def _quiet_reset_on_close():
+    """Windows asyncio 버그: 브라우저가 연결을 먼저 끊으면 서버 창에 ConnectionResetError(10054) 추적이 찍힌다 — 무해하니 숨긴다."""
+    import sys
+    if sys.platform != 'win32':
+        return
+    from asyncio import proactor_events
+    cls = proactor_events._ProactorBasePipeTransport
+    if getattr(cls, '_quiet_reset', False):
+        return
+    orig = cls._call_connection_lost
+
+    def call_connection_lost(self, exc):
+        try:
+            orig(self, exc)
+        except ConnectionResetError:
+            pass
+    cls._call_connection_lost, cls._quiet_reset = call_connection_lost, True
+
+
+_quiet_reset_on_close()
+
+
 ICONS = {'dash': ROOT / 'assets/demo_dashboard.png', 'chat': ROOT / 'assets/demo_chat.png'}
 
 # 처리 중 표시: Streamlit 기본(달리기·수영 등 스포츠 그림이 바뀜) 대신
